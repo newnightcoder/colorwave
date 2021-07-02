@@ -3,7 +3,7 @@ export { default as Navbar } from "./Navbar/Navbar";
 export { default as Gaming } from "./Shop/Gaming/Gaming";
 export { default as Sound } from "./Shop/Sound/Sound";
 export { default as Shop } from "./Shop/Shop/Shop";
-export { default as Product } from "./Shop/Product";
+export { default as Product } from "./Shop/Gaming/Product";
 export { default as ProductPage } from "./ProductPage/ProductPage";
 export { default as Cart } from "./Cart/Cart";
 export { default as NavbarCart } from "./Cart/NavbarCart";

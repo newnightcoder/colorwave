@@ -19,6 +19,7 @@ import listing from "./Commerce/commerce";
 
 const App = () => {
   const [store, setStore] = useState([]);
+  const [soundStore, setSoundStore] = useState([]);
 
   const getStore = async () => {
     const data = await listing();

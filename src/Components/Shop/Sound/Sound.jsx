@@ -1,18 +1,29 @@
-import React from "react";
-import ProductCard from "../Product";
+import React, { useEffect, useState } from "react";
+import ProductCard from "./Product";
 import "../../_variables.css";
 
-const Sound = () => {
+const Sound = ({ store }) => {
+  const [soundStore, setSoundStore] = useState([]);
+
+  const getSoundStore = () => {
+    let storeCategory = [];
+    store.map((item) => {
+      item.categories[0].name === "sound" && storeCategory.push(item);
+      setSoundStore(storeCategory);
+    });
+  };
+
+  useEffect(() => {
+    getSoundStore();
+  }, []);
+
   return (
     <section className="h-full w-full bg-sound p-4 md:p-5 lg:p-6">
       <h2 className="font-bold text-xl mb-4 ml-8 text-left">Sound</h2>
       <div className="h-full w-full grid place-items-center gap-4 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 ">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        {soundStore.map((soundItem, i) => (
+          <ProductCard key={i} soundItem={soundItem} />
+        ))}
       </div>
     </section>
   );
