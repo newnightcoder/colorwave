@@ -11,3 +11,4 @@ export { default as Payment } from "./Payment/Payment";
 export { default as Login } from "./Login/Login";
 export { default as Success } from "./Success/Success";
 export { default as Footer } from "./Footer/Footer";
+export { default as NotFound } from "./NotFound";

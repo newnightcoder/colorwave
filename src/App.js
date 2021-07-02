@@ -13,6 +13,7 @@ import {
   Payment,
   Login,
   Success,
+  NotFound,
 } from "./Components/Components";
 
 const App = () => {
@@ -40,6 +41,7 @@ const App = () => {
           <Footer />
         </>
       </Switch>
+      {/* <Route component={NotFound} /> */}
     </Router>
   );
 };

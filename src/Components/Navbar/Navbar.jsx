@@ -1,10 +1,13 @@
 import React from "react";
+import { Cart2, Cart3 } from "react-bootstrap-icons";
+import { NavLink } from "react-router-dom";
+import Cart from "../Cart/Cart";
 import "../_variables.css";
 
 const Navbar = () => {
   return (
     <>
-      <nav className="w-full bg-black shadow-lg fixed top-0 font-cabin">
+      <div className="w-full bg-black shadow-lg fixed top-0 font-cabin">
         <div className="w-full mx-auto px-2 sm:px-6 lg:px-8">
           <div className="relative flex items-center justify-between h-16">
             {/* <!-- MOBILE MENU BUTTON--> */}
@@ -54,59 +57,50 @@ const Navbar = () => {
               <div className="flex items-center text-gray-100 text-base p-3">
                 COLORWAVE
               </div>
-              <div className="ml-10 flex  items-center space-x-4 justify-center hidden lg:flex">
+              <nav className="ml-10 flex  items-center space-x-4 justify-center hidden lg:flex">
                 {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"  */}
-                <a
-                  href="#"
+                <NavLink
+                  to="/shop"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2  text-base font-medium whitespace-nowrap"
-                  // aria-current="page"
                 >
                   Our products
-                </a>
+                </NavLink>
 
-                <a
-                  href="#"
+                <NavLink
+                  to="/shop"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2  text-base font-medium whitespace-nowrap"
                 >
                   Categories
-                </a>
+                </NavLink>
 
-                <a
-                  href="#"
+                <NavLink
+                  to="/shop"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2  text-base font-medium whitespace-nowrap"
                 >
                   Promotional
-                </a>
+                </NavLink>
 
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-base font-medium whitespace-nowrap"
+                <NavLink
+                  to="/shop"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2  text-base font-medium whitespace-nowrap"
                 >
                   This is art!
-                </a>
-              </div>
+                </NavLink>
+              </nav>
               <div className="w-40 sm:w-52 h-full  flex items-center justify-between px-6">
-                <a
-                  href="#"
-                  className=" text-gray-300  hover:text-white block py-2 text-base font-medium whitespace-nowrap"
+                <NavLink
+                  to="/login"
+                  className=" text-gray-300  hover:bg-gray-700 hover:text-white block px-3 py-2 text-base font-medium whitespace-nowrap"
                 >
                   Sign in{" "}
-                </a>
+                </NavLink>
                 <button className="inline-flex items-center justify-center sm:text-gray-400 text-white hover:text-white">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 sm:h-7 sm:w-7 hover:text-white cursor-pointer"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
+                  <NavLink
+                    to="/cart"
+                    className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-xl font-medium whitespace-nowrap"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                    />
-                  </svg>
+                    <Cart3 />{" "}
+                  </NavLink>
                 </button>
               </div>
             </div>
@@ -147,7 +141,7 @@ const Navbar = () => {
             </a>
           </div>
         </div>
-      </nav>
+      </div>
     </>
   );
 };
