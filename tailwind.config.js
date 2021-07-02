@@ -2,10 +2,23 @@ module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            img: {
+              marginTop: "0",
+              marginBottom: "0",
+            },
+          },
+        },
+      },
+    },
   },
   variants: {
-    extend: {},
+    extend: {
+      stroke: ["hover"],
+    },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
