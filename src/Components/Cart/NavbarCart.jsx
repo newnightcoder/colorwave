@@ -1,10 +1,16 @@
 import React from "react";
-// import "./navbar.css";
+import {
+  Palette2,
+  BoxSeam,
+  Truck,
+  EmojiHeartEyes,
+} from "react-bootstrap-icons";
+import "../_variables.css";
 
-const Navbar = () => {
+const NavbarCart = () => {
   return (
     <>
-      <nav className="w-full bg-gray-800 shadow-lg fixed top-0">
+      <nav className="w-full bg-black shadow-lg fixed top-0 font-cabin">
         <div className="w-full mx-auto px-2 sm:px-6 lg:px-8">
           <div className="relative flex items-center justify-between h-16">
             {/* <!-- MOBILE MENU BUTTON--> */}
@@ -56,34 +62,19 @@ const Navbar = () => {
               </div>
               <div className="ml-10 flex  items-center space-x-4 justify-center hidden lg:flex">
                 {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"  */}
-                <a
+                <Palette2 className="text-white text-3xl" />{" "}
+                <span className="text-white text-2xl">---&gt;</span>
+                <BoxSeam className="text-white text-4xl" />{" "}
+                <span className="text-white text-2xl">---&gt;</span>
+                <Truck className="text-white text-4xl" />{" "}
+                <span className="text-white text-2xl">---&gt;</span>
+                <EmojiHeartEyes className="text-white text-4xl" />{" "}
+                <span
                   href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2  text-base font-medium whitespace-nowrap"
-                  // aria-current="page"
-                >
-                  Our products
-                </a>
-
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2  text-base font-medium whitespace-nowrap"
-                >
-                  Categories
-                </a>
-
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2  text-base font-medium whitespace-nowrap"
-                >
-                  Promotional
-                </a>
-
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-base font-medium whitespace-nowrap"
+                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-base font-medium"
                 >
                   This is art!
-                </a>
+                </span>
               </div>
               <div className="w-40 sm:w-52 h-full  flex items-center justify-between px-6">
                 <a
@@ -152,4 +143,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarCart;

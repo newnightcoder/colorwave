@@ -1,7 +1,12 @@
 .bg-gaming {
-  background-color: #191919;
+  /* background-color: #191919; */
+  background-color: #333;
 }
 
 .bg-sound {
   background-color: #f5f5f5;
+}
+
+.font-cabin {
+  font-family: "Cabin";
 }

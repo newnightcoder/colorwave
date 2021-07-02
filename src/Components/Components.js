@@ -1,0 +1,13 @@
+export { default as Home } from "./Home/Home";
+export { default as Navbar } from "./Navbar/Navbar";
+export { default as Gaming } from "./Shop/Gaming/Gaming";
+export { default as Sound } from "./Shop/Sound/Sound";
+export { default as Shop } from "./Shop/Shop/Shop";
+export { default as Product } from "./Shop/Product";
+export { default as ProductPage } from "./ProductPage/ProductPage";
+export { default as Cart } from "./Cart/Cart";
+export { default as NavbarCart } from "./Cart/NavbarCart";
+export { default as Payment } from "./Payment/Payment";
+export { default as Login } from "./Login/Login";
+export { default as Success } from "./Success/Success";
+export { default as Footer } from "./Footer/Footer";

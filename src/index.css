@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body::before {
-  content: "";
-  height: 70px;
-  width: 100%;
-  background-color: #191919;
-  display: block;
-  /* transform: translateY(-100%); */
+body {
+  background-color: #333;
 }

@@ -1,10 +1,21 @@
 import { useEffect } from "react";
 import WebFont from "webfontloader";
-import "./App.css";
-import "./Components/index";
-import { Navbar, Products, Footer } from "./Components/index";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import "./Components/Components";
+import {
+  Home,
+  Navbar,
+  Shop,
+  Footer,
+  ProductPage,
+  Cart,
+  NavbarCart,
+  Payment,
+  Login,
+  Success,
+} from "./Components/Components";
 
-function App() {
+const App = () => {
   useEffect(() => {
     WebFont.load({
       google: {
@@ -14,12 +25,23 @@ function App() {
   }, []);
 
   return (
-    <div className="h-full w-full font-cabin">
-      <Navbar />
-      <Products />
-      <Footer />
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/login" component={Login} />
+        <>
+          <Navbar />
+          <Route path="/shop" component={Shop} />
+          <Route path="/product" component={ProductPage} />
+          {/* <NavbarCart /> */}
+          <Route path="/cart" component={Cart} />
+          <Route path="/payment" component={Payment} />
+          <Route path="/success" component={Success} />
+          <Footer />
+        </>
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;

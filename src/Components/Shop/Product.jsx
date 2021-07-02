@@ -1,8 +1,9 @@
 import React from "react";
+import "../_variables.css";
 
 const ProductCard = () => {
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full font-cabin">
       <div className="">
         <img className="" src="https://source.unsplash.com/random" alt="" />
       </div>

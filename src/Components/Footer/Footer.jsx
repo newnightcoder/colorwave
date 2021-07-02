@@ -1,10 +1,10 @@
 import React from "react";
-import "./_variables.css";
+import "../_variables.css";
 import { Facebook, Github, Linkedin, Twitter } from "react-bootstrap-icons";
 
 const Footer = () => {
   return (
-    <div className="h-full w-full bg-gaming text-gray-300 text-center px-8">
+    <div className="h-full w-full bg-black text-gray-300 text-center px-8 font-cabin">
       <div className="grid grid-col-1 md:grid-cols-3 gap-6 py-5">
         <div className="flex flex-col ">
           <h3>ColorWave</h3>
