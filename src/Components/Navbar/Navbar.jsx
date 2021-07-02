@@ -1,8 +1,7 @@
 import React from "react";
-import { Cart2, Cart3 } from "react-bootstrap-icons";
+import { Cart3 } from "react-bootstrap-icons";
 import { NavLink } from "react-router-dom";
-import Cart from "../Cart/Cart";
-import "../_variables.css";
+// import "../_variables.css";
 
 const Navbar = () => {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import { Check, CheckCircle } from "react-bootstrap-icons";
+import { CheckCircle } from "react-bootstrap-icons";
 
 const Success = () => {
   return (

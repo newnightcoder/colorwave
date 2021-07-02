@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import WebFont from "webfontloader";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./Components/Components";
@@ -9,20 +9,30 @@ import {
   Footer,
   ProductPage,
   Cart,
-  NavbarCart,
   Payment,
   Login,
   Success,
-  NotFound,
+  // NotFound,
+  // NavbarCart,
 } from "./Components/Components";
+import listing from "./Commerce/commerce";
 
 const App = () => {
+  const [store, setStore] = useState([]);
+
+  const getStore = async () => {
+    const data = await listing();
+    setStore(data);
+    console.log("store!!!!", data);
+  };
+
   useEffect(() => {
     WebFont.load({
       google: {
         families: ["Cabin:400,500,600,700"],
       },
     });
+    getStore();
   }, []);
 
   return (
@@ -32,7 +42,12 @@ const App = () => {
         <Route path="/login" component={Login} />
         <>
           <Navbar />
-          <Route path="/shop" component={Shop} />
+          <Route
+            path="/shop"
+            component={() => {
+              return <Shop store={store} />;
+            }}
+          />
           <Route path="/product" component={ProductPage} />
           {/* <NavbarCart /> */}
           <Route path="/cart" component={Cart} />
