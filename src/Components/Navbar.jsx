@@ -1,9 +1,10 @@
 import React from "react";
+// import "./navbar.css";
 
 const Navbar = () => {
   return (
     <>
-      <nav className="bg-gray-800 shadow-lg">
+      <nav className="w-full bg-gray-800 shadow-lg fixed top-0">
         <div className="w-full mx-auto px-2 sm:px-6 lg:px-8">
           <div className="relative flex items-center justify-between h-16">
             {/* <!-- MOBILE MENU BUTTON--> */}
@@ -50,7 +51,9 @@ const Navbar = () => {
               </button>
             </div>
             <div className="w-full flex items-center justify-start lg:justify-between ">
-              <div className="flex items-center text-white  p-3">COLORWAVE</div>
+              <div className="flex items-center text-gray-100 text-base p-3">
+                COLORWAVE
+              </div>
               <div className="ml-10 flex  items-center space-x-4 justify-center hidden lg:flex">
                 {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"  */}
                 <a

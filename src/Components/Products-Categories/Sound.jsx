@@ -1,10 +1,11 @@
 import React from "react";
 import ProductCard from "./ProductCard";
+import "../_variables.css";
 
 const Sound = () => {
   return (
-    <section className="h-full w-full prose max-w-none p-4 md:p-5 lg:p-6 border-4 border-blue-500">
-      <h2>Gaming</h2>
+    <section className="h-full w-full bg-sound p-4 md:p-5 lg:p-6">
+      <h2 className="font-bold text-xl mb-4 text-center">Sound</h2>
       <div className="h-full w-full grid place-items-center gap-4 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 ">
         <ProductCard />
         <ProductCard />
