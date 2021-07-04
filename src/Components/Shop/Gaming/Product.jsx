@@ -1,22 +1,30 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import "../../_variables.css";
+import "./product.css";
 
-const ProductCard = ({ gamingItem }) => {
-  console.log("cards", gamingItem);
+const ProductCard = ({ item }) => {
+  const history = useHistory();
+
   return (
-    <NavLink to="/product">
-      <div className="h-full w-full font-cabin">
-        <div className="">
-          <img
-            className="object-cover h-30 md:h-60 w-full"
-            src={gamingItem && gamingItem.assets[0].url}
-            alt=""
-          />
-        </div>
-        <p className="text-center">{gamingItem && gamingItem.name}</p>
+    <div
+      className="h-full w-full font-cabin"
+      onClick={() =>
+        history.push({
+          pathname: "/product",
+          state: { item },
+        })
+      }
+    >
+      <div className="bg-black-rgba">
+        <img
+          className="object-cover h-30 md:h-60 w-full"
+          src={item && item.media.source}
+          alt=""
+        />
       </div>
-    </NavLink>
+      <p className="text-center text-sm md:text-base">{item && item.name}</p>
+    </div>
   );
 };
 

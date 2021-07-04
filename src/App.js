@@ -12,14 +12,13 @@ import {
   Payment,
   Login,
   Success,
-  // NotFound,
-  // NavbarCart,
+  NotFound,
+  NavbarCart,
 } from "./Components/Components";
 import listing from "./Commerce/commerce";
 
 const App = () => {
   const [store, setStore] = useState([]);
-  const [soundStore, setSoundStore] = useState([]);
 
   const getStore = async () => {
     const data = await listing();
@@ -43,21 +42,16 @@ const App = () => {
         <Route path="/login" component={Login} />
         <>
           <Navbar />
-          <Route
-            path="/shop"
-            component={() => {
-              return <Shop store={store} />;
-            }}
-          />
+          <Route path="/shop" component={() => <Shop store={store} />} />
           <Route path="/product" component={ProductPage} />
-          {/* <NavbarCart /> */}
           <Route path="/cart" component={Cart} />
           <Route path="/payment" component={Payment} />
           <Route path="/success" component={Success} />
+          {/* <Route path="*" component={NotFound} /> */}
           <Footer />
         </>
+        {/* <NavbarCart /> */}
       </Switch>
-      {/* <Route component={NotFound} /> */}
     </Router>
   );
 };

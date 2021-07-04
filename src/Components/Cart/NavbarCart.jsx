@@ -4,6 +4,8 @@ import {
   BoxSeam,
   Truck,
   EmojiHeartEyes,
+  Brush,
+  Palette,
 } from "react-bootstrap-icons";
 import "../_variables.css";
 
@@ -62,7 +64,8 @@ const NavbarCart = () => {
               </div>
               <div className="ml-10 flex  items-center space-x-4 justify-center hidden lg:flex">
                 {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"  */}
-                <Palette2 className="text-white text-3xl" />{" "}
+                <Palette className="text-white text-3xl" />{" "}
+                <Brush className="text-white text-3xl" />{" "}
                 <span className="text-white text-2xl">---&gt;</span>
                 <BoxSeam className="text-white text-4xl" />{" "}
                 <span className="text-white text-2xl">---&gt;</span>

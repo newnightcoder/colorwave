@@ -1,22 +1,29 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "../../_variables.css";
 
-const ProductCard = ({ soundItem }) => {
-  console.log("cards", soundItem);
+const ProductCard = ({ item }) => {
+  const history = useHistory();
+
   return (
-    <NavLink to="/product">
-      <div className="h-full w-full font-cabin">
-        <div className="">
-          <img
-            className="object-cover h-30 md:h-60 w-full"
-            src={soundItem && soundItem.assets[0].url}
-            alt=""
-          />
-        </div>
-        <p className="text-center">{soundItem && soundItem.name}</p>
+    <div
+      className="h-full w-full font-cabin"
+      onClick={() =>
+        history.push({
+          pathname: "/product",
+          state: { item },
+        })
+      }
+    >
+      <div className="bg-white">
+        <img
+          className="object-cover h-30 md:h-60 w-full"
+          src={item && item.media.source}
+          alt=""
+        />
       </div>
-    </NavLink>
+      <p className="text-center">{item && item.name}</p>
+    </div>
   );
 };
 
