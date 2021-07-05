@@ -60,7 +60,7 @@ const Footer = () => {
           <div></div>
         </div>
       </div>
-      <div className="border-t border-gray-500 border-opacity-60	py-5">
+      <div className="border-t border-gray-600 border-opacity-60	py-5">
         &copy; ColorWare, Inc. All rights reserved
       </div>
     </div>

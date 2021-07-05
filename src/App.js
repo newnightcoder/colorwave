@@ -20,19 +20,18 @@ import listing from "./Commerce/commerce";
 const App = () => {
   const [store, setStore] = useState([]);
 
-  const getStore = async () => {
-    const data = await listing();
-    setStore(data);
-    console.log("store!!!!", data);
-  };
-
   useEffect(() => {
     WebFont.load({
       google: {
         families: ["Cabin:400,500,600,700"],
       },
     });
-    getStore();
+
+    (async () => {
+      const data = await listing();
+      setStore(data);
+      console.log("store!!!!", data);
+    })();
   }, []);
 
   return (

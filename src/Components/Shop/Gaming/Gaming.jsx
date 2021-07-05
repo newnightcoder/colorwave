@@ -2,21 +2,19 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "./Product";
 import "./gaming.css";
 import "../../_variables.css";
+import LoaderGaming from "./LoaderGaming";
 
 const Gaming = ({ store }) => {
   const [gamingStore, setGamingStore] = useState([]);
 
-  const getGamingStore = () => {
-    let storeCategory = [];
-    store.map((item) => {
-      item.categories[0].name === "gaming" && storeCategory.push(item);
-      setGamingStore(storeCategory);
-    });
-  };
-
   useEffect(() => {
-    getGamingStore();
-  }, []);
+    let storeCategory = [];
+    store.map(
+      (item) => item.categories[0].name === "gaming" && storeCategory.push(item)
+    );
+
+    setGamingStore(storeCategory);
+  }, [store]);
 
   return (
     <section className="bg-gaming min-h-screen w-full text-gray-300 px-4 md:p-5 lg:p-6  ">
@@ -25,7 +23,7 @@ const Gaming = ({ store }) => {
         {gamingStore.length !== 0 ? (
           gamingStore.map((item, i) => <ProductCard key={i} item={item} />)
         ) : (
-          <div className="border-2 border-white text-white text-xl">LOADER</div>
+          <LoaderGaming />
         )}
       </div>
     </section>

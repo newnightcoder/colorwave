@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "../../_variables.css";
 import "./product.css";
 
@@ -8,7 +8,7 @@ const ProductCard = ({ item }) => {
 
   return (
     <div
-      className="h-full w-full font-cabin"
+      className="h-full w-full cursor-pointer	font-cabin"
       onClick={() =>
         history.push({
           pathname: "/product",

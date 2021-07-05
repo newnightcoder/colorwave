@@ -7,7 +7,7 @@ const ProductCard = ({ item }) => {
 
   return (
     <div
-      className="h-full w-full font-cabin"
+      className="h-full w-full cursor-pointer	font-cabin"
       onClick={() =>
         history.push({
           pathname: "/product",
