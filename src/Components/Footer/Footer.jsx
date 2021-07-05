@@ -1,6 +1,6 @@
 import React from "react";
-import "../_variables.css";
 import { Facebook, Github, Linkedin, Twitter } from "react-bootstrap-icons";
+import "../_variables.css";
 
 const Footer = () => {
   return (

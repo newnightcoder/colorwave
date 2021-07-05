@@ -1,27 +1,35 @@
-import React, { useEffect, useState } from "react";
-import ProductCard from "./Product";
-import "./gaming.css";
+import React from "react";
+import { useSelector } from "react-redux";
 import "../../_variables.css";
+import "./gaming.css";
 import LoaderGaming from "./LoaderGaming";
+import ProductCard from "./Product";
 
-const Gaming = ({ store }) => {
-  const [gamingStore, setGamingStore] = useState([]);
+const Gaming = () => {
+  // const [gamingStore, setGamingStore] = useState([]);
 
-  useEffect(() => {
-    let storeCategory = [];
-    store.map(
-      (item) => item.categories[0].name === "gaming" && storeCategory.push(item)
-    );
+  // useEffect(() => {
+  //   let storeCategory = [];
+  //   store.map(
+  //     (item) => item.categories[0].name === "gaming" && storeCategory.push(item)
+  //   );
 
-    setGamingStore(storeCategory);
-  }, [store]);
+  //   setGamingStore(storeCategory);
+  // }, [store]);
+
+  const items = useSelector((state) => state.shopReducer);
 
   return (
     <section className="bg-gaming min-h-screen w-full text-gray-300 px-4 md:p-5 lg:p-6  ">
       <h2 className="mb-4 ml-8 text-white text-left">Gaming</h2>
       <div className="h-full w-full grid place-items-center gap-4 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 ">
-        {gamingStore.length !== 0 ? (
-          gamingStore.map((item, i) => <ProductCard key={i} item={item} />)
+        {items.length !== 0 ? (
+          items.map(
+            (item, i) =>
+              item.categories[0].name === "gaming" && (
+                <ProductCard key={i} item={item} />
+              )
+          )
         ) : (
           <LoaderGaming />
         )}

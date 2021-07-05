@@ -1,11 +1,10 @@
 import React from "react";
 import {
-  Palette2,
   BoxSeam,
-  Truck,
-  EmojiHeartEyes,
   Brush,
+  EmojiHeartEyes,
   Palette,
+  Truck,
 } from "react-bootstrap-icons";
 import "../_variables.css";
 

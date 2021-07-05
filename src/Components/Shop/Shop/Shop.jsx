@@ -1,8 +1,8 @@
 import React from "react";
+import "../../_variables.css";
 import Gaming from "../Gaming/Gaming";
 import Sound from "../Sound/Sound";
 import "./shop.css";
-import "../../_variables.css";
 
 const Shop = ({ store }) => {
   return (

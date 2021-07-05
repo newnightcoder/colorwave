@@ -42,7 +42,7 @@ const ProductPage = () => {
           </button>
           <div
             className="text-left pr-20"
-            // DOMPURIFY OR SANITIZER NEEDED!!! OR REACT-HTML-PARSER!!
+            //❌ DOMPURIFY OR SANITIZER NEEDED!!! OR REACT-HTML-PARSER!!
             dangerouslySetInnerHTML={{ __html: item.description }}
           ></div>
         </div>
