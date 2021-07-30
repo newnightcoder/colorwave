@@ -5,17 +5,7 @@ import Loader from "./LoaderSound";
 import ProductCard from "./Product";
 
 const Sound = () => {
-  // const [soundStore, setSoundStore] = useState([]);
-
-  // useEffect(() => {
-  //   let storeCategory = [];
-  //   store.map(
-  //     (item) => item.categories[0].name === "sound" && storeCategory.push(item)
-  //   );
-  //   setSoundStore(storeCategory);
-  // }, [store]);
-
-  const items = useSelector((state) => state.shopReducer);
+  const items = useSelector((state) => state.shop);
 
   return (
     <section className="h-full w-full bg-sound p-4 md:p-5 lg:p-6">

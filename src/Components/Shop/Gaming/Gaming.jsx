@@ -6,18 +6,7 @@ import LoaderGaming from "./LoaderGaming";
 import ProductCard from "./Product";
 
 const Gaming = () => {
-  // const [gamingStore, setGamingStore] = useState([]);
-
-  // useEffect(() => {
-  //   let storeCategory = [];
-  //   store.map(
-  //     (item) => item.categories[0].name === "gaming" && storeCategory.push(item)
-  //   );
-
-  //   setGamingStore(storeCategory);
-  // }, [store]);
-
-  const items = useSelector((state) => state.shopReducer);
+  const items = useSelector((state) => state.shop);
 
   return (
     <section className="bg-gaming min-h-screen w-full text-gray-300 px-4 md:p-5 lg:p-6  ">

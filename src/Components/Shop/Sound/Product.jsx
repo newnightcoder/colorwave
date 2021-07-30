@@ -10,7 +10,7 @@ const ProductCard = ({ item }) => {
       className="h-full w-full cursor-pointer	font-cabin"
       onClick={() =>
         history.push({
-          pathname: "/product",
+          pathname: `/product/${item.name}`,
           state: { item },
         })
       }
@@ -19,7 +19,7 @@ const ProductCard = ({ item }) => {
         <img
           className="object-cover h-30 md:h-60 w-full"
           src={item && item.media.source}
-          alt=""
+          alt={item.name}
         />
       </div>
       <p className="text-center">{item && item.name}</p>

@@ -1,10 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { addToCart } from "../../Redux/Actions/cart.action";
 import "../_variables.css";
 
 const ProductPage = () => {
   const location = useLocation();
   const { item } = location.state;
+
+  const [qty, setQty] = useState(1);
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(item.id, qty));
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -37,7 +46,10 @@ const ProductPage = () => {
           <span className="text-bold text-xl ">
             {item.price.formatted_with_code}{" "}
           </span>
-          <button className="bg-sound text-black whitespace-nowrap w-36 uppercase py-1">
+          <button
+            onClick={handleAddToCart}
+            className="bg-sound text-black whitespace-nowrap w-36 uppercase py-1"
+          >
             add to cart
           </button>
           <div
@@ -54,7 +66,7 @@ const ProductPage = () => {
         <div className="border-b border-gray-600 border-opacity-60 w-full flex items-center justify-center font-cabin pb-4 md:pb-8">
           {item.related_products.map((item, i) => (
             <div key={i} className="cursor-pointer">
-              <img class="object-cover" src={item.media.source} alt="" />
+              <img className="object-cover" src={item.media.source} alt="" />
               <div>{item.name}</div>
             </div>
           ))}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import WebFont from "webfontloader";
 import "./Components/Components";
@@ -15,20 +15,12 @@ import {
 } from "./Components/Components";
 
 const App = () => {
-  const [store, setStore] = useState([]);
-
   useEffect(() => {
     WebFont.load({
       google: {
         families: ["Cabin:400,500,600,700"],
       },
     });
-    // ❗️NO FETCH NEEDED IN USEFFECT ANYMORE: REDUX TAKES CARE OF IT❗️
-    //     (async () => {
-    //       const data = await listing();
-    //       setStore(data);
-    //       console.log("store!!!!", data);
-    //     })();
   }, []);
 
   return (
