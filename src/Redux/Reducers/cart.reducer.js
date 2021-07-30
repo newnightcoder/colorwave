@@ -15,8 +15,13 @@ const cartReducer = (state = initialState, action) => {
       }
       if (isAlready) {
         let test = [...state];
-        state = test.map((product) =>
-          product.id === item.id ? item : product
+        state = test.map((product, i) =>
+          product.id === item.id
+            ? {
+                id: product.id,
+                quantity: product.quantity + 1,
+              }
+            : product
         );
         // 2. if not, add to cart
       } else {
