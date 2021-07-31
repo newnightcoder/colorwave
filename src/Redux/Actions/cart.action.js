@@ -1,10 +1,10 @@
 import { actionTypes } from "../Types/types";
 
-export const addToCart = (id, quantity) => (dispatch) => {
+export const addToCart = (product, quantity) => (dispatch) => {
   dispatch({
     type: actionTypes.ADD_TO_CART,
     payload: {
-      id,
+      product,
       quantity,
     },
   });

@@ -9,24 +9,24 @@ const cartReducer = (state = initialState, action) => {
       // 1. check if the item is already in the cart and add it to itself
       let isAlready = false;
       for (let i = 0; i < state.length; i++) {
-        if (item.id === state[i].id) {
+        if (item.product.id === state[i].product.id) {
           isAlready = true;
         }
       }
       if (isAlready) {
-        let test = [...state];
-        state = test.map((product, i) =>
-          product.id === item.id
+        let stateCopy = [...state];
+        // nb: map returns an array😉
+        state = stateCopy.map((cartItem, i) =>
+          cartItem.product.id === item.product.id
             ? {
-                id: product.id,
-                quantity: product.quantity + 1,
+                ...cartItem,
+                quantity: cartItem.quantity + 1,
               }
-            : product
+            : cartItem
         );
         // 2. if not, add to cart
-      } else {
-        state = [...state, item];
-      }
+      } else state = [...state, item];
+
     // case actionTypes.ADJUST_QUANTITY:
     //   break;
     // case actionTypes.DELETE_ITEM:
