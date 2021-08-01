@@ -5,3 +5,8 @@
 body {
   background-color: #222;
 }
+body::before {
+  content: "";
+  display: block;
+  height: 70px;
+}

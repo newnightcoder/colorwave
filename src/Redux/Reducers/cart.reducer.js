@@ -5,32 +5,39 @@ const initialState = [];
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.ADD_TO_CART:
-      const item = action.payload;
+      let item = action.payload;
       // 1. check if the item is already in the cart and add it to itself
-      let isAlready = false;
-      for (let i = 0; i < state.length; i++) {
-        if (item.product.id === state[i].product.id) {
-          isAlready = true;
-        }
-      }
-      if (isAlready) {
+      const isInCart = state.find((x) => x.product.id === item.product.id);
+      console.log(isInCart);
+      if (isInCart) {
         let stateCopy = [...state];
         // nb: map returns an array😉
-        state = stateCopy.map((cartItem, i) =>
+        return (state = stateCopy.map((cartItem) =>
           cartItem.product.id === item.product.id
             ? {
                 ...cartItem,
                 quantity: cartItem.quantity + 1,
               }
             : cartItem
-        );
+        ));
         // 2. if not, add to cart
-      } else state = [...state, item];
+      } else return (state = [...state, item]);
 
-    // case actionTypes.ADJUST_QUANTITY:
-    //   break;
+    case actionTypes.REMOVE_ONE_FROM_CART:
+      let item2 = action.payload;
+      // 1. find the item in the state (cart)
+      const testItem = state.find((x) => x.product.id === item2.product.id);
+      const stateCopy = [...state];
+      return (state = stateCopy.map((x) =>
+        x.product.id === testItem.product.id
+          ? {
+              ...x,
+              quantity: x.quantity > 0 && x.quantity - 1,
+            }
+          : x
+      ));
+
     // case actionTypes.DELETE_ITEM:
-    //   break;
     default:
       return state;
   }

@@ -9,3 +9,13 @@ export const addToCart = (product, quantity) => (dispatch) => {
     },
   });
 };
+
+export const removeFromCart = (product, quantity) => (dispatch) => {
+  dispatch({
+    type: actionTypes.REMOVE_ONE_FROM_CART,
+    payload: {
+      product,
+      quantity,
+    },
+  });
+};

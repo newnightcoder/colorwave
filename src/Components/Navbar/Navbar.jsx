@@ -1,17 +1,19 @@
 import React from "react";
-import { Cart3 } from "react-bootstrap-icons";
+import { Handbag } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-// import "../_variables.css";
+import "./navbar.css";
 
 const Navbar = () => {
   const items = useSelector((state) => state.cart);
+  console.log(items);
   const totalItems =
     items.length !== 0 &&
     items.reduce((acc, curr) => {
       return acc + curr.quantity;
     }, 0);
   console.log(totalItems);
+
   return (
     <>
       <div className="w-full bg-black shadow-lg fixed top-0 font-cabin">
@@ -60,12 +62,12 @@ const Navbar = () => {
                 <NavLink to="/login" className=" text-gray-300  hover:bg-gray-700 hover:text-white block px-3 py-2 text-base font-medium whitespace-nowrap">
                   Sign in{" "}
                 </NavLink>
-                <button className="inline-flex items-center justify-center sm:text-gray-400 text-white hover:text-white">
-                  <NavLink to="/cart" className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-xl font-medium whitespace-nowrap">
-                    <Cart3 />{" "}
+                <div className="w-12 h-full relative flex items-center justify-center sm:text-gray-400 text-white hover:bg-gray-700 ">
+                  <NavLink to="/cart" className="z-10 text-gray-300 px-3 py-2 text-xl font-bold whitespace-nowrap">
+                    <Handbag />
                   </NavLink>
-                </button>
-                <div className="text-gray-100">{totalItems}</div>
+                  {totalItems > 0 && <div className="h-5 w-5 flex items-center justify-center absolute top-0 right-0 text-sm text-gray-100 bg-gray-400 rounded-full">{totalItems}</div>}
+                </div>
               </div>
             </div>
           </div>

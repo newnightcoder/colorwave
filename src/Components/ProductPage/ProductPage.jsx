@@ -33,16 +33,7 @@ const ProductPage = () => {
         <div className="h-full w-full md:w-1/2 flex flex-col  justify-center border-l border-gray-600 border-opacity-60 text-left px-8 pt-8 space-y-8">
           <h2 className="text-2xl text-bold">{item.name}</h2>
           <span className="text-bold text-xl ">{item.price.formatted_with_code} </span>
-          <button
-            onClick={() => {
-              handleAddToCart();
-              // history.push({
-              //   pathname: `/cart`,
-              //   state: { item, qty },
-              // });
-            }}
-            className="bg-sound text-black whitespace-nowrap w-36 uppercase py-1"
-          >
+          <button onClick={handleAddToCart} className="bg-sound text-black whitespace-nowrap w-36 uppercase py-1">
             add to cart
           </button>
           <div
