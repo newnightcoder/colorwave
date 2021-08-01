@@ -1,7 +1,7 @@
 import React from "react";
 import { Trash } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart } from "../../Redux/Actions/cart.action";
+import { addToCart, deleteItem, removeOne } from "../../Redux/Actions/cart.action";
 import "../_variables.css";
 import "./cart.css";
 
@@ -16,17 +16,27 @@ const Cart = () => {
       }
     });
   };
+
   const handleRemoveOne = (e) => {
     items.forEach((item) => {
       if (item.product.name === e.target.parentElement.parentElement.firstChild.innerText) {
-        dispatch(removeFromCart(item.product, item.quantity));
+        dispatch(removeOne(item.product, item.quantity));
+      }
+    });
+  };
+  const handleDeleteItem = (e) => {
+    items.forEach((item) => {
+      if (item.product.name === e.target.parentElement.parentElement.firstChild.innerText) {
+        dispatch(deleteItem(item.product));
       }
     });
   };
 
-  const totalPrice = items.reduce((acc, curr) => {
-    return acc + curr.product.price.raw * curr.quantity;
-  }, 0);
+  const totalPrice =
+    items.length !== 0 &&
+    items.reduce((acc, curr) => {
+      return acc + curr.product.price.raw * curr.quantity;
+    }, 0);
 
   return (
     <div className="h-full overflow-x-hidden">
@@ -40,8 +50,8 @@ const Cart = () => {
               <div className="flex justify-evenly">
                 <button onClick={(e) => handleAddToCart(e)}>+</button>
                 <button onClick={(e) => handleRemoveOne(e)}>-</button>
-                <button>
-                  <Trash />
+                <button onClick={(e) => handleDeleteItem(e)}>
+                  <Trash className="pointer-events-none" />
                 </button>
               </div>
             </div>

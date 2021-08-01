@@ -10,12 +10,20 @@ export const addToCart = (product, quantity) => (dispatch) => {
   });
 };
 
-export const removeFromCart = (product, quantity) => (dispatch) => {
+export const removeOne = (product, quantity) => (dispatch) => {
   dispatch({
     type: actionTypes.REMOVE_ONE_FROM_CART,
     payload: {
       product,
       quantity,
+    },
+  });
+};
+export const deleteItem = (product) => (dispatch) => {
+  dispatch({
+    type: actionTypes.DELETE_ITEM,
+    payload: {
+      product,
     },
   });
 };
