@@ -19,11 +19,21 @@ export const removeOne = (product, quantity) => (dispatch) => {
     },
   });
 };
+
 export const deleteItem = (product) => (dispatch) => {
   dispatch({
     type: actionTypes.DELETE_ITEM,
     payload: {
       product,
+    },
+  });
+};
+
+export const deleteCart = (cart) => (dispatch) => {
+  dispatch({
+    type: actionTypes.DELETE_ITEM,
+    payload: {
+      cart,
     },
   });
 };

@@ -44,6 +44,11 @@ const cartReducer = (state = initialState, action) => {
       const stateCopy = [...state];
       state = stateCopy.filter((x) => x.product.id !== item.product.id);
     }
+
+    case actionTypes.DELETE_CART: {
+      state = [];
+    }
+
     default:
       return state;
   }

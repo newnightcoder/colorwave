@@ -24,12 +24,16 @@ const Cart = () => {
       }
     });
   };
+
   const handleDeleteItem = (e) => {
     items.forEach((item) => {
       if (item.product.name === e.target.parentElement.parentElement.firstChild.innerText) {
         dispatch(deleteItem(item.product));
       }
     });
+  };
+  const handleDeleteCart = () => {
+    dispatch(deleteItem(items));
   };
 
   const totalPrice =
@@ -59,10 +63,15 @@ const Cart = () => {
         ) : (
           <div className="w-screen flex flex-col items-center justify-center border border-red-500 empty-cart">YOUR CART IS EMPTY</div>
         )}
-        {totalPrice !== 0 && (
-          <div className="w-3/12 flex justify-between text-gray-900 pt-2">
-            <span>TOTAL:</span> <span>{totalPrice} EUR</span>{" "}
-          </div>
+        {items.length !== 0 && (
+          <>
+            <div className="w-3/12 flex justify-between text-gray-900 pt-2">
+              <span>TOTAL:</span> <span>{totalPrice} EUR</span>{" "}
+            </div>
+            <button className="text-gray-900" onClick={handleDeleteCart}>
+              empty the cart
+            </button>
+          </>
         )}
       </div>
       <div className="w-screen min-h-screen flex items-center justify-center text-gray-300 bg-gaming">FORM</div>
