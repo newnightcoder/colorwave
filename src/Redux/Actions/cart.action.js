@@ -31,7 +31,7 @@ export const deleteItem = (product) => (dispatch) => {
 
 export const deleteCart = (cart) => (dispatch) => {
   dispatch({
-    type: actionTypes.DELETE_ITEM,
+    type: actionTypes.DELETE_CART,
     payload: {
       cart,
     },
