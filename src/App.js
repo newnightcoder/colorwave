@@ -1,18 +1,7 @@
 import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import WebFont from "webfontloader";
-import "./Components/Components";
-import {
-  Cart,
-  Footer,
-  Home,
-  Login,
-  Navbar,
-  Payment,
-  ProductPage,
-  Shop,
-  Success,
-} from "./Components/Components";
+import { Cart, Footer, Home, Login, Navbar, Payment, ProductPage, Shop, Success } from "./Components";
 
 const App = () => {
   useEffect(() => {

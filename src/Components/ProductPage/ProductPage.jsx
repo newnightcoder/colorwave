@@ -6,9 +6,16 @@ import "../_variables.css";
 
 const ProductPage = () => {
   const location = useLocation();
-  console.log(location);
+  const [state, setState] = useState(location.state);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  // setState(location.state);
   const { item } = location.state;
-  console.log(item);
+
+  console.log("location", location);
+  console.log("item du location.state", item);
 
   const dispatch = useDispatch();
   const [qty, setQty] = useState(1);
@@ -25,10 +32,6 @@ const ProductPage = () => {
   const handleAddToCart = () => {
     dispatch(addToCart(item, qty));
   };
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const imgBgColor = item?.categories[0].name === "gaming" ? { backgroundColor: "black" } : { backgroundColor: "white" };
 
@@ -64,14 +67,11 @@ const ProductPage = () => {
             <div
               key={i}
               className="cursor-pointer"
-              onClick={
-                // () => console.log(getRelatedItem(related.id))
-
-                () =>
-                  history.push({
-                    path: `/${getRelatedItem(related.id).name}`,
-                    state: getRelatedItem(related.id),
-                  })
+              onClick={() =>
+                history.replace({
+                  path: `/product/${getRelatedItem(related.id).name}`,
+                  state: getRelatedItem(related.id),
+                })
               }
             >
               <img className="object-cover" src={related.media.source} alt={related.name} />
