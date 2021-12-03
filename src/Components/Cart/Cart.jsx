@@ -2,7 +2,7 @@ import React from "react";
 import { Trash } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, deleteItem, removeOne } from "../../Redux/Actions/cart.action";
-import "../_variables.css";
+import "../../Styles/_variables.css";
 import "./cart.css";
 
 const Cart = () => {

@@ -2,7 +2,6 @@ import React from "react";
 import { Handbag } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import "./navbar.css";
 
 const Navbar = () => {
   const items = useSelector((state) => state.cart);

@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import "../../_variables.css";
+import "../../../Styles/_variables.css";
 import Loader from "./LoaderSound";
 import ProductCard from "./Product";
 

@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import WebFont from "webfontloader";
-import { Cart, Footer, Home, Login, Navbar, Payment, ProductPage, Shop, Success } from "./Components";
+import { Cart, Footer, Navbar, Payment, ProductPage, Shop, Success } from "./Components";
+import { Homepage } from "./Pages";
 
 const App = () => {
   useEffect(() => {
@@ -15,8 +16,8 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/login" component={Login} />
+        <Route exact path="/" component={Homepage} />
+        {/* <Route path="/login" component={Login} /> */}
         <>
           <Navbar />
           <Route path="/shop" component={Shop} />

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { addToCart } from "../../Redux/Actions/cart.action";
-import "../_variables.css";
+import "../../Styles/_variables.css";
 
 const ProductPage = () => {
   const location = useLocation();

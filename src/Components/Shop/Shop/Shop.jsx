@@ -1,5 +1,5 @@
 import React from "react";
-import "../../_variables.css";
+import "../../../Styles/_variables.css";
 import Gaming from "../Gaming/Gaming";
 import Sound from "../Sound/Sound";
 import "./shop.css";

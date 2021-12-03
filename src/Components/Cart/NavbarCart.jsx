@@ -1,6 +1,6 @@
 import React from "react";
 import { BoxSeam, Brush, EmojiHeartEyes, Palette, Truck } from "react-bootstrap-icons";
-import "../_variables.css";
+import "../../Styles/_variables.css";
 
 const NavbarCart = () => {
   return (

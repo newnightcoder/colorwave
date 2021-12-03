@@ -1,16 +1,14 @@
 import React from "react";
 import { Facebook, Github, Linkedin, Twitter } from "react-bootstrap-icons";
-import "../_variables.css";
+import "../../Styles/_variables.css";
 
 const Footer = () => {
   return (
-    <div className="h-full w-full bg-black text-gray-300 text-center px-8 font-cabin">
+    <div className="h-max w-screen absolute bottom-0 bg-black text-gray-300 text-center px-8 font-cabin">
       <div className="grid grid-col-1 md:grid-cols-3 gap-6 py-5">
         <div className="flex flex-col ">
           <h3>ColorWave</h3>
-          <p>
-            Making your world a better place through creative customizations!
-          </p>
+          <p>Making your world a better place through creative customizations!</p>
           <ul className="flex flex-row justify-evenly">
             <li>
               <Facebook className="text-2xl" />
@@ -60,9 +58,7 @@ const Footer = () => {
           <div></div>
         </div>
       </div>
-      <div className="border-t border-gray-600 border-opacity-60	py-5">
-        &copy; ColorWare, Inc. All rights reserved
-      </div>
+      <div className="border-t border-gray-600 border-opacity-60	py-5">&copy; ColorWare, Inc. All rights reserved</div>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import "../../_variables.css";
+import "../../../Styles/_variables.css";
 
 const ProductCard = ({ item }) => {
   const history = useHistory();
@@ -16,11 +16,7 @@ const ProductCard = ({ item }) => {
       }
     >
       <div className="bg-white">
-        <img
-          className="object-cover h-30 md:h-60 w-full"
-          src={item && item.media.source}
-          alt={item.name}
-        />
+        <img className="object-cover h-30 md:h-60 w-full" src={item && item.media.source} alt={item.name} />
       </div>
       <p className="text-center">{item && item.name}</p>
     </div>
