@@ -3,11 +3,17 @@
 @tailwind utilities;
 @import "~react-image-gallery/styles/css/image-gallery.css";
 
+.image-gallery {
+  width: 100%;
+  height: auto;
+  z-index: 0;
+}
+
 body {
   background-color: #fefefe;
 }
-/* body::before {
+body::before {
   content: "";
   display: block;
-  height: 70px;
-} */
+  height: 64px;
+}

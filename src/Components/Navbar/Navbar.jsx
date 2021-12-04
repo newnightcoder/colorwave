@@ -15,7 +15,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="w-full bg-black shadow-lg fixed top-0 font-cabin">
+      <div className="w-full bg-black shadow-lg fixed top-0 z-50 font-cabin">
         <div className="w-full mx-auto px-2 sm:px-6 lg:px-8">
           <div className="relative flex items-center justify-between h-16">
             {/* <!-- MOBILE MENU BUTTON--> */}
