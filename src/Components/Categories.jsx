@@ -1,27 +1,19 @@
 import React from "react";
 import { CategoryLink } from ".";
+import { default as img1, default as img4, default as img6 } from "../Assets/categories/banner-1000-controller.png";
+import img3 from "../Assets/categories/banner-1000-iphone.png";
+import img2 from "../Assets/categories/banner-1000-mic.png";
+import img5 from "../Assets/categories/banner-1000-p5.png";
 
 const Categories = () => {
-  // const [title, setTitle] = useState("test");
-
-  // const displayTitle = (str) => {
-  //   switch (str) {
-  //     case "gaming":
-  //       return setTitle("gaming");
-  //     case "sound":
-  //       return setTitle("sound");
-  //     default:
-  //       return setTitle("test");
-  //   }
-  // };
-
   return (
-    <div className="h-3/4 w-screen grid grid-cols-2	border border-2 border-red-500">
-      <CategoryLink title="gaming" />
-      <CategoryLink title="sound" />
-      <CategoryLink title="iphones" />
-      <CategoryLink title="ipads" />
-      <CategoryLink title="accessories" />
+    <div className="h-3/4 w-screen grid grid-cols-2	border">
+      <CategoryLink title="gaming" img={img1} />
+      <CategoryLink title="sound" img={img2} />
+      <CategoryLink title="iphones" img={img3} />
+      <CategoryLink title="ipads" img={img4} />
+      <CategoryLink title="playstation" img={img5} />
+      <CategoryLink title="accessories" img={img6} />
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import WebFont from "webfontloader";
 import { Cart, Footer, Navbar, Payment, ProductPage, Shop, Success } from "./Components";
-import { Homepage } from "./Pages";
+import { Category, Homepage } from "./Pages";
 
 const App = () => {
   useEffect(() => {
@@ -20,6 +20,7 @@ const App = () => {
         {/* <Route path="/login" component={Login} /> */}
         <>
           <Navbar />
+          <Route path="/categories" component={Category} />
           <Route path="/shop" component={Shop} />
           <Route path="/product" component={ProductPage} />
           <Route path="/cart" component={Cart} />
