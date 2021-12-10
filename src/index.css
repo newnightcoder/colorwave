@@ -10,7 +10,7 @@
 }
 
 body {
-  background-color: #fefefe;
+  background-color: #222;
 }
 body::before {
   content: "";

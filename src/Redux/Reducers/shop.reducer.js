@@ -1,6 +1,6 @@
-const initialState = [];
+const shop = [];
 
-const shopReducer = (state = initialState, action) => {
+const shopReducer = (state = shop, action) => {
   switch (action.type) {
     case "GET_SHOP": {
       return action.payload;

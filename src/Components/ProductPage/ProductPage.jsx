@@ -7,6 +7,7 @@ import "../../Styles/_variables.css";
 const ProductPage = () => {
   const location = useLocation();
   const [state, setState] = useState(location.state);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
