@@ -5,7 +5,7 @@ import img from "../Assets/products.png";
 import img1 from "../Assets/sliderImg/1.png";
 import img2 from "../Assets/sliderImg/2.png";
 import img3 from "../Assets/sliderImg/3.png";
-import { Categories, Footer, Navbar } from "../Components";
+import { CategoriesGrid, Footer, Navbar } from "../Components";
 import "../Styles/_variables.css";
 
 const images = [
@@ -13,7 +13,7 @@ const images = [
   { original: img2, originalHeight: "50", originalWidth: "100" },
   { original: img3, originalHeight: "50", originalWidth: "100" },
 ];
-const Homepage = () => {
+const HomePage = () => {
   return (
     <div className="min-h-screen w-screen relative flex flex-col items-center font-cabin">
       <Navbar />
@@ -24,10 +24,10 @@ const Homepage = () => {
           see all products
         </Link>
       </div>
-      <Categories />
+      <CategoriesGrid />
       <Footer />
     </div>
   );
 };
 
-export default Homepage;
+export default HomePage;

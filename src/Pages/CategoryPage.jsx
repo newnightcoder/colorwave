@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router";
 
-const Category = () => {
+const CategoryPage = () => {
   const location = useLocation();
   const category = location.pathname.split("/")[2];
 
@@ -21,4 +21,4 @@ const Category = () => {
   );
 };
 
-export default Category;
+export default CategoryPage;

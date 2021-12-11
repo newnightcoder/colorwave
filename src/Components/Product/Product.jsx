@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import "../../../Styles/_variables.css";
+import "../../Styles/_variables.css";
 import "./product.css";
 
 const ProductCard = ({ item }) => {

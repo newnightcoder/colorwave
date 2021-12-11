@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import "../../../Styles/_variables.css";
+import ProductCard from "../../Product/Product";
 import LoaderGaming from "./LoaderGaming";
-import ProductCard from "./Product";
 
 const Gaming = () => {
   const items = useSelector((state) => state?.shop);

@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import "../../../Styles/_variables.css";
+import ProductCard from "../../Product/Product";
 import Loader from "./LoaderSound";
-import ProductCard from "./Product";
 
 const Sound = () => {
   const items = useSelector((state) => state?.shop);
