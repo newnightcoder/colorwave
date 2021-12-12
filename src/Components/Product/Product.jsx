@@ -7,8 +7,11 @@ const ProductCard = ({ item, variants }) => {
   const history = useHistory();
 
   const linkPage = () => {
-    if (variants !== null) {
-      return history.push(`/categories/${item.name}`);
+    if (variants.length !== 0) {
+      return history.push({
+        pathname: `/categories/${item.name}`,
+        state: { variants: true, item },
+      });
     }
     history.push({
       pathname: `/product/${item.name}`,
@@ -17,11 +20,11 @@ const ProductCard = ({ item, variants }) => {
   };
 
   return (
-    <div className="h-full w-full cursor-pointer	font-cabin" onClick={linkPage}>
-      <div className="bg-black-rgba">
+    <div className="h-30 md:h-60 w-full cursor-pointer font-cabin" onClick={linkPage}>
+      <div className="bg-black-rgba h-full w-full ">
         <img className="object-cover h-30 md:h-60 w-full" src={item && item.media.source} alt={item.name} />
       </div>
-      <p className="text-center text-sm md:text-base">{item && item.name}</p>
+      <p className="text-center text-sm md:text-base pt-1">{item && item.name}</p>
     </div>
   );
 };
