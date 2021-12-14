@@ -7,7 +7,7 @@ const ProductCard = ({ item, variants }) => {
   const history = useHistory();
 
   const linkPage = () => {
-    if (variants.length !== 0) {
+    if (variants !== undefined && variants?.length !== 0) {
       return history.push({
         pathname: `/categories/${item.name}`,
         state: { variants: true, item },

@@ -34,7 +34,8 @@ const ProductPage = () => {
     dispatch(addToCart(item, qty));
   };
 
-  const imgBgColor = item?.categories[0].name === "gaming" ? { backgroundColor: "black" } : { backgroundColor: "white" };
+  const imgBgColor =
+    item?.categories[0]?.name === "gaming" ? { backgroundColor: "black" } : { backgroundColor: "white" };
 
   return (
     <div className="bg-black font-cabin">
@@ -43,7 +44,10 @@ const ProductPage = () => {
         <span className="capitalize">{item?.categories[0]?.name}</span> {"\u00BB "}
         {item?.name}
       </div>
-      <div className="min-h-screen w-full flex flex-col md:flex-row items-center justify-center bg-black text-gray-300" style={imgBgColor}>
+      <div
+        className="min-h-screen w-full flex flex-col md:flex-row items-center justify-center bg-black text-gray-300"
+        style={imgBgColor}
+      >
         <div className="w-full md:w-1/2 h-full flex items-center justify-center">
           <img className="object-cover" src={item?.media.source} width="450" height="300" alt="" />
         </div>
