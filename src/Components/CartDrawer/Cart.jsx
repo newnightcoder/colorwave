@@ -2,8 +2,8 @@ import React from "react";
 import { Trash } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, deleteItem, removeOne } from "../../Redux/Actions/cart.action";
+import "../../Styles/cart.css";
 import "../../Styles/_variables.css";
-import "./cart.css";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -61,7 +61,9 @@ const Cart = () => {
             </div>
           ))
         ) : (
-          <div className="w-screen flex flex-col items-center justify-center border border-red-500 empty-cart">YOUR CART IS EMPTY</div>
+          <div className="w-screen flex flex-col items-center justify-center border border-red-500 empty-cart">
+            YOUR CART IS EMPTY
+          </div>
         )}
         {items.length !== 0 && (
           <>
