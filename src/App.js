@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import WebFont from "webfontloader";
-import { Footer, Navbar } from "./Components";
+import { Navbar } from "./Components";
 import { CartPage, CategoryPage, ConfirmationPage, HomePage, PaymentPage, ProductPage, ShopPage } from "./Pages";
 
 const App = () => {
@@ -26,7 +26,6 @@ const App = () => {
           <Route path="/payment" component={PaymentPage} />
           <Route path="/success" component={ConfirmationPage} />
           {/* <Route path="*" component={NotFound} /> */}
-          <Footer />
         </>
       </Switch>
     </Router>

@@ -1,4 +1,4 @@
-export { default as Cart } from "./CartDrawer/Cart";
+export { default as CartDrawer } from "./CartDrawer/CartDrawer";
 export { default as NavbarCart } from "./CartDrawer/NavbarCart";
 export { default as CategoriesGrid } from "./Categories/CategoriesGrid";
 export { default as CategoryCard } from "./Categories/CategoryCard";

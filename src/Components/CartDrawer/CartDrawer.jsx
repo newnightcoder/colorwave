@@ -1,11 +1,12 @@
 import React from "react";
-import { Trash } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { addToCart, deleteItem, removeOne } from "../../Redux/Actions/cart.action";
 import "../../Styles/cart.css";
 import "../../Styles/_variables.css";
 
-const Cart = () => {
+const CartDrawer = ({ openCartDrawer, toggleCartDrawer }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const items = useSelector((state) => state.cart);
 
@@ -19,6 +20,7 @@ const Cart = () => {
 
   const handleRemoveOne = (e) => {
     items.forEach((item) => {
+      if (item.quantity === 1) dispatch(deleteItem(item.product));
       if (item.product.name === e.target.parentElement.parentElement.firstChild.innerText) {
         dispatch(removeOne(item.product, item.quantity));
       }
@@ -37,48 +39,48 @@ const Cart = () => {
   };
 
   const totalPrice =
-    items.length !== 0 &&
-    items.reduce((acc, curr) => {
+    items?.length !== 0 &&
+    items?.reduce((acc, curr) => {
       return acc + curr.product.price.raw * curr.quantity;
     }, 0);
 
   return (
-    <div className="h-full overflow-x-hidden">
-      <div className="w-screen min-h-screen flex flex-col items-center text-gray-900 bg-sound divide-y divide-gray-400">
-        {items.length !== 0 ? (
+    <div
+      style={{ transform: openCartDrawer ? "translateY(0)" : "translateY(-100%)" }}
+      className="h-screen w-full md:w-2/3 lg:w-1/2 flex flex-col items-center justify-center overflow-x-hidden overflow-y-scroll fixed z-50 transition-transform duration-300 text-white right-0 top-0 bg-black pt-12 pb-12"
+    >
+      <div className="h-max w-full flex flex-col items-center divide-y divide-gray-400">
+        {items?.length !== 0 ? (
           items.map((item, i) => (
-            <div key={i} className="w-3/12 flex flex-col justify-between py-4">
+            <div key={i} className="w-10/12 flex flex-col items-center justify-evenly py-4">
               <div>{item.product.name}</div>
               <div>{item.product.price.formatted_with_code}</div>
-              <div>{item.quantity}</div>
-              <div className="flex justify-evenly">
+              <img src={`${item.product.media.source}`} alt="" className="h-24" />
+              {/* <div>{item.quantity}</div>
+              <div className="w-1/2 flex justify-evenly">
                 <button onClick={(e) => handleAddToCart(e)}>+</button>
                 <button onClick={(e) => handleRemoveOne(e)}>-</button>
                 <button onClick={(e) => handleDeleteItem(e)}>
                   <Trash className="pointer-events-none" />
                 </button>
               </div>
+              <div className="h-max w-full text-white flex justify-center gap-3 pt-2">
+                <span>TOTAL :</span> <span>{totalPrice} EUR</span>{" "}
+              </div> */}
+              <button className="w-48 text-white py-1 border border-white mt-4" onClick={() => history.push("/cart")}>
+                Checkout
+              </button>
+              <button onClick={toggleCartDrawer} className="w-48 text-white py-1 border border-white mt-4">
+                Continue shopping
+              </button>
             </div>
           ))
         ) : (
-          <div className="w-screen flex flex-col items-center justify-center border border-red-500 empty-cart">
-            YOUR CART IS EMPTY
-          </div>
-        )}
-        {items.length !== 0 && (
-          <>
-            <div className="w-3/12 flex justify-between text-gray-900 pt-2">
-              <span>TOTAL:</span> <span>{totalPrice} EUR</span>{" "}
-            </div>
-            <button className="text-gray-900" onClick={handleDeleteCart}>
-              empty the cart
-            </button>
-          </>
+          <div className="h-screen w-screen flex flex-col items-center justify-center">YOUR CART IS EMPTY</div>
         )}
       </div>
-      <div className="w-screen min-h-screen flex items-center justify-center text-gray-300 bg-gaming">FORM</div>
     </div>
   );
 };
 
-export default Cart;
+export default CartDrawer;

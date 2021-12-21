@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
+import { CartDrawer, Footer } from "../Components";
 import { addToCart } from "../Redux/Actions/cart.action";
 import "../Styles/_variables.css";
 
 const ProductPage = () => {
   const location = useLocation();
   const [state, setState] = useState(location.state);
+  const [openCartDrawer, setOpenCartDrawer] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -30,15 +32,20 @@ const ProductPage = () => {
     return relatedProduct;
   };
 
+  const toggleCartDrawer = () => {
+    setOpenCartDrawer((openCartDrawer) => !openCartDrawer);
+  };
+
   const handleAddToCart = () => {
     dispatch(addToCart(item, qty));
+    toggleCartDrawer();
   };
 
   const imgBgColor =
     item?.categories[0]?.name === "gaming" ? { backgroundColor: "black" } : { backgroundColor: "white" };
 
   return (
-    <div className="bg-black font-cabin">
+    <div className="bg-black font-cabin overflow-x-hidden relative">
       <div className="text-gray-300 ml-10">
         {"Home \u00BB "}
         <span className="capitalize">{item?.categories[0]?.name}</span> {"\u00BB "}
@@ -85,6 +92,8 @@ const ProductPage = () => {
           ))}
         </div>
       </div>
+      <Footer />
+      <CartDrawer openCartDrawer={openCartDrawer} toggleCartDrawer={toggleCartDrawer} />
     </div>
   );
 };
