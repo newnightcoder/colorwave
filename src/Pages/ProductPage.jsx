@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { ChevronDoubleRight } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { CartDrawer, Footer } from "../Components";
 import { addToCart } from "../Redux/Actions/cart.action";
 import "../Styles/_variables.css";
@@ -45,11 +46,16 @@ const ProductPage = () => {
     item?.categories[0]?.name === "gaming" ? { backgroundColor: "black" } : { backgroundColor: "white" };
 
   return (
-    <div className="bg-black font-cabin overflow-x-hidden relative">
-      <div className="text-gray-300 ml-10">
-        {"Home \u00BB "}
-        <span className="capitalize">{item?.categories[0]?.name}</span> {"\u00BB "}
-        {item?.name}
+    <div className="font-cabin overflow-x-hidden relative">
+      <div className="breadcrumb w-full flex items-center justify-start gap-1 whitespace-nowrap text-gray-900 ml-10 mt-4">
+        {/* {"Home \u00BB "} */}
+        <Link to="/" className="w-max flex items-center justify-center gap-1 capitalize hover:underline">
+          home <ChevronDoubleRight size={12} className="transform translate-y-px" />
+        </Link>
+        <Link to="/" className="w-max flex items-center justify-center gap-1 capitalize hover:underline">
+          {item?.categories[0]?.name} <ChevronDoubleRight size={12} className="transform translate-y-px" />
+        </Link>
+        <span className="w-max capitalize underline">{item?.name}</span>
       </div>
       <div
         className="min-h-screen w-full flex flex-col md:flex-row items-center justify-center bg-black text-gray-300"
