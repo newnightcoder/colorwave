@@ -7,7 +7,7 @@ import "../Styles/_variables.css";
 
 const CartPage = () => {
   const dispatch = useDispatch();
-  const items = useSelector((state) => state.cart);
+  const items = useSelector((state) => state?.cart.items);
 
   const handleAddToCart = (e) => {
     items.forEach((item) => {

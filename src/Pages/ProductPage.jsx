@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import { ChevronDoubleRight } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import { CartDrawer, Footer } from "../Components";
-import { addToCart } from "../Redux/Actions/cart.action";
+import { Footer } from "../Components";
+import { addToCart, toggleCartDrawer } from "../Redux/Actions/cart.action";
 import "../Styles/_variables.css";
 
 const ProductPage = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const shop = useSelector((state) => state.shop);
   const [state, setState] = useState(location.state);
-  const [openCartDrawer, setOpenCartDrawer] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -21,25 +23,16 @@ const ProductPage = () => {
   console.log("location", location);
   console.log("item du location.state", item);
 
-  const dispatch = useDispatch();
-  const [qty, setQty] = useState(1);
-  const history = useHistory();
-
-  const shop = useSelector((state) => state.shop);
-
   const getRelatedItem = (id) => {
     const relatedProduct = shop.find((product) => product.id === id);
     console.log("relatedItem", relatedProduct);
     return relatedProduct;
   };
 
-  const toggleCartDrawer = () => {
-    setOpenCartDrawer((openCartDrawer) => !openCartDrawer);
-  };
-
   const handleAddToCart = () => {
+    const qty = 1;
     dispatch(addToCart(item, qty));
-    toggleCartDrawer();
+    dispatch(toggleCartDrawer());
   };
 
   const imgBgColor =
@@ -99,7 +92,6 @@ const ProductPage = () => {
         </div>
       </div>
       <Footer />
-      <CartDrawer openCartDrawer={openCartDrawer} toggleCartDrawer={toggleCartDrawer} />
     </div>
   );
 };

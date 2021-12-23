@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import WebFont from "webfontloader";
-import { Navbar } from "./Components";
+import { CartDrawer, Navbar } from "./Components";
 import {
   CartPage,
   CategoryPage,
@@ -15,6 +15,11 @@ import {
 } from "./Pages";
 
 const App = () => {
+  const [openCartDrawer, setOpenCartDrawer] = useState(false);
+  const toggleCartDrawer = () => {
+    setOpenCartDrawer((openCartDrawer) => !openCartDrawer);
+  };
+
   useEffect(() => {
     WebFont.load({
       google: {
@@ -29,6 +34,7 @@ const App = () => {
         <Route exact path="/" component={HomePage} />
         <>
           <Navbar />
+          <CartDrawer />
           <Route path="/shop" component={ShopPage} />
           <Route path="/categories" component={CategoryPage} />
           <Route path="/product" component={ProductPage} />

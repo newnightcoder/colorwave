@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
+import { toggleCartDrawer } from "../../Redux/Actions/cart.action";
 
 const Navbar = () => {
-  const items = useSelector((state) => state.cart);
+  const items = useSelector((state) => state?.cart.items);
   const [menuOpen, setMenuOpen] = useState(false);
+  const cartDrawerOpen = useSelector((state) => state?.cart.cartDrawerOpen);
+  const dispatch = useDispatch();
 
   const toggleMenu = () => {
     return setMenuOpen((menuOpen) => !menuOpen);
@@ -67,7 +70,9 @@ const Navbar = () => {
                       className="block absolute -inset-1 transform transition-all duration-300 -skew-y-6 bg-yellow-300 group-hover:skew-y-3 group-hover:bg-blue-500"
                       aria-hidden="true"
                     ></span>
-                    <h1 className="relative text-lg text-black group-hover:text-white px-1">COLORWAVE</h1>
+                    <h1 className="relative text-lg transition-color duration-300 text-black group-hover:text-white px-1">
+                      COLORWAVE
+                    </h1>
                   </div>
                 </NavLink>
                 {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"  */}
@@ -105,13 +110,12 @@ const Navbar = () => {
                 </NavLink>
               </nav>
               <div className="w-max h-full absolute right-0 flex items-center justify-center mr-2">
-                <Link
-                  to="/cart"
+                <button
+                  onClick={() => dispatch(toggleCartDrawer())}
                   className="w-max h-max relative flex items-center justify-center gap-2 z-10 text-gray-300 text-base group"
                 >
-                  <span className="absolute inline-block inset-x-0 bottom-0 mx-auto h-0.5 w-full bg-blue-500 transform scale-x-0 transition-scale origin-left duration-100 group-hover:scale-x-100"></span>
-
                   <span className="hidden md:block text-gray-300 group-hover:text-white">Checkout</span>
+                  <span className="absolute inline-block inset-x-0 bottom-0 mx-auto h-0.5 w-full bg-blue-500 transform scale-x-0 transition-scale origin-left duration-100 group-hover:scale-x-100"></span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 52.4 29.75"
@@ -146,9 +150,9 @@ const Navbar = () => {
                       transform="translate(-118.26 -265.51)"
                     ></path>
                   </svg>
-                </Link>
+                </button>
                 {totalItems > 0 && (
-                  <div className="h-5 w-5 rounded-full flex items-center justify-center absolute top-0 right-0 text-sm text-white bg-white ">
+                  <div className="h-5 w-5 rounded-full flex items-center justify-center absolute top-0 right-0 text-sm text-black bg-white ">
                     {totalItems}
                   </div>
                 )}

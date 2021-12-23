@@ -69,10 +69,16 @@ const CategoryPage = () => {
     return () => {
       setIsLoading(true);
     };
-  }, [isLoading, items, item, variants]);
+  }, [window, isLoading, items, item, variants]);
 
   return (
-    <div className="h-full w-screen flex flex-col items-center justify-center text-white pt-4 pb-12 font-cabin">
+    <div
+      className="h-full w-screen flex flex-col items-center justify-center pt-4 pb-12 font-cabin"
+      style={{
+        backgroundColor: categoryName === "gaming" ? "#333" : categoryName === "sound" ? "lightgray" : "#ebebeb",
+        color: categoryName === "gaming" ? "#ebebeb" : categoryName === "sound" ? "black" : "black",
+      }}
+    >
       <span className="w-full flex items-center justify-center relative mt-4">
         <Link to="/" className="absolute left-10 top-50">
           <ArrowLeft size={28} className="fw-bold" />
@@ -83,12 +89,21 @@ const CategoryPage = () => {
         {!variants
           ? subCategories.map((cat, i) => (
               <div className="py-8" key={i + 1}>
-                <div className="h-min w-full text-left text-xl capitalize px-8 py-3">{cat}</div>
-                <div className="h-full w-screen grid place-items-center gap-4 md:gap-10 grid-cols-2  lg:grid-cols-3 2xl:grid-cols-4 px-6">
+                <div className="h-min w-full text-center text-xl capitalize px-8 py-3">{cat}</div>
+                <div className="h-full w-screen grid place-items-center gap-4 md:gap-10 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 px-6">
                   {categoryItems.map((item, i) => {
                     const { categories } = item;
                     if (categories.find((category) => category.name === cat)) {
-                      return <Product item={item} variants={item.variant_groups} key={i + 1} />;
+                      return (
+                        <Product
+                          item={item}
+                          variants={item.variant_groups}
+                          key={i + 1}
+                          bgColor={
+                            categoryName === "sound" ? "white" : categoryName === "gaming" ? "rgba(0,0,0,1)" : "white"
+                          }
+                        />
+                      );
                     }
                   })}
                 </div>

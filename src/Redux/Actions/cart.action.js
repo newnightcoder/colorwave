@@ -37,3 +37,7 @@ export const deleteCart = (cart) => (dispatch) => {
     },
   });
 };
+
+export const toggleCartDrawer = () => (dispatch) => {
+  dispatch({ type: actionTypes.OPEN_CART });
+};

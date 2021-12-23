@@ -6,7 +6,7 @@ import img1 from "../Assets/sliderImg/1.png";
 import img2 from "../Assets/sliderImg/2.png";
 import img3 from "../Assets/sliderImg/3.png";
 import img4 from "../Assets/sliderImg/4.png";
-import { CategoriesGrid, Footer, Navbar } from "../Components";
+import { CartDrawer, CategoriesGrid, Footer, Navbar } from "../Components";
 import "../Styles/_variables.css";
 
 const images = [
@@ -39,6 +39,7 @@ const HomePage = () => {
         </Link>
       </div>
       <CategoriesGrid />
+      <CartDrawer />
       <Footer />
     </div>
   );
