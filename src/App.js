@@ -2,7 +2,17 @@ import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import WebFont from "webfontloader";
 import { Navbar } from "./Components";
-import { CartPage, CategoryPage, ConfirmationPage, HomePage, PaymentPage, ProductPage, ShopPage } from "./Pages";
+import {
+  CartPage,
+  CategoryPage,
+  ConfirmationPage,
+  HomePage,
+  PaymentPage,
+  ProductPage,
+  PromotionalPage,
+  ShopPage,
+  SupportPage,
+} from "./Pages";
 
 const App = () => {
   useEffect(() => {
@@ -19,9 +29,11 @@ const App = () => {
         <Route exact path="/" component={HomePage} />
         <>
           <Navbar />
-          <Route path="/categories" component={CategoryPage} />
           <Route path="/shop" component={ShopPage} />
+          <Route path="/categories" component={CategoryPage} />
           <Route path="/product" component={ProductPage} />
+          <Route path="/promotional" component={PromotionalPage} />
+          <Route path="/support" component={SupportPage} />
           <Route path="/cart" component={CartPage} />
           <Route path="/payment" component={PaymentPage} />
           <Route path="/success" component={ConfirmationPage} />

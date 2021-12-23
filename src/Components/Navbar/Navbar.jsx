@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const items = useSelector((state) => state.cart);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    return setMenuOpen((menuOpen) => !menuOpen);
+  };
+
   console.log(items);
   const totalItems =
     items.length !== 0 &&
@@ -14,21 +20,23 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="nav-container w-screen bg-black shadow-lg fixed top-0 z-50 font-cabin">
+      <div className="nav-container h-16 w-screen bg-black shadow-lg fixed top-0 z-50 font-cabin">
         <div className="w-full mx-auto px-2 sm:px-6 lg:px-8">
           <div className="h-16 relative flex items-center justify-between">
             {/* <!-- MOBILE MENU BUTTON--> */}
             <div className="absolute inset-y-0 left-0 mr-1 sm:mr-5 flex items-center lg:hidden">
               <button
                 type="button"
-                className="inline-flex items-center justify-center p-2 text-white hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                className="inline-flex items-center justify-center p-2 text-white hover:text-blue-500 focus:outline-none"
                 aria-controls="mobile-menu"
                 aria-expanded="false"
+                onClick={toggleMenu}
               >
                 <span className="sr-only">Open menu</span>
                 {/* HAMBURGER ICON. Heroicon name: outline/menu   Menu open: "hidden", Menu closed: "block" */}
                 <svg
-                  className="block h-9 w-9"
+                  className="h-9 w-9"
+                  style={{ display: menuOpen ? "none" : "block" }}
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -39,7 +47,8 @@ const Navbar = () => {
                 </svg>
                 {/* X CLOSE ICON. Heroicon name: outline/x    Menu open: "block", Menu closed: "hidden" */}
                 <svg
-                  className="hidden h-6 w-6"
+                  style={{ display: menuOpen ? "block" : "none" }}
+                  className="h-9 w-9"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -60,28 +69,28 @@ const Navbar = () => {
                   to="/shop"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-base font-medium whitespace-nowrap"
                 >
-                  Our products
+                  Products
                 </NavLink>
 
                 <NavLink
-                  to="/shop"
+                  to="/categories/skins"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-base font-medium whitespace-nowrap"
                 >
-                  Categories
+                  Skins
                 </NavLink>
 
                 <NavLink
-                  to="/shop"
+                  to="/promotional"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-base font-medium whitespace-nowrap"
                 >
                   Promotional
                 </NavLink>
 
                 <NavLink
-                  to="/shop"
+                  to="/support"
                   className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-base font-medium whitespace-nowrap"
                 >
-                  This is art!
+                  Support
                 </NavLink>
               </nav>
               <div className="w-max h-full flex items-center justify-center sm:text-gray-400 text-white hover:bg-gray-700 absolute right-0 mr-2">
@@ -135,37 +144,52 @@ const Navbar = () => {
         </div>
 
         {/* <!-- Mobile menu, show/hide based on menu state. --> */}
-        <div className="hidden" id="mobile-menu">
+        <div
+          style={{ transform: menuOpen ? "scaleX(100%)" : "scaleX(0)" }}
+          className="w-max pl-2 pr-10 flex flex-col bg-black origin-left transition-scale duration-100"
+          id="mobile-menu"
+        >
           <div className="px-2 pt-2 pb-3 space-y-1">
             {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-            <a
-              href="#"
-              className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium"
+            <Link
+              onClick={toggleMenu}
+              to="/shop"
+              className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
               aria-current="page"
             >
-              Our products
-            </a>
+              Products
+            </Link>
 
-            <a
-              href="#"
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            <Link
+              onClick={toggleMenu}
+              to="/categories/skins"
+              className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
             >
-              Categories
-            </a>
+              Skins
+            </Link>
 
-            <a
-              href="#"
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            <Link
+              onClick={toggleMenu}
+              to="/promotional"
+              className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
             >
               Promotional
-            </a>
+            </Link>
 
-            <a
-              href="#"
-              className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            <Link
+              onClick={toggleMenu}
+              to="/support"
+              className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
             >
-              This is art!
-            </a>
+              Support
+            </Link>
+            <Link
+              onClick={toggleMenu}
+              to="/cart"
+              className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
+            >
+              Cart
+            </Link>
           </div>
         </div>
       </div>

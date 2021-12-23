@@ -61,9 +61,7 @@ const CartPage = () => {
             </div>
           ))
         ) : (
-          <div className="w-screen flex flex-col items-center justify-center border border-red-500 empty-cart">
-            YOUR CART IS EMPTY
-          </div>
+          <div className="w-screen flex flex-col items-center justify-center empty-cart">YOUR CART IS EMPTY</div>
         )}
         {items.length !== 0 && (
           <>
