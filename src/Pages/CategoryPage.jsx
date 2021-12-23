@@ -75,8 +75,8 @@ const CategoryPage = () => {
     <div className="h-full w-screen flex flex-col items-center justify-center text-white pt-4 pb-12 font-cabin">
       <span className="w-full flex items-center justify-center relative mt-4">
         <Link to="/" className="absolute left-10 top-50">
-          <ArrowLeft size={28} className="fw-bold" />{" "}
-        </Link>{" "}
+          <ArrowLeft size={28} className="fw-bold" />
+        </Link>
         {categoryName.toUpperCase()}
       </span>
       <>
@@ -96,11 +96,7 @@ const CategoryPage = () => {
             ))
           : itemVariants.map((variant, i) => {
               let matchingItem = items.find((item) => item.name === variant);
-              // if (variant === matchingItem.name) {
               return <Product item={matchingItem} key={i + 1} variants={undefined} />;
-
-              // <div key={i + 1}>{variant}</div>;
-              // }
             })}
       </>
     </div>

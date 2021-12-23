@@ -18,8 +18,15 @@ module.exports = {
     },
   },
   variants: {
+    scale: ["group-hover"],
+    skew: ["group-hover"],
+    translate: ["group-hover"],
+    fill: ["hover", "group-hover"],
+    fontWeight: ["hover", "group-hover"],
+
     extend: {
-      stroke: ["hover"],
+      stroke: ["hover", "group-hover"],
+      fill: ["hover", "group-hover"],
     },
   },
   plugins: [],

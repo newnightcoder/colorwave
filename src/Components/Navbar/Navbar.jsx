@@ -60,52 +60,66 @@ const Navbar = () => {
               </button>
             </div>
             <div className="w-full flex items-center justify-start lg:justify-between">
-              <nav className="ml-10 flex items-center space-x-4 justify-center hidden lg:flex">
-                <NavLink to="/" className="flex items-center text-gray-100 text-base p-3 transform -translate-x-10">
-                  COLORWAVE
+              <nav className="hidden ml-10 flex items-center space-x-4 justify-center lg:flex">
+                <NavLink to="/" className="w-full transform -translate-x-5 group">
+                  <div className="relative">
+                    <span
+                      className="block absolute -inset-1 transform transition-all duration-300 -skew-y-6 bg-yellow-300 group-hover:skew-y-3 group-hover:bg-blue-500"
+                      aria-hidden="true"
+                    ></span>
+                    <h1 className="relative text-lg text-black group-hover:text-white px-1">COLORWAVE</h1>
+                  </div>
                 </NavLink>
                 {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"  */}
                 <NavLink
                   to="/shop"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-base font-medium whitespace-nowrap"
+                  className="relative text-gray-300 hover:text-white text-base font-medium whitespace-nowrap group px-3 py-2"
                 >
-                  Products
+                  <span className="absolute inline-block inset-x-0 bottom-2 mx-auto h-0.5 w-full bg-yellow-300 transform scale-x-0 transition-scale origin-center duration-100 group-hover:scale-x-100"></span>
+                  <span className="relative">Products</span>
                 </NavLink>
 
                 <NavLink
                   to="/categories/skins"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-base font-medium whitespace-nowrap"
+                  className="relative text-gray-300 hover:text-white text-base font-medium whitespace-nowrap group px-3 py-2"
                 >
-                  Skins
+                  <span className="absolute inline-block inset-x-0 bottom-2 mx-auto h-0.5 w-full bg-yellow-300 transform scale-x-0 transition-scale origin-center duration-100 group-hover:scale-x-100"></span>
+
+                  <span>Skins</span>
                 </NavLink>
 
                 <NavLink
                   to="/promotional"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-base font-medium whitespace-nowrap"
+                  className="relative text-gray-300 hover:text-white text-base font-medium whitespace-nowrap group px-3 py-2"
                 >
-                  Promotional
+                  <span className="absolute inline-block inset-x-0 bottom-2 mx-auto h-0.5 w-full bg-yellow-300 transform scale-x-0 transition-scale origin-center duration-100 group-hover:scale-x-100"></span>
+                  <span>Promotional</span>
                 </NavLink>
 
                 <NavLink
                   to="/support"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 text-base font-medium whitespace-nowrap"
+                  className="relative text-gray-300 hover:text-white text-base font-medium whitespace-nowrap group px-3 py-2"
                 >
-                  Support
+                  <span className="absolute inline-block inset-x-0 bottom-2 mx-auto h-0.5 w-full bg-yellow-300 transform scale-x-0 transition-scale origin-center duration-100 group-hover:scale-x-100"></span>
+                  <span>Support</span>
                 </NavLink>
               </nav>
-              <div className="w-max h-full flex items-center justify-center sm:text-gray-400 text-white hover:bg-gray-700 absolute right-0 mr-2">
+              <div className="w-max h-full absolute right-0 flex items-center justify-center mr-2">
                 <Link
                   to="/cart"
-                  className="w-max h-max flex items-center justify-center gap-2 z-10 text-gray-300 text-xl "
+                  className="w-max h-max relative flex items-center justify-center gap-2 z-10 text-gray-300 text-base group"
                 >
-                  <span className="hidden md:block text-white">Checkout</span>
+                  <span className="absolute inline-block inset-x-0 bottom-0 mx-auto h-0.5 w-full bg-blue-500 transform scale-x-0 transition-scale origin-left duration-100 group-hover:scale-x-100"></span>
+
+                  <span className="hidden md:block text-gray-300 group-hover:text-white">Checkout</span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 52.4 29.75"
                     alt="Shopping Cart"
-                    fill="white"
+                    fill="currentColor"
                     width="2rem"
                     height="1rem"
+                    className="transition-color duration-300 group-hover:text-blue-500"
                   >
                     <path
                       d="M158.92,284H127.83V267a1.5,1.5,0,0,0-1.5-1.5h-6.57a1.5,1.5,0,1,0,0,3h5.07v16.91a1.5,1.5,0,0,0,1.5,1.5h32.59a1.5,1.5,0,1,0,0-3Z"
