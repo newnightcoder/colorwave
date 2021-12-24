@@ -29,13 +29,8 @@ export const deleteItem = (product) => (dispatch) => {
   });
 };
 
-export const deleteCart = (cart) => (dispatch) => {
-  dispatch({
-    type: actionTypes.DELETE_CART,
-    payload: {
-      cart,
-    },
-  });
+export const deleteCart = () => (dispatch) => {
+  dispatch({ type: actionTypes.DELETE_CART });
 };
 
 export const toggleCartDrawer = () => (dispatch) => {

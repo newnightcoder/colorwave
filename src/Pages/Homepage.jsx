@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ImageGallery from "react-image-gallery";
 import { Link } from "react-router-dom";
 import img from "../Assets/products.png";
@@ -16,6 +16,10 @@ const images = [
   { original: img4, originalHeight: "50", originalWidth: "100" },
 ];
 const HomePage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen w-screen relative flex flex-col items-center font-cabin">
       <Navbar />

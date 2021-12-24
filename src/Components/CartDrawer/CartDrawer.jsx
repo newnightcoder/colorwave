@@ -58,7 +58,7 @@ const CartDrawer = () => {
                 key={i}
                 className="w-10/12 flex flex items-center justify-evenly border-b border-gray-900 pt-4 only:border-b-0 last:border-b-0"
               >
-                <img src={`${item.product.media.source}`} alt="" className="h-24" />
+                <img src={item.product.media.source} alt="" className="h-24" />
                 <div className="w-1/3 text-center">{item.product.name}</div>
                 <div className="w-1/3 text-right">{item.product.price.formatted_with_code}</div>
                 {/* <div>{item.quantity}</div>
@@ -87,7 +87,7 @@ const CartDrawer = () => {
               dispatch(toggleCartDrawer());
             }}
           >
-            Checkout
+            My cart
           </button>
           <button
             onClick={() => dispatch(toggleCartDrawer())}

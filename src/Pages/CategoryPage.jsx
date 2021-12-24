@@ -69,7 +69,7 @@ const CategoryPage = () => {
     return () => {
       setIsLoading(true);
     };
-  }, [window, isLoading, items, item, variants]);
+  }, [isLoading, items, item, variants]);
 
   return (
     <div

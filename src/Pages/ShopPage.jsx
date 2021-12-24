@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Footer, Product } from "../Components";
@@ -7,6 +7,10 @@ import "../Styles/_variables.css";
 const ShopPage = () => {
   const shop = useSelector((state) => state?.shop);
   console.log(shop);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const categories = {
     limited: "limited",
