@@ -64,7 +64,7 @@ const ShopPage = () => {
           </li>
         </ul>
       </header>
-      <main className="h-full w-screen px-2 flex flex-col items-center justify-center">
+      <main className="h-full w-screen flex flex-col items-center justify-center px-2">
         <section className="h-full w-screen bg-gaming text-gray-300 py-6">
           <div className="h-full w-full relative mb-2">
             <h2 className="relative capitalize text-center text-xl">ColorWave {categories.limited}</h2>
@@ -120,7 +120,7 @@ const ShopPage = () => {
             ))}
           </div>
         </section>
-        <section className="h-full w-screen bg-sound py-6">
+        <section className="h-full w-screen bg-sound pt-6 pb-16">
           <div className="h-full w-full relative">
             <h2 className="relative capitalize text-center text-xl z-10">{categories.accessories}</h2>
             <span className="h-0.5 w-1/3 absolute inset-x-0 mx-auto left-0 bottom-0.5  bg-yellow-300"></span>

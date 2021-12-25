@@ -1,4 +1,5 @@
 import React from "react";
+import { XCircle } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addToCart, deleteItem, removeOne, toggleCartDrawer } from "../../Redux/Actions/cart.action";
@@ -28,9 +29,9 @@ const CartDrawer = () => {
     });
   };
 
-  const handleDeleteItem = (e) => {
+  const handleDeleteItem = (id) => {
     items.forEach((item) => {
-      if (item.product.name === e.target.parentElement.parentElement.firstChild.innerText) {
+      if (item.product.id === id) {
         dispatch(deleteItem(item.product));
       }
     });
@@ -48,19 +49,31 @@ const CartDrawer = () => {
   return (
     <div
       style={{ transform: cartDrawerOpen ? "translateY(0)" : "translateY(-100%)" }}
-      className="h-screen w-full md:w-2/3 lg:w-1/2 flex flex-col items-center justify-center overflow-x-hidden overflow-y-scroll fixed z-50 transition-transform duration-300 text-white right-0 top-0 bg-black pt-12 pb-12"
+      className="h-screen w-full font-cabin md:w-2/3 lg:w-1/2 flex flex-col items-center justify-center overflow-x-hidden overflow-y-auto fixed z-50 transition-transform duration-300 text-gray-900 right-0 top-0 bg-sound pt-12 pb-12 px-12"
     >
       <div className="h-full w-full flex flex-col items-center justify-center gap-16">
-        <div className="h-2/3 w-full overflow-y-auto overflow-x-hidden flex flex-col items-center justify-center pt-36 pb-12">
+        <div className="h-2/3 w-full overflow-y-auto overflow-x-hidden flex flex-col items-center justify-center gap-2 pt-36 pb-12">
           {items?.length !== 0 ? (
             items.map((item, i) => (
               <div
                 key={i}
-                className="w-10/12 flex flex items-center justify-evenly border-b border-gray-900 pt-4 only:border-b-0 last:border-b-0"
+                className="w-2/3 flex flex items-center justify-left border-b border-gray-300 only:border-b-0 last:border-b-0"
               >
-                <img src={item.product.media.source} alt="" className="h-24" />
-                <div className="w-1/3 text-center">{item.product.name}</div>
-                <div className="w-1/3 text-right">{item.product.price.formatted_with_code}</div>
+                <div
+                  style={{
+                    backgroundColor: item.product.categories.find((x) => x.name === "limited") ? "black" : "white",
+                  }}
+                >
+                  <img src={item.product.media.source} alt="" className="object-cover h-24" />
+                </div>
+                <div className="w-1/3 text-left text-sm whitespace-nowrap pl-8">{item.product.name}</div>
+                <div className="w-1/3 text-right text-sm pr-5">{item.product.price.formatted}&nbsp;€</div>
+                <button
+                  onClick={() => handleDeleteItem(item.product.id)}
+                  className="h-10 w-10 rounded-full flex items-center justify-center bg-transparent transition-color duration-300 hover:bg-gray-300"
+                >
+                  <XCircle className="pointer-events-none" size={18} />
+                </button>
                 {/* <div>{item.quantity}</div>
                 <div className="w-1/2 flex justify-evenly">
                   <button onClick={(e) => handleAddToCart(e)}>+</button>
@@ -80,20 +93,20 @@ const CartDrawer = () => {
         </div>
         <div className="h-max flex flex-col items-center justify-center gap-2">
           <button
+            onClick={() => dispatch(toggleCartDrawer())}
+            className="w-48 block text-sm font-bold text-gray-900 py-2 shadow-md transition-shadow duration-100 hover:shadow-none bg-yellow-300 mt-4 uppercase outline-none"
+          >
+            Continue shopping
+          </button>
+          <button
             style={{ display: items.length === 0 ? "none" : "block" }}
-            className="w-48 text-white py-1 border border-white mt-4"
+            className="w-48 text-sm font-bold text-gray-900 py-2 shadow-md transition-shadow duration-100 hover:shadow-none bg-yellow-300 mt-4 uppercase outline-none"
             onClick={() => {
               history.push("/cart");
               dispatch(toggleCartDrawer());
             }}
           >
-            My cart
-          </button>
-          <button
-            onClick={() => dispatch(toggleCartDrawer())}
-            className="w-48 text-white py-1 border border-white mt-4"
-          >
-            Continue shopping
+            view cart
           </button>
         </div>
       </div>

@@ -4,10 +4,10 @@ import "../../Styles/_variables.css";
 
 const Footer = () => {
   return (
-    <div className="h-max w-screen bg-black text-gray-300 text-center px-8 font-cabin">
-      <div className="grid grid-col-1 md:grid-cols-3 gap-6 py-5">
-        <div className=" md:col-span-2 grid grid-cols-2 gap-3 sm:grid-cols-3 text-center sm:text-left px-8">
-          <div>
+    <div className="h-max w-screen bg-black text-gray-300 flex flex-col items-center justify-center px-8 py-8 font-cabin">
+      <div className="max-w-2/3 flex items-center justify-center gap-4 py-5">
+        <div className="w-full md:col-span-2 grid grid-cols-3 gap-3 sm:grid-cols-3 text-center sm:text-left px-8">
+          <div className="">
             <h4>Shop</h4>
             <ul>
               <li>Products</li>
@@ -34,9 +34,8 @@ const Footer = () => {
               <li>Privacy Policy</li>
             </ul>
           </div>
-          <div></div>
         </div>
-        <div className="flex flex-col ">
+        <div className="flex flex-col">
           <h3>ColorWave</h3>
           <p>Making your world a better place through creative customizations!</p>
           <ul className="flex flex-row justify-evenly">
@@ -44,21 +43,20 @@ const Footer = () => {
               <Facebook className="text-2xl" />
             </li>
             <li>
-              {" "}
               <Twitter className="text-2xl" />
             </li>
             <li>
-              {" "}
               <Github className="text-2xl" />
             </li>
             <li>
-              {" "}
               <Linkedin className="text-2xl" />
             </li>
           </ul>
         </div>
       </div>
-      <div className="border-t border-gray-600 border-opacity-60	py-5">&copy; ColorWare, Inc. All rights reserved</div>
+      <div className="w-10/12 flex items-center justify-center border-t border-gray-600 border-opacity-60 py-5">
+        &copy; ColorWare, Inc. All rights reserved
+      </div>
     </div>
   );
 };

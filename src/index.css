@@ -3,6 +3,11 @@
 @tailwind utilities;
 @import "~react-image-gallery/styles/css/image-gallery.css";
 
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
 .image-gallery {
   width: 100%;
   height: auto;
