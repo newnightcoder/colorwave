@@ -1,8 +1,10 @@
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import React, { useEffect, useState } from "react";
 import { ChevronDoubleLeft, Trash } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Form } from "../Components";
+import { CheckoutForm, Form } from "../Components";
 import { addToCart, deleteCart, deleteItem, removeOne } from "../Redux/Actions/cart.action";
 // import "../Styles/cart.css";
 import "../Styles/_variables.css";
@@ -33,11 +35,19 @@ const CartPage = () => {
   const phoneRegex = /^[0-9]{10}$/;
   //
   const [userOrder, setUserOrder] = useState({});
+  const stripePromise = loadStripe(
+    "pk_test_51KAs83AQM9VhttYapgW5CE3MQtJKxWS1I8dHN8zVnq1UdGBjL5mCAjaduDKhJMXRy7AF4x0o8J7sbHogLGaAiBvR00Ql1cozQS"
+  );
+  const stripeOptions = {
+    // passing the client secret obtained from the server
+    clientSecret:
+      "{{sk_test_51KAs83AQM9VhttYatMSB36NSH3g417uLMNAlRdxgksgQTuWGxCSPdRo8Ztrr7W4MZAHPyPJu5qH6vKilIym2A5xJ00s942KPGe}}",
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
     if (formOpen) {
-      setFormPosition(form?.getBoundingClientRect().y);
+      setFormPosition(form?.getBoundingClientRect().y - 64);
       window.scrollTo(0, formPosition);
     }
   }, [formOpen, formPosition]);
@@ -117,13 +127,22 @@ const CartPage = () => {
 
   return (
     <div className="w-screen overflow-y-auto font-cabin">
-      <div className="cart-container h-full w-full relative flex items-center justify-start bg-sound">
+      <div className="cart-container h-full w-full relative flex flex-col items-start justify-start bg-sound">
         <div
-          className="items-list relative flex flex-col items-center justify-center gap-8 text-gray-900 pt-24 pb-32 px-1 md:px-8"
-          style={{ width: items.length === 0 ? "100%" : "66.6%", minHeight: "calc(100vh - 64px)" }}
+          className="items-list relative flex flex-col items-start justify-center gap-8 text-gray-900 pt-24 pb-32 px-1 md:px-8"
+          style={{
+            width:
+              items.length === 0
+                ? "100%"
+                : items.length !== 0 && window.innerWidth < 800
+                ? "100%"
+                : items.length !== 0 && window.innerWidth > 800 && "66.6%",
+            minHeight: "calc(100vh - 64px)",
+          }}
         >
+          <h1 className="w-screen text-left absolute top-20 left-0 uppercase pl-16">Cart</h1>
           {items.length !== 0 && (
-            <div className="w-full md:w-2/3 fixed left-0 top-16 flex items-center justify-between bg-sound py-6 px-1 md:pl-8 md:pr-20">
+            <div className="w-full md:w-2/3 fixed left-0 top-16 flex items-center justify-between bg-sound py-6 px-4  md:pl-8 md:pr-20">
               <Link to="/shop" className="flex items-center justify-center gap-1 text-gray-900 hover:underline">
                 <ChevronDoubleLeft size={12} />
                 <span>Continue shopping</span>
@@ -141,7 +160,7 @@ const CartPage = () => {
             items.map((item, i) => (
               <div
                 key={i}
-                className="item h-24 w-full md:h-48 md:w-2/3 flex items-center justify-start gap-1 md:gap-6 border-b border-gray-300 px-1 md:px-0"
+                className="item h-24 md:h-48 w-full flex items-center justify-start gap-1 md:gap-6 border-b border-gray-300 px-1 md:px-0"
               >
                 <div
                   className="image h-24 w-full md:h-48 md:w-80"
@@ -241,15 +260,20 @@ const CartPage = () => {
         )}
       </div>
       {formOpen && (
-        <Form
-          inputFirstName={inputFirstName}
-          inputLastName={inputLastName}
-          inputEmail={inputEmail}
-          inputPhone={inputPhone}
-          inputCheckbox={inputCheckbox}
-          handleInput={handleInput}
-          totalPrice={totalPrice}
-        />
+        <>
+          <Form
+            inputFirstName={inputFirstName}
+            inputLastName={inputLastName}
+            inputEmail={inputEmail}
+            inputPhone={inputPhone}
+            inputCheckbox={inputCheckbox}
+            handleInput={handleInput}
+            totalPrice={totalPrice}
+          />
+          <Elements stripe={stripePromise} options={stripeOptions}>
+            <CheckoutForm />
+          </Elements>
+        </>
       )}
     </div>
   );

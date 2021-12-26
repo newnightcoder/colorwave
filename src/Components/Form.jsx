@@ -1,13 +1,26 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import "../Styles/_variables.css";
 
 const Form = ({ inputFirstName, inputLastName, inputEmail, inputPhone, inputAddress, inputCheckbox, handleInput }) => {
+  const items = useSelector((state) => state?.cart.items);
+
   return (
     <div
       id="form"
-      className="form-container w-full h-full flex items-center justify-center text-gray-300 bg-gaming pt-32 pb-48 font-cabin"
+      style={{
+        width:
+          items.length === 0
+            ? "100%"
+            : items.length !== 0 && window.innerWidth < 800
+            ? "100%"
+            : items.length !== 0 && window.innerWidth > 800 && "66.6%",
+        minHeight: "calc(100vh - 64px)",
+      }}
+      className="form-container relative h-full w-full flex items-center justify-center text-gray-300 bg-gaming pt-16 pb-48 font-cabin"
     >
-      <form className="form-solid w-10/12 flex flex-col items-center justify-center text-gray-900">
+      <h1 className="w-screen text-left absolute top-5 left-0 uppercase pl-16">your delivery info</h1>
+      <form className="form-solid h-full w-10/12 flex flex-col items-center justify-center gap-2 text-gray-900 border">
         <label className="w-full text-gray-100 text-left px-1" htmlFor="firstName">
           First Name
         </label>
