@@ -2,25 +2,33 @@ import React from "react";
 import { useSelector } from "react-redux";
 import "../Styles/_variables.css";
 
-const Form = ({ inputFirstName, inputLastName, inputEmail, inputPhone, inputAddress, inputCheckbox, handleInput }) => {
+const Form = ({
+  inputFirstName,
+  inputLastName,
+  inputEmail,
+  inputPhone,
+  inputAddress,
+  inputCheckbox,
+  handleInput,
+  errorAddress,
+  errorCheckbox,
+  errorEmail,
+  errorFirstName,
+  errorPhone,
+  errorLastName,
+}) => {
   const items = useSelector((state) => state?.cart.items);
 
   return (
     <div
-      id="form"
-      style={{
-        width:
-          items.length === 0
-            ? "100%"
-            : items.length !== 0 && window.innerWidth < 800
-            ? "100%"
-            : items.length !== 0 && window.innerWidth > 800 && "66.6%",
-        minHeight: "calc(100vh - 64px)",
-      }}
-      className="form-container relative h-full w-full flex items-center justify-center text-gray-300 bg-gaming pt-16 pb-48 font-cabin"
+      id="userInfo-form"
+      style={{ minHeight: "calc(100vh - 64px)" }}
+      className="form-container h-full w-full relative flex flex-col items-center md:items-start justify-center bg-gray-400 text-white"
     >
-      <h1 className="w-screen text-left absolute top-5 left-0 uppercase pl-16">your delivery info</h1>
-      <form className="form-solid h-full w-10/12 flex flex-col items-center justify-center gap-2 text-gray-900 border">
+      <h1 className="w-screen absolute top-0 left-0 text-left uppercase pl-16 py-8 border border-white">
+        Your delivery information
+      </h1>
+      <form className="form-solid h-max w-10/12 md:w-3/5 md:ml-8 flex flex-col items-center justify-center gap-2 text-gray-900">
         <label className="w-full text-gray-100 text-left px-1" htmlFor="firstName">
           First Name
         </label>
@@ -32,6 +40,7 @@ const Form = ({ inputFirstName, inputLastName, inputEmail, inputPhone, inputAddr
           value={inputFirstName}
           onChange={handleInput}
         />
+        <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorFirstName}</span>
         <label className="w-full text-gray-100 text-left px-1" htmlFor="lastName">
           Last Name
         </label>
@@ -43,6 +52,8 @@ const Form = ({ inputFirstName, inputLastName, inputEmail, inputPhone, inputAddr
           value={inputLastName}
           onChange={handleInput}
         />
+        <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorLastName}</span>
+
         <label className="w-full text-gray-100 text-left px-1" htmlFor="email">
           Email
         </label>
@@ -54,6 +65,8 @@ const Form = ({ inputFirstName, inputLastName, inputEmail, inputPhone, inputAddr
           value={inputEmail}
           onChange={handleInput}
         />
+        <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorEmail}</span>
+
         <label className="w-full text-gray-100 text-left px-1" htmlFor="address">
           Address
         </label>
@@ -65,6 +78,8 @@ const Form = ({ inputFirstName, inputLastName, inputEmail, inputPhone, inputAddr
           value={inputAddress}
           onChange={handleInput}
         />
+        <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorAddress}</span>
+
         <label className="w-full text-gray-100 text-left px-1" htmlFor="phone">
           Phone number
         </label>
@@ -76,6 +91,7 @@ const Form = ({ inputFirstName, inputLastName, inputEmail, inputPhone, inputAddr
           value={inputPhone}
           onChange={handleInput}
         />
+        <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorPhone}</span>
       </form>
     </div>
   );

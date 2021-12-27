@@ -19,7 +19,7 @@ const CategoryPage = () => {
   let subCategoriesArray = [];
 
   const findProductVariants = () => {
-    if (variants == undefined) return;
+    if (variants === undefined) return;
     let variantsArray = item?.variant_groups[0]?.options;
     let variantItems = variantsArray.map((variant) => {
       return variant.name;
