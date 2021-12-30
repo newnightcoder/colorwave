@@ -1,9 +1,7 @@
 import { Elements, PaymentElement } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import React, { useEffect, useState } from "react";
-const stripePromise = loadStripe(
-  "pk_test_51KAs83AQM9VhttYapgW5CE3MQtJKxWS1I8dHN8zVnq1UdGBjL5mCAjaduDKhJMXRy7AF4x0o8J7sbHogLGaAiBvR00Ql1cozQS"
-);
+const stripePromise = loadStripe(`${process.env.STRIPE_PUBLIC_KEY}`);
 const Checkout = () => {
   const [clientSecret, setClientSecret] = useState("");
 
@@ -23,7 +21,7 @@ const Checkout = () => {
   };
 
   const appearance = {
-    theme: "night",
+    theme: "flat", // flat, night, stripe, none
   };
 
   const options = {
