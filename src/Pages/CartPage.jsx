@@ -1,13 +1,10 @@
-import { loadStripe } from "@stripe/stripe-js";
 import React, { useEffect, useState } from "react";
 import { ChevronDoubleLeft, Trash } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { CheckoutForm, Form } from "../Components";
 import { addToCart, deleteCart, deleteItem, removeOne } from "../Redux/Actions/cart.action";
-// import "../Styles/cart.css";
 import "../Styles/_variables.css";
-const stripePromise = loadStripe(`${process.env.STRIPE_PUBLIC_KEY}`);
 
 const CartPage = () => {
   const dispatch = useDispatch();
@@ -38,22 +35,6 @@ const CartPage = () => {
     /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
   const zipRegex = /^[0-9]{5}$/;
   const phoneRegex = /^[0-9]{10}$/;
-  //STRIPE SECRET
-  // STRIPE CONFIG //
-  // const [clientSecret, setClientSecret] = useState("");
-  // useEffect(() => {
-  //   fetchPaymentIntentSecret();
-  // }, []);
-  // const fetchPaymentIntentSecret = async () => {
-  //   const request = {
-  //     method: "post",
-  //   };
-  //   const paymentIntentUrl = "http://localhost:4242/payment-intent-secret";
-  //   const response = await fetch(paymentIntentUrl, request);
-  //   const data = await response.json();
-  //   console.log(data.clientSecret);
-  //   setClientSecret(data.clientSecret);
-  // };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -62,14 +43,6 @@ const CartPage = () => {
       window.scrollTo(0, formPosition);
     }
   }, [formOpen, formPosition]);
-
-  // const appearance = {
-  //   theme: "stripe",
-  // };
-  // const options = {
-  //   clientSecret,
-  //   // appearance,
-  // };
 
   const handleAddToCart = (id) => {
     items.forEach((item) => {
@@ -321,8 +294,7 @@ const CartPage = () => {
           errorPhone={errorPhone}
         />
       )}
-
-      <CheckoutForm />
+      <CheckoutForm formOpen={formOpen} />
     </div>
   );
 };
