@@ -36,3 +36,17 @@ export const deleteCart = () => (dispatch) => {
 export const toggleCartDrawer = () => (dispatch) => {
   dispatch({ type: actionTypes.OPEN_CART });
 };
+
+// export const fetchPaymentIntentSecret = async () => {
+//   const request = {
+//     method: "post",
+//     headers: {
+//       "Access-Control-Allow-Origin": "*",
+//     },
+//   };
+//   const paymentIntentUrl = "http://localhost:3002/payment-intent-secret";
+//   console.log("fetchin data!!");
+//   const response = await fetch(paymentIntentUrl, request);
+//   const data = await response.json();
+//   return data.clientSecret;
+// };

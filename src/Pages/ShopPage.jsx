@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Footer, Product } from "../Components";
+import { Footer, LoaderGaming, LoaderSound, Product } from "../Components";
 import "../Styles/_variables.css";
 
 const ShopPage = () => {
   const shop = useSelector((state) => state?.shop);
-  console.log(shop);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -71,9 +70,11 @@ const ShopPage = () => {
             <span className="h-0.5 w-1/3 absolute inset-x-0 mx-auto left-0 bottom-0.5  bg-yellow-300"></span>
           </div>
           <div className="h-full w-full bg-gaming grid place-items-center gap-4 md:gap-10 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 p-6">
-            {limitedItems.map((item, i) => (
-              <Product key={i + 1} item={item} bgColor={"rgba(0,0,0,1)"} />
-            ))}
+            {limitedItems.length === 0 ? (
+              <LoaderGaming />
+            ) : (
+              limitedItems.map((item, i) => <Product key={i + 1} item={item} bgColor={"rgba(0,0,0,1)"} />)
+            )}
           </div>
         </section>
         <section className="h-full w-screen bg-sound py-6">
@@ -82,9 +83,11 @@ const ShopPage = () => {
             <span className="h-0.5 w-1/3 absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-blue-400"></span>
           </div>
           <div className="h-full w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 p-6">
-            {gamingItems.map((item, i) => (
-              <Product key={i + 1} item={item} bgColor={"rgba(250,250,250,1)"} />
-            ))}
+            {gamingItems.length === 0 ? (
+              <LoaderGaming />
+            ) : (
+              gamingItems.map((item, i) => <Product key={i + 1} item={item} bgColor={"rgba(250,250,250,1)"} />)
+            )}
           </div>
         </section>
         <section className="h-full w-screen bg-gaming text-gray-300 py-6">
@@ -93,9 +96,11 @@ const ShopPage = () => {
             <span className="h-0.5 w-1/3 absolute inset-x-0 mx-auto left-0 bottom-0.5  bg-gray-100"></span>
           </div>{" "}
           <div className="h-full w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 p-6">
-            {headphonesItems.map((item, i) => (
-              <Product key={i + 1} item={item} bgColor={"rgba(250,250,250,1)"} />
-            ))}
+            {headphonesItems.length === 0 ? (
+              <LoaderSound />
+            ) : (
+              headphonesItems.map((item, i) => <Product key={i + 1} item={item} bgColor={"rgba(250,250,250,1)"} />)
+            )}
           </div>
         </section>
         <section className="h-full w-screen bg-gaming text-gray-300 py-6">
@@ -104,9 +109,11 @@ const ShopPage = () => {
             <span className="h-0.5 w-1/3 absolute inset-x-0 mx-auto left-0 bottom-0.5  bg-gray-100"></span>
           </div>{" "}
           <div className="h-full w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 p-6">
-            {micsItems.map((item, i) => (
-              <Product key={i + 1} item={item} bgColor={"rgba(250,250,250,1)"} />
-            ))}
+            {micsItems.length === 0 ? (
+              <LoaderSound />
+            ) : (
+              micsItems.map((item, i) => <Product key={i + 1} item={item} bgColor={"rgba(250,250,250,1)"} />)
+            )}
           </div>
         </section>
         <section className="h-full w-screen bg-sound py-6">

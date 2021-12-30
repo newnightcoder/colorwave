@@ -1,45 +1,42 @@
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import React from "react";
+import { Elements, PaymentElement } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import React, { useEffect, useState } from "react";
+const stripePromise = loadStripe(
+  "pk_test_51KAs83AQM9VhttYapgW5CE3MQtJKxWS1I8dHN8zVnq1UdGBjL5mCAjaduDKhJMXRy7AF4x0o8J7sbHogLGaAiBvR00Ql1cozQS"
+);
+const Checkout = () => {
+  const [clientSecret, setClientSecret] = useState("");
 
-const CheckoutForm = () => {
-  // STRIPE CONFIG //
-  const stripe = useStripe();
-  const elements = useElements();
+  useEffect(() => {
+    fetchPaymentIntentSecret();
+    console.log(clientSecret);
+  }, []);
 
-  /////////////
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!stripe || !elements) return console.log("no stripe or no elements, sorry😭");
-
-    const { error } = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        return_url: "http://localhost:3001/success",
-      },
-    });
+  const fetchPaymentIntentSecret = async () => {
+    const request = {
+      method: "post",
+    };
+    const paymentIntentUrl = "http://localhost:4242/payment-intent-secret";
+    const response = await fetch(paymentIntentUrl, request);
+    const data = await response.json();
+    setClientSecret(data.clientSecret);
   };
 
+  const appearance = {
+    theme: "night",
+  };
+
+  const options = {
+    clientSecret,
+    appearance,
+  };
   return (
-    <div
-      id="payment-form"
-      className="w-screen bg-black flex items-center justify-center md:justify-start"
-      style={{ height: "calc(100vh - 64px)" }}
-    >
-      <form
-        onSubmit={handleSubmit}
-        className="h-1/2 w-10/12 md:w-3/5 flex flex-col items-start justify-center md:ml-10 border border border-red-500"
-      >
-        {/* <CardNumberElement />
-      <CardExpiryElement />
-      <CardCvcElement /> */}
-        <CardElement className="w-3/4 h-8 bg-white text-black border border-2 border-red-500 p-0" />
-        <button type="submit" disabled={!stripe || !elements} className="w-48 border border-white text-white">
-          Pay now
-        </button>
-      </form>
-    </div>
+    clientSecret && (
+      <Elements stripe={stripePromise} options={options}>
+        <PaymentElement />
+      </Elements>
+    )
   );
 };
 
-export default CheckoutForm;
+export default Checkout;

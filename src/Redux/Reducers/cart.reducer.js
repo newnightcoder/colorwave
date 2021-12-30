@@ -3,6 +3,7 @@ import { actionTypes } from "../Types/types";
 const initialState = {
   items: [],
   cartDrawerOpen: false,
+  stripeClientSecret: "",
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -74,6 +75,13 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         cartDrawerOpen: toggled,
+      };
+    }
+    case actionTypes.CREATE_PAYMENT: {
+      const secret = action.payload;
+      return {
+        ...state,
+        stripeClientSecret: secret,
       };
     }
     default:

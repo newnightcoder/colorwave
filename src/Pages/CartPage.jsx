@@ -1,3 +1,4 @@
+import { loadStripe } from "@stripe/stripe-js";
 import React, { useEffect, useState } from "react";
 import { ChevronDoubleLeft, Trash } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,6 +7,7 @@ import { CheckoutForm, Form } from "../Components";
 import { addToCart, deleteCart, deleteItem, removeOne } from "../Redux/Actions/cart.action";
 // import "../Styles/cart.css";
 import "../Styles/_variables.css";
+const stripePromise = loadStripe(`${process.env.STRIPE_PUBLIC_KEY}`);
 
 const CartPage = () => {
   const dispatch = useDispatch();
@@ -13,12 +15,11 @@ const CartPage = () => {
   const form = document.querySelector("#userInfo-form");
   const [formOpen, setFormOpen] = useState(false);
   const [formPosition, setFormPosition] = useState(0);
-
   const checkoutForm = document.querySelector("#payment-form");
   const [checkoutFormOpen, setCheckoutFormOpen] = useState(false);
   const [checkoutFormPosition, setCheckoutFormPosition] = useState(0);
-
   const [userOrder, setUserOrder] = useState({});
+
   // FORM VALIDATION variables
   const [inputFirstName, setInputFirstName] = useState("");
   const [inputLastName, setInputLastName] = useState("");
@@ -38,22 +39,21 @@ const CartPage = () => {
   const zipRegex = /^[0-9]{5}$/;
   const phoneRegex = /^[0-9]{10}$/;
   //STRIPE SECRET
-  const [stripeClientSecret, setStripeClientSecret] = useState("");
-
-  const fetchPaymentIntentSecret = async () => {
-    const request = {
-      method: "post",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-    };
-    const paymentIntentUrl = "http://localhost:3002/payment-intent-secret";
-    console.log("fetchin data!!");
-    const response = await fetch(paymentIntentUrl, request);
-    const data = await response.json();
-    console.log(data);
-    setStripeClientSecret(data.clientSecret);
-  };
+  // STRIPE CONFIG //
+  // const [clientSecret, setClientSecret] = useState("");
+  // useEffect(() => {
+  //   fetchPaymentIntentSecret();
+  // }, []);
+  // const fetchPaymentIntentSecret = async () => {
+  //   const request = {
+  //     method: "post",
+  //   };
+  //   const paymentIntentUrl = "http://localhost:4242/payment-intent-secret";
+  //   const response = await fetch(paymentIntentUrl, request);
+  //   const data = await response.json();
+  //   console.log(data.clientSecret);
+  //   setClientSecret(data.clientSecret);
+  // };
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -63,18 +63,13 @@ const CartPage = () => {
     }
   }, [formOpen, formPosition]);
 
-  useEffect(() => {
-    fetchPaymentIntentSecret();
-  }, []);
-
-  const appearance = {
-    theme: "stripe",
-  };
-  const stripeOptions = {
-    // passing the client secret obtained from the server
-    clientSecret: stripeClientSecret,
-    appearance,
-  };
+  // const appearance = {
+  //   theme: "stripe",
+  // };
+  // const options = {
+  //   clientSecret,
+  //   // appearance,
+  // };
 
   const handleAddToCart = (id) => {
     items.forEach((item) => {
@@ -309,26 +304,25 @@ const CartPage = () => {
           </div>
         )}
       </div>
-      <>
-        {formOpen && (
-          <Form
-            inputFirstName={inputFirstName}
-            inputLastName={inputLastName}
-            inputEmail={inputEmail}
-            inputPhone={inputPhone}
-            inputCheckbox={inputCheckbox}
-            handleInput={handleInput}
-            totalPrice={totalPrice}
-            errorAddress={errorAddress}
-            errorCheckbox={errorCheckbox}
-            errorEmail={errorEmail}
-            errorFirstName={errorFirstName}
-            errorLastName={errorLastName}
-            errorPhone={errorPhone}
-          />
-        )}
-        {formValidated && <CheckoutForm />}
-      </>
+      {formOpen && (
+        <Form
+          inputFirstName={inputFirstName}
+          inputLastName={inputLastName}
+          inputEmail={inputEmail}
+          inputPhone={inputPhone}
+          inputCheckbox={inputCheckbox}
+          handleInput={handleInput}
+          totalPrice={totalPrice}
+          errorAddress={errorAddress}
+          errorCheckbox={errorCheckbox}
+          errorEmail={errorEmail}
+          errorFirstName={errorFirstName}
+          errorLastName={errorLastName}
+          errorPhone={errorPhone}
+        />
+      )}
+
+      <CheckoutForm />
     </div>
   );
 };
