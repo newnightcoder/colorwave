@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import WebFont from "webfontloader";
 import { CartDrawer, Navbar } from "./Components";
@@ -13,12 +14,10 @@ import {
   ShopPage,
   SupportPage,
 } from "./Pages";
+import { getShopData } from "./Redux/Actions/shop.action";
 
 const App = () => {
-  const [openCartDrawer, setOpenCartDrawer] = useState(false);
-  const toggleCartDrawer = () => {
-    setOpenCartDrawer((openCartDrawer) => !openCartDrawer);
-  };
+  const dispatch = useDispatch();
 
   useEffect(() => {
     WebFont.load({
@@ -26,6 +25,7 @@ const App = () => {
         families: ["Cabin:400,500,600,700"],
       },
     });
+    dispatch(getShopData);
   }, []);
 
   return (
