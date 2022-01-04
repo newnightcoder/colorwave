@@ -5,7 +5,7 @@ import { ChevronDoubleLeft, Trash } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, withRouter } from "react-router-dom";
 import { CheckoutForm, Form } from "../Components";
-import { addToCart, deleteCart, deleteItem, removeOne } from "../Redux/Actions/cart.action";
+import { addToCart, deleteCart, deleteItem, removeOne, saveOrder } from "../Redux/Actions/cart.action";
 import "../Styles/_variables.css";
 
 let stripePromise;
@@ -34,17 +34,25 @@ const CartPage = () => {
   const [inputAddress, setInputAddress] = useState("");
   const [inputPhone, setInputPhone] = useState("");
   const [inputCheckbox, setInputCheckbox] = useState(false);
-  const [errorFirstName, setErrorFirstName] = useState(null);
-  const [errorLastName, setErrorLastName] = useState(null);
-  const [errorEmail, setErrorEmail] = useState(null);
-  const [errorAddress, setErrorAddress] = useState(null);
-  const [errorPhone, setErrorPhone] = useState(null);
-  const [errorCheckbox, setErrorCheckbox] = useState(null);
+  const [errorFirstName, setErrorFirstName] = useState("");
+  const [errorLastName, setErrorLastName] = useState("");
+  const [errorEmail, setErrorEmail] = useState("");
+  const [errorAddress, setErrorAddress] = useState("");
+  const [errorPhone, setErrorPhone] = useState("");
+  const [errorCheckbox, setErrorCheckbox] = useState("");
+  const [formChecked, setFormChecked] = useState(false);
   const [formValidated, setFormValidated] = useState(false);
   const emailRegex =
     /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
   const zipRegex = /^[0-9]{5}$/;
   const phoneRegex = /^[0-9]{10}$/;
+  let errorFirstNameRef = "";
+  let errorLastNameRef = "";
+  let errorEmailRef = "";
+  let errorEmailRegexRef = "";
+  let errorPhoneRef = "";
+  let errorPhoneRegexRef = "";
+  let errorAddressRef = "";
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -68,6 +76,11 @@ const CartPage = () => {
     fetchPaymentIntentSecret();
     console.log(clientSecret);
   }, []);
+
+  // useEffect(() => {
+  //   if (!formChecked) return;
+  //   validateForm();
+  // }, [errorFirstName]);
 
   const appearance = {
     theme: "night", // flat, night, stripe, none
@@ -123,42 +136,84 @@ const CartPage = () => {
     if (e.target === form.querySelector("#phone")) return setInputPhone(e.currentTarget.value);
   };
 
-  const checkFormErrors = (e) => {
-    if (inputFirstName.length === 0) {
-      setErrorFirstName("Please enter your first name");
-    } else setErrorFirstName(null);
-    if (inputLastName.length === 0) {
-      setErrorLastName("Please enter your last name");
-    } else setErrorLastName(null);
-    if (inputEmail.length === 0) {
-      setErrorEmail("Please enter a valid email");
-    } else setErrorEmail(null);
-    if (!inputEmail.match(emailRegex)) setErrorEmail("Please enter a valid email");
-    if (inputAddress.length === 0) {
-      setErrorAddress("Please enter your address");
-    } else setErrorAddress(null);
-    if (inputPhone.length === 0) {
-      setErrorPhone("Please enter your phone number");
-    } else setErrorPhone(null);
-    if (!inputPhone.match(phoneRegex)) {
-      setErrorPhone("Please enter a valid phone number");
-    } else setErrorPhone(null);
-    // if (inputCheckbox === ) return setErrorCheckbox("You must accept the terms and conditions to confirm your order.");
+  const checkFormErrors = () => {
+    const errorMsg = {
+      firstName: "Please enter your first name",
+      lastName: "Please enter your last name",
+      email: "Please enter your email",
+      emailRegex: "Please enter a valid email",
+      address: "Please enter your address",
+      phoneNumber: "Please enter your phone number",
+      phoneNumberRegex: "Please enter a valid phone number",
+    };
 
-    if (
-      errorEmail === null &&
-      errorAddress === null &&
-      errorFirstName === null &&
-      errorLastName === null &&
-      errorCheckbox === null &&
-      errorPhone === null
-    ) {
-      alert("no errors! cool!");
-      setFormValidated(true);
+    if (inputFirstName.length === 0) {
+      setErrorFirstName(errorMsg.firstName);
+      errorFirstNameRef = errorMsg.firstName;
+    } else {
+      setErrorFirstName("");
+      errorFirstNameRef = "";
     }
+    if (inputLastName.length === 0) {
+      setErrorLastName(errorMsg.lastName);
+      errorLastNameRef = errorMsg.lastName;
+    } else {
+      setErrorLastName("");
+      errorLastNameRef = "";
+    }
+    if (inputEmail.length === 0) {
+      setErrorEmail(errorMsg.email);
+      errorEmailRef = errorMsg.email;
+    } else {
+      setErrorEmail("");
+      errorEmailRef = "";
+    }
+    if (!inputEmail.match(emailRegex)) {
+      setErrorEmail(errorMsg.emailRegex);
+      errorEmailRegexRef = errorMsg.emailRegex;
+    } else {
+      setErrorEmail("");
+      errorEmailRegexRef = "";
+    }
+    if (inputAddress.length === 0) {
+      setErrorAddress(errorMsg.address);
+      errorAddressRef = errorMsg.address;
+    } else {
+      setErrorAddress("");
+      errorAddressRef = "";
+    }
+    if (inputPhone.length === 0) {
+      setErrorPhone(errorMsg.phoneNumber);
+      errorPhoneRef = errorMsg.phoneNumber;
+    } else {
+      setErrorPhone("");
+      errorPhoneRef = "";
+    }
+    if (!inputPhone.match(phoneRegex)) {
+      setErrorPhone(errorMsg.phoneNumberRegex);
+      errorPhoneRegexRef = errorMsg.phoneNumberRegex;
+    } else {
+      setErrorPhone("");
+      errorPhoneRegexRef = "";
+    }
+    return setFormChecked(true);
+    // if (inputCheckbox === ) return setErrorCheckbox("You must accept the terms and conditions to confirm your order.");
   };
 
-  const saveOrder = () => {
+  const validateForm = () => {
+    if (!formChecked) return;
+    if (
+      errorFirstNameRef.length === 0 &&
+      errorLastNameRef.length === 0 &&
+      errorAddressRef.length === 0 &&
+      errorEmailRef.length === 0 &&
+      errorPhoneRef.length === 0 &&
+      errorPhoneRegexRef.length === 0
+    )
+      setFormValidated(true);
+  };
+
+  const createOrder = () => {
     let order = {
       userFirstName: inputFirstName,
       userLastName: inputLastName,
@@ -174,17 +229,16 @@ const CartPage = () => {
     return setUserOrder(order);
   };
 
-  const validateForm = () => {
-    if (formValidated) {
-      alert("form validated");
-      saveOrder();
-    }
-  };
-
   const handleForm = (e) => {
     e.preventDefault();
     checkFormErrors();
     validateForm();
+    // console.log("form validated in handleform", formValidated);
+    if (formValidated) {
+      console.log("form validated");
+      createOrder();
+      dispatch(saveOrder(userOrder));
+    }
   };
 
   return (
@@ -212,6 +266,7 @@ const CartPage = () => {
                   </button>
                 </div>
               )}
+
               {items.length !== 0 ? (
                 items.map((item, i) => (
                   <div
@@ -267,6 +322,7 @@ const CartPage = () => {
                 <div className="w-screen flex flex-col items-center justify-center">YOUR CART IS EMPTY</div>
               )}
             </div>
+
             {items.length !== 0 && (
               <div className="recap  h-20 w-full md:h-48 md:w-1/3 fixed bottom-0 md:right-5 md:top-0 md:my-auto z-50 flex flex-col items-center justify-center gap-2 bg-white p-16 border border-2 border-black">
                 <div className="w-full flex items-center justify-center text-gray-900 pt-2 border-b border-black px-8">
@@ -334,7 +390,7 @@ const CartPage = () => {
               errorPhone={errorPhone}
             />
           )}
-          {clientSecret && items.length !== 0 && formOpen && <CheckoutForm formOpen={formOpen} />}
+          {formValidated && <CheckoutForm />}
         </div>
       </Elements>
     )

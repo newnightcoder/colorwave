@@ -1,7 +1,7 @@
 import { PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React from "react";
 
-const CheckoutForm = ({ formOpen }) => {
+const CheckoutForm = ({ formValidated }) => {
   const elements = useElements();
   const stripe = useStripe();
 
@@ -18,20 +18,17 @@ const CheckoutForm = ({ formOpen }) => {
   };
 
   return (
-    formOpen && (
-      <form
-        style={{ zIndex: "110000" }}
-        action="post"
-        className="h-screen w-screen bg-black text-white flex flex-col items-center md:items-start justify-evenly md:justify-start md:pl-8"
-        onSubmit={handleSubmit}
-      >
-        <h1 className="w-full border">PAYMENT</h1>
-        <div className="h-1/2 w-11/12 md:w-1/3  flex flex-col items-center justify-center border border-white">
-          <PaymentElement />
-        </div>
-        <button>pay now</button>
-      </form>
-    )
+    <form
+      action="post"
+      className="h-screen w-screen bg-black text-white  flex-col items-center md:items-start justify-evenly md:justify-start md:pl-8"
+      onSubmit={handleSubmit}
+    >
+      <h1 className="w-full border">PAYMENT</h1>
+      <div className="h-1/2 w-11/12 md:w-1/3  flex flex-col items-center justify-center border border-white">
+        <PaymentElement />
+      </div>
+      <button>pay now</button>
+    </form>
   );
 };
 

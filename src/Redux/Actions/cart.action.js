@@ -37,16 +37,20 @@ export const toggleCartDrawer = () => (dispatch) => {
   dispatch({ type: actionTypes.OPEN_CART });
 };
 
-// export const fetchPaymentIntentSecret = async () => {
-//   const request = {
-//     method: "post",
-//     headers: {
-//       "Access-Control-Allow-Origin": "*",
-//     },
-//   };
-//   const paymentIntentUrl = "http://localhost:3002/payment-intent-secret";
-//   console.log("fetchin data!!");
-//   const response = await fetch(paymentIntentUrl, request);
-//   const data = await response.json();
-//   return data.clientSecret;
-// };
+export const saveOrder = (order) => async (dispatch) => {
+  const request = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    method: "post",
+    body: JSON.stringify({ order }),
+  };
+
+  try {
+    const data = await fetch("/user-order", request).then((res) => res.json());
+    console.log(data);
+    dispatch({ type: actionTypes.SAVE_ORDER, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};

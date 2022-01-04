@@ -4,6 +4,7 @@ const initialState = {
   items: [],
   cartDrawerOpen: false,
   stripeClientSecret: "",
+  userOrder: {},
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -77,11 +78,11 @@ const cartReducer = (state = initialState, action) => {
         cartDrawerOpen: toggled,
       };
     }
-    case actionTypes.CREATE_PAYMENT: {
-      const secret = action.payload;
+
+    case actionTypes.SAVE_ORDER: {
       return {
         ...state,
-        stripeClientSecret: secret,
+        userOrder: action.payload,
       };
     }
     default:
