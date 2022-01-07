@@ -1,20 +1,23 @@
 import { PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-const CheckoutForm = ({ formValidated }) => {
+const CheckoutForm = () => {
   const elements = useElements();
   const stripe = useStripe();
+  const dispatch = useDispatch();
+  const userOrder = useSelector((state) => state?.cart.userOrder);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(userOrder);
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
         return_url: "http://localhost:3001/success",
       },
-      // Uncomment below if you only want redirect for redirect-based payments
-      // redirect: 'if_required',
     });
+    if (error) return;
   };
 
   return (

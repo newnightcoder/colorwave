@@ -77,10 +77,28 @@ const CartPage = () => {
     console.log(clientSecret);
   }, []);
 
-  // useEffect(() => {
-  //   if (!formChecked) return;
-  //   validateForm();
-  // }, [errorFirstName]);
+  const createOrder = () => {
+    let order = {
+      userFirstName: inputFirstName,
+      userLastName: inputLastName,
+      userEmail: inputEmail,
+      userAddress: inputAddress,
+      userPhone: inputPhone,
+      userOrder: {
+        items: items,
+        totalPrice,
+      },
+    };
+    console.log("userOrder", order);
+    dispatch(saveOrder(order));
+  };
+
+  useEffect(() => {
+    if (formValidated) {
+      alert("form validated", formValidated);
+      createOrder();
+    }
+  }, [formValidated]);
 
   const appearance = {
     theme: "night", // flat, night, stripe, none
@@ -213,32 +231,10 @@ const CartPage = () => {
       setFormValidated(true);
   };
 
-  const createOrder = () => {
-    let order = {
-      userFirstName: inputFirstName,
-      userLastName: inputLastName,
-      userEmail: inputEmail,
-      userAddress: inputAddress,
-      userPhone: inputPhone,
-      userOrder: {
-        items: items,
-        totalPrice,
-      },
-    };
-    console.log("userOrder", order);
-    return setUserOrder(order);
-  };
-
   const handleForm = (e) => {
     e.preventDefault();
     checkFormErrors();
     validateForm();
-    // console.log("form validated in handleform", formValidated);
-    if (formValidated) {
-      console.log("form validated");
-      createOrder();
-      dispatch(saveOrder(userOrder));
-    }
   };
 
   return (

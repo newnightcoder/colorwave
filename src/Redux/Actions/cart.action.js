@@ -37,20 +37,13 @@ export const toggleCartDrawer = () => (dispatch) => {
   dispatch({ type: actionTypes.OPEN_CART });
 };
 
-export const saveOrder = (order) => async (dispatch) => {
-  const request = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    method: "post",
-    body: JSON.stringify({ order }),
-  };
-
-  try {
-    const data = await fetch("/user-order", request).then((res) => res.json());
-    console.log(data);
-    dispatch({ type: actionTypes.SAVE_ORDER, payload: data });
-  } catch (error) {
-    console.log(error.message);
-  }
+export const saveOrder = (order) => (dispatch) => {
+  // const request = {
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   method: "post",
+  //   body: JSON.stringify(order),
+  // };
+  dispatch({ type: actionTypes.SAVE_ORDER, payload: order });
 };
