@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { ChevronDoubleRight } from "react-bootstrap-icons";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { Footer } from "../Components";
@@ -11,23 +13,17 @@ const ProductPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const shop = useSelector((state) => state.shop);
-  const [state, setState] = useState(location.state);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  // setState(location.state);
-  const { item } = location.state;
-
-  console.log("location", location);
-  console.log("item du location.state", item);
+  const { item } = location?.state || undefined;
 
   const getRelatedItem = (id) => {
     const relatedProduct = shop.find((product) => product.id === id);
     console.log("relatedItem", relatedProduct);
     return relatedProduct;
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [getRelatedItem]);
 
   const handleAddToCart = () => {
     const qty = 1;
@@ -37,6 +33,24 @@ const ProductPage = () => {
 
   const imgBgColor =
     item?.categories[0]?.name === "gaming" ? { backgroundColor: "black" } : { backgroundColor: "white" };
+
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+      slidesToSlide: 3, // optional, default to 1.
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      slidesToSlide: 2, // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      slidesToSlide: 1, // optional, default to 1.
+    },
+  };
 
   return (
     <div className="font-cabin overflow-x-hidden relative">
@@ -73,15 +87,16 @@ const ProductPage = () => {
       </div>
       <div className="border-t border-gray-600 border-opacity-60 bg-black text-gray-300 text-center pt-5">
         <h2 className="whitespace-nowrap underline uppercase">Related Products</h2>
-        <div className="border-b border-gray-600 border-opacity-60 w-full flex items-center justify-evenly font-cabin pb-4 md:pb-8">
+        {/* <div className="border-b border-gray-600 border-opacity-60 w-full flex items-center justify-evenly font-cabin pb-4 md:pb-8"> */}
+        <Carousel responsive={responsive} containerClass="">
           {item?.related_products.map((related, i) => (
             <div
-              key={i}
+              key={i + 1}
               className="cursor-pointer"
               onClick={() =>
-                history.replace({
-                  path: `/product/${getRelatedItem(related.id).name}`,
-                  state: getRelatedItem(related.id),
+                history.push({
+                  pathname: `/product/${getRelatedItem(related.id).name}`,
+                  state: { item: getRelatedItem(related.id) },
                 })
               }
             >
@@ -89,7 +104,8 @@ const ProductPage = () => {
               <div>{related.name}</div>
             </div>
           ))}
-        </div>
+        </Carousel>
+        {/* </div> */}
       </div>
       <Footer />
     </div>
