@@ -1,11 +1,10 @@
 import { PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const CheckoutForm = () => {
   const elements = useElements();
   const stripe = useStripe();
-  const dispatch = useDispatch();
   const userOrder = useSelector((state) => state?.cart.userOrder);
 
   const handleSubmit = async (e) => {

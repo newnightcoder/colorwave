@@ -73,7 +73,9 @@ const ShopPage = () => {
             {limitedItems.length === 0 ? (
               <LoaderGaming />
             ) : (
-              limitedItems.map((item, i) => <Product key={i + 1} item={item} bgColor={"rgba(0,0,0,1)"} />)
+              limitedItems.map((item, i) => (
+                <Product key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(0,0,0,1)"} />
+              ))
             )}
           </div>
         </section>
@@ -86,7 +88,9 @@ const ShopPage = () => {
             {gamingItems.length === 0 ? (
               <LoaderGaming />
             ) : (
-              gamingItems.map((item, i) => <Product key={i + 1} item={item} bgColor={"rgba(250,250,250,1)"} />)
+              gamingItems.map((item, i) => (
+                <Product key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
+              ))
             )}
           </div>
         </section>
@@ -99,7 +103,9 @@ const ShopPage = () => {
             {headphonesItems.length === 0 ? (
               <LoaderSound />
             ) : (
-              headphonesItems.map((item, i) => <Product key={i + 1} item={item} bgColor={"rgba(250,250,250,1)"} />)
+              headphonesItems.map((item, i) => (
+                <Product key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
+              ))
             )}
           </div>
         </section>
@@ -112,7 +118,9 @@ const ShopPage = () => {
             {micsItems.length === 0 ? (
               <LoaderSound />
             ) : (
-              micsItems.map((item, i) => <Product key={i + 1} item={item} bgColor={"rgba(250,250,250,1)"} />)
+              micsItems.map((item, i) => (
+                <Product key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
+              ))
             )}
           </div>
         </section>
@@ -123,7 +131,7 @@ const ShopPage = () => {
           </div>{" "}
           <div className="h-full w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 p-6">
             {skinsItems.map((item, i) => (
-              <Product key={i + 1} item={item} bgColor={"rgba(250,250,250,1)"} />
+              <Product key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
             ))}
           </div>
         </section>
@@ -134,7 +142,7 @@ const ShopPage = () => {
           </div>{" "}
           <div className="h-full w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 p-6">
             {accessoriesItems.map((item, i) => (
-              <Product key={i + 1} item={item} bgColor={"rgba(250,250,250,1)"} />
+              <Product key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
             ))}
           </div>
         </section>

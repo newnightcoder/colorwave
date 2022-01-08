@@ -219,7 +219,6 @@ const CartPage = () => {
   };
 
   const validateForm = () => {
-    if (!formChecked) return;
     if (
       errorFirstNameRef.length === 0 &&
       errorLastNameRef.length === 0 &&

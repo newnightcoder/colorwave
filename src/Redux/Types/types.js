@@ -6,4 +6,5 @@ export const actionTypes = {
   DELETE_ITEM: "DELETE_ITEM",
   DELETE_CART: "DELETE_CART",
   SAVE_ORDER: "SAVE_ORDER",
+  SEND_ORDER: "SEND_ORDER",
 };
