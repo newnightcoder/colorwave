@@ -9,7 +9,7 @@ import "../Styles/_variables.css";
 const CategoryPage = () => {
   const location = useLocation();
   const categoryName = location.pathname.split("/")[2];
-  const items = useSelector((state) => state?.shop);
+  const items = useSelector((state) => state?.shop.shop);
   const variants = location.state?.variants || undefined;
   const item = location.state?.item || undefined;
   const [isLoading, setIsLoading] = useState(true);

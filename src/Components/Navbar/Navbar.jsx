@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { Search } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { toggleCartDrawer } from "../../Redux/Actions/cart.action";
+import { openSearchModal } from "../../Redux/Actions/shop.action";
 
 const Navbar = () => {
   const items = useSelector((state) => state?.cart.items);
@@ -109,7 +111,22 @@ const Navbar = () => {
                   <span>Support</span>
                 </NavLink>
               </nav>
-              <div className="w-max h-full absolute right-0 flex items-center justify-center mr-2">
+              <div className="w-max h-full absolute right-0 flex items-center justify-center gap-8 mr-2">
+                {/* SEARCH BAR */}
+                <button
+                  onClick={() => {
+                    dispatch(openSearchModal());
+                  }}
+                  className="h-10/12 w-max flex items-center justify-center gap-2 text-gray-300"
+                >
+                  {/* <input
+                    type="search"
+                    placeholder="search..."
+                    className="h-8 rounded-sm outline-none focus:ring-0 border-none"
+                  /> */}
+                  <span>Search</span>
+                  <Search color="white" size={18} />
+                </button>
                 <button
                   onClick={() => dispatch(toggleCartDrawer())}
                   className="w-max h-max relative flex items-center justify-center gap-2 z-10 text-gray-300 text-base group"

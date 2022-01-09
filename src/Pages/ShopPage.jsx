@@ -5,7 +5,7 @@ import { Footer, LoaderGaming, LoaderSound, ProductCard } from "../Components";
 import "../Styles/_variables.css";
 
 const ShopPage = () => {
-  const shop = useSelector((state) => state?.shop);
+  const shop = useSelector((state) => state?.shop.shop);
 
   useEffect(() => {
     window.scrollTo(0, 0);

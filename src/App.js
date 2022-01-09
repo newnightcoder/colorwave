@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import WebFont from "webfontloader";
 import { CartDrawer, Navbar } from "./Components";
+import SearchModal from "./Components/SearchModal";
 import {
   CartPage,
   CategoryPage,
@@ -35,6 +36,7 @@ const App = () => {
         <>
           <Navbar />
           <CartDrawer />
+          <SearchModal />
           <Route path="/shop" component={ShopPage} />
           <Route path="/categories" component={CategoryPage} />
           <Route path="/product" component={ProductPage} />
