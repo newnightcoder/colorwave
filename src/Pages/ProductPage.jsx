@@ -31,6 +31,11 @@ const ProductPage = () => {
     dispatch(toggleCartDrawer());
   };
 
+  const getFullVersionRelatedProduct = (product) => {
+    let relatedProduct = shop.find((item) => item.id === product.id);
+    return relatedProduct;
+  };
+
   const imgBgColor =
     item?.categories[0]?.name === "gaming" ? { backgroundColor: "black" } : { backgroundColor: "white" };
 
@@ -91,16 +96,26 @@ const ProductPage = () => {
         <Carousel responsive={responsive} containerClass="">
           {item?.related_products.map((related, i) => (
             <div
+              // item={related}
+              // variants={related.variant_groups}
               key={i + 1}
-              className="cursor-pointer"
-              onClick={() =>
+              className="cursor-pointer h-full border border-4 border-red-500 pb-8"
+              onClick={() => {
+                if (getFullVersionRelatedProduct(related).variant_groups.length !== 0) {
+                  history.push({
+                    pathname: `/categories/${getRelatedItem(related.id).name}`,
+                    state: { variants: true, item: getFullVersionRelatedProduct(related) },
+                  });
+                  return;
+                }
+                console.log(getFullVersionRelatedProduct(related));
                 history.push({
                   pathname: `/product/${getRelatedItem(related.id).name}`,
-                  state: { item: getRelatedItem(related.id) },
-                })
-              }
+                  state: { item: getFullVersionRelatedProduct(related) },
+                });
+              }}
             >
-              <img className="object-cover" src={related.media.source} alt={related.name} />
+              <img className="object-cover h-full w-full" src={related.media.source} alt={related.name} />
               <div>{related.name}</div>
             </div>
           ))}

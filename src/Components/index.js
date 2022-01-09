@@ -8,4 +8,4 @@ export { default as Form } from "./Form";
 export { default as LoaderGaming } from "./Loader/LoaderGaming";
 export { default as LoaderSound } from "./Loader/LoaderSound";
 export { default as Navbar } from "./Navbar/Navbar";
-export { default as Product } from "./Product/Product";
+export { default as ProductCard } from "./Product/ProductCard";

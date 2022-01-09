@@ -3,7 +3,7 @@ import { ArrowLeft } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
-import { Product } from "../Components";
+import { ProductCard } from "../Components";
 import "../Styles/_variables.css";
 
 const CategoryPage = () => {
@@ -95,7 +95,7 @@ const CategoryPage = () => {
                     const { categories } = item;
                     if (categories.find((category) => category.name === cat)) {
                       return (
-                        <Product
+                        <ProductCard
                           item={item}
                           variants={item.variant_groups}
                           key={i + 1}
@@ -111,7 +111,7 @@ const CategoryPage = () => {
             ))
           : itemVariants.map((variant, i) => {
               let matchingItem = items.find((item) => item.name === variant);
-              return <Product item={matchingItem} key={i + 1} variants={undefined} />;
+              return <ProductCard item={matchingItem} key={i + 1} variants={undefined} />;
             })}
       </>
     </div>

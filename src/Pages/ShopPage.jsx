@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Footer, LoaderGaming, LoaderSound, Product } from "../Components";
+import { Footer, LoaderGaming, LoaderSound, ProductCard } from "../Components";
 import "../Styles/_variables.css";
 
 const ShopPage = () => {
@@ -74,7 +74,7 @@ const ShopPage = () => {
               <LoaderGaming />
             ) : (
               limitedItems.map((item, i) => (
-                <Product key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(0,0,0,1)"} />
+                <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(0,0,0,1)"} />
               ))
             )}
           </div>
@@ -89,7 +89,7 @@ const ShopPage = () => {
               <LoaderGaming />
             ) : (
               gamingItems.map((item, i) => (
-                <Product key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
+                <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
               ))
             )}
           </div>
@@ -104,7 +104,7 @@ const ShopPage = () => {
               <LoaderSound />
             ) : (
               headphonesItems.map((item, i) => (
-                <Product key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
+                <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
               ))
             )}
           </div>
@@ -119,7 +119,7 @@ const ShopPage = () => {
               <LoaderSound />
             ) : (
               micsItems.map((item, i) => (
-                <Product key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
+                <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
               ))
             )}
           </div>
@@ -131,7 +131,7 @@ const ShopPage = () => {
           </div>{" "}
           <div className="h-full w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 p-6">
             {skinsItems.map((item, i) => (
-              <Product key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
+              <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
             ))}
           </div>
         </section>
@@ -142,7 +142,7 @@ const ShopPage = () => {
           </div>{" "}
           <div className="h-full w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 p-6">
             {accessoriesItems.map((item, i) => (
-              <Product key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
+              <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
             ))}
           </div>
         </section>
