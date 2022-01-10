@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CheckCircle } from "react-bootstrap-icons";
+import { Check2Circle } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCart } from "../Redux/Actions/cart.action";
 
@@ -33,7 +33,7 @@ const ConfirmationPage = () => {
         successful. <br />
         Thank you for your purchase. <br />
       </span>
-      <CheckCircle className="text-9xl text-green-500" />
+      <Check2Circle className="text-9xl text-green-500" />
     </div>
   );
 };

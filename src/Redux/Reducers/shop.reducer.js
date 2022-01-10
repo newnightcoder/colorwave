@@ -1,6 +1,6 @@
 const initialState = {
   shop: [],
-  openSearchModal: false,
+  searchModalOpen: false,
 };
 
 const shopReducer = (state = initialState, action) => {
@@ -12,9 +12,10 @@ const shopReducer = (state = initialState, action) => {
       };
     }
     case "OPEN_SEARCH_MODAL": {
+      const toggle = !state.searchModalOpen;
       return {
         ...state,
-        openSearchModal: true,
+        searchModalOpen: toggle,
       };
     }
     default:

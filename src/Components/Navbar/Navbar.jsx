@@ -119,11 +119,6 @@ const Navbar = () => {
                   }}
                   className="h-10/12 w-max flex items-center justify-center gap-2 text-gray-300"
                 >
-                  {/* <input
-                    type="search"
-                    placeholder="search..."
-                    className="h-8 rounded-sm outline-none focus:ring-0 border-none"
-                  /> */}
                   <span>Search</span>
                   <Search color="white" size={18} />
                 </button>

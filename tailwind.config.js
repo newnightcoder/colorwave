@@ -24,6 +24,7 @@ module.exports = {
     translate: ["group-hover"],
     fill: ["hover", "group-hover"],
     fontWeight: ["hover", "group-hover"],
+    rotate: ["hover", "group-hover"],
 
     extend: {
       stroke: ["hover", "group-hover"],
