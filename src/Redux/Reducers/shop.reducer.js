@@ -11,7 +11,7 @@ const shopReducer = (state = initialState, action) => {
         shop: action.payload,
       };
     }
-    case "OPEN_SEARCH_MODAL": {
+    case "TOGGLE_SEARCH_MODAL": {
       const toggle = !state.searchModalOpen;
       return {
         ...state,

@@ -12,7 +12,7 @@ const ProductPage = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const history = useHistory();
-  const shop = useSelector((state) => state.shop);
+  const shop = useSelector((state) => state.shop.shop);
   const { item } = location?.state || undefined;
 
   const getRelatedItem = (id) => {

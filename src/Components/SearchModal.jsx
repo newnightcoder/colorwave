@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { Search, XLg } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import { ProductCard } from ".";
-import { openSearchModal } from "../Redux/Actions/shop.action";
+import { toggleSearchModal } from "../Redux/Actions/shop.action";
 
 const SearchModal = () => {
   const open = useSelector((state) => state?.shop.searchModalOpen);
   const items = useSelector((state) => state?.shop.shop);
   const [searchTerm, setSearchTerm] = useState("");
   const searchedItems = items.filter((item) => item.name.toLowerCase().includes(searchTerm));
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const handleSearch = (e) => {
@@ -17,15 +19,15 @@ const SearchModal = () => {
 
   return (
     <div
-      style={{ visibility: open ? "visible" : "hidden" }}
-      className="h-screen w-screen fixed top-0 left-0 bg-black text-white z-50 pt-2 pb-8 px-2 md:px-8 overflow-y-auto"
+      style={{ visibility: open ? "visible" : "hidden", zIndex: 10000 }}
+      className="h-screen w-screen fixed top-0 left-0 bg-black text-white pt-2 pb-8 px-2 md:px-8 overflow-y-auto"
     >
       <div className="h-max w-full fixed top-0 left-0 bg-black py-4">
         <div className="h-max w-full flex items-center justify-between px-4">
           <h1 className="uppercase">search a brand or product</h1>
           <button
             onClick={() => {
-              dispatch(openSearchModal());
+              dispatch(toggleSearchModal());
             }}
             className="h-max w-min flex flex-col items-center gap-2 group transition duration-300 hover:text-blue-400"
           >
@@ -50,15 +52,28 @@ const SearchModal = () => {
             </button>
           </div>
           <span
-            style={{ visibility: searchTerm.length > 1 ? "visible" : "hidden" }}
+            style={{ visibility: open && searchTerm.length > 1 ? "visible" : "hidden" }}
             className="block text-sm uppercase text-gray-400"
           >
             {searchedItems.length} results
           </span>
         </div>
       </div>
-      <div className="h-max w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 p-6">
-        {searchTerm.length > 1 && searchedItems.map((item, i) => <ProductCard key={i + 1} item={item} />)}
+      <div className="h-max w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 px-6 pb-6 pt-32">
+        {searchTerm.length > 1 &&
+          searchedItems.map((item, i) => (
+            <ProductCard
+              key={i + 1}
+              item={item}
+              // onClick={() => {
+              //   // dispatch(openSearchModal());
+              //   console.log("okqy");
+              //   // history.push({
+              //   //   pathname: `/product/${item.name}`,
+              //   // });
+              // }}
+            />
+          ))}
       </div>
     </div>
   );

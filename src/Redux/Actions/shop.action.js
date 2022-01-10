@@ -9,6 +9,6 @@ export const getShopData = async (dispatch) => {
   });
 };
 
-export const openSearchModal = () => (dispatch) => {
-  dispatch({ type: actionTypes.OPEN_SEARCH_MODAL });
+export const toggleSearchModal = () => (dispatch) => {
+  dispatch({ type: actionTypes.TOGGLE_SEARCH_MODAL });
 };

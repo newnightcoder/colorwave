@@ -3,7 +3,7 @@ import { Search } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { toggleCartDrawer } from "../../Redux/Actions/cart.action";
-import { openSearchModal } from "../../Redux/Actions/shop.action";
+import { toggleSearchModal } from "../../Redux/Actions/shop.action";
 
 const Navbar = () => {
   const items = useSelector((state) => state?.cart.items);
@@ -115,7 +115,7 @@ const Navbar = () => {
                 {/* SEARCH BAR */}
                 <button
                   onClick={() => {
-                    dispatch(openSearchModal());
+                    dispatch(toggleSearchModal());
                   }}
                   className="h-10/12 w-max flex items-center justify-center gap-2 text-gray-300"
                 >
