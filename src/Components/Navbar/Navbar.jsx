@@ -111,7 +111,7 @@ const Navbar = () => {
                   <span>Support</span>
                 </NavLink>
               </nav>
-              <div className="w-max h-full absolute right-0 flex items-center justify-center gap-8 mr-2">
+              <div className="w-max h-full absolute right-0 flex items-center justify-center gap-8 mr-6 md:mr-4 xl:mr-8">
                 {/* SEARCH BAR */}
                 <button
                   onClick={() => {
@@ -124,7 +124,7 @@ const Navbar = () => {
                 </button>
                 <button
                   onClick={() => dispatch(toggleCartDrawer())}
-                  className="w-max h-max relative flex items-center justify-center gap-2 z-10 text-gray-300 text-base group"
+                  className="w-max h-max relative flex items-center justify-center gap-1 z-10 text-gray-300 text-base group"
                 >
                   <span className="hidden md:block text-gray-300 group-hover:text-white">Checkout</span>
                   <span className="absolute inline-block inset-x-0 bottom-0 mx-auto h-0.5 w-full bg-blue-500 transform scale-x-0 transition-scale origin-left duration-100 group-hover:scale-x-100"></span>
@@ -135,7 +135,7 @@ const Navbar = () => {
                     fill="currentColor"
                     width="2rem"
                     height="1rem"
-                    className="transition-color duration-300 group-hover:text-blue-500"
+                    className="transition-color duration-300 group-hover:text-blue-500 z-50"
                   >
                     <path
                       d="M158.92,284H127.83V267a1.5,1.5,0,0,0-1.5-1.5h-6.57a1.5,1.5,0,1,0,0,3h5.07v16.91a1.5,1.5,0,0,0,1.5,1.5h32.59a1.5,1.5,0,1,0,0-3Z"
@@ -162,12 +162,14 @@ const Navbar = () => {
                       transform="translate(-118.26 -265.51)"
                     ></path>
                   </svg>
+                  <>
+                    {totalItems > 0 && (
+                      <div className="h-5 w-5 rounded-full flex items-center justify-center absolute -top-3 -right-3 text-sm text-black font-bold transition duration-300 bg-yellow-300 group-hover:bg-white">
+                        {totalItems}
+                      </div>
+                    )}
+                  </>
                 </button>
-                {totalItems > 0 && (
-                  <div className="h-5 w-5 rounded-full flex items-center justify-center absolute top-0 right-0 text-sm text-black bg-white ">
-                    {totalItems}
-                  </div>
-                )}
               </div>
             </div>
           </div>

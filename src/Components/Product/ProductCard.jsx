@@ -15,7 +15,7 @@ const ProductCard = ({ item, variants, bgColor }) => {
     if (variants !== undefined && variants?.length !== 0) {
       return history.push({
         pathname: `/categories/${item.name}`,
-        state: { variants: true, item },
+        state: { item, variants: true },
       });
     }
     history.push({
@@ -29,7 +29,7 @@ const ProductCard = ({ item, variants, bgColor }) => {
       <div className="h-28 md:h-56 w-full cursor-pointer" style={{ backgroundColor: `${bgColor}` }}>
         <img className="object-cover h-full w-full" src={item && item.media.source} alt={item.name} />
       </div>
-      <p className="text-center text-sm pt-1 md:pt-2 pb-4">{item && item.name}</p>
+      <p className="text-center text-sm pt-1 md:pt-2 pb-4 2xl:pb-8">{item && item.name}</p>
     </div>
   );
 };

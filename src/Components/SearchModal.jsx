@@ -59,7 +59,7 @@ const SearchModal = () => {
           </span>
         </div>
       </div>
-      <div className="h-max w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 px-6 pb-6 pt-32">
+      <div className="h-max w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 lg:grid-cols-3 px-6 pb-6 pt-32">
         {searchTerm.length > 1 &&
           searchedItems.map((item, i) => (
             <ProductCard
