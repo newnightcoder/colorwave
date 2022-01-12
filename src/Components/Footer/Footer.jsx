@@ -4,7 +4,7 @@ import "../../Styles/_variables.css";
 
 const Footer = () => {
   return (
-    <div className="h-max w-screen bg-black text-gray-300 flex flex-col items-center justify-center px-8 py-8 font-cabin">
+    <div className="h-max w-screen bg-black text-gray-300 flex flex-col items-center justify-center px-8 py-8 font-cabin border-t-4 border-yellow-300">
       <div className="max-w-2/3 flex items-center justify-center gap-4 py-5">
         <div className="w-full md:col-span-2 grid grid-cols-3 gap-3 sm:grid-cols-3 text-center sm:text-left px-8">
           <div className="">

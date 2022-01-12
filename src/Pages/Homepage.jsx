@@ -5,7 +5,9 @@ import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import img1 from "../Assets/sliderImg/1.png";
 import img2 from "../Assets/sliderImg/2.png";
+import imgPromote2 from "../Assets/sliderImg/3'.png";
 import img3 from "../Assets/sliderImg/3.png";
+import imgPromote1 from "../Assets/sliderImg/4'.png";
 import img4 from "../Assets/sliderImg/4.png";
 import { CartDrawer, CategoriesGrid, Footer, Navbar, SearchModal } from "../Components";
 import "../Styles/_variables.css";
@@ -53,17 +55,21 @@ const HomePage = () => {
         slideInterval={3000}
         onClick={(e) => linkTo(e)}
       />
+
       <CategoriesGrid />
-      <div
-        className="h-48 w-full flex items-center justify-center py-16"
-        // style={{ background: `url("${img}") no-repeat center/cover`, height: "70vh" }}
-      >
+      <div className="h-max w-full">
+        <img src={imgPromote1} alt="" />
+      </div>
+      <div className="h-min w-full flex items-center justify-center py-4">
         <Link
           to="/shop"
           className="w-1/4 h-max flex items-center justify-center py-2 border border-2 border-black shadow-md hover:shadow-sm rounded text-white bg-black"
         >
           see all products
         </Link>
+      </div>
+      <div className="h-max w-full">
+        <img src={imgPromote2} alt="" className="w-full" />
       </div>
       <CartDrawer />
       <SearchModal />

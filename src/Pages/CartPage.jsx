@@ -319,8 +319,8 @@ const CartPage = () => {
             </div>
 
             {items.length !== 0 && (
-              <div className="recap  h-20 w-full md:h-48 md:w-1/3 fixed bottom-0 md:right-5 md:top-0 md:my-auto z-50 flex flex-col items-center justify-center gap-2 bg-white p-16 border border-2 border-black">
-                <div className="w-full flex items-center justify-center text-gray-900 pt-2 border-b border-black px-8">
+              <div className="recap  h-20 w-full md:h-screen md:w-1/3 fixed bottom-0 md:right-0 md:top-0 md:my-auto z-50 flex flex-col items-center justify-center gap-2 bg-black md:bg-white text-white md:text-gray-900 p-16">
+                <div className="w-full flex items-center justify-center pt-2 border-b border-white md:border-gray-900 px-8">
                   <span>TOTAL&nbsp;:</span> <span className="w-12 text-right">{totalPrice}</span>&nbsp;
                   <span>€</span>
                 </div>

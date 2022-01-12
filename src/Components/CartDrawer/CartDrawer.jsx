@@ -50,7 +50,7 @@ const CartDrawer = () => {
   return (
     <div
       style={{ transform: cartDrawerOpen ? "translateY(0)" : "translateY(-100%)" }}
-      className="h-screen w-full font-cabin md:w-2/3 lg:w-1/2 flex flex-col items-center justify-center overflow-x-hidden overflow-y-auto fixed z-50 transition-transform duration-300 text-gray-900 right-0 top-0 bg-sound pt-12 pb-12 px-4 md:px-12"
+      className="h-screen w-full md:w-2/3 lg:w-1/2 font-cabin flex flex-col items-center justify-center overflow-x-hidden overflow-y-auto fixed z-50 transition-transform duration-300 text-gray-900 right-0 top-0 bg-sound pt-12 pb-12 px-5 md:px-10"
     >
       <div className="h-full w-full flex flex-col items-center justify-center gap-16">
         <div className="h-2/3 w-full overflow-y-auto overflow-x-hidden flex flex-col items-center justify-center gap-2 pt-36 pb-12">
@@ -58,7 +58,7 @@ const CartDrawer = () => {
             items.map((item, i) => (
               <div
                 key={i}
-                className="w-full md:w-2/3 flex flex items-center justify-left border-b border-gray-300 only:border-b-0 last:border-b-0"
+                className="w-full flex flex items-center justify-left border-b border-gray-300 only:border-b-0 last:border-b-0"
               >
                 <div
                   style={{

@@ -29,30 +29,36 @@ const Form = ({
         Your delivery information
       </h1>
       <form className="form-solid h-max w-10/12 md:w-3/5 md:ml-8 flex flex-col items-center justify-center gap-2 text-gray-900">
-        <label className="w-full text-gray-100 text-left px-1" htmlFor="firstName">
-          First Name
-        </label>
-        <input
-          id="firstName"
-          type="text"
-          className="form-input w-full flex items-left justify-left px-4 py-2"
-          placeholder="Your first name"
-          value={inputFirstName}
-          onChange={handleInput}
-        />
-        <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorFirstName}</span>
-        <label className="w-full text-gray-100 text-left px-1" htmlFor="lastName">
-          Last Name
-        </label>
-        <input
-          id="lastName"
-          type="text"
-          className="form-input w-full flex items-left justify-left px-4 py-2"
-          placeholder="Your last name"
-          value={inputLastName}
-          onChange={handleInput}
-        />
-        <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorLastName}</span>
+        <div className="w-full flex-col md:flex-row">
+          <div className="flex-col">
+            <label className="w-full text-gray-100 text-left px-1" htmlFor="firstName">
+              First Name
+            </label>
+            <input
+              id="firstName"
+              type="text"
+              className="form-input w-full flex items-left justify-left px-4 py-2"
+              placeholder="Your first name"
+              value={inputFirstName}
+              onChange={handleInput}
+            />
+            <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorFirstName}</span>
+          </div>
+          <div className="flex-col">
+            <label className="w-full text-gray-100 text-left px-1" htmlFor="lastName">
+              Last Name
+            </label>
+            <input
+              id="lastName"
+              type="text"
+              className="form-input w-full flex items-left justify-left px-4 py-2"
+              placeholder="Your last name"
+              value={inputLastName}
+              onChange={handleInput}
+            />
+            <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorLastName}</span>
+          </div>
+        </div>
 
         <label className="w-full text-gray-100 text-left px-1" htmlFor="email">
           Email

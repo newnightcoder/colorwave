@@ -16,7 +16,7 @@ const CategoryCard = ({ categoryTitle, img, bgColor, btnColor, btnText, mirror }
       )}
       <div
         style={{ left: mirror && window.innerWidth < 768 ? "60%" : "10%" }}
-        className="absolute top-50 flex flex-col justify-center text-black"
+        className="absolute top-50 flex flex-col justify-center text-black z-10"
       >
         <span className="w-full text-lg text-center uppercase">{categoryTitle}</span>
         <Link

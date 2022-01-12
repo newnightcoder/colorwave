@@ -13,6 +13,11 @@ html {
   height: auto;
   z-index: 0;
 }
+/* @media screen and (max-width: 640px) {
+  .image-gallery {
+    height: 50vh;
+  }
+} */
 
 body {
   overflow-x: hidden;

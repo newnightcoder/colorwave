@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Search } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router";
 import { Link, NavLink } from "react-router-dom";
 import { toggleCartDrawer } from "../../Redux/Actions/cart.action";
 import { toggleSearchModal } from "../../Redux/Actions/shop.action";
@@ -10,7 +11,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const cartDrawerOpen = useSelector((state) => state?.cart.cartDrawerOpen);
   const dispatch = useDispatch();
-
+  const location = useLocation();
   const toggleMenu = () => {
     return setMenuOpen((menuOpen) => !menuOpen);
   };
@@ -25,9 +26,9 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="nav-container h-16 w-screen bg-black shadow-lg fixed top-0 z-40 font-cabin">
-        <div className="w-full mx-auto px-2 sm:px-6 lg:px-8">
-          <div className="h-16 relative flex items-center justify-between">
+      <div className="nav-container h-16 w-screen bg-black shadow-lg fixed top-0 z-40 font-cabin border-b-4 border-yellow-300">
+        <div className="h-full w-full mx-auto px-2 sm:px-6 lg:px-8">
+          <div className="h-full relative flex items-center justify-between">
             {/* <!-- MOBILE MENU BUTTON--> */}
             <div className="absolute inset-y-0 left-0 mr-1 sm:mr-5 flex items-center lg:hidden">
               <button
@@ -122,54 +123,56 @@ const Navbar = () => {
                   <span>Search</span>
                   <Search color="white" size={18} />
                 </button>
-                <button
-                  onClick={() => dispatch(toggleCartDrawer())}
-                  className="w-max h-max relative flex items-center justify-center gap-1 z-10 text-gray-300 text-base group"
-                >
-                  <span className="hidden md:block text-gray-300 group-hover:text-white">Checkout</span>
-                  <span className="absolute inline-block inset-x-0 bottom-0 mx-auto h-0.5 w-full bg-blue-500 transform scale-x-0 transition-scale origin-left duration-100 group-hover:scale-x-100"></span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 52.4 29.75"
-                    alt="Shopping Cart"
-                    fill="currentColor"
-                    width="2rem"
-                    height="1rem"
-                    className="transition-color duration-300 group-hover:text-blue-500 z-50"
+                {location.pathname !== "/cart" && (
+                  <button
+                    onClick={() => dispatch(toggleCartDrawer())}
+                    className="w-max h-max relative flex items-center justify-center gap-1 z-10 text-gray-300 text-base group"
                   >
-                    <path
-                      d="M158.92,284H127.83V267a1.5,1.5,0,0,0-1.5-1.5h-6.57a1.5,1.5,0,1,0,0,3h5.07v16.91a1.5,1.5,0,0,0,1.5,1.5h32.59a1.5,1.5,0,1,0,0-3Z"
-                      transform="translate(-118.26 -265.51)"
-                    ></path>
-                    <path
-                      d="M162.34,277.81h-30a1.5,1.5,0,1,0,0,3h30a1.5,1.5,0,0,0,0-3Z"
-                      transform="translate(-118.26 -265.51)"
-                    ></path>
-                    <path
-                      d="M165.75,271.66H132.33a1.5,1.5,0,1,0,0,3h33.42a1.5,1.5,0,0,0,0-3Z"
-                      transform="translate(-118.26 -265.51)"
-                    ></path>
-                    <path
-                      d="M169.16,265.51H132.33a1.5,1.5,0,0,0,0,3h36.83a1.5,1.5,0,0,0,0-3Z"
-                      transform="translate(-118.26 -265.51)"
-                    ></path>
-                    <path
-                      d="M127.83,288.7a3.29,3.29,0,1,0,3.29,3.28A3.29,3.29,0,0,0,127.83,288.7Z"
-                      transform="translate(-118.26 -265.51)"
-                    ></path>
-                    <path
-                      d="M151.66,288.7A3.29,3.29,0,1,0,155,292,3.28,3.28,0,0,0,151.66,288.7Z"
-                      transform="translate(-118.26 -265.51)"
-                    ></path>
-                  </svg>
-                  <>
-                    {totalItems > 0 && (
-                      <div className="h-5 w-5 rounded-full flex items-center justify-center absolute -top-3 -right-3 text-sm text-black font-bold transition duration-300 bg-yellow-300 group-hover:bg-white">
-                        {totalItems}
-                      </div>
-                    )}
-                  </>
-                </button>
+                    <span className="hidden md:block text-gray-300 group-hover:text-white">Checkout</span>
+                    <span className="absolute inline-block inset-x-0 bottom-0 mx-auto h-0.5 w-full bg-blue-500 transform scale-x-0 transition-scale origin-left duration-100 group-hover:scale-x-100"></span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 52.4 29.75"
+                      alt="Shopping Cart"
+                      fill="currentColor"
+                      width="2rem"
+                      height="1rem"
+                      className="transition-color duration-300 group-hover:text-blue-500 z-50"
+                    >
+                      <path
+                        d="M158.92,284H127.83V267a1.5,1.5,0,0,0-1.5-1.5h-6.57a1.5,1.5,0,1,0,0,3h5.07v16.91a1.5,1.5,0,0,0,1.5,1.5h32.59a1.5,1.5,0,1,0,0-3Z"
+                        transform="translate(-118.26 -265.51)"
+                      ></path>
+                      <path
+                        d="M162.34,277.81h-30a1.5,1.5,0,1,0,0,3h30a1.5,1.5,0,0,0,0-3Z"
+                        transform="translate(-118.26 -265.51)"
+                      ></path>
+                      <path
+                        d="M165.75,271.66H132.33a1.5,1.5,0,1,0,0,3h33.42a1.5,1.5,0,0,0,0-3Z"
+                        transform="translate(-118.26 -265.51)"
+                      ></path>
+                      <path
+                        d="M169.16,265.51H132.33a1.5,1.5,0,0,0,0,3h36.83a1.5,1.5,0,0,0,0-3Z"
+                        transform="translate(-118.26 -265.51)"
+                      ></path>
+                      <path
+                        d="M127.83,288.7a3.29,3.29,0,1,0,3.29,3.28A3.29,3.29,0,0,0,127.83,288.7Z"
+                        transform="translate(-118.26 -265.51)"
+                      ></path>
+                      <path
+                        d="M151.66,288.7A3.29,3.29,0,1,0,155,292,3.28,3.28,0,0,0,151.66,288.7Z"
+                        transform="translate(-118.26 -265.51)"
+                      ></path>
+                    </svg>
+                    <>
+                      {totalItems > 0 && (
+                        <div className="h-5 w-5 rounded-full flex items-center justify-center absolute -top-3 -right-3 text-sm text-black font-bold transition duration-300 bg-yellow-300 group-hover:bg-white">
+                          {totalItems}
+                        </div>
+                      )}
+                    </>
+                  </button>
+                )}
               </div>
             </div>
           </div>
@@ -183,6 +186,14 @@ const Navbar = () => {
         >
           <div className="px-2 pt-2 pb-3 space-y-1">
             {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
+            <Link
+              onClick={toggleMenu}
+              to="/"
+              className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
+              aria-current="page"
+            >
+              Home
+            </Link>
             <Link
               onClick={toggleMenu}
               to="/shop"
@@ -215,13 +226,15 @@ const Navbar = () => {
             >
               Support
             </Link>
-            <Link
-              onClick={toggleMenu}
-              to="/cart"
-              className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
-            >
-              Cart
-            </Link>
+            {location.pathname !== "/cart" && (
+              <Link
+                onClick={toggleMenu}
+                to="/cart"
+                className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
+              >
+                Cart
+              </Link>
+            )}
           </div>
         </div>
       </div>

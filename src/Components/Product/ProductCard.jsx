@@ -26,8 +26,12 @@ const ProductCard = ({ item, variants, bgColor }) => {
 
   return (
     <div className="h-36 md:h-60 w-full font-cabin" onClick={linkPage}>
-      <div className="h-28 md:h-56 w-full cursor-pointer" style={{ backgroundColor: `${bgColor}` }}>
-        <img className="object-cover h-full w-full" src={item && item.media.source} alt={item.name} />
+      <div className="h-28 md:h-56 w-full cursor-pointer overflow-hidden" style={{ backgroundColor: `${bgColor}` }}>
+        <img
+          className="object-contain h-full w-full relative transition duration-300 transform hover:scale-125"
+          src={item && item.media.source}
+          alt={item.name}
+        />
       </div>
       <p className="text-center text-sm pt-1 md:pt-2 pb-4 2xl:pb-8">{item && item.name}</p>
     </div>
