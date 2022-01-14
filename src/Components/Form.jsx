@@ -16,16 +16,17 @@ const Form = ({
   errorFirstName,
   errorPhone,
   errorLastName,
+  formOpen,
 }) => {
   const items = useSelector((state) => state?.cart.items);
 
   return (
     <div
       id="userInfo-form"
-      style={{ minHeight: "calc(100vh - 64px)" }}
-      className="form-container h-full w-full relative flex flex-col items-center md:items-start justify-center bg-gray-400 text-white"
+      style={{ height: "calc(100vh - 64px)" }}
+      className="form-container w-full z-30 relative flex flex-col items-center md:items-start justify-center transition duration-300 bg-red-400 text-white"
     >
-      <h1 className="w-screen absolute top-0 left-0 text-left uppercase pl-16 py-8 border border-white">
+      <h1 className="w-screen relative top-0 left-0 text-left uppercase pl-16 py-8 border border-white">
         Your delivery information
       </h1>
       <form className="form-solid h-max w-10/12 md:w-3/5 md:ml-8 flex flex-col items-center justify-center gap-2 text-gray-900">
@@ -79,7 +80,7 @@ const Form = ({
         <input
           id="address"
           type="text"
-          className="form-input h-48 w-full px-4 py-1"
+          className="form-input h-24 w-full px-4 py-1"
           placeholder="Your address"
           value={inputAddress}
           onChange={handleInput}

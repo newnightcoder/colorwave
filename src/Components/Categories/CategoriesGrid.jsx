@@ -3,9 +3,11 @@ import img1 from "../../Assets/categories/banner-1000-controller.png";
 import img3 from "../../Assets/categories/banner-1000-iphone.png";
 import img2 from "../../Assets/categories/banner-1000-mic.png";
 import img4 from "../../Assets/categories/banner-1000-mouse.png";
+import useWindowSize from "../../utils/useWindowSize";
 import CategoryCard from "./CategoryCard";
 
 const CategoriesGrid = () => {
+  const { height, width } = useWindowSize();
   return (
     <div className="h-max w-screen grid grid-cols-1 md:grid-cols-2	bg-sound">
       <CategoryCard
@@ -26,7 +28,7 @@ const CategoriesGrid = () => {
       />
       <CategoryCard
         categoryTitle="skins"
-        bgColor={window.innerWidth > 768 ? "#fefefe" : "#F5F5F5"}
+        bgColor={width > 768 ? "#fefefe" : "#F5F5F5"}
         img={img3}
         btnColor="dimgray"
         btnText="white"
@@ -34,7 +36,7 @@ const CategoriesGrid = () => {
       />
       <CategoryCard
         categoryTitle="accessories"
-        bgColor={window.innerWidth > 768 ? "#F5F5F5" : "#fefefe"}
+        bgColor={width > 768 ? "#F5F5F5" : "#fefefe"}
         img={img4}
         btnColor="yellow"
         btnText="black"

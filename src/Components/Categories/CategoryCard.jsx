@@ -1,21 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useWindowSize from "../../utils/useWindowSize";
 
 const CategoryCard = ({ categoryTitle, img, bgColor, btnColor, btnText, mirror }) => {
+  const { height, width } = useWindowSize();
+
   return (
     <div
       className="h-40 sm:h-60 md:h-80 relative flex items-center justify-center transition duration-300 cursor-pointer"
       style={{ background: `${bgColor}` }}
     >
-      {mirror && window.innerWidth < 768 && (
+      {mirror && width < 768 && (
         <img
           src={img}
           alt=""
-          className="object-contain h-full w-full relative top-0 transform -translate-x-24 sm:-translate-x-36"
+          style={{ transform: "translateX(-25%)" }}
+          className="object-contain h-full w-full relative top-0"
         />
       )}
       <div
-        style={{ left: mirror && window.innerWidth < 768 ? "60%" : "10%" }}
+        style={{
+          left: mirror && width < 500 ? "55%" : mirror && width < 768 ? "65%" : !mirror && width < 500 ? "7.5%" : "15%",
+        }}
         className="absolute top-50 flex flex-col justify-center text-black z-10"
       >
         <span className="w-full text-lg text-center uppercase">{categoryTitle}</span>
@@ -32,11 +38,12 @@ const CategoryCard = ({ categoryTitle, img, bgColor, btnColor, btnText, mirror }
           See products
         </Link>
       </div>
-      {(!mirror || window.innerWidth > 768) && (
+      {(!mirror || width > 768) && (
         <img
           src={img}
           alt=""
-          className="object-contain h-full w-full relative top-0 transform translate-x-24 md:translate-x-36"
+          style={{ transform: width > 768 ? "translateX(15%)" : "translateX(22%)" }}
+          className="object-contain h-full w-full relative top-0"
         />
       )}
     </div>

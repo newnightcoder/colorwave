@@ -1,5 +1,8 @@
+export { default as CartContainer } from "./CartContainer";
 export { default as CartDrawer } from "./CartDrawer/CartDrawer";
 export { default as NavbarCart } from "./CartDrawer/NavbarCart";
+export { default as CartNav } from "./CartNav";
+export { default as CartRecap } from "./CartRecap";
 export { default as CategoriesGrid } from "./Categories/CategoriesGrid";
 export { default as CategoryCard } from "./Categories/CategoryCard";
 export { default as CheckoutForm } from "./CheckoutForm";

@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { ProductCard } from ".";
 import { toggleSearchModal } from "../Redux/Actions/shop.action";
+import useWindowSize from "../utils/useWindowSize";
 
 const SearchModal = () => {
   const open = useSelector((state) => state?.shop.searchModalOpen);
   const items = useSelector((state) => state?.shop.shop);
   const [searchTerm, setSearchTerm] = useState("");
+  const { height, width } = useWindowSize;
   const searchedItems = items.filter((item) => item.name.toLowerCase().includes(searchTerm));
   const history = useHistory();
   const dispatch = useDispatch();
@@ -33,7 +35,7 @@ const SearchModal = () => {
           >
             <span className="text-sm">close</span>
             <XLg
-              size={window.innerWidth > 500 ? 36 : 20}
+              size={width > 500 ? 36 : 20}
               className="text-white transition duration-300 group-hover:text-blue-400"
             />
           </button>
