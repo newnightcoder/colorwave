@@ -1,6 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import "../Styles/form.css";
 import "../Styles/_variables.css";
+import useWindowSize from "../utils/useWindowSize";
 
 const Form = ({
   inputFirstName,
@@ -19,20 +21,25 @@ const Form = ({
   formOpen,
 }) => {
   const items = useSelector((state) => state?.cart.items);
+  const { height, width } = useWindowSize();
 
   return (
     <div
       id="userInfo-form"
       style={{ height: "calc(100vh - 64px)" }}
-      className="form-container w-full z-30 relative flex flex-col items-center md:items-start justify-center transition duration-300 bg-red-400 text-white"
+      className="form-container w-full md:w-2/3 z-30 relative flex flex-col items-center justify-start md:justify-center transition duration-300 bg-sound text-gray-900"
     >
-      <h1 className="w-screen relative top-0 left-0 text-left uppercase pl-16 py-8 border border-white">
+      <h1 className="w-full absolute top-0 md:top-16 left-0 text-center uppercase text-lg md:text-xl font-bold px-4 py-4 shadow md:shadow-none">
         Your delivery information
       </h1>
-      <form className="form-solid h-max w-10/12 md:w-3/5 md:ml-8 flex flex-col items-center justify-center gap-2 text-gray-900">
-        <div className="w-full flex-col md:flex-row">
-          <div className="flex-col">
-            <label className="w-full text-gray-100 text-left px-1" htmlFor="firstName">
+
+      <form
+        style={{ height: "calc(100vh - 300px)" }}
+        className="form-solid w-10/12 max-w-md overflow-y-auto flex flex-col items-center justify-start md:justify-center gap-4 md:gap-4 xl:gap-6 text-gray-900 pb-4 md:pb-0 mt-16 md:mt-0"
+      >
+        <div className="w-full flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col w-full md:w-1/2">
+            <label className="w-max text-left px-1" htmlFor="firstName">
               First Name
             </label>
             <input
@@ -43,10 +50,10 @@ const Form = ({
               value={inputFirstName}
               onChange={handleInput}
             />
-            <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorFirstName}</span>
+            <span className="input-error w-max text-left text-black font-bold pl-2 -mt-2">{errorFirstName}</span>
           </div>
-          <div className="flex-col">
-            <label className="w-full text-gray-100 text-left px-1" htmlFor="lastName">
+          <div className="flex flex-col w-full md:w-1/2">
+            <label className="w- text-left px-1" htmlFor="lastName">
               Last Name
             </label>
             <input
@@ -57,48 +64,87 @@ const Form = ({
               value={inputLastName}
               onChange={handleInput}
             />
-            <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorLastName}</span>
+            <span className="input-error w-max text-left text-black font-bold pl-2 -mt-2">{errorLastName}</span>
           </div>
         </div>
 
-        <label className="w-full text-gray-100 text-left px-1" htmlFor="email">
-          Email
-        </label>
-        <input
-          id="email"
-          type="email"
-          className="form-input w-full flex items-left justify-left px-4 py-2"
-          placeholder="abc@gmail.com"
-          value={inputEmail}
-          onChange={handleInput}
-        />
-        <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorEmail}</span>
+        <div className="w-full flex flex-col ">
+          <label className="w-full text-left px-1" htmlFor="email">
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            className="form-input w-full flex items-left justify-left px-4 py-2"
+            placeholder="abc@gmail.com"
+            value={inputEmail}
+            onChange={handleInput}
+          />
+          <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorEmail}</span>
+        </div>
 
-        <label className="w-full text-gray-100 text-left px-1" htmlFor="address">
-          Address
-        </label>
-        <input
-          id="address"
-          type="text"
-          className="form-input h-24 w-full px-4 py-1"
-          placeholder="Your address"
-          value={inputAddress}
-          onChange={handleInput}
-        />
-        <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorAddress}</span>
+        <div className="w-full flex flex-col ">
+          <label className="w-full text-left px-1" htmlFor="address">
+            Address
+          </label>
+          <input
+            id="address"
+            type="text"
+            className="form-input w-full px-4 py-2"
+            placeholder="Your address"
+            value={inputAddress}
+            onChange={handleInput}
+          />
+          <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorAddress}</span>
+        </div>
 
-        <label className="w-full text-gray-100 text-left px-1" htmlFor="phone">
-          Phone number
-        </label>
-        <input
-          id="phone"
-          type="tel"
-          className="form-input w-full flex items-left justify-left px-4 py-2"
-          placeholder="+33623456789"
-          value={inputPhone}
-          onChange={handleInput}
-        />
-        <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorPhone}</span>
+        <div className="w-full flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col w-full md:w-2/3 ">
+            <label className="w-full text-left px-1" htmlFor="address">
+              City
+            </label>
+            <input
+              id="address"
+              type="text"
+              className="form-input w-full px-4 py-2"
+              placeholder="Your city"
+              value={inputAddress}
+              onChange={handleInput}
+            />
+            {/* ❗️ create errorCity */}
+            <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorAddress}</span>
+          </div>
+          <div className="flex flex-col w-full md:w-1/3 ">
+            <label className="w-full text-left px-1" htmlFor="address">
+              Zip Code
+            </label>
+            <input
+              id="address"
+              type="text"
+              className="form-input w-full px-4 py-2"
+              placeholder="Your Zip Code"
+              value={inputAddress}
+              onChange={handleInput}
+            />
+            {/* ❗️ create errorZipCode */}
+            <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorAddress}</span>
+          </div>
+        </div>
+
+        <div className="w-full flex flex-col ">
+          <label className="w-full text-left px-1" htmlFor="phone">
+            Phone number
+          </label>
+          <input
+            id="phone"
+            type="tel"
+            className="form-input w-full flex items-left justify-left px-4 py-2"
+            placeholder="+33623456789"
+            value={inputPhone}
+            onChange={handleInput}
+          />
+          <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorPhone}</span>
+        </div>
       </form>
     </div>
   );

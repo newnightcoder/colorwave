@@ -10,7 +10,7 @@ const SearchModal = () => {
   const open = useSelector((state) => state?.shop.searchModalOpen);
   const items = useSelector((state) => state?.shop.shop);
   const [searchTerm, setSearchTerm] = useState("");
-  const { height, width } = useWindowSize;
+  const { height, width } = useWindowSize();
   const searchedItems = items.filter((item) => item.name.toLowerCase().includes(searchTerm));
   const history = useHistory();
   const dispatch = useDispatch();

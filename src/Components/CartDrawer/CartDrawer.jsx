@@ -3,7 +3,6 @@ import { XCircle } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { deleteItem, toggleCartDrawer } from "../../Redux/Actions/cart.action";
-import "../../Styles/cart.css";
 import "../../Styles/_variables.css";
 
 const CartDrawer = () => {

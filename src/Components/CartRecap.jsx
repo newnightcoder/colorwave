@@ -1,11 +1,16 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import useWindowSize from "../utils/useWindowSize";
 
 const CartRecap = ({ formOpen, toggleForm, handleForm, totalPrice }) => {
   const items = useSelector((state) => state?.cart.items);
+  const { height, width } = useWindowSize();
 
   return (
-    <div className="recap h-20 w-full md:h-screen md:w-1/3 absolute md:fixed bottom-0 md:right-0 md:top-0 md:my-auto z-50 flex flex-col items-center justify-center gap-2 bg-black md:bg-white text-white md:text-gray-900 p-16">
+    <div
+      style={{ height: width > 768 && "calc(100% - 125px)" }}
+      className="recap h-20 w-full md:w-1/3 absolute md:fixed bottom-0 md:right-0 md:top-0 md:my-auto z-50 flex flex-col items-center justify-center gap-2 bg-black md:bg-white text-white md:text-gray-900 p-16"
+    >
       <div className="w-full flex items-center justify-center pt-2 border-b border-white md:border-gray-900 px-8">
         <span>TOTAL&nbsp;:</span> <span className="w-12 text-right">{totalPrice}</span>&nbsp;
         <span>€</span>
