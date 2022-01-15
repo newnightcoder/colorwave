@@ -6,6 +6,7 @@ import { withRouter } from "react-router-dom";
 import { CartContainer, CartRecap, CheckoutForm, Form } from "../Components";
 import { addToCart, deleteCart, deleteItem, removeOne, saveOrder } from "../Redux/Actions/cart.action";
 import "../Styles/_variables.css";
+import useWindowSize from "../utils/useWindowSize";
 
 let stripePromise;
 
@@ -16,6 +17,7 @@ let stripePromise;
 
 const CartPage = () => {
   const dispatch = useDispatch();
+  const { height, width } = useWindowSize();
   const items = useSelector((state) => state?.cart.items);
   const form = document.querySelector("#userInfo-form");
   const [formOpen, setFormOpen] = useState(false);
@@ -248,13 +250,19 @@ const CartPage = () => {
             style={{ contain: "content" }}
             className="page-container h-full w-full relative max-w-screen-2xl overflow-y-hidden flex flex-col items-start justify-start bg-sound border-4 border-red-500"
           >
-            <h1 className="w-full text-left uppercase pt-4 pb-2 pl-4 md:pl-8">Your Cart</h1>
             {items.length !== 0 && (
               <CartRecap totalPrice={totalPrice} handleForm={handleForm} toggleForm={toggleForm} formOpen={formOpen} />
             )}
             <div
-              style={{ transform: formOpen ? "translateY(-100vh)" : formValidated && "translateY(-200vh)" }}
-              className="h-max w-full"
+              className="cart-content-wrapper h-max w-full transition-transform duration-300"
+              style={{
+                transform:
+                  formOpen && width < 768
+                    ? "translateY(calc(-100vh + 172px))"
+                    : formOpen && width > 768
+                    ? "translateY(calc(-100vh + 44px))"
+                    : formValidated && "translateY(-200vh)",
+              }}
             >
               <CartContainer
                 handleRemoveOne={handleRemoveOne}

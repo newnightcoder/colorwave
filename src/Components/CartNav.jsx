@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const CartNav = ({ handleDeleteCart }) => {
   return (
-    <div className="top-links-container w-full max-w-screen-2xl absolute top-0 mx-auto flex items-center justify-between bg-sound px-4 md:pl-8 md:pr-20">
+    <div className="top-links-container w-full max-w-screen-2xl absolute top-10 mx-auto flex items-center justify-between bg-sound px-4 md:pl-8 md:pr-20">
       <Link to="/shop" className="flex items-center justify-center gap-1 text-gray-900 hover:underline">
         <ChevronDoubleLeft size={12} />
         <span>Continue shopping</span>
