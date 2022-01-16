@@ -27,7 +27,7 @@ const Form = ({
     <div
       id="userInfo-form"
       style={{ height: "calc(100vh - 64px)" }}
-      className="form-container w-full md:w-2/3 z-30 relative flex flex-col items-center justify-start md:justify-center transition duration-300 bg-sound text-gray-900"
+      className="form-container w-full md:w-10/12 z-30 relative flex flex-col items-center justify-start md:justify-center transition duration-300 bg-gray-200 text-gray-900"
     >
       <h1 className="w-full absolute top-0 md:top-16 left-0 text-center uppercase text-lg md:text-xl font-bold px-4 py-4 shadow md:shadow-none">
         Your delivery information
@@ -35,7 +35,7 @@ const Form = ({
 
       <form
         style={{ height: "calc(100vh - 300px)" }}
-        className="form-solid w-10/12 max-w-md overflow-y-auto flex flex-col items-center justify-start md:justify-center gap-4 md:gap-4 xl:gap-6 text-gray-900 pb-4 md:pb-0 mt-16 md:mt-0"
+        className="form-solid w-10/12 max-w-lg overflow-y-auto flex flex-col items-center justify-start md:justify-center gap-4 md:gap-4 xl:gap-6 text-gray-900 pb-4 md:pb-0 mt-16 md:mt-0"
       >
         <div className="w-full flex flex-col md:flex-row gap-4">
           <div className="flex flex-col w-full md:w-1/2">

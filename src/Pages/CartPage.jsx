@@ -250,46 +250,57 @@ const CartPage = () => {
             style={{ contain: "content" }}
             className="page-container h-full w-full relative max-w-screen-2xl overflow-y-hidden flex flex-col items-start justify-start bg-sound border-4 border-red-500"
           >
-            {items.length !== 0 && (
-              <CartRecap totalPrice={totalPrice} handleForm={handleForm} toggleForm={toggleForm} formOpen={formOpen} />
-            )}
-            <div
-              className="cart-content-wrapper h-max w-full transition-transform duration-300"
-              style={{
-                transform:
-                  formOpen && width < 768
-                    ? "translateY(calc(-100vh + 172px))"
-                    : formOpen && width > 768
-                    ? "translateY(calc(-100vh + 44px))"
-                    : formValidated && "translateY(-200vh)",
-              }}
-            >
-              <CartContainer
-                handleRemoveOne={handleRemoveOne}
-                handleAddToCart={handleAddToCart}
-                handleDeleteItem={handleDeleteItem}
-                handleDeleteCart={handleDeleteCart}
-                formOpen={formOpen}
-              />
-              {/* {formOpen && ( */}
-              <Form
-                formOpen={formOpen}
-                inputFirstName={inputFirstName}
-                inputLastName={inputLastName}
-                inputEmail={inputEmail}
-                inputPhone={inputPhone}
-                inputCheckbox={inputCheckbox}
-                handleInput={handleInput}
-                totalPrice={totalPrice}
-                errorAddress={errorAddress}
-                errorCheckbox={errorCheckbox}
-                errorEmail={errorEmail}
-                errorFirstName={errorFirstName}
-                errorLastName={errorLastName}
-                errorPhone={errorPhone}
-              />
-              {/* )} */}
-              {formValidated && <CheckoutForm />}
+            <div className="h-full w-full flex flex-col md:flex-row border border-4 border-black">
+              <div className="h-full w-full md:w-3/5 border border-green-500">
+                <div
+                  className="cart-content-wrapper h-max w-full transition-transform duration-300"
+                  style={{
+                    transform:
+                      formOpen && width < 768
+                        ? "translateY(calc(-100vh + 172px))"
+                        : formOpen && width > 768
+                        ? "translateY(calc(-100vh + 44px))"
+                        : formValidated && "translateY(-200vh)",
+                  }}
+                >
+                  <CartContainer
+                    handleRemoveOne={handleRemoveOne}
+                    handleAddToCart={handleAddToCart}
+                    handleDeleteItem={handleDeleteItem}
+                    handleDeleteCart={handleDeleteCart}
+                    formOpen={formOpen}
+                  />
+                  {/* {formOpen && ( */}
+                  <Form
+                    formOpen={formOpen}
+                    inputFirstName={inputFirstName}
+                    inputLastName={inputLastName}
+                    inputEmail={inputEmail}
+                    inputPhone={inputPhone}
+                    inputCheckbox={inputCheckbox}
+                    handleInput={handleInput}
+                    totalPrice={totalPrice}
+                    errorAddress={errorAddress}
+                    errorCheckbox={errorCheckbox}
+                    errorEmail={errorEmail}
+                    errorFirstName={errorFirstName}
+                    errorLastName={errorLastName}
+                    errorPhone={errorPhone}
+                  />
+                  {/* )} */}
+                  {formValidated && <CheckoutForm />}
+                </div>
+              </div>
+              <div className="h-full w-full relative md:w-2/5 border border-pink-500 flex items-center justify-start md:pr-8 ">
+                {items.length !== 0 && (
+                  <CartRecap
+                    totalPrice={totalPrice}
+                    handleForm={handleForm}
+                    toggleForm={toggleForm}
+                    formOpen={formOpen}
+                  />
+                )}
+              </div>
             </div>
           </div>
         </div>

@@ -10,7 +10,7 @@ const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, han
 
   return (
     <div
-      className="cart-container w-full md:w-2/3 relative flex flex-col items-center justify-center gap-4 text-gray-900 bg-sound"
+      className="cart-container w-full relative flex flex-col items-center justify-center gap-4 text-gray-900 bg-sound"
       style={{ height: width < 768 ? "calc(100vh - 172px)" : "calc(100vh - 44px)" }}
     >
       <h1 className="h-12 md:h-16 w-full z-50 flex flex-col justify-center absolute top-0 left-0 text-left md:text-center font-bold text-lg md:text-xl uppercase pl-6 md:pl-0 shadow md:shadow-none">
@@ -23,7 +23,7 @@ const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, han
         <div className="w-screen flex flex-col items-center justify-center">YOUR CART IS EMPTY</div>
       ) : (
         <div
-          style={{ height: width < 768 ? "calc(100vh - 250px)" : "calc(100vh - 210px)" }}
+          style={{ height: width < 768 ? "calc(100vh - 300px)" : "calc(100vh - 240px)" }}
           className="items-container border border-black w-full md:w-11/12 xl:w-10/12 overflow-y-auto flex flex-col items-center md:items-start justify-center gap-4 pb-16 md:pb-4 md:pt-24 2xl:pt-0  mt-24 md:mt-14"
         >
           {items.map((item, i) => (
