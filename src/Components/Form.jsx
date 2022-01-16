@@ -27,15 +27,15 @@ const Form = ({
     <div
       id="userInfo-form"
       style={{ height: "calc(100vh - 64px)" }}
-      className="form-container w-full md:w-10/12 z-30 relative flex flex-col items-center justify-start md:justify-center transition duration-300 bg-gray-200 text-gray-900"
+      className="form-container w-full z-30 relative flex flex-col items-center justify-start md:justify-center transition duration-300 bg-gray-200 text-gray-900"
     >
-      <h1 className="w-full absolute top-0 md:top-16 left-0 text-center uppercase text-lg md:text-xl font-bold px-4 py-4 shadow md:shadow-none">
+      <h1 className="h-12 md:h-16 w-full absolute top-0 xl:top-4 left-0 text-center uppercase text-lg md:text-xl font-bold px-4 py-4 shadow md:shadow-none">
         Your delivery information
       </h1>
 
       <form
-        style={{ height: "calc(100vh - 300px)" }}
-        className="form-solid w-10/12 max-w-lg overflow-y-auto flex flex-col items-center justify-start md:justify-center gap-4 md:gap-4 xl:gap-6 text-gray-900 pb-4 md:pb-0 mt-16 md:mt-0"
+        style={{ height: width < 768 ? "calc(100vh - 300px)" : "calc(100vh - 128px)" }}
+        className="form-solid md:absolute bottom-0 mx-auto w-10/12 max-w-lg overflow-y-auto flex flex-col items-center justify-start xl:justify-center gap-2 md:gap-4 xl:gap-6 text-gray-900 pb-4 md:pt-2 md:pb-12 mt-16 md:mt-0"
       >
         <div className="w-full flex flex-col md:flex-row gap-4">
           <div className="flex flex-col w-full md:w-1/2">
@@ -50,7 +50,7 @@ const Form = ({
               value={inputFirstName}
               onChange={handleInput}
             />
-            <span className="input-error w-max text-left text-black font-bold pl-2 -mt-2">{errorFirstName}</span>
+            <span className="input-error w-max text-sm text-left text-black font-bold pl-1">{errorFirstName}</span>
           </div>
           <div className="flex flex-col w-full md:w-1/2">
             <label className="w- text-left px-1" htmlFor="lastName">
@@ -64,7 +64,7 @@ const Form = ({
               value={inputLastName}
               onChange={handleInput}
             />
-            <span className="input-error w-max text-left text-black font-bold pl-2 -mt-2">{errorLastName}</span>
+            <span className="input-error w-max text-sm text-left text-black font-bold pl-1">{errorLastName}</span>
           </div>
         </div>
 
@@ -80,7 +80,7 @@ const Form = ({
             value={inputEmail}
             onChange={handleInput}
           />
-          <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorEmail}</span>
+          <span className="input-error w-full text-sm text-left text-black font-bold pl-1">{errorEmail}</span>
         </div>
 
         <div className="w-full flex flex-col ">
@@ -95,7 +95,7 @@ const Form = ({
             value={inputAddress}
             onChange={handleInput}
           />
-          <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorAddress}</span>
+          <span className="input-error w-full text-sm text-left text-black font-bold pl-1">{errorAddress}</span>
         </div>
 
         <div className="w-full flex flex-col md:flex-row gap-4">
@@ -112,7 +112,7 @@ const Form = ({
               onChange={handleInput}
             />
             {/* ❗️ create errorCity */}
-            <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorAddress}</span>
+            <span className="input-error w-full text-sm text-left text-black font-bold pl-1">{errorAddress}</span>
           </div>
           <div className="flex flex-col w-full md:w-1/3 ">
             <label className="w-full text-left px-1" htmlFor="address">
@@ -127,7 +127,7 @@ const Form = ({
               onChange={handleInput}
             />
             {/* ❗️ create errorZipCode */}
-            <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorAddress}</span>
+            <span className="input-error w-full text-sm text-left text-black font-bold pl-1">{errorAddress}</span>
           </div>
         </div>
 
@@ -143,7 +143,7 @@ const Form = ({
             value={inputPhone}
             onChange={handleInput}
           />
-          <span className="input-error w-full text-left text-black font-bold pl-2 -mt-2">{errorPhone}</span>
+          <span className="input-error w-full text-sm text-left text-black font-bold pl-1">{errorPhone}</span>
         </div>
       </form>
     </div>
