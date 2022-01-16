@@ -8,8 +8,8 @@ const CartRecap = ({ formOpen, toggleForm, handleForm, totalPrice }) => {
 
   return (
     <div
-      style={{ height: width > 768 && "calc(100% - 125px)" }}
-      className="recap h-20 w-full md:w-1/3 absolute md:fixed bottom-0 md:right-0 md:top-0 md:my-auto z-50 flex flex-col items-center justify-center gap-2 bg-black md:bg-white text-white md:text-gray-900 p-16"
+      style={{ height: width > 768 && "calc(100% - 45px)" }}
+      className="recap h-20 w-full md:w-1/3 absolute md:fixed bottom-0 md:right-10 md:top-0 md:my-auto z-50 flex flex-col items-center justify-center gap-2 bg-black md:bg-white text-white md:text-gray-900 p-16"
     >
       <div className="w-full flex items-center justify-center pt-2 border-b border-white md:border-gray-900 px-8">
         <span>TOTAL&nbsp;:</span> <span className="w-12 text-right">{totalPrice}</span>&nbsp;

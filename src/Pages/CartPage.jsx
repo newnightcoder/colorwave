@@ -243,7 +243,7 @@ const CartPage = () => {
         {/* WHOLE PAGE */}
         <div
           style={{ height: "calc(100vh - 64px)" }}
-          className="page relative w-screen overflow-y-hidden font-cabin flex flex-col items-center justify-center bg-sound border-4 border-yellow-400"
+          className="page relative w-screen overflow-y-hidden font-cabin flex flex-col items-center justify-center bg-sound border-4 border-blue-400"
         >
           {/*  PAGE CONTAINER */}
           <div
