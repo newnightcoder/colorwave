@@ -3,8 +3,9 @@ import { loadStripe } from "@stripe/stripe-js";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { CartContainer, CartRecap, CheckoutForm, Form } from "../Components";
+import { CartContainer, CartRecap, CheckoutForm, Form, Steps } from "../Components";
 import { addToCart, deleteCart, deleteItem, removeOne, saveOrder } from "../Redux/Actions/cart.action";
+import "../Styles/cartPage.css";
 import "../Styles/_variables.css";
 import useWindowSize from "../utils/useWindowSize";
 
@@ -102,13 +103,32 @@ const CartPage = () => {
 
   useEffect(() => {
     if (formValidated) {
-      alert("form validated", formValidated);
       createOrder();
     }
   }, [formValidated]);
 
   const appearance = {
-    theme: "night", // flat, night, stripe, none
+    theme: "stripe",
+    // variables: {
+    //   fontFamily: "Sohne, system-ui, sans-serif",
+    //   fontWeightNormal: "500",
+    //   borderRadius: "8px",
+    //   colorBackground: "#0A2540",
+    //   colorPrimary: "#EFC078",
+    //   colorPrimaryText: "#1A1B25",
+    //   colorText: "white",
+    //   colorTextSecondary: "white",
+    //   colorTextPlaceholder: "#727F96",
+    //   colorIconTab: "white",
+    //   colorLogo: "dark",
+    // },
+    // rules: {
+    //   ".Input, .Block": {
+    //     backgroundColor: "transparent",
+    //     border: "1.5px solid var(--colorPrimary)",
+
+    //   },
+    // },
   };
 
   const options = {
@@ -241,6 +261,8 @@ const CartPage = () => {
     clientSecret && (
       <Elements stripe={stripePromise} options={options}>
         {/* WHOLE PAGE */}
+        <Steps formOpen={formOpen} formValidated={formValidated} />
+
         <div
           style={{ height: "calc(100vh - 64px)" }}
           className="page relative w-screen overflow-y-hidden font-cabin flex flex-col items-center justify-center bg-sound border-4 border-blue-400"
@@ -248,7 +270,7 @@ const CartPage = () => {
           {/*  PAGE CONTAINER */}
           <div
             style={{ contain: "content" }}
-            className="page-container h-full w-full relative max-w-screen-2xl overflow-y-hidden flex flex-col items-start justify-start bg-sound border-4 border-red-500"
+            className="page-container h-full w-full relative overflow-y-hidden flex flex-col items-start justify-start bg-sound border-4 border-red-500"
           >
             <div className="h-full w-full flex flex-col md:flex-row border border-4 border-black">
               <div className="h-full w-full md:w-3/5 border border-green-500">
@@ -257,10 +279,10 @@ const CartPage = () => {
                   style={{
                     transform:
                       formOpen && width < 768
-                        ? "translateY(calc(-100vh + 172px))"
+                        ? "translateY(calc(-100vh + 204px))"
                         : formOpen && width > 768
-                        ? "translateY(calc(-100vh + 44px))"
-                        : formValidated && "translateY(-200vh)",
+                        ? "translateY(calc(-100vh + 76px))"
+                        : formValidated && "translateY(calc(-100vh - 10px))",
                   }}
                 >
                   <CartContainer
@@ -270,7 +292,6 @@ const CartPage = () => {
                     handleDeleteCart={handleDeleteCart}
                     formOpen={formOpen}
                   />
-                  {/* {formOpen && ( */}
                   <Form
                     formOpen={formOpen}
                     inputFirstName={inputFirstName}
@@ -287,9 +308,8 @@ const CartPage = () => {
                     errorLastName={errorLastName}
                     errorPhone={errorPhone}
                   />
-                  {/* )} */}
-                  {formValidated && <CheckoutForm />}
                 </div>
+                <CheckoutForm formValidated={formValidated} />
               </div>
               <div className="h-full w-full relative md:w-2/5 border border-pink-500 flex items-center justify-start md:pr-8 ">
                 {items.length !== 0 && (
@@ -298,6 +318,7 @@ const CartPage = () => {
                     handleForm={handleForm}
                     toggleForm={toggleForm}
                     formOpen={formOpen}
+                    formValidated={formValidated}
                   />
                 )}
               </div>

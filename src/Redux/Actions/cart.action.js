@@ -38,12 +38,9 @@ export const toggleCartDrawer = () => (dispatch) => {
 };
 
 export const saveOrder = (order) => (dispatch) => {
-  // const request = {
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   method: "post",
-  //   body: JSON.stringify(order),
-  // };
   dispatch({ type: actionTypes.SAVE_ORDER, payload: order });
+};
+
+export const validatePayment = () => (dispatch) => {
+  dispatch({ type: actionTypes.VALIDATE_PAYMENT, payload: true });
 };

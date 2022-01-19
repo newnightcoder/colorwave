@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { Footer } from "../Components";
 import { addToCart, toggleCartDrawer } from "../Redux/Actions/cart.action";
+import "../Styles/page.css";
 import "../Styles/_variables.css";
 
 const ProductPage = () => {

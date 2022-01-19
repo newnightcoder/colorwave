@@ -2,13 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import useWindowSize from "../utils/useWindowSize";
 
-const CartRecap = ({ formOpen, toggleForm, handleForm, totalPrice }) => {
+const CartRecap = ({ formValidated, formOpen, toggleForm, handleForm, totalPrice }) => {
   const items = useSelector((state) => state?.cart.items);
   const { height, width } = useWindowSize();
 
   return (
     <div
-      style={{ height: width > 768 ? "calc(100% - 60px)" : "5rem" }}
+      style={{ height: width > 768 ? "calc(100% - 60px)" : "5rem", display: formValidated && "none" }}
       className="recap w-full md:h-full md:w-5/6 lg:w-2/3 absolute bottom-0 md:top-0 md:my-auto z-50 flex flex-col items-center justify-center gap-2 bg-black md:bg-white text-white md:text-gray-900 p-16"
     >
       <div className="w-full flex items-center justify-center pt-2 border-b border-white md:border-gray-900 px-8">

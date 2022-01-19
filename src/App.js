@@ -9,7 +9,6 @@ import {
   CategoryPage,
   ConfirmationPage,
   HomePage,
-  PaymentPage,
   ProductPage,
   PromotionalPage,
   ShopPage,
@@ -43,7 +42,6 @@ const App = () => {
           <Route path="/promotional" component={PromotionalPage} />
           <Route path="/support" component={SupportPage} />
           <Route path="/cart" component={CartPage} />
-          <Route path="/payment" component={PaymentPage} />
           <Route path="/success" component={ConfirmationPage} />
           {/* <Route path="*" component={NotFound} /> */}
         </>

@@ -27,7 +27,10 @@ const ConfirmationPage = () => {
   }, [userOrder]);
 
   return (
-    <div className="bg-gray-300 w-screen h-screen flex flex-col space-y-8 items-center justify-center">
+    <div
+      style={{ height: "calc(100vh - 64px)" }}
+      className="bg-gray-300 w-screen  flex flex-col space-y-8 items-center justify-center"
+    >
       <span className="text-center">
         Congratulations {userOrder?.userFirstName}! <br /> Your order n&deg;&nbsp;{orderId?.toUpperCase()} was
         successful. <br />

@@ -11,20 +11,23 @@ const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, han
   return (
     <div
       className="cart-container w-full relative flex flex-col items-center justify-center gap-4 text-gray-900 bg-sound"
-      style={{ height: width < 768 ? "calc(100vh - 172px)" : "calc(100vh - 44px)" }}
+      style={{ height: width < 768 ? "calc(100vh - 208px)" : "calc(100vh - 76px)" }}
     >
-      <h1 className="h-12 md:h-16 w-full z-50 flex flex-col justify-center absolute top-0 left-0 text-left md:text-center font-bold text-lg md:text-xl uppercase pl-6 md:pl-0 shadow md:shadow-none">
+      <h1 className="h-12 md:h-16 w-full flex flex-col justify-center absolute top-0 left-0 text-left md:text-center font-bold text-lg md:text-xl uppercase pl-6 md:pl-0 shadow md:shadow-none">
         Your Cart
       </h1>
 
       {items.length !== 0 && <CartNav handleDeleteCart={handleDeleteCart} />}
 
       {items.length === 0 ? (
-        <div className="w-screen flex flex-col items-center justify-center">YOUR CART IS EMPTY</div>
+        <div className="w-full flex flex-col items-center justify-center">YOUR CART IS EMPTY</div>
       ) : (
         <div
-          style={{ height: width < 768 ? "calc(100vh - 300px)" : "calc(100vh - 240px)" }}
-          className="items-container border border-black w-full md:w-11/12 xl:w-10/12 overflow-y-auto flex flex-col items-center md:items-start justify-center gap-4 pb-16 md:pb-4 md:pt-24 2xl:pt-0  mt-24 md:mt-14"
+          style={{
+            height: width < 768 ? "calc(100vh - 300px)" : "calc(100vh - 240px)",
+            justifyContent: items.length === 1 ? "center" : "flex-start",
+          }}
+          className="items-container border border-black w-full md:w-11/12 xl:w-10/12 overflow-y-auto flex flex-col items-center gap-4 pb-8 md:pb-4 pt-4 mt-24 md:mt-14"
         >
           {items.map((item, i) => (
             <div
@@ -38,7 +41,7 @@ const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, han
                   backgroundColor: item.product.categories.find((x) => x.name === "limited") ? "black" : "white",
                 }}
               >
-                <img src={item.product.media.source} alt={item.product.name} className="object-contain h-full w-full" />
+                <img src={item.product.media.source} alt={item.product.name} className="object-cover h-full w-full" />
               </div>
               <div className="details h-full w-full md:w-1/3 flex items-center justify-center gap-2">
                 <div className="h-full w-full flex flex-col items-start justify-center gap-1 md:gap-2 pl-1 xl:pl-4">

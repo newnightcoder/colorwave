@@ -5,6 +5,7 @@ const initialState = {
   cartDrawerOpen: false,
   stripeClientSecret: "",
   userOrder: {},
+  paymentValidated: false,
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -83,6 +84,12 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         userOrder: action.payload,
+      };
+    }
+    case actionTypes.VALIDATE_PAYMENT: {
+      return {
+        ...state,
+        paymentValidated: action.payload,
       };
     }
     default:
