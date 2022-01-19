@@ -265,15 +265,15 @@ const CartPage = () => {
 
         <div
           style={{ height: "calc(100vh - 64px)" }}
-          className="page relative w-screen overflow-y-hidden font-cabin flex flex-col items-center justify-center bg-sound border-4 border-blue-400"
+          className="page relative w-screen overflow-y-hidden font-cabin flex flex-col items-center justify-center bg-sound"
         >
           {/*  PAGE CONTAINER */}
           <div
             style={{ contain: "content" }}
-            className="page-container h-full w-full relative overflow-y-hidden flex flex-col items-start justify-start bg-sound border-4 border-red-500"
+            className="page-container h-full w-full relative overflow-y-hidden flex flex-col items-start justify-start bg-sound"
           >
-            <div className="h-full w-full flex flex-col md:flex-row border border-4 border-black">
-              <div className="h-full w-full md:w-3/5 border border-green-500">
+            <div className="h-full w-full flex flex-col md:flex-row">
+              <div className="h-full w-full md:w-3/5">
                 <div
                   className="cart-content-wrapper h-max w-full transition-transform duration-300"
                   style={{
@@ -311,7 +311,7 @@ const CartPage = () => {
                 </div>
                 <CheckoutForm formValidated={formValidated} />
               </div>
-              <div className="h-full w-full relative md:w-2/5 border border-pink-500 flex items-center justify-start md:pr-8 ">
+              <div className="h-full w-full relative md:w-2/5 flex items-center justify-center ">
                 {items.length !== 0 && (
                   <CartRecap
                     totalPrice={totalPrice}

@@ -10,6 +10,7 @@ import img3 from "../Assets/sliderImg/3.png";
 import imgPromote1 from "../Assets/sliderImg/4'.png";
 import img4 from "../Assets/sliderImg/4.png";
 import { CartDrawer, CategoriesGrid, Footer, Navbar, SearchModal } from "../Components";
+import "../Styles/homePageGallery.css";
 import "../Styles/_variables.css";
 
 const HomePage = () => {

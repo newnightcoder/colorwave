@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { ChevronDoubleRight } from "react-bootstrap-icons";
+import ImageGallery from "react-image-gallery";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +8,9 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import { Footer } from "../Components";
 import { addToCart, toggleCartDrawer } from "../Redux/Actions/cart.action";
 import "../Styles/page.css";
+import "../Styles/productGallery.css";
 import "../Styles/_variables.css";
+import useWindowSize from "../utils/useWindowSize";
 
 const ProductPage = () => {
   const location = useLocation();
@@ -15,6 +18,15 @@ const ProductPage = () => {
   const history = useHistory();
   const shop = useSelector((state) => state.shop.shop);
   const { item } = location?.state || undefined;
+  const { height, width } = useWindowSize();
+
+  const itemImages = item?.assets.map((asset) => ({
+    original: asset.url,
+    thumbnail: asset.url,
+    originalHeight: 500,
+  }));
+
+  console.log("itemImg", itemImages);
 
   const getRelatedItem = (id) => {
     const relatedProduct = shop.find((product) => product.id === id);
@@ -38,7 +50,7 @@ const ProductPage = () => {
   };
 
   const bgColor = item?.categories[0]?.name === "gaming" ? "black" : "white";
-  const descriptionBgColor = item?.categories[0]?.name === "gaming" ? "rgb(17 24 39)" : "rgb(209 213 219)";
+  const descriptionBgColor = item?.categories[0]?.name === "gaming" ? "lightgray" : "rgb(209 213 219)";
   const textColor = item?.categories[0]?.name === "gaming" ? "rgb(209 213 219)" : "rgb(17 24 39)";
 
   const responsive = {
@@ -71,23 +83,39 @@ const ProductPage = () => {
         </Link>
         <span className="w-max capitalize underline">{item?.name}</span>
       </div>
+
       <div
-        className="product w-full flex flex-col md:flex-row items-center justify-center bg-black text-gray-300"
+        className="product w-full flex flex-col md:flex-row items-center justify-center bg-black"
         style={{ height: "calc(100vh - 64px)", background: bgColor, color: textColor }}
       >
-        <div className="h-min w-full md:w-1/2 flex items-center justify-center">
-          <img className="object-cover" src={item?.media.source} width="450" height="300" alt="" />
+        <div className="h-max w-full md:w-1/2 flex items-center justify-center pt-4 px-2">
+          {/* <img className="object-cover" src={item?.media.source} width="450" height="300" alt="" /> */}
+          <ImageGallery
+            items={itemImages}
+            showFullscreenButton={false}
+            showPlayButton={false}
+            autoPlay={false}
+            showNav={false}
+            slideInterval={3000}
+            showThumbnails={true}
+            thumbnailPosition={width < 768 ? "top" : "left"}
+          />
         </div>
 
-        <div className="product-info h-full w-full md:w-1/2 flex flex-col md:justify-center border-l border-gray-600 border-opacity-60 text-left px-8 md:pt-8 space-y-4 md:space-y-8">
-          <h2 className="text-2xl text-bold">{item?.name}</h2>
-          <span className="text-bold text-xl ">{item?.price.formatted_with_code} </span>
-          <button onClick={handleAddToCart} className="bg-sound text-black whitespace-nowrap w-36 uppercase py-1">
+        <div className="product-info h-full w-full md:w-1/2 flex flex-col md:justify-start border-l border-gray-600 border-opacity-60 text-left px-8 md:pt-8 gap-2">
+          <div className="h-max w-full flex items-center justify-between pt-2">
+            <h2 className="text-2xl text-bold">{item?.name}</h2>
+            <span className="text-bold text-xl ">{item?.price.formatted_with_code} </span>
+          </div>
+          <button
+            onClick={handleAddToCart}
+            className="bg-blue-600 text-white whitespace-nowrap w-36 uppercase py-2 self-end"
+          >
             add to cart
           </button>
           <div
-            style={{ height: "calc(100vh - 500px)", background: descriptionBgColor }}
-            className="w-full md:w-10/12 md:h-48 overflow-auto p-4"
+            // style={{ background: descriptionBgColor }}
+            className="h-max max-h-40 w-full text-gray-900 md:w-10/12 md:h-48 overflow-auto p-4 border border-gray-100 rounded-sm"
             //❌ DOMPURIFY OR SANITIZER NEEDED!!! OR REACT-HTML-PARSER!!
             dangerouslySetInnerHTML={{ __html: item?.description }}
           ></div>

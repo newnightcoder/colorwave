@@ -29,9 +29,9 @@ const CheckoutForm = ({ formValidated }) => {
         opacity: formValidated ? "1" : "0",
         zIndex: formValidated ? 9999 : -1,
       }}
-      className="w-full bg-black text-white fixed top-0 left-0 flex flex-col items-center justify-start gap-16 md:gap-10 xl:gap-16 transition duration-300 "
+      className="w-full bg-gray-300 text-gray-900 fixed top-0 left-0 flex flex-col items-center justify-start gap-16 md:gap-4 2xl:gap-16 transition duration-300 "
     >
-      <h1 className="w-full text-center py-8 border">PAYMENT</h1>
+      <h1 className="w-full text-center py-8 font-bold text-xl">PAYMENT</h1>
       <form
         action="post"
         className="h-max w-max flex flex-col items-center justify-center gap-4"

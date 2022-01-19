@@ -27,7 +27,7 @@ const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, han
             height: width < 768 ? "calc(100vh - 300px)" : "calc(100vh - 240px)",
             justifyContent: items.length === 1 ? "center" : "flex-start",
           }}
-          className="items-container border border-black w-full md:w-11/12 xl:w-10/12 overflow-y-auto flex flex-col items-center gap-4 pb-8 md:pb-4 pt-4 mt-24 md:mt-14"
+          className="items-container w-full md:w-11/12 xl:w-10/12 overflow-y-auto flex flex-col items-center gap-4 pb-8 md:pb-4 pt-4 mt-24 md:mt-14"
         >
           {items.map((item, i) => (
             <div
