@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ArrowLeft } from "react-bootstrap-icons";
+import { ChevronLeft } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
@@ -18,6 +18,7 @@ const CategoryPage = () => {
   const [categoryItems, setCategoryItems] = useState([]);
   const [itemVariants, setItemVariants] = useState([]);
   let subCategoriesArray = [];
+  const { pathname } = useLocation();
 
   const findProductVariants = () => {
     if (variants === undefined) return;
@@ -74,24 +75,39 @@ const CategoryPage = () => {
 
   return (
     <div
-      className="min-h-screen w-screen flex flex-col items-center justify-center pt-4 pb-12 font-cabin"
+      className="min-h-screen w-full flex flex-col items-center justify-center pt-4 pb-12 font-cabin"
       style={{
         backgroundColor: categoryName === "gaming" ? "#333" : categoryName === "sound" ? "lightgray" : "#ebebeb",
         color: categoryName === "gaming" ? "#ebebeb" : categoryName === "sound" ? "black" : "black",
       }}
     >
-      <span className="w-full flex items-center justify-center relative mt-4">
-        <Link to="/" className="absolute left-10 top-50">
-          <ArrowLeft size={28} className="fw-bold" />
+      <span className="w-full relative flex items-center justify-start relative mt-4">
+        <Link
+          to={{ pathname: location.state?.from.includes("shop") ? "/shop" : "/" }}
+          className="absolute left-10 top-50"
+        >
+          <ChevronLeft size={28} className="fw-bold" />
         </Link>
-        {categoryName.toUpperCase()}
+        <span className="w-min relative text-2xl font-bold px-6 ml-32">
+          {categoryName.toUpperCase()}
+          <span
+            style={{
+              backgroundColor: categoryName === "gaming" ? "#ebebeb" : categoryName === "sound" ? "black" : "black",
+            }}
+            className="h-px w-full absolute inset-x-0 mx-auto left-0 -bottom-0.5"
+          ></span>
+        </span>
       </span>
-      <>
+
+      <div className="w-full">
         {!variants ? (
           subCategories.map((cat, i) => (
-            <div className="py-8" key={i + 1}>
-              <div className="h-min w-full text-center text-xl capitalize px-8 py-3">{cat}</div>
-              <div className="h-full w-screen grid place-items-center gap-4 md:gap-10 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 px-6">
+            <div id={cat} className="flex flex-col items-center justify-center py-8" key={i + 1}>
+              <div className="h-min w-max relative text-center text-2xl capitalize px-8 mb-6">
+                <h2 className="text-3xl relative z-10">{cat}</h2>
+                <span className="h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-yellow-300"></span>
+              </div>
+              <div className="h-full w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 px-6">
                 {categoryItems.map((item, i) => {
                   const { categories } = item;
                   if (categories.find((category) => category.name === cat)) {
@@ -111,14 +127,14 @@ const CategoryPage = () => {
             </div>
           ))
         ) : (
-          <div className="h-full w-screen grid place-items-center gap-4 md:gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 px-6">
+          <div className="h-full w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 px-6">
             {itemVariants.map((variant, i) => {
               let matchingItem = items.find((item) => item.name === variant);
               return <ProductCard item={matchingItem} key={i + 1} variants={undefined} />;
             })}
           </div>
         )}
-      </>
+      </div>
     </div>
   );
 };

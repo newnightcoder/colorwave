@@ -21,7 +21,7 @@ const SearchModal = () => {
 
   return (
     <div
-      style={{ visibility: open ? "visible" : "hidden", zIndex: 10000 }}
+      style={{ visibility: open ? "visible" : "hidden", zIndex: 1000 }}
       className="h-screen w-screen fixed top-0 left-0 bg-black text-white pt-2 pb-8 px-2 md:px-8 overflow-y-auto"
     >
       <div className="h-max w-full fixed top-0 left-0 bg-black py-4">

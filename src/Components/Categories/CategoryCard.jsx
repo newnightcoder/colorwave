@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useWindowSize from "../../utils/useWindowSize";
 
 const CategoryCard = ({ categoryTitle, img, bgColor, btnColor, btnText, mirror }) => {
   const { height, width } = useWindowSize();
+  const { pathname } = useLocation();
 
   return (
     <div
@@ -26,7 +27,7 @@ const CategoryCard = ({ categoryTitle, img, bgColor, btnColor, btnText, mirror }
       >
         <span className="w-full text-lg text-center uppercase">{categoryTitle}</span>
         <Link
-          to={`/categories/${categoryTitle}`}
+          to={{ pathname: `/categories/${categoryTitle}`, state: { from: pathname } }}
           className="w-32 rounded-sm text-center shadow-md hover:shadow-sm"
           style={{
             background: `${btnColor}`,
