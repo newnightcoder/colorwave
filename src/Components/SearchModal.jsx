@@ -22,22 +22,24 @@ const SearchModal = () => {
   return (
     <div
       style={{ visibility: open ? "visible" : "hidden", zIndex: 1000 }}
-      className="h-screen w-screen fixed top-0 left-0 bg-black text-white pt-2 pb-8 px-2 md:px-8 overflow-y-auto"
+      className="h-screen w-screen fixed top-0 left-0 bg-black text-white pt-2 pb-8 px-2 md:px-8 overflow-y-auto font-cabin"
     >
       <div className="h-max w-full fixed top-0 left-0 bg-black py-4">
-        <div className="h-max w-full flex items-center justify-between px-4">
-          <h1 className="uppercase">search a brand or product</h1>
+        <div className="h-max w-full flex items-center justify-between px-16 border">
+          <h1 className="capitalize text-3xl">search a brand or product</h1>
           <button
             onClick={() => {
               dispatch(toggleSearchModal());
             }}
             className="h-max w-min flex flex-col items-center gap-2 group transition duration-300 hover:text-blue-400"
           >
-            <span className="text-sm">close</span>
-            <XLg
-              size={width > 500 ? 36 : 20}
-              className="text-white transition duration-300 group-hover:text-blue-400"
-            />
+            <div>
+              <span className="text-sm">close</span>
+              <XLg
+                size={width > 500 ? 36 : 20}
+                className="text-white transition duration-300 group-hover:text-blue-400"
+              />
+            </div>
           </button>
         </div>
         <div className="h-1/6 w-full flex flex-col items-center">
