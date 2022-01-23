@@ -9,6 +9,7 @@ import "../Styles/_variables.css";
 const ShopPage = () => {
   const shop = useSelector((state) => state?.shop.shop);
   const { pathname } = useLocation();
+  const open = useSelector((state) => state?.shop.searchModalOpen);
 
   const scrollWidthOffset = (el) => {
     const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
@@ -37,7 +38,7 @@ const ShopPage = () => {
   const skinsItems = shop.filter((item) => item?.categories?.find((cat) => cat.name === "skins"));
 
   return (
-    <div className="h-full w-full font-cabin">
+    <div className="h-full w-full font-cabin" style={{ overflow: open ? "hidden" : "auto" }}>
       <header className="h-full flex flex-col items-center justify-center gap-6 text-black pt-6 pb-4">
         <div className="w-max relative">
           <h1 className="text-center text-3xl font-bold uppercase px-6">Products</h1>

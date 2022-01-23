@@ -109,7 +109,7 @@ const ProductPage = () => {
           </div>
           <button
             onClick={handleAddToCart}
-            className="bg-blue-600 text-white whitespace-nowrap w-36 uppercase py-2 self-end"
+            className="bg-blue-500 text-white whitespace-nowrap w-36 uppercase py-2 self-end"
           >
             add to cart
           </button>

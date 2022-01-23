@@ -12,6 +12,7 @@ const Navbar = () => {
   const cartDrawerOpen = useSelector((state) => state?.cart.cartDrawerOpen);
   const dispatch = useDispatch();
   const location = useLocation();
+
   const toggleMenu = () => {
     return setMenuOpen((menuOpen) => !menuOpen);
   };
@@ -85,16 +86,16 @@ const Navbar = () => {
                     className="relative text-gray-300 hover:text-white text-base font-medium whitespace-nowrap group px-3 py-2"
                   >
                     <span className="absolute inline-block inset-x-0 bottom-2 mx-auto h-0.5 w-full bg-yellow-300 transform scale-x-0 transition-scale origin-center duration-100 group-hover:scale-x-100"></span>
-                    <span className="relative">Products</span>
+                    <span className="capitalize">Products</span>
                   </NavLink>
 
                   <NavLink
-                    to="/categories/skins"
+                    to="/categories/limited"
                     className="relative text-gray-300 hover:text-white text-base font-medium whitespace-nowrap group px-3 py-2"
                   >
                     <span className="absolute inline-block inset-x-0 bottom-2 mx-auto h-0.5 w-full bg-yellow-300 transform scale-x-0 transition-scale origin-center duration-100 group-hover:scale-x-100"></span>
 
-                    <span>Skins</span>
+                    <span className="capitalize">limited</span>
                   </NavLink>
 
                   <NavLink
@@ -119,11 +120,13 @@ const Navbar = () => {
                     onClick={() => {
                       dispatch(toggleSearchModal());
                     }}
-                    className="h-10/12 w-max flex items-center justify-center gap-2 text-gray-300"
+                    className="h-10/12 w-max relative group flex items-center justify-center gap-2 text-gray-300"
                   >
+                    <span className="absolute inline-block inset-x-0 bottom-0 mx-auto h-0.5 w-full bg-blue-500 transform scale-x-0 transition-scale origin-left duration-100 group-hover:scale-x-100"></span>
                     <span>Search</span>
-                    <Search color="white" size={18} />
+                    <Search size={18} className="text-white transition-color duration-300 group-hover:text-blue-500" />
                   </button>
+
                   {location.pathname !== "/cart" && (
                     <button
                       onClick={() => dispatch(toggleCartDrawer())}
@@ -206,10 +209,10 @@ const Navbar = () => {
 
               <Link
                 onClick={toggleMenu}
-                to="/categories/skins"
+                to="/categories/limited"
                 className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
               >
-                Skins
+                limited
               </Link>
 
               <Link

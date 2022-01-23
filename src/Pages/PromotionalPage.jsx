@@ -26,10 +26,13 @@ const PromotionalPage = () => {
   }, []);
 
   return (
-    <div style={{ height: "calc(100vh - 64px)" }} className="w-full relative bg-black font-cabin">
+    <div
+      style={{ height: "calc(100vh - 64px)" }}
+      className="snap-always snap-mandatory snap-y	w-full relative bg-black font-cabin border-4 border-red-500"
+    >
       <div
         style={{ background: `url("${img1}") no-repeat fixed center/cover` }}
-        className="h-full relative flex flex-col items-center justify-between"
+        className="snap-top h-full relative flex flex-col items-center justify-between"
       >
         <h2 className="relative md:right-12 text-gray-100 capitalize capitalize text-5xl md:text-6xl self-end pt-4 mr-4">
           Promotional
@@ -51,7 +54,7 @@ const PromotionalPage = () => {
 
       <div
         style={{ background: `url("${img2}") no-repeat fixed center/cover` }}
-        className="h-full relative md:flex md:flex-center md:justify-start md:gap-8"
+        className="snap-top h-full relative md:flex md:flex-center md:justify-start md:gap-8"
       >
         <h2 className="w-full md:w-min relative top-4 left-8 z-10 md:top-8 pt-4 text-black text-left capitalize text-5xl md:text-6xl whitespace-nowrap">
           Cost Effective
@@ -66,8 +69,8 @@ const PromotionalPage = () => {
         </div>
       </div>
 
-      <div style={{ background: `url("${img3}") no-repeat fixed center/cover` }} className="h-full relative">
-        <h2 className="relative w-full right-5 md:right-40 top-5 text-gray-100 text-right capitalize text-5xl md:text-6xl md:whitespace-nowrap">
+      <div style={{ background: `url("${img3}") no-repeat fixed center/cover` }} className="snap-top h-full relative">
+        <h2 className="relative w-full right-5 md:right-16 top-5 text-gray-100 text-right capitalize text-5xl md:text-6xl md:whitespace-nowrap">
           Custom Color Matching
         </h2>
 
@@ -83,7 +86,7 @@ const PromotionalPage = () => {
 
       <div
         style={{ background: `url("${img4}") no-repeat fixed center/cover` }}
-        className="h-full relative flex items-center justify-center md:block"
+        className="snap-top h-full relative flex items-center justify-center md:block"
       >
         <h2 className="relative -top-4 pl-4 md:left-6 md:top-1/3 text-gray-100 capitalize text-5xl md:text-6xl whitespace-nowrap">
           Art
