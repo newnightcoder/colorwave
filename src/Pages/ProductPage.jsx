@@ -73,22 +73,25 @@ const ProductPage = () => {
 
   return (
     <div className="font-cabin overflow-x-hidden relative">
-      <div className="breadcrumb w-full flex items-center justify-start gap-1 whitespace-nowrap text-gray-900 pl-2 md:pl-10 pt-3 md:pt-7 pb-3">
+      <div className="breadcrumb w-full flex items-center justify-start gap-1 whitespace-nowrap text-gray-900 bg-white pl-2 md:pl-10 pt-3 md:pt-7 pb-3">
         {/* {"Home \u00BB "} */}
         <Link to="/" className="w-max flex items-center justify-center gap-1 capitalize hover:underline">
           home <ChevronDoubleRight size={12} className="transform translate-y-px" />
         </Link>
-        <Link to="/" className="w-max flex items-center justify-center gap-1 capitalize hover:underline">
+        <Link
+          to={`/categories/${item.categories[0].name}`}
+          className="w-max flex items-center justify-center gap-1 capitalize hover:underline"
+        >
           <span>{item?.categories[0]?.name}</span> <ChevronDoubleRight size={12} className="transform translate-y-px" />
         </Link>
         <span className="w-max capitalize underline">{item?.name}</span>
       </div>
 
       <div
-        className="product w-full flex flex-col md:flex-row items-center justify-center bg-black"
-        style={{ height: "calc(100vh - 64px)", background: bgColor, color: textColor }}
+        className="product w-full flex flex-col md:flex-row items-center justify-center bg-black border-4 border-blue-600"
+        style={{ height: "calc(100vh - 120px)", background: bgColor, color: textColor }}
       >
-        <div className="h-max w-full md:w-1/2 flex items-center justify-center pt-4 px-2">
+        <div className="h-max w-full md:w-2/3 flex flex-col items-center justify-center pt-4 px-2 border-4 border-red-500">
           {/* <img className="object-cover" src={item?.media.source} width="450" height="300" alt="" /> */}
           <ImageGallery
             items={itemImages}
@@ -98,11 +101,11 @@ const ProductPage = () => {
             showNav={false}
             slideInterval={3000}
             showThumbnails={true}
-            thumbnailPosition={"top"}
+            thumbnailPosition={"bottom"}
           />
         </div>
 
-        <div className="product-info h-full w-full md:w-1/2 flex flex-col md:justify-start border-l border-gray-600 border-opacity-60 text-left px-8 md:pt-8 gap-2">
+        <div className="product-info h-full w-full md:w-1/3 flex flex-col md:justify-start border-l border-gray-600 border-opacity-60 text-left px-8 md:pt-8 gap-2">
           <div className="h-max w-full flex items-center justify-between pt-2">
             <h2 className="text-2xl text-bold">{item?.name}</h2>
             <span className="text-bold text-xl ">{item?.price.formatted_with_code} </span>

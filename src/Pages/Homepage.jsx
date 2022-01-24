@@ -58,7 +58,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen w-screen relative flex flex-col items-center gap-1 font-cabin bg-black">
+    <div className="min-h-screen w-screen relative flex flex-col items-center gap-1 font-cabin bg-black pt-4">
       <Navbar />
 
       <ImageGallery

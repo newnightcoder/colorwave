@@ -49,15 +49,20 @@ const CartDrawer = () => {
   return (
     <div
       style={{ transform: cartDrawerOpen ? "translateY(0)" : "translateY(-100%)" }}
-      className="h-screen w-full md:w-2/3 lg:w-1/2 font-cabin flex flex-col items-center justify-center overflow-x-hidden overflow-y-auto fixed z-50 transition-transform duration-300 text-gray-900 right-0 top-0 bg-sound pt-12 pb-12 px-5 md:px-10"
+      className="h-screen w-full md:w-2/3 lg:w-1/2 font-cabin flex flex-col items-center justify-center overflow-x-hidden overflow-y-auto fixed z-50 transition-transform duration-300 text-gray-900 right-0 top-0 bg-sound pt-6 pb-12 px-5 md:px-10"
     >
-      <div className="h-full w-full flex flex-col items-center justify-center gap-16">
-        <div className="h-2/3 w-full overflow-y-auto overflow-x-hidden flex flex-col items-center justify-center gap-2 pt-36 pb-12">
+      <div className="h-full w-full flex flex-col items-center justify-center gap-4">
+        <div className="w-max h-min relative">
+          <h1 className="text-xl md:text-3xl px-4 text-center">Your Cart</h1>
+          <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-black"></span>
+        </div>
+
+        <div className="h-2/3 w-full overflow-y-auto overflow-x-hidden flex flex-col items-center justify-start gap-2 pt-6 pb-12">
           {items?.length !== 0 ? (
             items.map((item, i) => (
               <div
                 key={i}
-                className="w-full flex flex items-center justify-left border-b border-gray-300 only:border-b-0 last:border-b-0"
+                className="w-full flex flex items-center justify-left border-b border-gray-300 only:border-b-0 last:border-b-0 bg-white"
               >
                 <div
                   style={{

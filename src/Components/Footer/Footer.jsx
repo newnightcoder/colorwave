@@ -67,7 +67,9 @@ const Footer = () => {
                 className="block absolute -inset-1 transform transition-all duration-300 -skew-y-6 bg-blue-500 group-hover:skew-y-3 group-hover:bg-yellow-300"
                 aria-hidden="true"
               ></span>
-              <h1 className="relative text-lg transition-color duration-300 text-black px-1 uppercase">COLORWAVE</h1>
+              <h1 className="relative text-lg transition-color duration-300 text-white group-hover:text-black px-1 uppercase">
+                COLORWAVE
+              </h1>
             </div>
           </Link>
           <p className="w-full text-center border-t border-gray-600 md:border-transparent pt-5 md:pt-0">

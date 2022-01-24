@@ -39,13 +39,13 @@ const ShopPage = () => {
 
   return (
     <div className="h-full w-full font-cabin" style={{ overflow: open ? "hidden" : "auto" }}>
-      <header className="h-full flex flex-col items-center justify-center gap-6 text-black pt-4 md:pt-10 pb-4">
+      <header className="h-full flex flex-col items-center justify-center gap-6 bg-white text-black pt-4 md:pt-10 pb-4">
         <div className="w-max relative">
           <h1 className="text-center text-3xl font-bold uppercase px-6">Products</h1>
           <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-black"></span>
         </div>
         <ul className="hidden md:flex items-center justify-center gap-2 whitespace-nowrap text-sm">
-          <li>
+          <li className="w-16 px-1 text-center">
             <Link
               className="capitalize hover:underline hover:font-bold"
               to={{ pathname: "/categories/gaming", state: { from: pathname } }}
@@ -53,8 +53,8 @@ const ShopPage = () => {
               gaming
             </Link>
           </li>
-          |
-          <li>
+          <span>|</span>
+          <li className="w-20 px-1 text-center">
             <Link
               className="capitalize hover:underline hover:font-bold"
               to={{ pathname: "/categories/sound", state: { from: pathname } }}
@@ -62,8 +62,8 @@ const ShopPage = () => {
               headphones
             </Link>
           </li>
-          |
-          <li>
+          <span>|</span>
+          <li className="w-10 px-1 text-center">
             <HashLink
               className="capitalize hover:underline hover:font-bold"
               to="/categories/sound#mics"
@@ -72,8 +72,8 @@ const ShopPage = () => {
               mics
             </HashLink>
           </li>
-          |
-          <li>
+          <span>|</span>
+          <li className="w-20 px-1 text-center">
             <Link
               className="capitalize hover:underline hover:font-bold"
               to={{ pathname: "/categories/skins", state: { from: pathname } }}
@@ -81,8 +81,8 @@ const ShopPage = () => {
               iPhone skins
             </Link>
           </li>
-          |
-          <li>
+          <span>|</span>
+          <li className="w-20 px-1 text-center">
             <Link
               className="capitalize hover:underline hover:font-bold"
               to={{ pathname: "/categories/accessories", state: { from: pathname } }}
