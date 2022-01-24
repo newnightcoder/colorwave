@@ -1,44 +1,81 @@
 import React from "react";
 import { Facebook, Github, Linkedin, Twitter } from "react-bootstrap-icons";
+import { Link } from "react-router-dom";
 import "../../Styles/_variables.css";
 
 const Footer = () => {
   return (
-    <div className="h-max w-screen bg-black text-gray-300 flex flex-col items-center justify-center px-8 py-8 font-cabin border-t-4 border-yellow-300">
-      <div className="max-w-2/3 flex items-center justify-center gap-4 py-5">
-        <div className="w-full md:col-span-2 grid grid-cols-3 gap-3 sm:grid-cols-3 text-center sm:text-left px-8">
-          <div className="">
-            <h4>Shop</h4>
-            <ul>
+    <div className="h-max w-screen bg-black text-gray-300 flex flex-col items-center justify-center px-5 md:px-16 py-4 font-cabin border-t-8 border-yellow-300">
+      <div className="relative w-full max-w-8xl flex flex-col md:flex-row items-center justify-center gap-8 md:gap-2 pl-1 py-5">
+        <div className="w-full flex flex-col pt-12 md:pt-0 md:flex-row items-center justify-center gap-4 md:gap-16">
+          <div className="w-full">
+            <div className="w-max relative">
+              <h4 className="text-xl text-blue-500 font-bold pl-0 pr-3 md:pl-3">Shop</h4>
+              <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-blue-500"></span>
+            </div>
+            <ul className="flex flex-row gap-3 md:gap-0 justify-start items-start md:flex-col md:pl-3 pt-1 whitespace-nowrap">
               <li>Products</li>
+              <span className="md:hidden">|</span>
               <li>Skins</li>
+              <span className="md:hidden">|</span>
               <li>My Cart</li>
+              <span className="md:hidden">|</span>
               <li>Your brand</li>
             </ul>
           </div>
-          <div>
-            <h4>Support</h4>
-            <ul>
+
+          <div className="w-full">
+            <div className="w-max relative">
+              <h4 className="text-xl text-blue-500 font-bold pl-0 pr-3 md:pl-3">Support</h4>
+              <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-blue-500"></span>
+            </div>
+            <ul className="flex flex-row gap-3 md:gap-0 justify-start items-start md:flex-col md:pl-3 pt-1 whitespace-nowrap">
               <li>My Account</li>
+              <span className="md:hidden">|</span>
               <li>Shipping</li>
+              <span className="md:hidden">|</span>
               <li>Legal</li>
+              <span className="md:hidden">|</span>
               <li>Contact Us</li>
             </ul>
           </div>
-          <div>
-            <h4>Resources</h4>
-            <ul>
+
+          <div className="w-full">
+            <div className="w-max relative">
+              <h4 className="text-xl text-blue-500 font-bold pl-0 pr-3 md:pl-3">Resources</h4>
+              <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-blue-500"></span>
+            </div>
+            <ul className="flex flex-row gap-3 md:gap-0 justify-start items-start md:flex-col md:pl-3 pt-1 whitespace-nowrap">
               <li>Gallery</li>
+              <span className="md:hidden">|</span>
               <li>Press</li>
+              <span className="md:hidden">|</span>
               <li>Partners</li>
+              <span className="md:hidden">|</span>
               <li>Privacy Policy</li>
             </ul>
           </div>
         </div>
-        <div className="flex flex-col">
-          <h3>ColorWave</h3>
-          <p>Making your world a better place through creative customizations!</p>
-          <ul className="flex flex-row justify-evenly">
+
+        <div className="w-11/12 md:w-max flex flex-col items-center gap-2">
+          <Link
+            to="/"
+            className="w-max absolute inset-0 top-7 mx-auto md:static transform md:-translate-x-5 -translate-y-2 group"
+          >
+            <div className="relative">
+              <span
+                className="block absolute -inset-1 transform transition-all duration-300 -skew-y-6 bg-blue-500 group-hover:skew-y-3 group-hover:bg-yellow-300"
+                aria-hidden="true"
+              ></span>
+              <h1 className="relative text-lg transition-color duration-300 text-black px-1 uppercase">COLORWAVE</h1>
+            </div>
+          </Link>
+          <p className="w-full text-center border-t border-gray-600 md:border-transparent pt-5 md:pt-0">
+            <span className="block">Bringing your life swag</span>
+            <span className="block">with creative customizations !</span>
+            <span className="md:hidden block">Visit us here :</span>
+          </p>
+          <ul className="w-max flex items-center justify-center gap-8 px-4 pt-1 md:pt-0">
             <li>
               <Facebook className="text-2xl" />
             </li>
@@ -54,7 +91,8 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <div className="w-10/12 flex items-center justify-center border-t border-gray-600 border-opacity-60 py-5">
+
+      <div className="w-11/12 flex items-center justify-center border-t border-gray-600 py-5">
         &copy; ColorWare, Inc. All rights reserved
       </div>
     </div>

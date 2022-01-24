@@ -108,7 +108,7 @@ const CategoryPage = () => {
 
   return (
     <div
-      className="min-h-screen w-full flex flex-col items-center justify-start pt-4 pb-12 font-cabin"
+      className="min-h-screen w-full flex flex-col items-center justify-start pt-8 pb-12 font-cabin"
       style={pageConditionalStyle.colors}
     >
       <div className="w-full relative flex items-center justify-start relative mt-4">

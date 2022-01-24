@@ -73,7 +73,7 @@ const ProductPage = () => {
 
   return (
     <div className="font-cabin overflow-x-hidden relative">
-      <div className="breadcrumb w-full flex items-center justify-start gap-1 whitespace-nowrap text-gray-900 pl-2 md:pl-10 pt-4 pb-3">
+      <div className="breadcrumb w-full flex items-center justify-start gap-1 whitespace-nowrap text-gray-900 pl-2 md:pl-10 pt-3 md:pt-7 pb-3">
         {/* {"Home \u00BB "} */}
         <Link to="/" className="w-max flex items-center justify-center gap-1 capitalize hover:underline">
           home <ChevronDoubleRight size={12} className="transform translate-y-px" />
@@ -98,7 +98,7 @@ const ProductPage = () => {
             showNav={false}
             slideInterval={3000}
             showThumbnails={true}
-            thumbnailPosition={width < 768 ? "top" : "left"}
+            thumbnailPosition={"top"}
           />
         </div>
 

@@ -39,7 +39,7 @@ const ShopPage = () => {
 
   return (
     <div className="h-full w-full font-cabin" style={{ overflow: open ? "hidden" : "auto" }}>
-      <header className="h-full flex flex-col items-center justify-center gap-6 text-black pt-6 pb-4">
+      <header className="h-full flex flex-col items-center justify-center gap-6 text-black pt-4 md:pt-10 pb-4">
         <div className="w-max relative">
           <h1 className="text-center text-3xl font-bold uppercase px-6">Products</h1>
           <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-black"></span>
@@ -173,7 +173,7 @@ const ShopPage = () => {
             ))}
           </div>
         </section>
-        <section className="h-full w-full text-gray-900 flex flex-col items-center justify-center bg-sound gap-8 py-6 px-2">
+        <section className="h-full w-full text-gray-900 flex flex-col items-center justify-center bg-sound gap-8 pt-6 pb-12 px-2">
           <div className="h-full w-max relative">
             <h2 className="relative capitalize text-center text-3xl px-8">{categories.accessories}</h2>
             <span className="h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-px  bg-blue-400"></span>

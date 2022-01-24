@@ -26,15 +26,12 @@ const PromotionalPage = () => {
   }, []);
 
   return (
-    <div
-      style={{ height: "calc(100vh - 64px)" }}
-      className="snap-always snap-mandatory snap-y	w-full relative bg-black font-cabin border-4 border-red-500"
-    >
+    <div className="snap-always snap-mandatory snap-y	h-screen w-full relative bg-black font-cabin border-4 border-red-500">
       <div
         style={{ background: `url("${img1}") no-repeat fixed center/cover` }}
         className="snap-top h-full relative flex flex-col items-center justify-between"
       >
-        <h2 className="relative md:right-12 text-gray-100 capitalize capitalize text-5xl md:text-6xl self-end pt-4 mr-4">
+        <h2 className="relative md:right-12 text-gray-100 capitalize capitalize text-5xl md:text-6xl self-end pt-7 mr-4">
           Promotional
         </h2>
         <div
