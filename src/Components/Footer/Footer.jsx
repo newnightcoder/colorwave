@@ -20,7 +20,7 @@ const Footer = () => {
               <span className="md:hidden">|</span>
               <li>My Cart</li>
               <span className="md:hidden">|</span>
-              <li>Your brand</li>
+              <li className="truncate">Your brand</li>
             </ul>
           </div>
 
@@ -36,7 +36,7 @@ const Footer = () => {
               <span className="md:hidden">|</span>
               <li>Legal</li>
               <span className="md:hidden">|</span>
-              <li>Contact Us</li>
+              <li className="truncate">Contact Us</li>
             </ul>
           </div>
 
@@ -52,7 +52,7 @@ const Footer = () => {
               <span className="md:hidden">|</span>
               <li>Partners</li>
               <span className="md:hidden">|</span>
-              <li>Privacy Policy</li>
+              <li className="truncate">Privacy Policy</li>
             </ul>
           </div>
         </div>
@@ -94,7 +94,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="w-11/12 flex items-center justify-center border-t border-gray-600 py-5">
+      <div className="w-11/12 flex items-center justify-center text-center border-t border-gray-600 py-5">
         &copy; ColorWare, Inc. All rights reserved
       </div>
     </div>

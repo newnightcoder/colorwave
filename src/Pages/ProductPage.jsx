@@ -49,8 +49,8 @@ const ProductPage = () => {
   };
 
   const bgColor = item?.categories[0]?.name === "gaming" ? "black" : "#fefefe";
-  const descriptionBgColor = item?.categories[0]?.name === "gaming" ? "rgb(209 213 219)" : "rgba(250,250,250,.99)";
-  const textColor = item?.categories[0]?.name === "gaming" ? "rgb(209 213 219)" : "rgb(17 24 39)";
+  const descriptionBgColor = item?.categories[0]?.name === "gaming" ? "rgb(40,40,40)" : "rgba(240,240,240,.99)";
+  const textColor = item?.categories[0]?.name === "gaming" ? "rgba(250,250,250,.99)" : "rgb(40,40,40)";
 
   const responsive = {
     desktop: {
@@ -93,9 +93,9 @@ const ProductPage = () => {
       </div>
 
       <div
-        className="product w-full max-w-8xl mx-auto flex flex-col lg:flex-row justify-start items-center lg:justify-center bg-black border-4 border-yellow-600 pb-16 md:pb-0 2xl:px-10"
+        className="product w-full max-w-8xl mx-auto flex flex-col lg:flex-row justify-start items-center gap-8 md:gap-2 lg:justify-center bg-black border-4 border-yellow-600 pb-16 md:pb-0 2xl:px-10"
         style={{
-          height: width < 768 ? "calc(100vh - 80px)" : "calc(100vh - 120px)",
+          minHeight: "calc(100vh - 112px)",
           background: bgColor,
           color: textColor,
         }}
@@ -113,15 +113,18 @@ const ProductPage = () => {
           />
         </div>
 
-        <div className="product-info h-full w-full lg:w-1/3 flex flex-col items-center lg:justify-start border-l border-gray-600 border-opacity-60 text-left px-3 md:px- pt-12 md:pt-8 gap-6">
-          <div className="h-max w-11/12 lg:w-full flex items-center justify-between pt-2">
+        <div className="product-info h-full w-full lg:w-1/3 flex flex-col items-center lg:justify-start border-l border-gray-600 border-opacity-60 text-left px-3 md:px-6 gap-6">
+          <div className="h-max w-11/12 lg:w-full max-w-lg flex items-center justify-between md:pt-2">
             <h2 className="w-1/2 lg:w-2/3 text-xl md:text-2xl text-bold">{item?.name}</h2>
             <span className="text-bold text-lg md:text-xl whitespace-nowrap">{item?.price.formatted_with_code} </span>
           </div>
-          <button onClick={handleAddToCart} className="w-11/12 bg-blue-500 text-white whitespace-nowrap uppercase py-2">
+          <button
+            onClick={handleAddToCart}
+            className="w-11/12 max-w-lg bg-blue-500 text-white whitespace-nowrap uppercase py-2"
+          >
             add to cart
           </button>
-          <div className="w-full flex flex-col items-center justify-center self-center">
+          <div className="w-full flex flex-col items-center justify-center gap-2 self-center">
             <div className="w-max relative px-3">
               <span className="capitalize text-xl md:text-2xl">product info</span>
               <span
@@ -132,7 +135,7 @@ const ProductPage = () => {
 
             <div
               style={{ backgroundColor: descriptionBgColor, color: textColor }}
-              className="h-max max-h-40 w-full md:h-48 overflow-auto p-4 rounded-sm"
+              className="description h-max max-h-56 w-full max-w-lg md:h-auto overflow-auto p-4 rounded-sm"
               //❌ DOMPURIFY OR SANITIZER NEEDED!!! OR REACT-HTML-PARSER!!
               dangerouslySetInnerHTML={{ __html: item?.description }}
             ></div>

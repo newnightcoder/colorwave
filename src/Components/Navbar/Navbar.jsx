@@ -114,7 +114,7 @@ const Navbar = () => {
                     <span>Support</span>
                   </NavLink>
                 </nav>
-                <div className="w-max h-full absolute right-0 flex items-center justify-center gap-8 mr-6 md:mr-4 xl:mr-8">
+                <div className="w-max h-full absolute right-0 flex items-center justify-center gap-4 lg:gap-8 mr-6 md:mr-4 xl:mr-8">
                   {/* SEARCH BAR */}
                   <button
                     onClick={() => {

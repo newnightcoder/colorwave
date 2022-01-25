@@ -10,3 +10,22 @@
 .font-cabin {
   font-family: "Cabin";
 }
+
+.description {
+  scrollbar-color: #fde047;
+  scrollbar-width: auto;
+  border-top: 1px solid lightgray;
+  border-left: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+}
+
+.description::-webkit-scrollbar {
+  width: 15px;
+  /* transition: background-color 500ms; */
+  background-color: dimgray;
+}
+.description::-webkit-scrollbar-thumb {
+  width: 15px;
+  /* transition: background-color 500ms; */
+  background-color: #fde047;
+}
