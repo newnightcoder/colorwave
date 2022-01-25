@@ -5,15 +5,15 @@ import "../../Styles/_variables.css";
 
 const Footer = () => {
   return (
-    <div className="h-max w-screen bg-black text-gray-300 flex flex-col items-center justify-center px-5 md:px-16 py-4 font-cabin border-t-8 border-yellow-300">
-      <div className="relative w-full max-w-8xl flex flex-col md:flex-row items-center justify-center gap-8 md:gap-2 pl-1 py-5">
+    <div className="h-max w-screen bg-black text-gray-300 flex flex-col items-center justify-center px-5 md:px-16 py-6 font-cabin border-t-8 border-yellow-300">
+      <div className="relative w-full max-w-5xl flex flex-col md:flex-row items-center justify-center gap-8 md:gap-2 pl-1 py-5">
         <div className="w-full flex flex-col pt-12 md:pt-0 md:flex-row items-center justify-center gap-4 md:gap-16">
           <div className="w-full">
-            <div className="w-max relative">
-              <h4 className="text-xl text-blue-500 font-bold pl-0 pr-3 md:pl-3">Shop</h4>
-              <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-blue-500"></span>
+            <div className="w-full md:w-max relative">
+              <h4 className="text-lg md:text-xl text-blue-500 font-bold pl-0 pr-3 md:pl-3">Shop</h4>
+              <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-gray-600"></span>
             </div>
-            <ul className="flex flex-row gap-3 md:gap-0 justify-start items-start md:flex-col md:pl-3 pt-1 whitespace-nowrap">
+            <ul className="flex flex-row gap-2 md:gap-0 justify-start items-start md:flex-col pl-2 md:pl-3 pt-1 whitespace-nowrap">
               <li>Products</li>
               <span className="md:hidden">|</span>
               <li>Skins</li>
@@ -25,11 +25,11 @@ const Footer = () => {
           </div>
 
           <div className="w-full">
-            <div className="w-max relative">
-              <h4 className="text-xl text-blue-500 font-bold pl-0 pr-3 md:pl-3">Support</h4>
-              <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-blue-500"></span>
+            <div className="w-full md:w-max relative">
+              <h4 className="text-lg md:text-xl text-blue-500 font-bold pl-0 pr-3 md:pl-3">Support</h4>
+              <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-gray-600"></span>
             </div>
-            <ul className="flex flex-row gap-3 md:gap-0 justify-start items-start md:flex-col md:pl-3 pt-1 whitespace-nowrap">
+            <ul className="flex flex-row gap-2 md:gap-0 md:pl-0 justify-start items-start md:flex-col pl-2 md:pl-3 pt-1 whitespace-nowrap">
               <li>My Account</li>
               <span className="md:hidden">|</span>
               <li>Shipping</li>
@@ -41,11 +41,11 @@ const Footer = () => {
           </div>
 
           <div className="w-full">
-            <div className="w-max relative">
-              <h4 className="text-xl text-blue-500 font-bold pl-0 pr-3 md:pl-3">Resources</h4>
-              <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-blue-500"></span>
+            <div className="w-full md:w-max relative">
+              <h4 className="text-lg md:text-xl text-blue-500 font-bold pl-0 pr-3 md:pl-3">Resources</h4>
+              <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-gray-600"></span>
             </div>
-            <ul className="flex flex-row gap-3 md:gap-0 justify-start items-start md:flex-col md:pl-3 pt-1 whitespace-nowrap">
+            <ul className="flex flex-row gap-2 md:gap-0 md:pl-0 justify-start items-start md:flex-col pl-2 md:pl-3 pt-1 whitespace-nowrap">
               <li>Gallery</li>
               <span className="md:hidden">|</span>
               <li>Press</li>
@@ -73,7 +73,7 @@ const Footer = () => {
             </div>
           </Link>
           <p className="w-full text-center border-t border-gray-600 md:border-transparent pt-5 md:pt-0">
-            <span className="block">Bringing your life swag</span>
+            <span className="block">Bringing swag to your life</span>
             <span className="block">with creative customizations !</span>
             <span className="md:hidden block">Visit us here :</span>
           </p>

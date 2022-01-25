@@ -95,13 +95,15 @@ const ShopPage = () => {
       <main className="h-full w-full flex flex-col items-center justify-center">
         <section
           style={{ backgroundColor: "#171717" }}
-          className="h-full w-full text-gray-300 flex flex-col items-center justify-center gap-8 py-6 px-2"
+          className="h-full w-full text-gray-300 flex flex-col items-center justify-center gap-4 md:gap-8 py-6 md:px-2"
         >
           <div className="h-full w-max relative">
-            <h2 className="relative capitalize text-center text-3xl px-8">ColorWave {categories.limited}</h2>
-            <span className="h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-px bg-yellow-300"></span>
+            <h2 className="relative capitalize text-center text-2xl md:text-2xl md:text-3xl px-5 md:px-8">
+              ColorWave {categories.limited}
+            </h2>
+            <span className="h-0.5 md:h-0.5 md:h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 md:bottom-1 md:bottom-px bg-yellow-300"></span>
           </div>
-          <div className="h-full w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
+          <div className="h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 p-4">
             {limitedItems.length === 0 ? (
               <LoaderGaming />
             ) : (
@@ -111,12 +113,14 @@ const ShopPage = () => {
             )}
           </div>
         </section>
-        <section className="h-full w-full text-gray-900 flex flex-col items-center justify-center gap-8 bg-sound py-6 px-2">
+        <section className="h-full w-full text-gray-900 flex flex-col items-center justify-center gap-4 md:gap-8 bg-sound py-6 md:px-2">
           <div className="h-full w-max relative">
-            <h2 className="relative capitalize text-center text-3xl px-8 z-10">{categories.gaming}</h2>
-            <span className="h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-px bg-blue-400"></span>
+            <h2 className="relative capitalize text-center text-2xl md:text-3xl px-5 md:px-8 z-10">
+              {categories.gaming}
+            </h2>
+            <span className="h-0.5 md:h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-1 md:bottom-px bg-blue-400"></span>
           </div>
-          <div className="h-full w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
+          <div className="h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 p-4">
             {gamingItems.length === 0 ? (
               <LoaderGaming />
             ) : (
@@ -128,13 +132,15 @@ const ShopPage = () => {
         </section>
         <section
           style={{ backgroundColor: "#171717" }}
-          className="h-full w-full text-gray-300 flex flex-col items-center justify-center gap-8 py-6 px-2"
+          className="h-full w-full text-gray-300 flex flex-col items-center justify-center gap-4 md:gap-8 py-6 md:px-2"
         >
           <div className="h-full w-max relative">
-            <h2 className="relative capitalize text-center text-3xl px-8 z-10">{categories.headphones}</h2>
-            <span className="h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-px  bg-yellow-300"></span>
+            <h2 className="relative capitalize text-center text-2xl md:text-3xl px-5 md:px-8 z-10">
+              {categories.headphones}
+            </h2>
+            <span className="h-0.5 md:h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-1 md:bottom-px  bg-yellow-300"></span>
           </div>
-          <div className="h-full w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
+          <div className="h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 p-4">
             {headphonesItems.length === 0 ? (
               <LoaderSound />
             ) : (
@@ -146,13 +152,15 @@ const ShopPage = () => {
         </section>
         <section
           style={{ backgroundColor: "#171717" }}
-          className="h-full w-full text-gray-300 flex flex-col items-center justify-center gap-8 py-6 px-2"
+          className="h-full w-full text-gray-300 flex flex-col items-center justify-center gap-4 md:gap-8 pb-6 md:px-2"
         >
           <div className="h-full w-max relative">
-            <h2 className="relative capitalize text-center text-3xl px-8 z-10">{categories.mics}</h2>
-            <span className="h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-px  bg-yellow-300"></span>
+            <h2 className="relative capitalize text-center text-2xl md:text-3xl px-5 md:px-8 z-10">
+              {categories.mics}
+            </h2>
+            <span className="h-0.5 md:h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-1 md:bottom-px  bg-yellow-300"></span>
           </div>
-          <div className="h-full w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
+          <div className="h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 p-4">
             {micsItems.length === 0 ? (
               <LoaderSound />
             ) : (
@@ -162,23 +170,25 @@ const ShopPage = () => {
             )}
           </div>
         </section>
-        <section className="h-full w-full text-gray-900 flex flex-col items-center justify-center bg-sound gap-8 py-6 px-2">
+        <section className="h-full w-full text-gray-900 flex flex-col items-center justify-center bg-sound gap-4 md:gap-8 py-6 md:px-2">
           <div className="h-full w-max relative">
-            <h2 className="relative capitalize text-center text-3xl px-8">{categories.skins}</h2>
-            <span className="h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-px  bg-blue-400"></span>
+            <h2 className="relative capitalize text-center text-2xl md:text-3xl px-5 md:px-8">{categories.skins}</h2>
+            <span className="h-0.5 md:h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-1 md:bottom-px  bg-blue-400"></span>
           </div>
-          <div className="h-full w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
+          <div className="h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 p-4">
             {skinsItems.map((item, i) => (
               <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
             ))}
           </div>
         </section>
-        <section className="h-full w-full text-gray-900 flex flex-col items-center justify-center bg-sound gap-8 pt-6 pb-12 px-2">
+        <section className="h-full w-full text-gray-900 flex flex-col items-center justify-center bg-sound gap-4 md:gap-8 pb-12 md:px-2">
           <div className="h-full w-max relative">
-            <h2 className="relative capitalize text-center text-3xl px-8">{categories.accessories}</h2>
-            <span className="h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-px  bg-blue-400"></span>
+            <h2 className="relative capitalize text-center text-2xl md:text-3xl px-5 md:px-8">
+              {categories.accessories}
+            </h2>
+            <span className="h-0.5 md:h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-1 md:bottom-px bg-blue-400"></span>
           </div>
-          <div className="h-full w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
+          <div className="h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 p-4">
             {accessoriesItems.map((item, i) => (
               <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
             ))}

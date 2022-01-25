@@ -62,17 +62,22 @@ const SearchModal = () => {
               <Search color="white" size={26} />
             </button>
           </div>
-          <span
+          <div
             style={{ visibility: open && searchTerm.length > 1 ? "visible" : "hidden" }}
-            className="block text-sm uppercase text-blue-500"
+            className="block text-sm uppercase text-gray-300 pt-2"
           >
-            {searchedItems.length} results
-          </span>
+            <span className="text-blue-500 font-bold underline">{searchedItems.length}</span> results
+          </div>
         </div>
       </div>
 
-      <div className="h-max w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 lg:grid-cols-3 px-6 pb-6">
-        {searchTerm.length > 1 && searchedItems.map((item, i) => <ProductCard key={i + 1} item={item} />)}
+      <div className="h-max w-full grid place-items-center gap-4 md:gap-6 grid-cols-2 lg:grid-cols-3 px-6 pb-6">
+        {searchTerm.length > 1 &&
+          searchedItems.map((item, i) => (
+            <div className="border-l border-t border-r border-black rounded">
+              <ProductCard key={i + 1} item={item} />
+            </div>
+          ))}
       </div>
     </div>
   );

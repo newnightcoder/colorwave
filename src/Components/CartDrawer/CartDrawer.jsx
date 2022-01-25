@@ -69,10 +69,10 @@ const CartDrawer = () => {
                     backgroundColor: item.product.categories.find((x) => x.name === "limited") ? "black" : "white",
                   }}
                 >
-                  <img src={item.product.media.source} alt="" className="object-cover h-24" />
+                  <img src={item.product.media.source} alt="" className="object-cover h-24 w-full" />
                 </div>
-                <div className="w-1/3 text-left text-sm whitespace-nowrap pl-2 md:pl-8">{item.product.name}</div>
-                <div className="w-1/3 text-right text-sm pr-5">{item.product.price.formatted}&nbsp;€</div>
+                <div className="w-1/3 text-left text-sm pl-2 md:pl-8">{item.product.name}</div>
+                <div className="w-1/3 text-right text-sm pr-2">{item.product.price.formatted}&nbsp;€</div>
                 <button
                   onClick={() => handleDeleteItem(item.product.id)}
                   className="h-10 w-10 rounded-full flex items-center justify-center bg-transparent transition-color duration-300 hover:bg-gray-300"

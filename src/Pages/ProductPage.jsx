@@ -18,6 +18,7 @@ const ProductPage = () => {
   const history = useHistory();
   const shop = useSelector((state) => state.shop.shop);
   const { item } = location?.state || undefined;
+  const { parentProduct } = location?.state || undefined;
   const { height, width } = useWindowSize();
 
   const itemImages = item?.assets.map((asset) => ({
@@ -25,8 +26,6 @@ const ProductPage = () => {
     thumbnail: asset.url,
     originalHeight: 500,
   }));
-
-  console.log("itemImg", itemImages);
 
   const getRelatedItem = (id) => {
     const relatedProduct = shop.find((product) => product.id === id);
@@ -49,8 +48,8 @@ const ProductPage = () => {
     return relatedProduct;
   };
 
-  const bgColor = item?.categories[0]?.name === "gaming" ? "black" : "white";
-  const descriptionBgColor = item?.categories[0]?.name === "gaming" ? "lightgray" : "rgb(209 213 219)";
+  const bgColor = item?.categories[0]?.name === "gaming" ? "black" : "#fefefe";
+  const descriptionBgColor = item?.categories[0]?.name === "gaming" ? "rgb(209 213 219)" : "rgba(250,250,250,.99)";
   const textColor = item?.categories[0]?.name === "gaming" ? "rgb(209 213 219)" : "rgb(17 24 39)";
 
   const responsive = {
@@ -73,26 +72,35 @@ const ProductPage = () => {
 
   return (
     <div className="font-cabin overflow-x-hidden relative">
-      <div className="breadcrumb w-full flex items-center justify-start gap-1 whitespace-nowrap text-gray-900 bg-white pl-2 md:pl-10 pt-3 md:pt-7 pb-3">
-        {/* {"Home \u00BB "} */}
+      <div className="breadcrumb w-full flex items-center justify-start gap-1 whitespace-nowrap text-gray-900 bg-white px-2 md:pl-10 pt-3 md:pt-7 pb-3">
         <Link to="/" className="w-max flex items-center justify-center gap-1 capitalize hover:underline">
           home <ChevronDoubleRight size={12} className="transform translate-y-px" />
         </Link>
         <Link
-          to={`/categories/${item.categories[0].name}`}
+          to={{
+            pathname: `/categories/${parentProduct !== undefined ? parentProduct.name : item.categories[0]?.name}`,
+            state: {
+              variants: parentProduct !== undefined && true,
+              item: parentProduct !== undefined && parentProduct,
+            },
+          }}
           className="w-max flex items-center justify-center gap-1 capitalize hover:underline"
         >
-          <span>{item?.categories[0]?.name}</span> <ChevronDoubleRight size={12} className="transform translate-y-px" />
+          <span>{parentProduct !== undefined ? parentProduct.name : item.categories[0]?.name}</span>
+          <ChevronDoubleRight size={12} className="transform translate-y-px" />
         </Link>
-        <span className="w-max capitalize underline">{item?.name}</span>
+        <span className="w-max capitalize underline truncate">{item?.name}</span>
       </div>
 
       <div
-        className="product w-full flex flex-col md:flex-row items-center justify-center bg-black border-4 border-blue-600"
-        style={{ height: "calc(100vh - 120px)", background: bgColor, color: textColor }}
+        className="product w-full max-w-8xl mx-auto flex flex-col lg:flex-row justify-start items-center lg:justify-center bg-black border-4 border-yellow-600 pb-16 md:pb-0 2xl:px-10"
+        style={{
+          height: width < 768 ? "calc(100vh - 80px)" : "calc(100vh - 120px)",
+          background: bgColor,
+          color: textColor,
+        }}
       >
-        <div className="h-max w-full md:w-2/3 flex flex-col items-center justify-center pt-4 px-2 border-4 border-red-500">
-          {/* <img className="object-cover" src={item?.media.source} width="450" height="300" alt="" /> */}
+        <div className="h-max w-full lg:w-2/3 flex flex-col items-center justify-center px-2 border-4 border-red-500">
           <ImageGallery
             items={itemImages}
             showFullscreenButton={false}
@@ -105,27 +113,38 @@ const ProductPage = () => {
           />
         </div>
 
-        <div className="product-info h-full w-full md:w-1/3 flex flex-col md:justify-start border-l border-gray-600 border-opacity-60 text-left px-8 md:pt-8 gap-2">
-          <div className="h-max w-full flex items-center justify-between pt-2">
-            <h2 className="text-2xl text-bold">{item?.name}</h2>
-            <span className="text-bold text-xl ">{item?.price.formatted_with_code} </span>
+        <div className="product-info h-full w-full lg:w-1/3 flex flex-col items-center lg:justify-start border-l border-gray-600 border-opacity-60 text-left px-3 md:px- pt-12 md:pt-8 gap-6">
+          <div className="h-max w-11/12 lg:w-full flex items-center justify-between pt-2">
+            <h2 className="w-1/2 lg:w-2/3 text-xl md:text-2xl text-bold">{item?.name}</h2>
+            <span className="text-bold text-lg md:text-xl whitespace-nowrap">{item?.price.formatted_with_code} </span>
           </div>
-          <button
-            onClick={handleAddToCart}
-            className="bg-blue-500 text-white whitespace-nowrap w-36 uppercase py-2 self-end"
-          >
+          <button onClick={handleAddToCart} className="w-11/12 bg-blue-500 text-white whitespace-nowrap uppercase py-2">
             add to cart
           </button>
-          <div
-            // style={{ background: descriptionBgColor }}
-            className="h-max max-h-40 w-full text-gray-900 md:w-10/12 md:h-48 overflow-auto p-4 border border-gray-100 rounded-sm"
-            //❌ DOMPURIFY OR SANITIZER NEEDED!!! OR REACT-HTML-PARSER!!
-            dangerouslySetInnerHTML={{ __html: item?.description }}
-          ></div>
+          <div className="w-full flex flex-col items-center justify-center self-center">
+            <div className="w-max relative px-3">
+              <span className="capitalize text-xl md:text-2xl">product info</span>
+              <span
+                style={{ backgroundColor: textColor }}
+                className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-1"
+              ></span>
+            </div>
+
+            <div
+              style={{ backgroundColor: descriptionBgColor, color: textColor }}
+              className="h-max max-h-40 w-full md:h-48 overflow-auto p-4 rounded-sm"
+              //❌ DOMPURIFY OR SANITIZER NEEDED!!! OR REACT-HTML-PARSER!!
+              dangerouslySetInnerHTML={{ __html: item?.description }}
+            ></div>
+          </div>
         </div>
       </div>
-      <div className="related-product border-t border-gray-600 border-opacity-60 bg-black text-gray-300 text-center pt-5">
-        <h2 className="whitespace-nowrap underline uppercase">Related Products</h2>
+      <div className="related-product border-t border-gray-600 border-opacity-60 bg-black text-gray-300 text-center py-5">
+        <div className="w-max relative mx-auto">
+          <h2 className="whitespace-nowrap text-lg md:text-xl uppercase px-3">Related Products</h2>
+          <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-1 bg-gray-300"></span>
+        </div>
+
         <Carousel responsive={responsive} containerClass="" className="pb-8">
           {item?.related_products.map((related, i) => (
             <div

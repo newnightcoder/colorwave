@@ -5,14 +5,19 @@ import { useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import img1 from "../Assets/sliderImg/1.png";
+import imgMob1 from "../Assets/sliderImg/1mob.png";
 import img2 from "../Assets/sliderImg/2.png";
-import imgPromote2 from "../Assets/sliderImg/3'.png";
+import imgMob2 from "../Assets/sliderImg/2mob.png";
 import img3 from "../Assets/sliderImg/3.png";
-import imgPromote1 from "../Assets/sliderImg/4'.png";
+import imgMob3 from "../Assets/sliderImg/3mob.png";
 import img4 from "../Assets/sliderImg/4.png";
+import imgMob4 from "../Assets/sliderImg/4mob.png";
+import imgPromote1 from "../Assets/sliderImg/5.png";
+import imgPromote2 from "../Assets/sliderImg/6.png";
 import { CartDrawer, CategoriesGrid, Footer, Navbar, SearchModal } from "../Components";
 import "../Styles/homePage.css";
 import "../Styles/_variables.css";
+import useWindowSize from "../utils/useWindowSize";
 
 const HomePage = () => {
   const history = useHistory();
@@ -22,12 +27,14 @@ const HomePage = () => {
   const magicKeyboard = shop.find((item) => item.name === "Apple Magic Keyboards");
   const sennheiser = shop.find((item) => item.name === "Custom Sennheiser e 945 Microphone");
   const { pathname } = useLocation();
+  const { height, width } = useWindowSize();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const images = [{ original: img1 }, { original: img2 }, { original: img3 }, { original: img4 }];
+  const imagesMob = [{ original: imgMob1 }, { original: imgMob2 }, { original: imgMob3 }, { original: imgMob4 }];
 
   const linkTo = (e) => {
     switch (e.currentTarget.firstChild.src) {
@@ -58,35 +65,49 @@ const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen w-screen relative flex flex-col items-center gap-1 font-cabin bg-black pt-4">
+    <div className="min-h-screen w-screen relative flex flex-col items-center gap-1 font-cabin bg-black -mt-1 md:-mt-0 md:pt-4">
       <Navbar />
 
-      <ImageGallery
-        items={images}
-        showFullscreenButton={false}
-        showPlayButton={true}
-        autoPlay={true}
-        slideInterval={3000}
-        onClick={(e) => linkTo(e)}
-      />
+      <div className="h-96 md:h-full w-full flex flex-col items-center justify-center">
+        <ImageGallery
+          items={width > 768 ? images : imagesMob}
+          showFullscreenButton={false}
+          showPlayButton={true}
+          autoPlay={true}
+          slideInterval={3000}
+          onClick={(e) => linkTo(e)}
+          additionalClass={"object-cover"}
+        />
+      </div>
 
       <CategoriesGrid />
-      <Link to="/promotional" className="h-max w-full">
-        <img src={imgPromote1} alt="" className="w-full" />
+      <Link
+        to="/promotional"
+        className="w-full"
+        style={{
+          height: width < 768 ? "250px" : "550px",
+          background: `url("${imgPromote1}") no-repeat ${width < 768 ? "left/cover" : "center/cover"}`,
+        }}
+      >
+        {/* <img src={imgPromote1} alt="" className="object-cover h-full w-full" /> */}
       </Link>
       <div className="h-36 md:h-56 w-full flex items-center justify-center">
         <Link
           to="/shop"
-          className="group relative w-max h-max flex items-center justify-center text-center transition duration-300 bg-black hover:bg-white border-2 border-yellow-300 hover:border-white rounded-lg py-2 pl-2 pr-4"
+          className="group relative w-max h-max flex items-center justify-center text-center transition duration-300 bg-white md:bg-black md:hover:bg-white md:border-2 md:border-yellow-300 hover:border-white rounded-lg py-2 pl-2 pr-4"
         >
-          <span className="uppercase italic text-4xl md:text-7xl text-white transition duration-300 group-hover:text-blue-600 font-bold whitespace-nowrap">
+          <span className="uppercase italic text-4xl md:text-7xl text-blue-600 md:text-white transition duration-300 md:group-hover:text-blue-600 font-bold whitespace-nowrap">
             see all products
           </span>
           <ChevronDoubleRight className="hidden lg:block absolute -right-24 text-4xl md:text-7xl transition duration-300 text-yellow-300 group-hover:text-blue-600 bounce-right transform translate-x-50" />
         </Link>
       </div>
-      <Link to="/promotional" className="h-max w-full">
-        <img src={imgPromote2} alt="" className="w-full" />
+      <Link
+        to="/promotional"
+        className="w-full"
+        style={{ height: width < 768 ? "250px" : "550px", background: `url("${imgPromote2}") no-repeat center/cover` }}
+      >
+        {/* <img src={imgPromote2} alt="" className="w-full" /> */}
       </Link>
       <CartDrawer />
       <SearchModal />
