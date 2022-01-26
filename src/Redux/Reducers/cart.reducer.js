@@ -69,6 +69,7 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         items: [],
+        paymentValidated: !state.paymentValidated,
       };
     }
 

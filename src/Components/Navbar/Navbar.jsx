@@ -5,6 +5,7 @@ import { useLocation } from "react-router";
 import { Link, NavLink } from "react-router-dom";
 import { toggleCartDrawer } from "../../Redux/Actions/cart.action";
 import { toggleSearchModal } from "../../Redux/Actions/shop.action";
+import useWindowSize from "../../utils/useWindowSize";
 
 const Navbar = () => {
   const items = useSelector((state) => state?.cart.items);
@@ -12,22 +13,21 @@ const Navbar = () => {
   const cartDrawerOpen = useSelector((state) => state?.cart.cartDrawerOpen);
   const dispatch = useDispatch();
   const location = useLocation();
+  const { height, width } = useWindowSize();
 
   const toggleMenu = () => {
     return setMenuOpen((menuOpen) => !menuOpen);
   };
 
-  console.log(items);
   const totalItems =
     items.length !== 0 &&
     items.reduce((acc, curr) => {
       return acc + curr.quantity;
     }, 0);
-  console.log(totalItems);
 
   return (
     <>
-      {location.pathname !== "/cart" && (
+      {(location.pathname !== "/cart" || width < 768) && (
         <div className="nav-container h-16 md:h-20 w-screen bg-black shadow-lg fixed top-0 z-40 font-cabin border-b-8 border-yellow-300 shadow-lg shadow-yellow-300">
           <div className="h-full w-full mx-auto px-2 sm:px-6 lg:px-8">
             <div className="h-full relative flex items-center justify-between">

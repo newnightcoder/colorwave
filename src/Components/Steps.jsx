@@ -6,8 +6,10 @@ import useWindowSize from "../utils/useWindowSize";
 const Steps = ({ formOpen, formValidated }) => {
   const { height, width } = useWindowSize();
   const paymentValidated = useSelector((state) => state.cart.paymentValidated);
+  const items = useSelector((state) => state?.cart.items);
+
   return (
-    <div className="h-24 w-screen fixed top-0 flex items-center justify-center bg-black z-50 shadow">
+    <div className="hidden h-24 w-screen fixed top-0 md:flex items-center justify-center bg-black z-50 shadow">
       <div className="h-full w-full max-w-6xl flex items-center justify-center -gap-1">
         {width > 500 && (
           <Link to="/" className="w-max group">
@@ -22,7 +24,7 @@ const Steps = ({ formOpen, formValidated }) => {
         )}
         <div className="w-1/3 relative flex items-center justify-center">
           <div
-            style={{ backgroundColor: "rgb(253 224 71)" }}
+            style={{ backgroundColor: items.length !== 0 ? "rgb(253 224 71)" : "white" }}
             className="h-8 w-8 z-10 relative rounded-full flex items-center justify-center text-black text-xl"
           >
             1

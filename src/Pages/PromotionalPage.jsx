@@ -44,7 +44,7 @@ const PromotionalPage = () => {
           <br /> Contact branding@colorware.com to discuss the nearly limitless possibilities.
         </div>
         <ChevronDown
-          className="text-6xl absolute top-1/3 right-4 md:top-2/3 md:inset-0 md:mx-auto md:mt-20 text-white animate-bounce"
+          className="text-6xl absolute top-1/3 right-4 md:top-2/3 md:right-36 md:mt-20 text-white animate-bounce"
           style={{ opacity: `${1 - offsetY}` }}
         />
       </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { XCircle } from "react-bootstrap-icons";
+import { ChevronDoubleLeft, ChevronDoubleRight, XCircle, XLg } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { deleteItem, toggleCartDrawer } from "../../Redux/Actions/cart.action";
@@ -48,10 +48,13 @@ const CartDrawer = () => {
 
   return (
     <div
-      style={{ transform: cartDrawerOpen ? "translateY(0)" : "translateY(-100%)" }}
-      className="h-screen w-full md:w-2/3 lg:w-1/2 font-cabin flex flex-col items-center justify-center overflow-x-hidden overflow-y-auto fixed z-50 transition-transform duration-300 text-gray-900 right-0 top-0 bg-sound pt-6 pb-12 px-5 md:px-10"
+      style={{ transform: cartDrawerOpen ? "translateY(0)" : "translateY(-100%)", zIndex: 2000 }}
+      className="h-screen w-full fixed md:w-2/3 lg:w-1/2 2xl:w-1/3 font-cabin flex flex-col items-center justify-center overflow-x-hidden overflow-y-auto transition-transform duration-300 text-gray-900 right-0 top-0 bg-sound pt-6 pb-12 px-5 md:px-10"
     >
-      <div className="h-full w-full flex flex-col items-center justify-center gap-4">
+      <button onClick={() => dispatch(toggleCartDrawer())}>
+        <XLg size={24} className="absolute top-8 right-10" />
+      </button>
+      <div className="h-full w-full flex flex-col items-center justify-center gap-6">
         <div className="w-max h-min relative">
           <h1 className="text-xl md:text-3xl px-4 text-center">Your Cart</h1>
           <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-black"></span>
@@ -62,7 +65,7 @@ const CartDrawer = () => {
             items.map((item, i) => (
               <div
                 key={i}
-                className="w-full flex flex items-center justify-left border-b border-gray-300 only:border-b-0 last:border-b-0 bg-white"
+                className="w-full flex flex items-center justify-left border-b border-gray-300 only:border-b-0 last:border-b-0 bg-white md:pr-3"
               >
                 <div
                   style={{
@@ -71,7 +74,7 @@ const CartDrawer = () => {
                 >
                   <img src={item.product.media.source} alt="" className="object-cover h-24 w-full" />
                 </div>
-                <div className="w-1/3 text-left text-sm pl-2 md:pl-8">{item.product.name}</div>
+                <div className="w-1/3 text-left text-sm pl-2 md:pl-5">{item.product.name}</div>
                 <div className="w-1/3 text-right text-sm pr-2">{item.product.price.formatted}&nbsp;€</div>
                 <button
                   onClick={() => handleDeleteItem(item.product.id)}
@@ -85,22 +88,22 @@ const CartDrawer = () => {
             <div className="h-screen w-screen flex flex-col items-center justify-center">YOUR CART IS EMPTY</div>
           )}
         </div>
-        <div className="h-max flex flex-col items-center justify-center gap-2">
+        <div className="h-max flex flex-col md:flex-row items-center justify-center gap-2 md:gap-8">
           <button
             onClick={() => dispatch(toggleCartDrawer())}
-            className="w-48 block text-sm font-bold text-gray-900 py-2 shadow-md transition-shadow duration-100 hover:shadow-none bg-yellow-300 mt-4 uppercase outline-none"
+            className="w-48 md:w-56 flex items-center justify-center gap-2 text-sm md:text-base font-bold text-gray-900 py-2 md:py-3 shadow-md transition-shadow duration-100 hover:shadow-none bg-yellow-300 mt-4 uppercase outline-none"
           >
-            Continue shopping
+            <ChevronDoubleLeft size={16} /> <span>Continue shopping</span>
           </button>
           <button
-            style={{ display: items.length === 0 ? "none" : "block" }}
-            className="w-48 text-sm font-bold text-gray-900 py-2 shadow-md transition-shadow duration-100 hover:shadow-none bg-yellow-300 mt-4 uppercase outline-none"
+            style={{ display: items.length === 0 ? "none" : "flex" }}
+            className="w-48 md:w-56 items-center justify-center gap-2 text-sm md:text-base font-bold text-gray-900 py-2 md:py-3 shadow-md transition-shadow duration-100 hover:shadow-none bg-yellow-300 mt-4 uppercase outline-none"
             onClick={() => {
               history.push("/cart");
               dispatch(toggleCartDrawer());
             }}
           >
-            view cart
+            <span>go to cart</span> <ChevronDoubleRight size={16} />
           </button>
         </div>
       </div>

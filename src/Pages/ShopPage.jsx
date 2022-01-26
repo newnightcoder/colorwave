@@ -41,7 +41,7 @@ const ShopPage = () => {
     <div className="h-full w-full font-cabin" style={{ overflow: open ? "hidden" : "auto" }}>
       <header className="h-full flex flex-col items-center justify-center gap-6 bg-white text-black pt-4 md:pt-10 pb-4">
         <div className="w-max relative">
-          <h1 className="text-center text-3xl font-bold uppercase px-6">Products</h1>
+          <h1 className="text-center text-xl md:text-3xl font-bold uppercase px-6">Products</h1>
           <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-black"></span>
         </div>
         <ul className="hidden md:flex items-center justify-center gap-2 whitespace-nowrap text-sm">
@@ -98,10 +98,10 @@ const ShopPage = () => {
           className="h-full w-full text-gray-300 flex flex-col items-center justify-center gap-4 md:gap-8 py-6 md:px-2"
         >
           <div className="h-full w-max relative">
-            <h2 className="relative capitalize text-center text-2xl md:text-2xl md:text-3xl px-5 md:px-8">
+            <h2 className="relative capitalize text-center text-2xl md:text-3xl px-5 md:px-8">
               ColorWave {categories.limited}
             </h2>
-            <span className="h-0.5 md:h-0.5 md:h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 md:bottom-1 md:bottom-px bg-yellow-300"></span>
+            <span className="h-0.5 md:h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 md:bottom-px bg-yellow-300"></span>
           </div>
           <div className="h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 p-4">
             {limitedItems.length === 0 ? (

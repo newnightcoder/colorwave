@@ -27,7 +27,7 @@ const Form = ({
     <div
       id="userInfo-form"
       style={{ height: "calc(100vh - 64px)" }}
-      className="form-container w-full z-30 relative flex flex-col items-center justify-start transition duration-300 bg-gray-200 text-gray-900"
+      className="form-container w-full z-30 relative flex flex-col items-center justify-center md:justify-start transition duration-300 text-gray-900"
     >
       <h1 className="h-12 md:h-16 w-full absolute top-0 xl:top-4 left-0 text-center uppercase text-lg md:text-xl font-bold px-4 py-4 shadow md:shadow-none">
         Your delivery information
@@ -35,7 +35,7 @@ const Form = ({
 
       <form
         // style={{ height: width < 768 ? "calc(100vh - 300px)" : "calc(100vh - 128px)" }}
-        className="form-solid h-max w-10/12 max-w-lg overflow-y-auto flex flex-col items-center justify-start gap-2 xl:gap-2 text-gray-900 pb-48 md:pt-2 md:pb-12 mt-16 md:mt-20 2xl:mt-32"
+        className="form-solid md:self-end h-max w-10/12 max-w-3xl overflow-y-auto flex flex-col items-center justify-start gap-2 text-gray-900 pb-48 md:pt-2 md:pb-12 mt-16 md:mt-20 xl:mt-24 2xl:mt-32"
       >
         <div className="w-full flex flex-col md:flex-row gap-2">
           <div className="flex flex-col w-full md:w-1/2">
@@ -144,6 +144,22 @@ const Form = ({
             onChange={handleInput}
           />
           <span className="input-error w-full text-sm text-left text-black font-bold pl-1">{errorPhone}</span>
+        </div>
+        <div className="flex flex-col items-start justify-center self-start pt-1">
+          <div className="flex items-center justify-center gap-2">
+            <input
+              type="checkbox"
+              name=""
+              id="checkbox"
+              className="rounded-sm ring-0 outline-0 focus:outline-0 checked:outline-0 focus:border-0 checked:ring-0 checked:border-0 focus:ring-0"
+              onChange={handleInput}
+            />
+
+            <p>
+              I have read and I accept all <span className="capitalize underline">terms and services</span>
+            </p>
+          </div>
+          <span className="input-error w-full text-sm text-left text-black font-bold pl-1">{errorCheckbox}</span>
         </div>
       </form>
     </div>

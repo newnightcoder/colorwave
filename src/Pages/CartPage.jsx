@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { CartContainer, CartRecap, CheckoutForm, Form, Steps } from "../Components";
 import { addToCart, deleteCart, deleteItem, removeOne, saveOrder } from "../Redux/Actions/cart.action";
-import "../Styles/cartPage.css";
 import "../Styles/_variables.css";
 import useWindowSize from "../utils/useWindowSize";
 
@@ -55,6 +54,7 @@ const CartPage = () => {
   let errorPhoneRef = "";
   let errorPhoneRegexRef = "";
   let errorAddressRef = "";
+  let errorCheckboxRef = "";
 
   const totalPrice =
     items.length !== 0 &&
@@ -109,26 +109,6 @@ const CartPage = () => {
 
   const appearance = {
     theme: "stripe",
-    // variables: {
-    //   fontFamily: "Sohne, system-ui, sans-serif",
-    //   fontWeightNormal: "500",
-    //   borderRadius: "8px",
-    //   colorBackground: "#0A2540",
-    //   colorPrimary: "#EFC078",
-    //   colorPrimaryText: "#1A1B25",
-    //   colorText: "white",
-    //   colorTextSecondary: "white",
-    //   colorTextPlaceholder: "#727F96",
-    //   colorIconTab: "white",
-    //   colorLogo: "dark",
-    // },
-    // rules: {
-    //   ".Input, .Block": {
-    //     backgroundColor: "transparent",
-    //     border: "1.5px solid var(--colorPrimary)",
-
-    //   },
-    // },
   };
 
   const options = {
@@ -173,6 +153,7 @@ const CartPage = () => {
     if (e.target === form.querySelector("#email")) return setInputEmail(e.currentTarget.value);
     if (e.target === form.querySelector("#address")) return setInputAddress(e.currentTarget.value);
     if (e.target === form.querySelector("#phone")) return setInputPhone(e.currentTarget.value);
+    if (e.target === form.querySelector("#checkbox")) return setInputCheckbox(e.currentTarget.checked);
   };
 
   const checkFormErrors = () => {
@@ -184,6 +165,7 @@ const CartPage = () => {
       address: "Please enter your address",
       phoneNumber: "Please enter your phone number",
       phoneNumberRegex: "Please enter a valid phone number",
+      checkbox: "You need to accept our Terms and Services to confirm your order.",
     };
 
     if (inputFirstName.length === 0) {
@@ -235,8 +217,14 @@ const CartPage = () => {
       setErrorPhone("");
       errorPhoneRegexRef = "";
     }
+    if (inputCheckbox === false) {
+      setErrorCheckbox(errorMsg.checkbox);
+      errorCheckboxRef = errorMsg.checkbox;
+    } else {
+      setInputCheckbox(true);
+      errorCheckboxRef = "";
+    }
     return setFormChecked(true);
-    // if (inputCheckbox === ) return setErrorCheckbox("You must accept the terms and conditions to confirm your order.");
   };
 
   const validateForm = () => {
@@ -246,7 +234,8 @@ const CartPage = () => {
       errorAddressRef.length === 0 &&
       errorEmailRef.length === 0 &&
       errorPhoneRef.length === 0 &&
-      errorPhoneRegexRef.length === 0
+      errorPhoneRegexRef.length === 0 &&
+      errorCheckboxRef.length === 0
     )
       setFormValidated(true);
   };
@@ -279,7 +268,7 @@ const CartPage = () => {
                   style={{
                     transform:
                       formOpen && width < 768
-                        ? "translateY(calc(-100vh + 204px))"
+                        ? "translateY(calc(-100vh + 94px))"
                         : formOpen && width > 768
                         ? "translateY(calc(-100vh + 76px))"
                         : formValidated && "translateY(calc(-100vh - 10px))",

@@ -1,7 +1,7 @@
 import React from "react";
-import { Trash } from "react-bootstrap-icons";
+import { ChevronDoubleLeft, Trash } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
-import { CartNav } from ".";
+import { Link } from "react-router-dom";
 import useWindowSize from "../utils/useWindowSize";
 
 const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, handleDeleteCart, formOpen }) => {
@@ -10,33 +10,59 @@ const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, han
 
   return (
     <div
-      className="cart-container w-full relative flex flex-col items-center justify-center gap-4 text-gray-900 bg-sound"
-      style={{ height: width < 768 ? "calc(100vh - 208px)" : "calc(100vh - 76px)" }}
+      className="cart-container w-full relative flex flex-col items-center justify-start gap-4 text-gray-900 bg-sound"
+      style={{ height: width < 768 ? "calc(100vh - 98px)" : "calc(100vh - 76px)" }}
     >
-      <h1 className="h-12 md:h-16 w-full flex flex-col justify-center absolute top-0 left-0 text-left md:text-center font-bold text-lg md:text-xl uppercase pl-6 md:pl-0 shadow md:shadow-none">
-        Your Cart
-      </h1>
-
-      {items.length !== 0 && <CartNav handleDeleteCart={handleDeleteCart} />}
+      {items.length !== 0 && (
+        <div className="h-max w-full flex flex-col items-start justify-center gap-2 pt-4 pl-4 md:pl-10 md:pt-6">
+          <div className="w-max relative">
+            <h1 className="w-full text-xl md:text-3xl uppercase px-3">Your Cart</h1>
+            <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-black"></span>
+          </div>
+          <Link
+            to="/shop"
+            className="flex items-center justify-center gap-1 text-gray-900 hover:underline hover:font-bold group"
+          >
+            <ChevronDoubleLeft size={12} />
+            <span>Continue shopping</span>
+          </Link>
+          <button
+            className="w-max md:w-48 absolute right-5 flex items-center justify-center gap-2 text-sm uppercase text-white bg-black border border-black px-3 md:px-0 py-1 shadow"
+            onClick={handleDeleteCart}
+          >
+            <span>delete cart</span>
+            <Trash size={16} />
+          </button>
+        </div>
+      )}
 
       {items.length === 0 ? (
-        <div className="w-full flex flex-col items-center justify-center">YOUR CART IS EMPTY</div>
+        <div className="fixed z-50 inset-x-0 mx-auto w-max flex flex-col items-center justify-center">
+          <h1 className="text-lg md:text-xl">YOUR CART IS EMPTY</h1>
+          <Link
+            to="/shop"
+            className="flex items-center justify-center gap-1 text-blue-500 hover:underline hover:font-bold"
+          >
+            <ChevronDoubleLeft size={12} />
+            <span className="capitalize">go back to the shop</span>
+          </Link>
+        </div>
       ) : (
         <div
           style={{
-            height: width < 768 ? "calc(100vh - 300px)" : "calc(100vh - 240px)",
-            justifyContent: items.length === 1 ? "center" : "flex-start",
+            height: width < 768 ? "calc(100vh - 315px)" : "calc(100vh - 220px)",
+            // justifyContent: items.length === 1 && width > 768 ? "center" : "flex-start",
           }}
-          className="items-container w-full md:w-11/12 xl:w-10/12 overflow-y-auto flex flex-col items-center gap-4 pb-8 md:pb-4 pt-4 mt-24 md:mt-14"
+          className="items-container cart-list relative w-full md:w-11/12 xl:w-10/12 overflow-y-auto flex flex-col justify-start items-center gap-4 pb-8 md:pb-4 pt-4"
         >
           {items.map((item, i) => (
             <div
               key={i}
-              style={{ height: width < 500 ? "7rem" : width < 768 && "12rem" }}
-              className="item w-11/12 flex items-center justify-start gap-1 md:gap-6 pb-4 pr-1 md:px-0 border-b border-gray-600 last:border-b-0"
+              style={{ height: width < 500 ? "7rem" : width < 768 ? "12rem" : "14rem" }}
+              className="item w-11/12 flex items-center justify-start gap-1 md:gap-6 pr-1 md:px-0 bg-white shadow"
             >
               <div
-                className="image h-full w-full md:w-80"
+                className="h-full w-full md:w-80 border-r border-gray-100"
                 style={{
                   backgroundColor: item.product.categories.find((x) => x.name === "limited") ? "black" : "white",
                 }}
@@ -45,7 +71,7 @@ const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, han
               </div>
               <div className="details h-full w-full md:w-1/3 flex items-center justify-center gap-2">
                 <div className="h-full w-full flex flex-col items-start justify-center gap-1 md:gap-2 pl-1 xl:pl-4">
-                  <div className="capitalize font-bold w-full">{item.product.name}</div>
+                  <div className="capitalize w-32 whitespace-nowrap truncate">{item.product.name}</div>
                   <div>{item.product.price.formatted} €</div>
                   <div className="w-max flex items-center justify-center gap-1">
                     <div className=" w-max flex items-center justify-between gap-1">

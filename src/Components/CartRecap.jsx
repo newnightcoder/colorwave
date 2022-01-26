@@ -5,22 +5,49 @@ import useWindowSize from "../utils/useWindowSize";
 const CartRecap = ({ formValidated, formOpen, toggleForm, handleForm, totalPrice }) => {
   const items = useSelector((state) => state?.cart.items);
   const { height, width } = useWindowSize();
+  const totalItems =
+    items.length !== 0 &&
+    items.reduce((acc, curr) => {
+      return acc + curr.quantity;
+    }, 0);
 
   return (
     <div
       style={{ height: width > 768 ? "calc(100% - 60px)" : "5rem", display: formValidated && "none" }}
-      className="recap w-full md:h-full md:w-5/6 lg:w-2/3 absolute bottom-0 md:top-0 md:my-auto z-50 flex flex-col items-center justify-center gap-2 bg-black md:bg-white text-white md:text-gray-900 p-16"
+      className="recap w-full md:h-full md:w-5/6 lg:w-2/3 absolute bottom-0 md:top-0 md:my-auto z-50 flex flex-col items-center justify-center gap-4 md:gap-0 md:justify-evenly bg-black md:bg-white text-white md:text-gray-900 p-16 md:p-8 md:shadow"
     >
-      <div className="w-full flex items-center justify-center pt-2 border-b border-white md:border-gray-900 px-8">
-        <span>TOTAL&nbsp;:</span> <span className="w-12 text-right">{totalPrice}</span>&nbsp;
-        <span>€</span>
+      <div className="hidden md:block w-max relative">
+        <h2 className="text-lg md:text-xl uppercase px-3">Your order</h2>
+        <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-black"></span>
+      </div>
+
+      <div className=" hidden w-full px-2 md:flex flex-col items-center justify-center">
+        <div className="w-full flex items-center justify-between py-2 border-b border-gray-100">
+          <span>Total items:</span>
+          <span>{totalItems}</span>
+        </div>
+        <div className="w-full flex items-center justify-between py-2 border-b border-gray-100">
+          <span>Delivery fees:</span>
+          <span className="italic">free</span>
+        </div>
+      </div>
+
+      <div className="w-10/12 md:w-full flex items-center justify-between md:px-4 md:pt-2 border-b md:border-b-0 md:border-t md:border-gray-900">
+        <span className="uppercase whitespace-nowrap">
+          TOTAL&nbsp;
+          <span className="lowercase">
+            &#40;<span className="uppercase">VAT</span> included&#41;
+          </span>
+          &nbsp;&#58;
+        </span>
+        <span className="">{totalPrice}&nbsp;€</span>
       </div>
       <button
         type="submit"
-        className="w-48 flex items-center justify-center gap-2 text-sm font-bold uppercase text-black bg-yellow-300 shadow-md py-1 mt-4"
+        className="w-48 flex items-center justify-center gap-2 text-sm md:text-base uppercase text-black bg-yellow-300 shadow-md py-1 md:mt-4"
         onClick={!formOpen ? toggleForm : handleForm}
       >
-        {!formOpen ? <span>next</span> : <span>continue</span>}
+        {!formOpen ? <span>checkout</span> : <span>next</span>}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 52.4 29.75"

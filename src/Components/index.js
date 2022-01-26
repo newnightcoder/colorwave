@@ -11,6 +11,7 @@ export { default as Form } from "./Form";
 export { default as LoaderGaming } from "./Loader/LoaderGaming";
 export { default as LoaderSound } from "./Loader/LoaderSound";
 export { default as Navbar } from "./Navbar/Navbar";
+export { default as PaymentBanner } from "./PaymentBanner";
 export { default as ProductCard } from "./Product/ProductCard";
 export { default as SearchModal } from "./SearchModal";
 export { default as Steps } from "./Steps";

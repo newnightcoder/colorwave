@@ -27,7 +27,7 @@ const SearchModal = () => {
       <div className="h-max w-full flex flex-col items-center justify-start gap-8 py-4">
         <div className="h-max w-full flex items-center justify-between md:px-16">
           <div className="w-max relative text-center ">
-            <h1 className="capitalize text-2xl md:text-5xl px-2 md:px-6 whitespace-nowrap">
+            <h1 className="capitalize text-2xl md:text-4xl px-2 md:px-6 whitespace-nowrap">
               search a brand or product
             </h1>
             <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-white"></span>
@@ -39,13 +39,10 @@ const SearchModal = () => {
             }}
             className="h-max w-min flex flex-col items-center gap-2 group transition duration-300 hover:text-blue-400"
           >
-            <div className="flex flex-col items-center justify-center gap-1">
-              <span className="text-xs">close</span>
-              <XLg
-                size={width > 500 ? 36 : 24}
-                className="text-white transition duration-300 group-hover:text-blue-400"
-              />
-            </div>
+            <XLg
+              size={width > 500 ? 36 : 24}
+              className="text-white transition duration-300 group-hover:text-blue-400"
+            />
           </button>
         </div>
 

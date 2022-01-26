@@ -1,6 +1,33 @@
+.image-gallery {
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  /* border: 2px solid pink; */
+}
+.image-gallery-content,
+.image-gallery-slide-wrapper,
+.image-gallery-swipe,
+.image-gallery-slides,
+.image-gallery-slide {
+  width: 100%;
+  height: inherit !important;
+  object-fit: cover;
+}
+
+.image-gallery-slide img {
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .image-gallery-slide,
+  .image-gallery-image {
+    object-fit: cover !important;
+  }
+}
+
 .bg-gaming {
   background-color: #333;
-  /* background-color: #191919; */
 }
 
 .bg-sound {
@@ -11,21 +38,32 @@
   font-family: "Cabin";
 }
 
+/* scrollbar product description  */
 .description {
-  scrollbar-color: #fde047;
+  scrollbar-color: #fcd34d;
   scrollbar-width: auto;
-  border-top: 1px solid lightgray;
-  border-left: 1px solid lightgray;
-  border-bottom: 1px solid lightgray;
 }
 
 .description::-webkit-scrollbar {
-  width: 15px;
-  /* transition: background-color 500ms; */
+  width: 10px;
   background-color: dimgray;
 }
 .description::-webkit-scrollbar-thumb {
-  width: 15px;
-  /* transition: background-color 500ms; */
-  background-color: #fde047;
+  width: 10px;
+  background-color: #fcd34d;
+}
+
+/* scrollbar cart items */
+.cart-list {
+  scrollbar-color: black;
+  scrollbar-width: auto;
+}
+
+.cart-list::-webkit-scrollbar {
+  width: 10px;
+  background-color: #999;
+}
+.cart-list::-webkit-scrollbar-thumb {
+  width: 10px;
+  background-color: black;
 }
