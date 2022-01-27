@@ -34,8 +34,8 @@ const ConfirmationPage = () => {
         className="w-screen  relative flex flex-col gap-8 items-center justify-center bg-gray-300 border-red-500 "
       >
         <span className="text-center">
-          Congratulations {userOrder?.userFirstName}! <br /> Your order n&deg;&nbsp;{orderId?.toUpperCase()} was
-          successful. <br />
+          Congratulations <span className="capitalize">{userOrder?.userFirstName}</span>! <br /> Your order n&deg;&nbsp;
+          {orderId?.toUpperCase()} was successful. <br />
           Thank you for your purchase. <br />
         </span>
         <Check2Circle className="text-9xl text-green-500" />

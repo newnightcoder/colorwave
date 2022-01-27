@@ -13,20 +13,20 @@ const CartRecap = ({ formValidated, formOpen, toggleForm, handleForm, totalPrice
 
   return (
     <div
-      style={{ height: width > 768 ? "calc(100% - 60px)" : "5rem", display: formValidated && "none" }}
-      className="recap w-full md:h-full md:w-5/6 lg:w-2/3 absolute bottom-0 md:top-0 md:my-auto z-50 flex flex-col items-center justify-center gap-4 md:gap-0 md:justify-evenly bg-black md:bg-white text-white md:text-gray-900 p-16 md:p-8 md:shadow"
+      style={{ height: width > 768 ? "calc(100% - 64px)" : "5rem", display: formValidated && "none" }}
+      className="recap w-full md:w-5/6 lg:w-2/3 absolute bottom-0 md:top-0 md:my-auto md:left-10 z-50 flex flex-col items-center justify-center gap-4 md:gap-0 md:justify-evenly bg-black md:bg-white text-white md:text-gray-900 p-16 md:p-8 md:shadow"
     >
       <div className="hidden md:block w-max relative">
-        <h2 className="text-lg md:text-xl uppercase px-3">Your order</h2>
+        <h2 className="text-lg uppercase px-3">Your order</h2>
         <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-black"></span>
       </div>
 
       <div className=" hidden w-full px-2 md:flex flex-col items-center justify-center">
-        <div className="w-full flex items-center justify-between py-2 border-b border-gray-100">
+        <div className="w-full flex items-center justify-between py-2 border-b border-gray-200">
           <span>Total items:</span>
           <span>{totalItems}</span>
         </div>
-        <div className="w-full flex items-center justify-between py-2 border-b border-gray-100">
+        <div className="w-full flex items-center justify-between py-2 border-b border-gray-200">
           <span>Delivery fees:</span>
           <span className="italic">free</span>
         </div>

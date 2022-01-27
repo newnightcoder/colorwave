@@ -6,7 +6,7 @@ import "../../Styles/_variables.css";
 const Footer = () => {
   return (
     <div className="h-max w-screen bg-black text-gray-300 flex flex-col items-center justify-center px-5 md:px-16 py-6 font-cabin border-t-8 border-yellow-300">
-      <div className="relative w-full max-w-5xl flex flex-col md:flex-row items-center justify-center gap-8 md:gap-2 pl-1 py-5">
+      <div className="relative w-full max-w-6xl flex flex-col md:flex-row items-center justify-center gap-8 md:gap-2 pl-1 py-5">
         <div className="w-full flex flex-col pt-12 md:pt-0 md:flex-row items-center justify-center gap-4 md:gap-16">
           <div className="w-full">
             <div className="w-full md:w-max relative">

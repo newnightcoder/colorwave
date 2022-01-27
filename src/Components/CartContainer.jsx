@@ -2,6 +2,7 @@ import React from "react";
 import { ChevronDoubleLeft, Trash } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import "../Styles/_variables.css";
 import useWindowSize from "../utils/useWindowSize";
 
 const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, handleDeleteCart, formOpen }) => {
@@ -16,12 +17,12 @@ const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, han
       {items.length !== 0 && (
         <div className="h-max w-full flex flex-col items-start justify-center gap-2 pt-4 pl-4 md:pl-10 md:pt-6">
           <div className="w-max relative">
-            <h1 className="w-full text-xl md:text-3xl uppercase px-3">Your Cart</h1>
+            <h2 className="text-center text-xl md:text-2xl font-bold uppercase px-3 md:px-6">Your cart</h2>
             <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-black"></span>
           </div>
           <Link
             to="/shop"
-            className="flex items-center justify-center gap-1 text-gray-900 hover:underline hover:font-bold group"
+            className="flex items-center justify-center gap-1 text-gray-900 hover:underline hover:font-bold group md:pl-6"
           >
             <ChevronDoubleLeft size={12} />
             <span>Continue shopping</span>
@@ -57,8 +58,11 @@ const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, han
           {items.map((item, i) => (
             <div
               key={i}
-              style={{ height: width < 500 ? "7rem" : width < 768 ? "12rem" : "14rem" }}
-              className="item w-11/12 flex items-center justify-start gap-1 md:gap-6 pr-1 md:px-0 bg-white shadow"
+              style={{
+                height: width < 500 ? "7rem" : width < 768 ? "12rem" : "14rem",
+                animation: `750ms fadeIn ${100 + i * 50}ms forwards`,
+              }}
+              className="item opacity-0 w-11/12 flex items-center justify-start gap-1 md:gap-6 pr-1 md:px-0 bg-white shadow"
             >
               <div
                 className="h-full w-full md:w-80 border-r border-gray-100"

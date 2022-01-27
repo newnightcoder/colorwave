@@ -28,20 +28,23 @@ const Navbar = () => {
   return (
     <>
       {(location.pathname !== "/cart" || width < 768) && (
-        <div className="nav-container h-16 md:h-20 w-screen bg-black shadow-lg fixed top-0 z-40 font-cabin border-b-8 border-yellow-300 shadow-lg shadow-yellow-300">
-          <div className="h-full w-full mx-auto px-2 sm:px-6 lg:px-8">
+        <div className="h-16 md:h-20 w-screen bg-black shadow-lg fixed top-0 z-40 font-cabin border-b-8 border-yellow-300 shadow-lg shadow-yellow-300">
+          <div className="nav-container h-full w-full mx-auto px-4">
+            {/* 
+                /////////////////////////
+                ///      PART 1       ///
+                //////////////////////// */}
             <div className="h-full relative flex items-center justify-between">
-              {/* <!-- MOBILE MENU BUTTON--> */}
-              <div className="absolute inset-y-0 left-0 mr-1 sm:mr-5 flex items-center md:hidden">
+              {/* HAMBURGER ICON. Heroicon name: outline/menu   Menu open: "hidden", Menu closed: "block" */}
+              <div className="flex items-center">
                 <button
                   type="button"
-                  className="inline-flex items-center justify-center p-2 text-white hover:text-blue-500 focus:outline-none"
+                  className=" md:hidden inline-flex items-center justify-center p-2 text-white hover:text-blue-500 focus:outline-none"
                   aria-controls="mobile-menu"
                   aria-expanded="false"
                   onClick={toggleMenu}
                 >
                   <span className="sr-only">Open menu</span>
-                  {/* HAMBURGER ICON. Heroicon name: outline/menu   Menu open: "hidden", Menu closed: "block" */}
                   <svg
                     className="h-9 w-9"
                     style={{ display: menuOpen ? "none" : "block" }}
@@ -66,21 +69,27 @@ const Navbar = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
+                <NavLink to="/" className="w-max group absolute inset-x-0 m-auto md:static">
+                  <div className="relative">
+                    <span
+                      className="block absolute -inset-1 transform transition-all duration-300 -skew-y-6 bg-yellow-300 group-hover:skew-y-3 group-hover:bg-blue-500"
+                      aria-hidden="true"
+                    ></span>
+                    <h1 className="relative text-lg transition-color duration-300 text-black group-hover:text-white px-1">
+                      COLORWAVE
+                    </h1>
+                  </div>
+                </NavLink>
               </div>
-              <div className="w-full flex items-center justify-start lg:justify-between">
-                <nav className="hidden md:flex items-center justify-center lg:gap-4 ml-10">
-                  <NavLink to="/" className="w-full transform -translate-x-5 group">
-                    <div className="relative">
-                      <span
-                        className="block absolute -inset-1 transform transition-all duration-300 -skew-y-6 bg-yellow-300 group-hover:skew-y-3 group-hover:bg-blue-500"
-                        aria-hidden="true"
-                      ></span>
-                      <h1 className="relative text-lg transition-color duration-300 text-black group-hover:text-white px-1">
-                        COLORWAVE
-                      </h1>
-                    </div>
-                  </NavLink>
-                  {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white"  */}
+              {/* <!-- END MOBILE MENU BUTTON--> */}
+
+              {/* 
+                /////////////////////////
+                ///      PART 2       ///
+                //////////////////////// */}
+              <div className="w-full flex items-center justify-between pl-6 pr-3">
+                {/* <!-- END DESKTOP NAVLINKS CONTAINER --> */}
+                <nav className="hidden md:flex items-center justify-center lg:gap-4">
                   <NavLink
                     to="/shop"
                     className="relative text-gray-300 hover:text-white text-base font-medium whitespace-nowrap group px-3 py-2"
@@ -88,7 +97,6 @@ const Navbar = () => {
                     <span className="absolute inline-block inset-x-0 bottom-2 mx-auto h-0.5 w-full bg-yellow-300 transform scale-x-0 transition-scale origin-center duration-100 group-hover:scale-x-100"></span>
                     <span className="capitalize">Products</span>
                   </NavLink>
-
                   <NavLink
                     to="/categories/limited"
                     className="relative text-gray-300 hover:text-white text-base font-medium whitespace-nowrap group px-3 py-2"
@@ -105,7 +113,6 @@ const Navbar = () => {
                     <span className="absolute inline-block inset-x-0 bottom-2 mx-auto h-0.5 w-full bg-yellow-300 transform scale-x-0 transition-scale origin-center duration-100 group-hover:scale-x-100"></span>
                     <span>Promotional</span>
                   </NavLink>
-
                   <NavLink
                     to="/support"
                     className="relative text-gray-300 hover:text-white text-base font-medium whitespace-nowrap group px-3 py-2"
@@ -114,8 +121,15 @@ const Navbar = () => {
                     <span>Support</span>
                   </NavLink>
                 </nav>
-                <div className="w-max h-full absolute right-0 flex items-center justify-center gap-4 lg:gap-8 mr-6 md:mr-4 xl:mr-8">
-                  {/* SEARCH BAR */}
+                {/* <!-- END DESKTOP NAVLINKS CONTAINER --> */}
+
+                {/* 
+                  ///////////////////////////////////////////////////
+                  ///      SEARCH + CHECKOUT BTNS CONTAINER      ///
+                  ////////////////////////////////////////////////// */}
+
+                <div className="w-max h-full absolute md:static right-4 flex items-center justify-center gap-4 lg:gap-8">
+                  {/* search btn*/}
                   <button
                     onClick={() => {
                       dispatch(toggleSearchModal());
@@ -123,10 +137,10 @@ const Navbar = () => {
                     className="h-10/12 w-max relative group flex items-center justify-center gap-2 text-gray-300"
                   >
                     <span className="absolute inline-block inset-x-0 bottom-0 mx-auto h-0.5 w-full bg-blue-500 transform scale-x-0 transition-scale origin-left duration-100 group-hover:scale-x-100"></span>
-                    <span>Search</span>
+                    <span className="hidden md:inline-block">Search</span>
                     <Search size={18} className="text-white transition-color duration-300 group-hover:text-blue-500" />
                   </button>
-
+                  {/* Checkout btn*/}
                   {location.pathname !== "/cart" && (
                     <button
                       onClick={() => dispatch(toggleCartDrawer())}
@@ -178,11 +192,18 @@ const Navbar = () => {
                     </button>
                   )}
                 </div>
+                {/* <!-- SEARCH + CHECKOUT BTNS CONTAINER --> */}
               </div>
+              {/* <!-- END PART 2  --> */}
             </div>
+            {/* <!-- END PART 1  --> */}
           </div>
+          {/* <!-- END NAVBAR CONTAINER  --> */}
 
-          {/* <!-- Mobile menu, show/hide based on menu state. --> */}
+          {/* 
+            /////////////////////////////////////////////////////////
+            ///   MOBILE MENU  - SHOW/HIDE BASED ON MENU STATE   ///
+            /////////////////////////////////////////////////////// */}
           <div
             style={{ transform: menuOpen ? "scaleX(100%)" : "scaleX(0)" }}
             className="w-max pl-2 pr-10 flex flex-col bg-black origin-left transition-scale duration-100"
@@ -248,3 +269,20 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+{
+  /* <NavLink
+                  to="/"
+                  className="h-min w-max md:hidden absolute inset-0 mx-auto flex items-center justify-center group"
+                >
+                  <div className="relative">
+                    <span
+                      className="block absolute -inset-1 transform transition-all duration-300 -skew-y-6 bg-yellow-300 group-hover:skew-y-3 group-hover:bg-blue-500"
+                      aria-hidden="true"
+                    ></span>
+                    <h1 className="relative text-lg transition-color duration-300 text-black group-hover:text-white px-1">
+                      COLORWAVE
+                    </h1>
+                  </div>
+                </NavLink> */
+}

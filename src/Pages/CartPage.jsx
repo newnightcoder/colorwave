@@ -12,7 +12,7 @@ let stripePromise;
 
 (async () => {
   const { key } = await fetch("http://localhost:4242/").then((res) => res.json());
-  stripePromise = await loadStripe(key);
+  stripePromise = await loadStripe(key, { locale: "en" });
 })();
 
 const CartPage = () => {
@@ -268,7 +268,7 @@ const CartPage = () => {
                   style={{
                     transform:
                       formOpen && width < 768
-                        ? "translateY(calc(-100vh + 94px))"
+                        ? "translateY(calc(-100vh + 64px))"
                         : formOpen && width > 768
                         ? "translateY(calc(-100vh + 76px))"
                         : formValidated && "translateY(calc(-100vh - 10px))",

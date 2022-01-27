@@ -29,13 +29,14 @@ const Form = ({
       style={{ height: "calc(100vh - 64px)" }}
       className="form-container w-full z-30 relative flex flex-col items-center justify-center md:justify-start transition duration-300 text-gray-900"
     >
-      <h1 className="h-12 md:h-16 w-full absolute top-0 xl:top-4 left-0 text-center uppercase text-lg md:text-xl font-bold px-4 py-4 shadow md:shadow-none">
-        Your delivery information
-      </h1>
+      <div className="w-max absolute top-4 left-4 md:top-10 md:left-10">
+        <h2 className="w-full text-center uppercase text-xl md:text-2xl font-bold px-3">Your delivery information</h2>
+        <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-black"></span>
+      </div>
 
       <form
         // style={{ height: width < 768 ? "calc(100vh - 300px)" : "calc(100vh - 128px)" }}
-        className="form-solid md:self-end h-max w-10/12 max-w-3xl overflow-y-auto flex flex-col items-center justify-start gap-2 text-gray-900 pb-48 md:pt-2 md:pb-12 mt-16 md:mt-20 xl:mt-24 2xl:mt-32"
+        className="form-solid h-max w-10/12 max-w-3xl overflow-y-auto flex flex-col items-center justify-start gap-2 text-gray-900 pb-48 md:pt-2 md:pb-12 mt-16 md:mt-20 xl:mt-24 2xl:mt-32"
       >
         <div className="w-full flex flex-col md:flex-row gap-2">
           <div className="flex flex-col w-full md:w-1/2">

@@ -31,6 +31,25 @@ const ProductPage = () => {
     return relatedProduct;
   };
 
+  const getFullVersionRelatedProduct = (product) => {
+    let relatedProduct = shop.find((item) => item.id === product.id);
+    return relatedProduct;
+  };
+
+  const linkToRelatedProduct = (related) => {
+    if (getFullVersionRelatedProduct(related).variant_groups.length !== 0) {
+      history.push({
+        pathname: `/categories/${getRelatedItem(related.id).name}`,
+        state: { variants: true, item: getFullVersionRelatedProduct(related) },
+      });
+      return;
+    }
+    history.push({
+      pathname: `/product/${getRelatedItem(related.id).name}`,
+      state: { item: getFullVersionRelatedProduct(related) },
+    });
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [getRelatedItem]);
@@ -39,11 +58,6 @@ const ProductPage = () => {
     const qty = 1;
     dispatch(addToCart(item, qty));
     dispatch(toggleCartDrawer());
-  };
-
-  const getFullVersionRelatedProduct = (product) => {
-    let relatedProduct = shop.find((item) => item.id === product.id);
-    return relatedProduct;
   };
 
   const bgColor = item?.categories[0]?.name === "gaming" ? "black" : "#fefefe";
@@ -148,24 +162,7 @@ const ProductPage = () => {
 
         <Carousel responsive={responsive} containerClass="" className="pb-8">
           {item?.related_products.map((related, i) => (
-            <div
-              key={i + 1}
-              className="h-36 md:h-60 cursor-pointer"
-              onClick={() => {
-                if (getFullVersionRelatedProduct(related).variant_groups.length !== 0) {
-                  history.push({
-                    pathname: `/categories/${getRelatedItem(related.id).name}`,
-                    state: { variants: true, item: getFullVersionRelatedProduct(related) },
-                  });
-                  return;
-                }
-                console.log(getFullVersionRelatedProduct(related));
-                history.push({
-                  pathname: `/product/${getRelatedItem(related.id).name}`,
-                  state: { item: getFullVersionRelatedProduct(related) },
-                });
-              }}
-            >
+            <div key={i + 1} className="h-36 md:h-60 cursor-pointer" onClick={() => linkToRelatedProduct(related)}>
               <img className="object-contain h-full w-full" src={related.media.source} alt={related.name} />
               <div>{related.name}</div>
             </div>
