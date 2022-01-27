@@ -39,31 +39,31 @@
 }
 
 /* scrollbar product description  */
-.description {
+.scrollbar-description {
   scrollbar-color: #fcd34d;
   scrollbar-width: auto;
 }
 
-.description::-webkit-scrollbar {
-  width: 10px;
+.scrollbar-description::-webkit-scrollbar {
+  width: 5px;
   background-color: dimgray;
 }
-.description::-webkit-scrollbar-thumb {
-  width: 10px;
+.scrollbar-description::-webkit-scrollbar-thumb {
+  width: 5px;
   background-color: #fcd34d;
 }
 
 /* scrollbar cart items */
-.cart-list {
+.scrollbar-cart {
   scrollbar-color: black;
   scrollbar-width: auto;
 }
 
-.cart-list::-webkit-scrollbar {
-  width: 10px;
+.scrollbar-cart::-webkit-scrollbar {
+  width: 5px;
   background-color: #999;
 }
-.cart-list::-webkit-scrollbar-thumb {
-  width: 10px;
+.scrollbar-cart::-webkit-scrollbar-thumb {
+  width: 5px;
   background-color: black;
 }

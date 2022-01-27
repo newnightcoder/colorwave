@@ -9,7 +9,7 @@ const Steps = ({ formOpen, formValidated }) => {
   const items = useSelector((state) => state?.cart.items);
 
   return (
-    <div className="hidden h-24 w-screen fixed top-0 md:flex items-center justify-center bg-black z-50 shadow">
+    <div className="hidden h-24 w-screen fixed top-0 md:flex items-center justify-center bg-black z-50 shadow border-b-8 border-yellow-300">
       <div className="h-full w-full max-w-6xl flex items-center justify-center -gap-1">
         {width > 500 && (
           <Link to="/" className="w-max group">

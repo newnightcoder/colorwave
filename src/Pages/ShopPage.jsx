@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { Footer, LoaderGaming, LoaderSound, ProductCard } from "../Components";
-import "../Styles/page.css";
 import "../Styles/_variables.css";
 
 const ShopPage = () => {

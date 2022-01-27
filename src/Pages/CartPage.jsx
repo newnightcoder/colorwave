@@ -253,8 +253,8 @@ const CartPage = () => {
         <Steps formOpen={formOpen} formValidated={formValidated} />
 
         <div
-          style={{ height: "calc(100vh - 64px)" }}
-          className="page relative w-screen overflow-y-hidden font-cabin flex flex-col items-center justify-center bg-sound"
+          style={{ height: width < 768 ? "calc(100vh - 4rem)" : "calc(100vh - 5.5rem)" }}
+          className="page relative w-screen overflow-y-hidden font-cabin flex flex-col items-center justify-center bg-sound md:mt-8"
         >
           {/*  PAGE CONTAINER */}
           <div

@@ -1,10 +1,7 @@
 import { PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { PaymentBanner } from ".";
-import amex from "../Assets/cards/amex.png";
-import mastercard from "../Assets/cards/mastercard.png";
-import visa from "../Assets/cards/visa.png";
+import { CardInfo, PaymentBanner } from ".";
 import { validatePayment } from "../Redux/Actions/cart.action";
 import useWindowSize from "../utils/useWindowSize";
 
@@ -31,20 +28,23 @@ const CheckoutForm = ({ formValidated }) => {
   return (
     <div
       style={{
-        // height: "calc(100vh - 64px)",
         opacity: formValidated ? "1" : "0",
         zIndex: formValidated ? 9999 : -1,
       }}
-      className="h-full w-full bg-sound text-gray-900 fixed top-0 left-0 flex flex-col items-center justify-center md:justify-start transition duration-300 border-4 border-red-500"
+      className="h-full w-full bg-sound text-gray-900 fixed top-0 left-0 flex flex-col items-center justify-start md:gap-2 transition duration-300"
     >
+      <div className="hidden md:block w-max relative px-3 pt-4 2xl:pt-8">
+        <h2 className="font-bold text-xl md:text-2xl">PAYMENT</h2>
+        <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 md:bottom-1 bg-black"></span>
+      </div>
       <div
-        style={{ height: width > 768 ? "calc(100vh - 226px)" : "calc(100vh - 64px)" }}
-        className="w-full flex flex-col items-center justify-center overflow-auto md:pt-8 2xl:pt-0 gap-4 2xl:gap-8"
+        style={{
+          height: width < 768 ? "calc(100vh - 160px)" : width < 1536 ? "calc(100vh - 240px)" : "calc(100vh - 308px)",
+        }}
+        className="h-max w-full md:w-max md:px-2 relative scrollbar-cart flex flex-col md:flex-row items-center justify-start md:items-start md:justify-center 2xl:items-center gap-4 2xl:gap-8 overflow-x-hidden overflow-y-auto md:pt-0 pb-4"
       >
-        <div className="hidden md:block w-max relative px-3 pt-4 2xl:pt-8">
-          <h2 className="font-bold text-xl md:text-2xl">PAYMENT</h2>
-          <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 md:bottom-1 bg-blue-500"></span>
-        </div>
+        <CardInfo />
+
         <form
           action="post"
           className="h-max w-max flex flex-col items-center justify-center gap-4"
@@ -59,31 +59,6 @@ const CheckoutForm = ({ formValidated }) => {
         </form>
       </div>
       <PaymentBanner />
-      <div className="h-max w-full text-sm text-white fixed top-0 bg-gray-500 flex flex-col items-start justify-center gap-2 z-40 px-4 py-2">
-        <h3 className="uppercase italic underline font-bold">
-          Please use one of the following credit card numbers to proceed to payment :{" "}
-        </h3>
-        <div className="h-full w-full flex flex-col md:flex-row items-start justify-center gap-1">
-          <div className="flex items-center justify-center gap-2">
-            <div className="h-6 w-8 border border-white rounded overflow-hidden">
-              <img src={visa} alt="" className="object-cover h-full w-full overflow-hidden" />
-            </div>
-            <span>4242 4242 4242 4242</span>
-          </div>
-          <div className="flex items-center justify-center gap-2">
-            <div className="h-6 w-8 border border-white rounded overflow-hidden">
-              <img src={mastercard} alt="" className="object-cover h-full w-full" />
-            </div>
-            <span>5555 5555 5555 4444</span>
-          </div>
-          <div className="flex items-center justify-center gap-2">
-            <div className="h-6 w-8 border border-white rounded overflow-hidden">
-              <img src={amex} alt="" className="object-cover h-full w-full" />
-            </div>
-            <span>3782 822463 10005</span>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

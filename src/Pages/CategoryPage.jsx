@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import { ProductCard } from "../Components";
-import "../Styles/page.css";
 import "../Styles/_variables.css";
 
 const CategoryPage = () => {

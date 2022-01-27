@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { Footer } from "../Components";
 import { addToCart, toggleCartDrawer } from "../Redux/Actions/cart.action";
-import "../Styles/page.css";
 import "../Styles/_variables.css";
 import useWindowSize from "../utils/useWindowSize";
 
@@ -134,7 +133,7 @@ const ProductPage = () => {
 
             <div
               style={{ backgroundColor: descriptionBgColor, color: textColor }}
-              className="description h-max max-h-56 w-full max-w-lg md:h-auto overflow-auto p-4 rounded-sm"
+              className="scrollbar-description h-max max-h-56 w-full max-w-lg md:h-auto overflow-auto p-4 rounded-sm"
               //❌ DOMPURIFY OR SANITIZER NEEDED!!! OR REACT-HTML-PARSER!!
               dangerouslySetInnerHTML={{ __html: item?.description }}
             ></div>
