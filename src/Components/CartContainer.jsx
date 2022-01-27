@@ -11,7 +11,7 @@ const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, han
   return (
     <div
       className="cart-container w-full relative flex flex-col items-center justify-start gap-4 text-gray-900 bg-sound"
-      style={{ height: width < 768 ? "calc(100vh - 98px)" : "calc(100vh - 76px)" }}
+      style={{ height: width < 768 ? "calc(100vh - 64px)" : "calc(100vh - 96px)" }}
     >
       {items.length !== 0 && (
         <div className="h-max w-full flex flex-col items-start justify-center gap-2 pt-4 pl-4 md:pl-10 md:pt-6">
@@ -37,21 +37,20 @@ const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, han
       )}
 
       {items.length === 0 ? (
-        <div className="fixed z-50 inset-x-0 mx-auto w-max flex flex-col items-center justify-center">
+        <div className="fixed z-50 inset-0 m-auto w-max flex flex-col items-center justify-center">
           <h1 className="text-lg md:text-xl">YOUR CART IS EMPTY</h1>
           <Link
             to="/shop"
             className="flex items-center justify-center gap-1 text-blue-500 hover:underline hover:font-bold"
           >
             <ChevronDoubleLeft size={12} />
-            <span className="capitalize">go back to the shop</span>
+            <span className="capitalize text-lg">go back to the shop</span>
           </Link>
         </div>
       ) : (
         <div
           style={{
             height: width < 768 ? "calc(100vh - 315px)" : "calc(100vh - 220px)",
-            // justifyContent: items.length === 1 && width > 768 ? "center" : "flex-start",
           }}
           className="items-container scrollbar-cart relative w-full md:w-11/12 xl:w-10/12 overflow-y-auto flex flex-col justify-start items-center gap-4 pb-8 md:pb-4 pt-4"
         >

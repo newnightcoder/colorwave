@@ -1,5 +1,5 @@
 import { PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CardInfo, PaymentBanner } from ".";
 import { validatePayment } from "../Redux/Actions/cart.action";
@@ -11,18 +11,25 @@ const CheckoutForm = ({ formValidated }) => {
   const userOrder = useSelector((state) => state?.cart.userOrder);
   const dispatch = useDispatch();
   const { height, width } = useWindowSize();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(userOrder);
-    dispatch(validatePayment());
-    const { error } = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        return_url: "http://localhost:3001/success",
-      },
-    });
-    if (error) return;
+    setIsLoading(true);
+    try {
+      const { error } = await stripe.confirmPayment({
+        elements,
+        confirmParams: {
+          return_url: "http://localhost:3001/success",
+        },
+      });
+      if (error) return;
+      setIsLoading(false);
+      dispatch(validatePayment());
+    } catch (err) {
+      throw err;
+    }
   };
 
   return (
@@ -52,8 +59,29 @@ const CheckoutForm = ({ formValidated }) => {
         >
           <div className="h-max w-11/12 md:w-full bg-white relative flex flex-col items-center justify-center pt-8 pb-24 md:pb-32 px-10 rounded-sm">
             <PaymentElement />
-            <button className="w-9/12 absolute bottom-5 py-2 md:py-3 uppercase font-bold text-gray-900 font-bold bg-blue-400 rounded-sm mb-2 md:mb-4">
-              pay now
+            <button className="w-9/12 absolute bottom-5 py-2 md:py-3 uppercase md:text-xl text-gray-100 bg-blue-400 rounded-sm mb-2 md:mb-4">
+              <>
+                {isLoading ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <svg
+                      class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                      <path
+                        class="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                    <span className="text-white">processing...</span>
+                  </span>
+                ) : (
+                  <span>pay now</span>
+                )}
+              </>
             </button>
           </div>
         </form>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Check2Circle } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
+import { Footer } from "../Components";
 import { deleteCart } from "../Redux/Actions/cart.action";
 
 const ConfirmationPage = () => {
@@ -27,17 +28,20 @@ const ConfirmationPage = () => {
   }, [userOrder]);
 
   return (
-    <div
-      style={{ height: "calc(100vh - 64px)" }}
-      className="bg-gray-300 w-screen  flex flex-col space-y-8 items-center justify-center"
-    >
-      <span className="text-center">
-        Congratulations {userOrder?.userFirstName}! <br /> Your order n&deg;&nbsp;{orderId?.toUpperCase()} was
-        successful. <br />
-        Thank you for your purchase. <br />
-      </span>
-      <Check2Circle className="text-9xl text-green-500" />
-    </div>
+    <>
+      <div
+        style={{ height: "calc(100vh - 64px)" }}
+        className="w-screen  relative flex flex-col gap-8 items-center justify-center bg-gray-300 border-red-500 "
+      >
+        <span className="text-center">
+          Congratulations {userOrder?.userFirstName}! <br /> Your order n&deg;&nbsp;{orderId?.toUpperCase()} was
+          successful. <br />
+          Thank you for your purchase. <br />
+        </span>
+        <Check2Circle className="text-9xl text-green-500" />
+      </div>
+      <Footer />
+    </>
   );
 };
 
