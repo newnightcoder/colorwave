@@ -56,7 +56,7 @@ const CartDrawer = () => {
       </button>
       <div className="h-full w-full flex flex-col items-center justify-center gap-6">
         <div
-          style={{ animation: cartDrawerOpen && items.length !== 0 && "850ms fadeIn 200ms forwards" }}
+          style={{ animation: cartDrawerOpen && items.length !== 0 && "750ms fadeIn 100ms forwards" }}
           className="opacity-0 w-max h-min relative"
         >
           <h1 className="text-xl md:text-3xl px-4 text-center">Your Cart</h1>
@@ -69,7 +69,7 @@ const CartDrawer = () => {
               <div
                 key={i}
                 style={{
-                  animation: cartDrawerOpen && items.length !== 0 && `850ms fadeIn ${300 + i * 100}ms forwards`,
+                  animation: cartDrawerOpen && items.length !== 0 && `750ms fadeIn ${200 + i * 100}ms forwards`,
                 }}
                 className="opacity-0 w-full flex flex items-center justify-left border-b border-gray-300 only:border-b-0 last:border-b-0 bg-white md:pr-3"
               >
@@ -97,7 +97,7 @@ const CartDrawer = () => {
           )}
         </div>
         <div
-          style={{ animation: cartDrawerOpen && items.length !== 0 && "850ms fadeIn 500ms forwards" }}
+          style={{ animation: cartDrawerOpen && items.length !== 0 && "750ms fadeIn 400ms forwards" }}
           className="opacity-0 h-max flex flex-col md:flex-row items-center justify-center gap-2 md:gap-8"
         >
           <button

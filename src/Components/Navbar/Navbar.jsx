@@ -34,7 +34,7 @@ const Navbar = () => {
                 /////////////////////////
                 ///      PART 1       ///
                 //////////////////////// */}
-            <div className="h-full relative flex items-center justify-between">
+            <div className="h-full relative flex items-center justify-between md:pl-4">
               {/* HAMBURGER ICON. Heroicon name: outline/menu   Menu open: "hidden", Menu closed: "block" */}
               <div className="flex items-center">
                 <button
@@ -87,7 +87,7 @@ const Navbar = () => {
                 /////////////////////////
                 ///      PART 2       ///
                 //////////////////////// */}
-              <div className="w-full flex items-center justify-between pl-6 pr-3">
+              <div className="w-full flex items-center justify-between px-8 2xl:pl-12 2xl:pr-8">
                 {/* <!-- END DESKTOP NAVLINKS CONTAINER --> */}
                 <nav className="hidden md:flex items-center justify-center lg:gap-4">
                   <NavLink
@@ -137,7 +137,7 @@ const Navbar = () => {
                     className="h-10/12 w-max relative group flex items-center justify-center gap-2 text-gray-300"
                   >
                     <span className="absolute inline-block inset-x-0 bottom-0 mx-auto h-0.5 w-full bg-blue-500 transform scale-x-0 transition-scale origin-left duration-100 group-hover:scale-x-100"></span>
-                    <span className="hidden md:inline-block">Search</span>
+                    <span className="hidden md:inline-block group-hover:text-white">Search</span>
                     <Search size={18} className="text-white transition-color duration-300 group-hover:text-blue-500" />
                   </button>
                   {/* Checkout btn*/}

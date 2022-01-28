@@ -160,7 +160,7 @@ const ProductPage = () => {
           <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-1 bg-gray-300"></span>
         </div>
 
-        <Carousel responsive={responsive} containerClass="" className="pb-8">
+        <Carousel responsive={responsive} infinite={true} className="pb-8">
           {item?.related_products.map((related, i) => (
             <div key={i + 1} className="h-36 md:h-60 cursor-pointer" onClick={() => linkToRelatedProduct(related)}>
               <img className="object-contain h-full w-full" src={related.media.source} alt={related.name} />

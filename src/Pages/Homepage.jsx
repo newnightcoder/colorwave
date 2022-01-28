@@ -26,6 +26,8 @@ const HomePage = () => {
   const proController = shop.find((item) => item.name === "Nintendo Switch Pro Controller");
   const magicKeyboard = shop.find((item) => item.name === "Apple Magic Keyboards");
   const sennheiser = shop.find((item) => item.name === "Custom Sennheiser e 945 Microphone");
+  const sennheiserMobile = shop.find((item) => item.name === "Custom Shure MV7 microphone");
+
   const { pathname } = useLocation();
   const { height, width } = useWindowSize();
 
@@ -39,25 +41,38 @@ const HomePage = () => {
   const linkTo = (e) => {
     switch (e.currentTarget.firstChild.src) {
       case `http://localhost:3001${img1}`:
+      case `http://localhost:3001${imgMob1}`: {
         return history.push({
           pathname: `/product/${airpods.name}`,
           state: { item: airpods },
         });
+      }
       case `http://localhost:3001${img2}`:
+      case `http://localhost:3001${imgMob2}`: {
         return history.push({
           pathname: `/product/${proController.name}`,
           state: { item: proController },
         });
+      }
       case `http://localhost:3001${img3}`:
+      case `http://localhost:3001${imgMob3}`: {
         return history.push({
           pathname: `/categories/${magicKeyboard.name}`,
           state: { item: magicKeyboard, variants: true, from: pathname },
         });
+      }
       case `http://localhost:3001${img4}`:
         return history.push({
           pathname: `/product/${sennheiser.name}`,
           state: { item: sennheiser },
         });
+
+      case `http://localhost:3001${imgMob4}`: {
+        return history.push({
+          pathname: `/product/${sennheiserMobile.name}`,
+          state: { item: sennheiserMobile },
+        });
+      }
 
       default:
         return;
@@ -81,33 +96,22 @@ const HomePage = () => {
       </div>
 
       <CategoriesGrid />
-      <Link
-        to="/promotional"
-        className="w-full"
-        style={{
-          height: width < 768 ? "250px" : "550px",
-          background: `url("${imgPromote1}") no-repeat ${width < 768 ? "left/cover" : "center/cover"}`,
-        }}
-      >
-        {/* <img src={imgPromote1} alt="" className="object-cover h-full w-full" /> */}
+      <Link to="/promotional" className="w-full">
+        <img src={imgPromote1} alt="" className="object-cover h-full w-full" />
       </Link>
-      <div className="h-36 md:h-56 w-full flex items-center justify-center">
-        <Link
-          to="/shop"
-          className="group relative w-max h-max flex items-center justify-center text-center transition duration-300 bg-white md:bg-black md:hover:bg-white md:border-2 md:border-yellow-300 hover:border-white rounded-lg py-2 pl-2 pr-4"
-        >
+      <Link
+        to="/shop"
+        className="h-36 md:h-56 w-full  relative w-max h-max flex items-center justify-center text-center "
+      >
+        <div className="flex items-center justify-center group transition duration-300 bg-white md:bg-black md:hover:bg-white md:border-2 md:border-yellow-300 hover:border-white rounded-lg py-2 pl-2 pr-4">
           <span className="uppercase italic text-4xl md:text-7xl text-blue-600 md:text-white transition duration-300 md:group-hover:text-blue-600 font-bold whitespace-nowrap">
             see all products
           </span>
           <ChevronDoubleRight className="hidden lg:block absolute -right-24 text-4xl md:text-7xl transition duration-300 text-yellow-300 group-hover:text-blue-600 bounce-right transform translate-x-50" />
-        </Link>
-      </div>
-      <Link
-        to="/promotional"
-        className="w-full"
-        style={{ height: width < 768 ? "250px" : "550px", background: `url("${imgPromote2}") no-repeat center/cover` }}
-      >
-        {/* <img src={imgPromote2} alt="" className="w-full" /> */}
+        </div>
+      </Link>
+      <Link to="/promotional" className="w-full">
+        <img src={imgPromote2} alt="" className="w-full" />
       </Link>
       <CartDrawer />
       <SearchModal />

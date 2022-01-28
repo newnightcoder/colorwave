@@ -14,7 +14,7 @@ const CardInfo = ({ formValidated }) => {
         height: width > 768 ? "23.5rem" : "8rem",
         animation: formValidated && "500ms fadeInLeft 300ms forwards ease-out",
       }}
-      className="w-full md:w-60 opacity-0 text-sm md:text-base text-white bg-black flex flex-col items-center md:items-start justify-center gap-3 md:gap-6 z-40 py-2 md:py-4 rounded-sm"
+      className="w-full md:w-60 opacity-0 text-sm md:text-base text-white bg-gray-900 md:border md:border-gray-100 flex flex-col items-center md:items-start justify-center gap-3 md:gap-6 z-40 py-2 md:py-4 rounded-sm"
     >
       <h3 className="uppercase underline font-bold text-center">Please use one of the following credit cards</h3>
       <div className="h-max w-full flex md:flex-col items-center justify-evenly md:gap-4">
