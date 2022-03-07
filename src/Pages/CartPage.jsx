@@ -12,7 +12,7 @@ import useWindowSize from "../utils/useWindowSize";
 let stripePromise;
 
 (async () => {
-  const { key } = await fetch("/stripe").then((res) => res.json());
+  const { key } = await fetch("https://colorwave-shop.herokuapp.com/stripe").then((res) => res.json());
   if (key !== undefined) {
     return (stripePromise = await loadStripe(key, { locale: "en" }));
   }
@@ -71,7 +71,7 @@ const CartPage = () => {
     const request = {
       method: "post",
     };
-    const paymentIntentUrl = "/payment-intent-secret";
+    const paymentIntentUrl = "https://colorwave-shop.herokuapp.com/payment-intent-secret";
     const response = await fetch(paymentIntentUrl, request);
     const data = await response.json();
     setClientSecret(data.clientSecret);

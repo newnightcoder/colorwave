@@ -43,7 +43,7 @@ export const saveOrder = (order) => (dispatch) => {
 
 export const validatePayment = (order) => async (dispatch) => {
   try {
-    const url = "/user-order";
+    const url = "https://colorwave-shop.herokuapp.com/user-order";
     const request = {
       headers: {
         "Content-type": "Application/json",
