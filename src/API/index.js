@@ -1,7 +1,9 @@
 import Commerce from "@chec/commerce.js";
 
 const listing = async () => {
-  const { key } = await fetch("/commerce", { method: "get" }).then((res) => res.json());
+  const { key } = await fetch("https://colorwave-shop.herokuapp.com/commerce", { method: "get" }).then((res) =>
+    res.json()
+  );
   try {
     if (key !== undefined) {
       const commerce = new Commerce(key);
