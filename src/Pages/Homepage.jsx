@@ -15,18 +15,17 @@ import imgMob4 from "../Assets/sliderImg/4mob.png";
 import imgPromote1 from "../Assets/sliderImg/5.png";
 import imgPromote2 from "../Assets/sliderImg/6.png";
 import { CartDrawer, CategoriesGrid, Footer, Navbar, SearchModal } from "../Components";
-import "../Styles/homePage.css";
 import "../Styles/_variables.css";
 import useWindowSize from "../utils/useWindowSize";
 
 const HomePage = () => {
   const history = useHistory();
-  const shop = useSelector((state) => state?.shop.shop);
-  const airpods = shop.find((item) => item.name === "Apple AirPods 3rd Gen");
-  const proController = shop.find((item) => item.name === "Nintendo Switch Pro Controller");
-  const magicKeyboard = shop.find((item) => item.name === "Apple Magic Keyboards");
-  const sennheiser = shop.find((item) => item.name === "Custom Sennheiser e 945 Microphone");
-  const sennheiserMobile = shop.find((item) => item.name === "Custom Shure MV7 microphone");
+  const shop = useSelector((state) => state?.shop?.shop);
+  const airpods = shop?.find((item) => item.name === "Apple AirPods 3rd Gen");
+  const proController = shop?.find((item) => item.name === "Nintendo Switch Pro Controller");
+  const magicKeyboard = shop?.find((item) => item.name === "Apple Magic Keyboards");
+  const sennheiser = shop?.find((item) => item.name === "Custom Sennheiser e 945 Microphone");
+  const sennheiserMobile = shop?.find((item) => item.name === "Custom Shure MV7 microphone");
 
   const { pathname } = useLocation();
   const { height, width } = useWindowSize();
@@ -40,49 +39,49 @@ const HomePage = () => {
 
   const linkTo = (e) => {
     switch (e.currentTarget.firstChild.src) {
-      case `http://localhost:3001${img1}`:
-      case `http://localhost:3001${imgMob1}`: {
+      case `https://colorwave-shop.herokuapp.com${images[0].original}`:
+      case `https://colorwave-shop.herokuapp.com${imgMob1}`: {
         return history.push({
           pathname: `/product/${airpods.name}`,
           state: { item: airpods },
         });
       }
-      case `http://localhost:3001${img2}`:
-      case `http://localhost:3001${imgMob2}`: {
+      case `https://colorwave-shop.herokuapp.com${images[1].original}`:
+      case `https://colorwave-shop.herokuapp.com${imgMob2}`: {
         return history.push({
           pathname: `/product/${proController.name}`,
           state: { item: proController },
         });
       }
-      case `http://localhost:3001${img3}`:
-      case `http://localhost:3001${imgMob3}`: {
+      case `https://colorwave-shop.herokuapp.com${images[2].original}`:
+      case `https://colorwave-shop.herokuapp.com${imgMob3}`: {
         return history.push({
           pathname: `/categories/${magicKeyboard.name}`,
           state: { item: magicKeyboard, variants: true, from: pathname },
         });
       }
-      case `http://localhost:3001${img4}`:
+      case `https://colorwave-shop.herokuapp.com${images[3].original}`:
+      case `https://colorwave-shop.herokuapp.com${imgMob4}`: {
         return history.push({
           pathname: `/product/${sennheiser.name}`,
           state: { item: sennheiser },
         });
+      }
 
-      case `http://localhost:3001${imgMob4}`: {
+      case `${imgMob4}`: {
         return history.push({
           pathname: `/product/${sennheiserMobile.name}`,
           state: { item: sennheiserMobile },
         });
       }
-
       default:
-        return;
+        return null;
     }
   };
 
   return (
-    <div className="min-h-screen w-screen relative flex flex-col items-center gap-1 font-cabin bg-black -mt-1 md:-mt-0 md:pt-4">
+    <div className="pt-16 min-h-screen w-screen relative flex flex-col items-center space-y-1 font-cabin bg-black -mt-1 md:-mt-0">
       <Navbar />
-
       <div className="h-96 md:h-full w-full flex flex-col items-center justify-center">
         <ImageGallery
           items={width > 768 ? images : imagesMob}

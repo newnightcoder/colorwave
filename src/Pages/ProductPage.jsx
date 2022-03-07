@@ -1,14 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { ChevronDoubleRight } from "react-bootstrap-icons";
 import ImageGallery from "react-image-gallery";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import { Footer } from "../Components";
+import { Footer, Navbar } from "../Components";
 import { addToCart, toggleCartDrawer } from "../Redux/Actions/cart.action";
 import "../Styles/_variables.css";
-import useWindowSize from "../utils/useWindowSize";
 
 const ProductPage = () => {
   const location = useLocation();
@@ -17,17 +16,24 @@ const ProductPage = () => {
   const shop = useSelector((state) => state.shop.shop);
   const { item } = location?.state || undefined;
   const { parentProduct } = location?.state || undefined;
-  const { height, width } = useWindowSize();
+  const [related, setRelated] = useState(null);
 
-  const itemImages = item?.assets.map((asset) => ({
-    original: asset.url,
-    thumbnail: asset.url,
-    originalHeight: 500,
-  }));
+  const itemImages = item.assets
+    .filter((asset) => !asset.filename.includes("product"))
+    .map((asset) => ({
+      original: asset.url,
+      thumbnail: asset.url,
+    }));
+
+  const onlyOneImg = [
+    {
+      original: item.assets[0].url,
+      thumbnail: item.assets[0].url,
+    },
+  ];
 
   const getRelatedItem = (id) => {
     const relatedProduct = shop.find((product) => product.id === id);
-    console.log("relatedItem", relatedProduct);
     return relatedProduct;
   };
 
@@ -38,12 +44,15 @@ const ProductPage = () => {
 
   const linkToRelatedProduct = (related) => {
     if (getFullVersionRelatedProduct(related).variant_groups.length !== 0) {
+      setRelated(getRelatedItem(related.id).name);
+
       history.push({
         pathname: `/categories/${getRelatedItem(related.id).name}`,
         state: { variants: true, item: getFullVersionRelatedProduct(related) },
       });
       return;
     }
+    setRelated(getRelatedItem(related.id).name);
     history.push({
       pathname: `/product/${getRelatedItem(related.id).name}`,
       state: { item: getFullVersionRelatedProduct(related) },
@@ -52,7 +61,7 @@ const ProductPage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [getRelatedItem]);
+  }, [related]);
 
   const handleAddToCart = () => {
     const qty = 1;
@@ -83,9 +92,10 @@ const ProductPage = () => {
   };
 
   return (
-    <div className="font-cabin overflow-x-hidden relative">
-      <div className="breadcrumb w-full flex items-center justify-start gap-1 whitespace-nowrap text-gray-900 bg-white px-2 md:pl-10 pt-3 md:pt-8 pb-3">
-        <Link to="/" className="w-max flex items-center justify-center gap-1 capitalize hover:underline">
+    <div className="pt-16 font-cabin overflow-x-hidden relative">
+      <Navbar />
+      <div className="breadcrumb w-full flex items-center justify-start space-x-1 whitespace-nowrap text-gray-900 bg-white px-2 md:pl-10 pt-3 md:pt-8 pb-3 md:border-b border-gray-200">
+        <Link to="/" className="w-max flex items-center justify-center space-x-1 capitalize hover:underline">
           home <ChevronDoubleRight size={12} className="transform translate-y-px" />
         </Link>
         <Link
@@ -96,7 +106,7 @@ const ProductPage = () => {
               item: parentProduct !== undefined && parentProduct,
             },
           }}
-          className="w-max flex items-center justify-center gap-1 capitalize hover:underline"
+          className="w-max flex items-center justify-center space-x-1 capitalize hover:underline"
         >
           <span>{parentProduct !== undefined ? parentProduct.name : item.categories[0]?.name}</span>
           <ChevronDoubleRight size={12} className="transform translate-y-px" />
@@ -105,7 +115,7 @@ const ProductPage = () => {
       </div>
 
       <div
-        className="product w-full max-w-8xl mx-auto flex flex-col lg:flex-row justify-start items-center gap-8 md:gap-2 lg:justify-center bg-black pb-16 md:pb-0 2xl:px-10"
+        className="product w-full max-w-8xl mx-auto flex flex-col lg:flex-row justify-start items-center space-y-8 md:space-y-2 lg:space-x-2 lg:justify-center bg-black pb-16 md:pb-0 2xl:px-10"
         style={{
           minHeight: "calc(100vh - 112px)",
           background: bgColor,
@@ -114,8 +124,8 @@ const ProductPage = () => {
       >
         <div className="h-max w-full lg:w-2/3 flex flex-col items-center justify-center px-2">
           <ImageGallery
-            items={itemImages}
-            showFullscreenButton={false}
+            items={item.assets.length > 1 ? itemImages : onlyOneImg}
+            showFullscreenButton={true}
             showPlayButton={false}
             autoPlay={false}
             showNav={false}
@@ -125,7 +135,7 @@ const ProductPage = () => {
           />
         </div>
 
-        <div className="product-info h-full w-full lg:w-1/3 flex flex-col items-center lg:justify-start border-l border-gray-600 border-opacity-60 text-left px-3 md:px-6 gap-6">
+        <div className="product-info h-full w-full lg:w-1/3 flex flex-col items-center lg:justify-start border-l border-gray-600 border-opacity-60 text-left px-3 md:px-6 space-y-6">
           <div className="h-max w-11/12 lg:w-full max-w-lg flex items-center justify-between md:pt-2">
             <h2 className="w-1/2 lg:w-2/3 text-lg md:text-xl text-bold">{item?.name}</h2>
             <span className="text-bold text-md md:text-lg whitespace-nowrap">{item?.price.formatted}&nbsp;€ </span>
@@ -136,7 +146,7 @@ const ProductPage = () => {
           >
             add to cart
           </button>
-          <div className="w-full flex flex-col items-center justify-center gap-4 self-center">
+          <div className="w-full flex flex-col items-center justify-center space-y-4 self-center">
             <div className="w-max relative px-3">
               <span className="capitalize text-lg md:text-xl">product info</span>
               <span

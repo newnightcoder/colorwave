@@ -1,8 +1,8 @@
 {
-  "name": "frontend-shop",
+  "name": "colorwave-frontend",
+  "author": "nightcoder",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:4242",
   "dependencies": {
     "@chec/commerce.js": "^2.7.1",
     "@craco/craco": "^6.1.2",
@@ -16,7 +16,9 @@
     "autoprefixer": "^9",
     "postcss": "^7",
     "react": "^17.0.2",
+    "react-animate-height": "^2.0.23",
     "react-bootstrap-icons": "^1.5.0",
+    "react-div-100vh": "^0.7.0",
     "react-dom": "^17.0.2",
     "react-image-gallery": "^1.2.7",
     "react-multi-carousel": "^2.6.5",
