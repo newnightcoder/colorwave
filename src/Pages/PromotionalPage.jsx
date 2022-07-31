@@ -1,17 +1,9 @@
-import React from "react";
 import { ChevronDown } from "react-bootstrap-icons";
 import img1 from "../Assets/promotional/1.png";
 import img2 from "../Assets/promotional/2.png";
 import img3 from "../Assets/promotional/3.png";
 import img4 from "../Assets/promotional/4.png";
 import { Footer, Navbar } from "../Components";
-
-const promotionalImages = {
-  img1,
-  img2,
-  img3,
-  img4,
-};
 
 const PromotionalPage = () => {
   // PARALLAX WITH JS _ I USED CSS BACKGROUND-ATTACHEMENT:FIXED INSTEAD
@@ -21,6 +13,15 @@ const PromotionalPage = () => {
   //   window.addEventListener("scroll", handleScroll);
   //   return () => window.removeEventListener("scroll", handleScroll);
   // }, []);
+
+  const cdnPrefix = "https://6fm7ey8k.cdn.imgeng.in";
+
+  const promotionalImages = {
+    img1: `${cdnPrefix}${img1}`,
+    img2: `${cdnPrefix}${img2}`,
+    img3: `${cdnPrefix}${img3}`,
+    img4: `${cdnPrefix}${img4}`,
+  };
 
   return (
     <div className="pt-16 snap-always snap-mandatory snap-y	h-screen w-full relative bg-black font-cabin">
