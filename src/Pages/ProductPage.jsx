@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDoubleRight } from "react-bootstrap-icons";
 import ImageGallery from "react-image-gallery";
 import Carousel from "react-multi-carousel";
@@ -21,14 +21,14 @@ const ProductPage = () => {
   const itemImages = item.assets
     .filter((asset) => !asset.filename.includes("product"))
     .map((asset) => ({
-      original: asset.url,
-      thumbnail: asset.url,
+      original: asset.url.replace("https://cdn.chec.io", "https://190c6rxe.cdn.imgeng.in"),
+      thumbnail: asset.url.replace("https://cdn.chec.io", "https://190c6rxe.cdn.imgeng.in"),
     }));
 
   const onlyOneImg = [
     {
-      original: item.assets[0].url,
-      thumbnail: item.assets[0].url,
+      original: item.assets[0].url.replace("https://cdn.chec.io", "https://190c6rxe.cdn.imgeng.in"),
+      thumbnail: item.assets[0].url.replace("https://cdn.chec.io", "https://190c6rxe.cdn.imgeng.in"),
     },
   ];
 
@@ -92,6 +92,7 @@ const ProductPage = () => {
   };
 
   return (
+    // <ImageEngineProvider deliveryAddress="https://190c6rxe.cdn.imgeng.in">
     <div className="pt-16 font-cabin overflow-x-hidden relative">
       <Navbar />
       <div className="breadcrumb w-full flex items-center justify-start space-x-1 whitespace-nowrap text-gray-900 bg-white px-2 md:pl-10 pt-3 md:pt-8 pb-3 md:border-b border-gray-200">
@@ -181,6 +182,7 @@ const ProductPage = () => {
       </div>
       <Footer />
     </div>
+    // </ImageEngineProvider>
   );
 };
 

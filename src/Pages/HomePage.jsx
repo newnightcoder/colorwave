@@ -27,6 +27,7 @@ const HomePage = () => {
   const magicKeyboard = shop?.find((item) => item.name === "Apple Magic Keyboards");
   const sennheiser = shop?.find((item) => item.name === "Custom Sennheiser e 945 Microphone");
   const sennheiserMobile = shop?.find((item) => item.name === "Custom Shure MV7 microphone");
+  const cdnPrefix = "https://6fm7ey8k.cdn.imgeng.in";
 
   const { pathname } = useLocation();
   const { height, width } = useWindowSize();
@@ -35,8 +36,18 @@ const HomePage = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const images = [{ original: `${img1}` }, { original: img2 }, { original: img3 }, { original: img4 }];
-  const imagesMob = [{ original: imgMob1 }, { original: imgMob2 }, { original: imgMob3 }, { original: imgMob4 }];
+  const images = [
+    { original: `${cdnPrefix}${img1}` },
+    { original: `${cdnPrefix}${img2}` },
+    { original: `${cdnPrefix}${img3}` },
+    { original: `${cdnPrefix}${img4}` },
+  ];
+  const imagesMob = [
+    { original: `${cdnPrefix}${imgMob1}` },
+    { original: `${cdnPrefix}${imgMob2}` },
+    { original: `${cdnPrefix}${imgMob3}` },
+    { original: `${cdnPrefix}${imgMob4}` },
+  ];
 
   const linkTo = (e) => {
     switch (e.currentTarget.firstChild.src) {
@@ -83,7 +94,7 @@ const HomePage = () => {
   return (
     <div className="pt-16 min-h-screen w-screen relative flex flex-col items-center space-y-1 font-cabin bg-black -mt-1 md:-mt-0">
       <Navbar />
-      <ImageEngineProvider deliveryAddress={"http://localhost:3002"}>
+      <ImageEngineProvider deliveryAddress="https://6fm7ey8k.cdn.imgeng.in">
         <div className="h-96 md:h-full w-full flex flex-col items-center justify-center">
           <ImageGallery
             items={width > 768 ? images : imagesMob}
