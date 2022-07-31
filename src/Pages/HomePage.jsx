@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import { Image, ImageEngineProvider } from "@imageengine/react";
+import { useEffect } from "react";
 import { ChevronDoubleRight } from "react-bootstrap-icons";
 import ImageGallery from "react-image-gallery";
 import { useSelector } from "react-redux";
@@ -26,6 +27,7 @@ const HomePage = () => {
   const magicKeyboard = shop?.find((item) => item.name === "Apple Magic Keyboards");
   const sennheiser = shop?.find((item) => item.name === "Custom Sennheiser e 945 Microphone");
   const sennheiserMobile = shop?.find((item) => item.name === "Custom Shure MV7 microphone");
+  const cdnPrefix = "https://6fm7ey8k.cdn.imgeng.in";
 
   const { pathname } = useLocation();
   const { height, width } = useWindowSize();
@@ -34,8 +36,18 @@ const HomePage = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const images = [{ original: img1 }, { original: img2 }, { original: img3 }, { original: img4 }];
-  const imagesMob = [{ original: imgMob1 }, { original: imgMob2 }, { original: imgMob3 }, { original: imgMob4 }];
+  const images = [
+    { original: `${cdnPrefix}${img1}` },
+    { original: `${cdnPrefix}${img2}` },
+    { original: `${cdnPrefix}${img3}` },
+    { original: `${cdnPrefix}${img4}` },
+  ];
+  const imagesMob = [
+    { original: `${cdnPrefix}${imgMob1}` },
+    { original: `${cdnPrefix}${imgMob2}` },
+    { original: `${cdnPrefix}${imgMob3}` },
+    { original: `${cdnPrefix}${imgMob4}` },
+  ];
 
   const linkTo = (e) => {
     switch (e.currentTarget.firstChild.src) {
@@ -82,36 +94,38 @@ const HomePage = () => {
   return (
     <div className="pt-16 min-h-screen w-screen relative flex flex-col items-center space-y-1 font-cabin bg-black -mt-1 md:-mt-0">
       <Navbar />
-      <div className="h-96 md:h-full w-full flex flex-col items-center justify-center">
-        <ImageGallery
-          items={width > 768 ? images : imagesMob}
-          showFullscreenButton={false}
-          showPlayButton={true}
-          autoPlay={true}
-          slideInterval={3000}
-          onClick={(e) => linkTo(e)}
-          additionalClass={"object-cover"}
-        />
-      </div>
-
-      <CategoriesGrid />
-      <Link to="/promotional" className="w-full">
-        <img src={imgPromote1} alt="" className="object-cover h-full w-full" />
-      </Link>
-      <Link
-        to="/shop"
-        className="h-36 md:h-56 w-full  relative w-max h-max flex items-center justify-center text-center "
-      >
-        <div className="flex items-center justify-center group transition duration-300 bg-white md:bg-black md:hover:bg-white md:border-2 md:border-yellow-300 hover:border-white rounded-lg py-2 pl-2 pr-4">
-          <span className="uppercase italic text-4xl md:text-7xl text-blue-600 md:text-white transition duration-300 md:group-hover:text-blue-600 font-bold whitespace-nowrap">
-            see all products
-          </span>
-          <ChevronDoubleRight className="hidden lg:block absolute -right-24 text-4xl md:text-7xl transition duration-300 text-yellow-300 group-hover:text-blue-600 bounce-right transform translate-x-50" />
+      <ImageEngineProvider deliveryAddress="https://6fm7ey8k.cdn.imgeng.in">
+        <div className="h-96 md:h-full w-full flex flex-col items-center justify-center">
+          <ImageGallery
+            items={width > 768 ? images : imagesMob}
+            showFullscreenButton={false}
+            showPlayButton={true}
+            autoPlay={true}
+            slideInterval={3000}
+            onClick={(e) => linkTo(e)}
+            additionalClass={"object-cover"}
+          />
         </div>
-      </Link>
-      <Link to="/promotional" className="w-full">
-        <img src={imgPromote2} alt="" className="w-full" />
-      </Link>
+
+        <CategoriesGrid />
+        <Link to="/promotional" className="w-full">
+          <Image src={imgPromote1} alt="" className="object-cover h-full w-full" />
+        </Link>
+        <Link
+          to="/shop"
+          className="h-36 md:h-56 w-full  relative w-max h-max flex items-center justify-center text-center "
+        >
+          <div className="flex items-center justify-center group transition duration-300 bg-white md:bg-black md:hover:bg-white md:border-2 md:border-yellow-300 hover:border-white rounded-lg py-2 pl-2 pr-4">
+            <span className="uppercase italic text-4xl md:text-7xl text-blue-600 md:text-white transition duration-300 md:group-hover:text-blue-600 font-bold whitespace-nowrap">
+              see all products
+            </span>
+            <ChevronDoubleRight className="hidden lg:block absolute -right-24 text-4xl md:text-7xl transition duration-300 text-yellow-300 group-hover:text-blue-600 bounce-right transform translate-x-50" />
+          </div>
+        </Link>
+        <Link to="/promotional" className="w-full">
+          <Image src={imgPromote2} alt="" className="w-full" />
+        </Link>
+      </ImageEngineProvider>
       <CartDrawer />
       <SearchModal />
       <Footer />
