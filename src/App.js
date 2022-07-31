@@ -54,10 +54,10 @@ const App = () => {
           <CartDrawer />
           <SearchModal />
           <Route exact path="/" component={HomePage} />
+          <Route path="/promotional" component={PromotionalPage} />
           <Route path="/shop" component={ShopPage} />
           <Route path="/categories" component={CategoryPage} />
           <Route path="/product" component={ProductPage} />
-          <Route path="/promotional" component={PromotionalPage} />
           <Route path="/cart" component={CartPage} />
         </>
       </Switch>
