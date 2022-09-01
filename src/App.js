@@ -6,7 +6,16 @@ import WebFont from "webfontloader";
 // import { persistor } from "../src/Redux/storeConfig.js";
 import { CartDrawer } from "./Components";
 import SearchModal from "./Components/SearchModal";
-import { CartPage, CategoryPage, ConfirmationPage, HomePage, ProductPage, PromotionalPage, ShopPage } from "./Pages";
+import {
+  CartPage,
+  CategoryPage,
+  ConfirmationPage,
+  HomePage,
+  PageNotFound,
+  ProductPage,
+  PromotionalPage,
+  ShopPage,
+} from "./Pages";
 import { getShopData } from "./Redux/Actions/shop.action";
 import useWindowSize from "./utils/useWindowSize";
 
@@ -59,6 +68,7 @@ const App = () => {
           <Route path="/categories" component={CategoryPage} />
           <Route path="/product" component={ProductPage} />
           <Route path="/cart" component={CartPage} />
+          <Route path="*" component={PageNotFound} />
         </>
       </Switch>
     </Router>

@@ -1,5 +1,5 @@
 import { ChevronDown } from "react-bootstrap-icons";
-import img1 from "../Assets/promotional/1.png";
+import img1 from "../Assets/promotional/1-light.png";
 import img2 from "../Assets/promotional/2.png";
 import img3 from "../Assets/promotional/3.png";
 import img4 from "../Assets/promotional/4.png";
