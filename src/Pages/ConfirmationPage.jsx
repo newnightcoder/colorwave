@@ -34,13 +34,14 @@ const ConfirmationPage = () => {
           style={{ backgroundColor: "rgba(0,0,0,.5)" }}
           className="h-max w-max flex flex-col space-y-8 items-center justify-center text-center text-white text-lg rounded p-7"
         >
-          <div>
+          <div className="text-sm md:text-base">
             Congratulations <span className="capitalize">{userOrder?.userFirstName}</span>! <br /> Your order
             n&deg;&nbsp;
-            {orderId?.toUpperCase()} was successful. <br />
-            Thank you for your purchase. <br />
+            <span className="underline">{orderId?.toUpperCase()}</span> was successful. <br />
+            You'll receive a confirmation email shortly.
           </div>
           <Check2Circle className="text-9xl text-green-500" />
+          <span className="text-sm md:text-base">Thank you for your purchase!</span>
           <Link
             to={"/"}
             className="w-48 flex items-center justify-center space-x-2 text-base uppercase text-black bg-yellow-300 transition duration-300 hover:text-white hover:bg-blue-500 shadow-md hover:shadow-none py-2 mt-4 group"

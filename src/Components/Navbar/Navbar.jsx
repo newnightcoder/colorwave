@@ -5,14 +5,12 @@ import { useLocation } from "react-router";
 import { Link, NavLink } from "react-router-dom";
 import { toggleCartDrawer } from "../../Redux/Actions/cart.action";
 import { toggleSearchModal } from "../../Redux/Actions/shop.action";
-import useWindowSize from "../../utils/useWindowSize";
 
 const Navbar = () => {
   const items = useSelector((state) => state?.cart.items);
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch();
-  const location = useLocation();
-  const { height, width } = useWindowSize();
+  const { pathname } = useLocation();
 
   const toggleMenu = () => {
     return setMenuOpen((menuOpen) => !menuOpen);
@@ -89,7 +87,7 @@ const Navbar = () => {
                 ///      PART 2       ///
                 //////////////////////// */}
             <div className="w-full flex items-center justify-between px-8 2xl:pl-12 2xl:pr-8">
-              {/* <!-- END DESKTOP NAVLINKS CONTAINER --> */}
+              {/* <!-- DESKTOP NAVLINKS CONTAINER --> */}
               <nav className="hidden md:flex items-center justify-center lg:space-x-4">
                 <NavLink
                   to="/shop"
@@ -123,7 +121,7 @@ const Navbar = () => {
 
               <div className="w-max h-full absolute md:static right-4 flex items-center justify-center space-x-4 lg:space-x-8">
                 {/* search btn*/}
-                {!location.pathname.includes("success") && (
+                {!pathname.includes("success") && (
                   <button
                     onClick={() => {
                       dispatch(toggleSearchModal());
@@ -136,7 +134,7 @@ const Navbar = () => {
                   </button>
                 )}
                 {/* Checkout btn*/}
-                {(location.pathname !== "/cart" || !location.pathname.includes("success")) && (
+                {!pathname.includes("success") && pathname !== "/cart" && (
                   <button
                     onClick={() => dispatch(toggleCartDrawer())}
                     className="w-max h-max relative flex items-center justify-center space-x-1 z-10 text-gray-300 text-base group"
@@ -238,7 +236,7 @@ const Navbar = () => {
             >
               Promotional
             </Link>
-            {location.pathname !== "/cart" && (
+            {pathname !== "/cart" && (
               <Link
                 onClick={toggleMenu}
                 to="/cart"

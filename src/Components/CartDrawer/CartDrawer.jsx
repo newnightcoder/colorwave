@@ -1,4 +1,3 @@
-import React from "react";
 import { ChevronDoubleLeft, ChevronDoubleRight, XCircle, XLg } from "react-bootstrap-icons";
 import Div100vh from "react-div-100vh";
 import { useDispatch, useSelector } from "react-redux";
@@ -34,7 +33,7 @@ const CartDrawer = () => {
         transform: cartDrawerOpen && !location.pathname.includes("cart") ? "translateY(0)" : "translateY(-101%)",
         zIndex: 4000,
       }}
-      className="w-full fixed md:w-2/3 lg:w-1/2 2xl:w-1/3 font-cabin flex flex-col items-center justify-center overflow-x-hidden overflow-y-auto transition-transform duration-300 text-gray-900 right-0 top-0 bg-sound pt-6 pb-12 px-5 md:px-10"
+      className="w-full fixed md:w-2/3 lg:w-1/2 2xl:w-1/3 font-cabin flex flex-col items-center justify-center overflow-x-hidden overflow-y-auto transition-transform duration-300 text-gray-900 right-0 top-0 bg-sound pt-6 pb-12 px-5 md:px-10 "
     >
       <button onClick={() => dispatch(toggleCartDrawer())} className="h-max w-max">
         <XLg size={24} className="absolute top-8 right-10 z-50" />

@@ -92,39 +92,40 @@ const HomePage = () => {
   };
 
   return (
-    <div className="pt-16 min-h-screen w-screen relative flex flex-col items-center space-y-1 font-cabin bg-black -mt-1 md:-mt-0">
+    <div className="pt-16 md:pt-20 min-h-screen w-screen relative font-cabin bg-black">
       <Navbar />
       <ImageEngineProvider deliveryAddress="https://6fm7ey8k.cdn.imgeng.in">
-        <div className="h-96 md:h-full w-full flex flex-col items-center justify-center">
-          <ImageGallery
-            items={width > 768 ? images : imagesMob}
-            showFullscreenButton={false}
-            showPlayButton={true}
-            autoPlay={true}
-            slideInterval={3000}
-            onClick={(e) => linkTo(e)}
-            additionalClass={"object-cover"}
-          />
-        </div>
-
-        <CategoriesGrid />
-        <Link to="/promotional" className="w-full">
-          <Image src={imgPromote1} alt="" className="object-cover h-full w-full" />
-        </Link>
-        <Link
-          to="/shop"
-          className="h-36 md:h-56 w-full  relative w-max h-max flex items-center justify-center text-center "
-        >
-          <div className="flex items-center justify-center group transition duration-300 bg-white md:bg-black md:hover:bg-white md:border-2 md:border-yellow-300 hover:border-white rounded-lg py-2 pl-2 pr-4">
-            <span className="uppercase italic text-4xl md:text-7xl text-blue-600 md:text-white transition duration-300 md:group-hover:text-blue-600 font-bold whitespace-nowrap">
-              see all products
-            </span>
-            <ChevronDoubleRight className="hidden lg:block absolute -right-24 text-4xl md:text-7xl transition duration-300 text-yellow-300 group-hover:text-blue-600 bounce-right transform translate-x-50" />
+        <div className="h-hull w-full flex flex-col items-center space-y-0.5">
+          <div className="h-96 md:h-full w-full flex flex-col items-center justify-center">
+            <ImageGallery
+              items={width > 768 ? images : imagesMob}
+              showFullscreenButton={false}
+              showPlayButton={true}
+              autoPlay={true}
+              slideInterval={3000}
+              onClick={(e) => linkTo(e)}
+              additionalClass={"object-cover"}
+            />
           </div>
-        </Link>
-        <Link to="/promotional" className="w-full">
-          <Image src={imgPromote2} alt="" className="w-full" />
-        </Link>
+          <CategoriesGrid />
+          <Link to="/promotional" className="w-full">
+            <Image src={imgPromote1} alt="" className="object-cover h-full w-full" />
+          </Link>
+          <Link
+            to="/shop"
+            className="h-36 md:h-56 w-full  relative w-max h-max flex items-center justify-center text-center "
+          >
+            <div className="flex items-center justify-center group transition duration-300 bg-white md:bg-black md:hover:bg-white md:border-2 md:border-yellow-300 hover:border-white rounded-lg py-2 pl-2 pr-4">
+              <span className="uppercase italic text-4xl md:text-7xl text-blue-600 md:text-white transition duration-300 md:group-hover:text-blue-600 font-bold whitespace-nowrap">
+                see all products
+              </span>
+              <ChevronDoubleRight className="hidden lg:block absolute -right-24 text-4xl md:text-7xl transition duration-300 text-yellow-300 group-hover:text-blue-600 bounce-right transform translate-x-50" />
+            </div>
+          </Link>
+          <Link to="/promotional" className="w-full">
+            <Image src={imgPromote2} alt="" className="w-full" />
+          </Link>
+        </div>
       </ImageEngineProvider>
       <CartDrawer />
       <SearchModal />
