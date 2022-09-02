@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronLeft } from "react-bootstrap-icons";
 import { use100vh } from "react-div-100vh";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
-import { Footer, LoaderGaming, Navbar, ProductCard } from "../Components";
+import { CartDrawer, Footer, LoaderGaming, Navbar, ProductCard, SearchModal } from "../Components";
 import "../Styles/_variables.css";
 import useWindowSize from "../utils/useWindowSize";
 
@@ -22,7 +22,7 @@ const CategoryPage = () => {
   const [categoryItems, setCategoryItems] = useState([]);
   const [itemVariants, setItemVariants] = useState([]);
   let subCategoriesArray = [];
-  const { heght, width } = useWindowSize();
+  const { width } = useWindowSize();
   const responsiveHeight = use100vh();
 
   const findProductVariants = () => {
@@ -110,7 +110,7 @@ const CategoryPage = () => {
   };
 
   return (
-    <>
+    <div className="relative">
       <div
         className="pt-16 min-h-screen w-screen flex flex-col items-center justify-start font-cabin space-y-6 pb-12"
         style={pageConditionalStyle.colors}
@@ -193,7 +193,9 @@ const CategoryPage = () => {
         </div>
       </div>
       <Footer />
-    </>
+      <CartDrawer />
+      <SearchModal />
+    </div>
   );
 };
 

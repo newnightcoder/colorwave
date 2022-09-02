@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Check2Circle, HouseFill } from "react-bootstrap-icons";
 import Div100vh from "react-div-100vh";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,7 +24,7 @@ const ConfirmationPage = () => {
   }, []);
 
   return (
-    <>
+    <div>
       {width < 768 ? <Navbar /> : <Steps />}
       <Div100vh
         style={{ background: `url("${sunsetImg}") no-repeat center/cover` }}
@@ -51,7 +51,7 @@ const ConfirmationPage = () => {
         </div>
       </Div100vh>
       <Footer />
-    </>
+    </div>
   );
 };
 

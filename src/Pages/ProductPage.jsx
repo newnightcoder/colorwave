@@ -5,7 +5,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import { Footer, Navbar } from "../Components";
+import { CartDrawer, Footer, Navbar, SearchModal } from "../Components";
 import { addToCart, toggleCartDrawer } from "../Redux/Actions/cart.action";
 import "../Styles/_variables.css";
 
@@ -92,7 +92,6 @@ const ProductPage = () => {
   };
 
   return (
-    // <ImageEngineProvider deliveryAddress="https://190c6rxe.cdn.imgeng.in">
     <div className="pt-16 font-cabin overflow-x-hidden relative">
       <Navbar />
       <div className="breadcrumb w-full flex items-center justify-start space-x-1 whitespace-nowrap text-gray-900 bg-white px-2 md:pl-10 pt-3 md:pt-8 pb-3 md:border-b border-gray-200">
@@ -181,8 +180,9 @@ const ProductPage = () => {
         </Carousel>
       </div>
       <Footer />
+      <CartDrawer />
+      <SearchModal />
     </div>
-    // </ImageEngineProvider>
   );
 };
 

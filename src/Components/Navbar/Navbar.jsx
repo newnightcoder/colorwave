@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Search } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
@@ -123,24 +123,26 @@ const Navbar = () => {
 
               <div className="w-max h-full absolute md:static right-4 flex items-center justify-center space-x-4 lg:space-x-8">
                 {/* search btn*/}
-                <button
-                  onClick={() => {
-                    dispatch(toggleSearchModal());
-                  }}
-                  className="h-10/12 w-max relative group flex items-center justify-center space-x-2 text-gray-300"
-                >
-                  <span className="absolute inline-block inset-x-0 bottom-0 mx-auto h-0.5 w-full bg-blue-500 transform scale-x-0 transition-scale origin-left duration-100 group-hover:scale-x-100"></span>
-                  <span className="hidden md:inline-block group-hover:text-white">Search</span>
-                  <Search size={18} className="text-white transition-color duration-300 group-hover:text-blue-500" />
-                </button>
+                {!location.pathname.includes("success") && (
+                  <button
+                    onClick={() => {
+                      dispatch(toggleSearchModal());
+                    }}
+                    className="h-10/12 w-max relative group flex items-center justify-center space-x-2 text-gray-300"
+                  >
+                    <span className="hidden absolute md:inline-block inset-x-0 bottom-0 mx-auto h-0.5 w-full bg-blue-500 transform scale-x-0 transition-scale origin-left duration-100 group-hover:scale-x-100"></span>
+                    <span className="hidden md:inline-block group-hover:text-white">Search</span>
+                    <Search size={18} className="text-white transition-color duration-300 group-hover:text-blue-500" />
+                  </button>
+                )}
                 {/* Checkout btn*/}
-                {location.pathname !== "/cart" && (
+                {(location.pathname !== "/cart" || !location.pathname.includes("success")) && (
                   <button
                     onClick={() => dispatch(toggleCartDrawer())}
                     className="w-max h-max relative flex items-center justify-center space-x-1 z-10 text-gray-300 text-base group"
                   >
                     <span className="hidden md:block text-gray-300 group-hover:text-white">Checkout</span>
-                    <span className="absolute inline-block inset-x-0 bottom-0 mx-auto h-0.5 w-full bg-blue-500 transform scale-x-0 transition-scale origin-left duration-100 group-hover:scale-x-100"></span>
+                    <span className="hidden absolute md:inline-block inset-x-0 bottom-0 mx-auto h-0.5 w-full bg-blue-500 transform scale-x-0 transition-scale origin-left duration-100 group-hover:scale-x-100"></span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 52.4 29.75"

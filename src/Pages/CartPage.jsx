@@ -1,10 +1,10 @@
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Div100vh from "react-div-100vh";
 import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { CartContainer, CartRecap, CheckoutForm, Form, Navbar, PaymentBanner, Steps } from "../Components";
+import { CartContainer, CartRecap, CheckoutForm, Form, Navbar, PaymentBanner, SearchModal, Steps } from "../Components";
 import { addToCart, confirmSuccess, deleteCart, deleteItem, removeOne, saveOrder } from "../Redux/Actions/cart.action";
 import "../Styles/_variables.css";
 import useWindowSize from "../utils/useWindowSize";
@@ -276,6 +276,7 @@ const CartPage = () => {
   ) : (
     <Elements stripe={stripePromise} options={options}>
       {width < 768 ? <Navbar /> : <Steps formOpen={formOpen} formValidated={formValidated} />}
+      {width < 768 && <SearchModal />}
       <Div100vh className="overflow-y-hidden bg-sound">
         <Div100vh
           style={transition()}

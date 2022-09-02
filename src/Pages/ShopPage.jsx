@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
-import { Footer, LoaderGaming, LoaderSound, Navbar, ProductCard } from "../Components";
+import { CartDrawer, Footer, LoaderGaming, LoaderSound, Navbar, ProductCard, SearchModal } from "../Components";
 import "../Styles/_variables.css";
 const ShopPage = () => {
   const shop = useSelector((state) => state?.shop?.shop);
@@ -36,7 +36,7 @@ const ShopPage = () => {
   const skinsItems = shop?.filter((item) => item?.categories?.find((cat) => cat.name === "skins"));
 
   return (
-    <div className="pt-16 h-full w-full font-cabin" style={{ overflow: open ? "hidden" : "auto" }}>
+    <div className="pt-16 h-full w-full font-cabin relative" style={{ overflow: open ? "hidden" : "auto" }}>
       <Navbar />
       <header className="h-full flex flex-col items-center justify-center space-y-6 bg-white text-black pt-4 md:pt-10 pb-4">
         <div className="w-max relative">
@@ -195,6 +195,8 @@ const ShopPage = () => {
         </section>
       </main>
       <Footer />
+      <CartDrawer />
+      <SearchModal />
     </div>
   );
 };

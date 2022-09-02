@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Search, XLg } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
@@ -22,10 +22,10 @@ const SearchModal = () => {
   return (
     <div
       style={{ opacity: open ? 1 : 0, zIndex: open ? 5000 : -1, backgroundColor: "rgba(0,0,0,.95)" }}
-      className="h-screen w-screen fixed inset-0 flex flex-col items-center overflow-x-hidden text-white pt-2 pb-8 px-2 md:px-8 transition-opacity duration-700 font-cabin"
+      className="h-screen w-screen fixed inset-0 flex flex-col items-center overflow-x-hidden text-white pt-2 pb-8 px-4 md:px-8 transition-opacity duration-700 font-cabin"
     >
       <div className="h-max w-full flex flex-col items-center justify-start space-y-8 py-4">
-        <div className="h-max w-full flex items-center justify-between md:px-16">
+        <div className="h-max w-full flex items-center justify-between px-4 md:px-16">
           <div className="w-max relative text-center ">
             <h1 className="capitalize text-2xl md:text-4xl px-2 md:px-6 whitespace-nowrap">
               search a brand or product
@@ -36,7 +36,7 @@ const SearchModal = () => {
             onClick={() => {
               dispatch(toggleSearchModal());
             }}
-            className="h-max w-min flex flex-col items-center space-y-2 group transition duration-300 hover:text-blue-400"
+            className="h-max w-min"
           >
             <XLg
               size={width > 500 ? 36 : 24}

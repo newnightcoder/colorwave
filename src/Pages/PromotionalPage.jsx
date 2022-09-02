@@ -3,7 +3,7 @@ import img1 from "../Assets/promotional/1-light.png";
 import img2 from "../Assets/promotional/2.png";
 import img3 from "../Assets/promotional/3.png";
 import img4 from "../Assets/promotional/4.png";
-import { Footer, Navbar } from "../Components";
+import { CartDrawer, Footer, Navbar, SearchModal } from "../Components";
 
 const PromotionalPage = () => {
   // PARALLAX WITH JS _ I USED CSS BACKGROUND-ATTACHEMENT:FIXED INSTEAD
@@ -100,6 +100,8 @@ const PromotionalPage = () => {
         </div>
       </div>
       <Footer />
+      <CartDrawer />
+      <SearchModal />
     </div>
   );
 };

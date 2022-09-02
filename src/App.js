@@ -4,8 +4,6 @@ import { Redirect } from "react-router";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import WebFont from "webfontloader";
 // import { persistor } from "../src/Redux/storeConfig.js";
-import { CartDrawer } from "./Components";
-import SearchModal from "./Components/SearchModal";
 import {
   CartPage,
   CategoryPage,
@@ -58,18 +56,14 @@ const App = () => {
   return (
     <Router>
       <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/promotional" component={PromotionalPage} />
+        <Route path="/shop" component={ShopPage} />
+        <Route path="/categories" component={CategoryPage} />
+        <Route path="/product" component={ProductPage} />
+        <Route path="/cart" component={CartPage} />
         <RefreshRoute path="/success" redirectionPath="/" />
-        <>
-          <CartDrawer />
-          <SearchModal />
-          <Route exact path="/" component={HomePage} />
-          <Route path="/promotional" component={PromotionalPage} />
-          <Route path="/shop" component={ShopPage} />
-          <Route path="/categories" component={CategoryPage} />
-          <Route path="/product" component={ProductPage} />
-          <Route path="/cart" component={CartPage} />
-          <Route path="*" component={PageNotFound} />
-        </>
+        <Route path="*" component={PageNotFound} />
       </Switch>
     </Router>
   );
