@@ -1,4 +1,3 @@
-import React from "react";
 import { Github, Linkedin, Twitter } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import "../../Styles/_variables.css";
@@ -79,17 +78,17 @@ const Footer = () => {
           </p>
           <ul className="w-max flex items-center justify-center space-x-8 px-4 pt-1 md:pt-0">
             <li>
-              <a href="https://twitter.com/nightcoder2" target="_blank">
+              <a href="https://twitter.com/nightcoder2" target="_blank" rel="noreferrer">
                 <Twitter className="text-2xl" />
               </a>
             </li>
             <li>
-              <a href="https://github.com/newnightcoder" target="_blank">
+              <a href="https://github.com/newnightcoder" target="_blank" rel="noreferrer">
                 <Github className="text-2xl" />
               </a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/in/nightcoder-dan" target="_blank">
+              <a href="https://www.linkedin.com/in/nightcoder-dan" target="_blank" rel="noreferrer">
                 <Linkedin className="text-2xl" />
               </a>
             </li>
