@@ -4,14 +4,12 @@ import { useHistory } from "react-router-dom";
 import { addToCart, toggleCartDrawer } from "../../Redux/Actions/cart.action";
 import { toggleSearchModal } from "../../Redux/Actions/shop.action";
 import "../../Styles/_globals.css";
-import useWindowSize from "../../utils/useWindowSize";
 
 const ProductCard = ({ item, variants, bgColor, parentProduct }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const searchModalOpen = useSelector((state) => state?.shop.searchModalOpen);
   const limitedItem = item?.categories?.find((cat) => cat.name === "limited");
-  const { height, width } = useWindowSize();
 
   const linkPage = () => {
     if (searchModalOpen) dispatch(toggleSearchModal());
@@ -29,6 +27,9 @@ const ProductCard = ({ item, variants, bgColor, parentProduct }) => {
 
   const handleAddToCart = () => {
     const qty = 1;
+    // if (searchModalOpen) {
+    //   dispatch(toggleSearchModal());
+    // }
     dispatch(addToCart(item, qty));
     dispatch(toggleCartDrawer());
   };

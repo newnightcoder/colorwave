@@ -85,7 +85,7 @@
 }
 /* scrollbar cart search */
 .scrollbar-search {
-  scrollbar-color: white #777;
+  scrollbar-color: #3b82f6 #777;
   scrollbar-width: thin;
 }
 
@@ -95,7 +95,7 @@
 }
 .scrollbar-search::-webkit-scrollbar-thumb {
   width: 5px;
-  background-color: white;
+  background-color: #3b82f6;
 }
 
 /* fade-in animation */
