@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
-import { CartDrawer, Footer, LoaderGaming, LoaderSound, Navbar, ProductCard, SearchModal } from "../Components";
+import { CartDrawer, Footer, Loader, Navbar, ProductCard, SearchModal } from "../Components";
 import "../Styles/_variables.css";
 
 const ShopPage = () => {
@@ -105,7 +105,7 @@ const ShopPage = () => {
           </div>
           <div className="h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
             {limitedItems.length === 0 ? (
-              <LoaderGaming />
+              <Loader color="yellow" />
             ) : (
               limitedItems.map((item, i) => (
                 <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(0,0,0,1)"} />
@@ -122,7 +122,7 @@ const ShopPage = () => {
           </div>
           <div className="h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
             {gamingItems.length === 0 ? (
-              <LoaderGaming />
+              <Loader color="blue" bg="white" />
             ) : (
               gamingItems.map((item, i) =>
                 limitedItems.find((x) => x.id === item.id) ? null : (
@@ -144,7 +144,7 @@ const ShopPage = () => {
           </div>
           <div className="h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
             {headphonesItems.length === 0 ? (
-              <LoaderSound />
+              <Loader color="yellow" />
             ) : (
               headphonesItems.map((item, i) =>
                 limitedItems.find((x) => x.id === item.id) ? null : (
@@ -166,7 +166,7 @@ const ShopPage = () => {
           </div>
           <div className="h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
             {micsItems.length === 0 ? (
-              <LoaderSound />
+              <Loader color="yellow" />
             ) : (
               micsItems.map((item, i) => (
                 <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
@@ -180,9 +180,13 @@ const ShopPage = () => {
             <span className="h-0.5 md:h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-1 md:bottom-px  bg-blue-400"></span>
           </div>
           <div className="h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
-            {skinsItems.map((item, i) => (
-              <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
-            ))}
+            {skinsItems.length === 0 ? (
+              <Loader color="blue" bg="white" />
+            ) : (
+              skinsItems.map((item, i) => (
+                <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
+              ))
+            )}
           </div>
         </section>
         <section className="h-full w-full text-gray-900 flex flex-col items-center justify-center bg-sound space-y-4 md:space-y-8 pb-12 md:px-2">
@@ -193,9 +197,13 @@ const ShopPage = () => {
             <span className="h-0.5 md:h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-1 md:bottom-px bg-blue-400"></span>
           </div>
           <div className="h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
-            {accessoriesItems.map((item, i) => (
-              <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
-            ))}
+            {accessoriesItems.length === 0 ? (
+              <Loader color="blue" bg="white" />
+            ) : (
+              accessoriesItems.map((item, i) => (
+                <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
+              ))
+            )}
           </div>
         </section>
       </main>
