@@ -1,4 +1,3 @@
-import React from "react";
 import { EyeFill } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -19,7 +18,7 @@ const ProductCard = ({ item, variants, bgColor, parentProduct }) => {
     if (variants !== undefined && variants?.length !== 0) {
       return history.push({
         pathname: `/categories/${item.name}`,
-        state: { item, variants: true },
+        state: { item, variants: true, parentProduct },
       });
     }
     history.push({
@@ -41,8 +40,7 @@ const ProductCard = ({ item, variants, bgColor, parentProduct }) => {
         style={{ backgroundColor: `${bgColor}` }}
       >
         <img
-          // style={{ objectFit: width > 1536 || width < 640 ? "cover" : "contain" }}
-          className="h-full w-full relative object-contain transition duration-300 transform group-hover:scale-125"
+          className="image-product h-full w-full relative object-contain transition duration-300 transform group-hover:scale-125"
           src={item && item.media.source}
           alt={item.name}
           onClick={linkPage}

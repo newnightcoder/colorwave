@@ -11,8 +11,8 @@ import useWindowSize from "../utils/useWindowSize";
 const CategoryPage = () => {
   const location = useLocation();
   const { pathname } = useLocation();
-  const item = location.state?.item || undefined;
-  const variants = location.state?.variants || undefined;
+  const item = location?.state?.item || undefined;
+  const variants = location?.state?.variants || undefined;
   const categoryName = location.pathname.split("/")[2];
   const shop = useSelector((state) => state.shop.shop);
   const items = useSelector((state) => state?.shop.shop);
@@ -21,14 +21,14 @@ const CategoryPage = () => {
   const [subCategories, setSubCategories] = useState([]);
   const [categoryItems, setCategoryItems] = useState([]);
   const [itemVariants, setItemVariants] = useState([]);
-  let subCategoriesArray = [];
   const { width } = useWindowSize();
   const responsiveHeight = use100vh();
+  let subCategoriesArray = [];
 
   const findProductVariants = () => {
     if (variants === undefined) return;
     let variantsArray = item?.variant_groups[0]?.options;
-    let variantItems = variantsArray.map((variant) => {
+    let variantItems = variantsArray?.map((variant) => {
       return variant.name;
     });
     return variantItems;
@@ -76,7 +76,7 @@ const CategoryPage = () => {
     return () => {
       setIsLoading(true);
     };
-  }, [isLoading, items, item, variants]);
+  }, [items, item, variants, isLoading]);
 
   const pageConditionalStyle = {
     colors: {
@@ -108,6 +108,8 @@ const CategoryPage = () => {
           : "black",
     },
   };
+
+  // useEffect(() => {}, []);
 
   return (
     <div className="relative">
@@ -183,7 +185,7 @@ const CategoryPage = () => {
               {isLoading ? (
                 <LoaderGaming />
               ) : (
-                itemVariants.map((variant, i) => {
+                itemVariants?.map((variant, i) => {
                   let matchingItem = items.find((item) => item.name === variant);
                   return <ProductCard item={matchingItem} key={i + 1} variants={undefined} parentProduct={item} />;
                 })

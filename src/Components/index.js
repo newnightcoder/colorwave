@@ -14,5 +14,6 @@ export { default as MobileRecap } from "./MobileRecap";
 export { default as Navbar } from "./Navbar/Navbar";
 export { default as PaymentBanner } from "./PaymentBanner";
 export { default as ProductCard } from "./Product/ProductCard";
+export { default as RelatedProduct } from "./Product/RelatedProduct";
 export { default as SearchModal } from "./SearchModal";
 export { default as Steps } from "./Steps";

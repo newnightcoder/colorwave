@@ -14,6 +14,20 @@ module.exports = {
         },
       },
     },
+    keyframes: {
+      load: {
+        "0%": { transform: "scale(0,1)" },
+        "100%": { transform: "scale(1,1)" },
+      },
+      deload: {
+        "0%": { transform: "scale(1,1)" },
+        "100%": { transform: "scale(0,1)" },
+      },
+    },
+    animation: {
+      barLoadIn: "load 850ms ease-in-out",
+      barLoadOut: "150ms deload 400ms ease-in forwards",
+    },
   },
   plugins: [require("tailwindcss/colors"), require("autoprefixer")],
   variants: {
