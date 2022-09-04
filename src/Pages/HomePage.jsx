@@ -50,37 +50,37 @@ const HomePage = () => {
   ];
 
   const linkTo = (e) => {
+    console.log(e.currentTarget.firstChild.src);
+    console.log(`${cdnPrefix}${img1}`);
     switch (e.currentTarget.firstChild.src) {
-      case `https://colorwave-shop.herokuapp.com${images[0].original}`:
-      case `https://colorwave-shop.herokuapp.com${imgMob1}`: {
+      case `${cdnPrefix}${img1}`:
+      case `${cdnPrefix}${imgMob1}`: {
         return history.push({
           pathname: `/product/${airpods.name}`,
           state: { item: airpods },
         });
       }
-      case `https://colorwave-shop.herokuapp.com${images[1].original}`:
-      case `https://colorwave-shop.herokuapp.com${imgMob2}`: {
+      case `${cdnPrefix}${img2}`:
+      case `${cdnPrefix}${imgMob2}`: {
         return history.push({
           pathname: `/product/${proController.name}`,
           state: { item: proController },
         });
       }
-      case `https://colorwave-shop.herokuapp.com${images[2].original}`:
-      case `https://colorwave-shop.herokuapp.com${imgMob3}`: {
+      case `${cdnPrefix}${img3}`:
+      case `${cdnPrefix}${imgMob3}`: {
         return history.push({
           pathname: `/categories/${magicKeyboard.name}`,
           state: { item: magicKeyboard, variants: true, from: pathname },
         });
       }
-      case `https://colorwave-shop.herokuapp.com${images[3].original}`:
-      case `https://colorwave-shop.herokuapp.com${imgMob4}`: {
+      case `${cdnPrefix}${img4}`: {
         return history.push({
           pathname: `/product/${sennheiser.name}`,
           state: { item: sennheiser },
         });
       }
-
-      case `${imgMob4}`: {
+      case `${cdnPrefix}${imgMob4}`: {
         return history.push({
           pathname: `/product/${sennheiserMobile.name}`,
           state: { item: sennheiserMobile },
