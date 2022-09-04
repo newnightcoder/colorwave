@@ -27,9 +27,6 @@ const ProductCard = ({ item, variants, bgColor, parentProduct }) => {
 
   const handleAddToCart = () => {
     const qty = 1;
-    // if (searchModalOpen) {
-    //   dispatch(toggleSearchModal());
-    // }
     dispatch(addToCart(item, qty));
     dispatch(toggleCartDrawer());
   };

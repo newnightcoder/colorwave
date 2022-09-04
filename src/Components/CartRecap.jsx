@@ -71,10 +71,10 @@ const CartRecap = ({ formValidated, formOpen, toggleForm, handleForm, totalPrice
                 {items.map((item, i) => (
                   <div
                     key={i + 1}
-                    className="h-20 w-full flex flex items-center justify-left bg-white border border-gray-200"
+                    className="h-20 w-full flex flex items-center justify-left bg-white border border-gray-100"
                   >
                     <div
-                      className="h-20 w-2/5 border-t border-r border-b border-gray-200"
+                      className="h-20 w-2/5 border-t border-r border-b border-gray-100"
                       style={{
                         background: `url("${item.product.media.source}") ${
                           item.product.categories.find((x) => x.name === "limited") ? "black" : "white"
