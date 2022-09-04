@@ -2,15 +2,31 @@ import { useEffect, useState } from "react";
 import { ChevronLeft } from "react-bootstrap-icons";
 import { use100vh } from "react-div-100vh";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router";
-import { Link } from "react-router-dom";
-import { CartDrawer, Footer, LoaderGaming, Navbar, ProductCard, SearchModal } from "../Components";
+import { Link, useLocation } from "react-router-dom";
+import { CartDrawer, Footer, Navbar, ProductCard, SearchModal } from "../Components";
 import "../Styles/_variables.css";
 import useWindowSize from "../utils/useWindowSize";
 
+const Loader = () => {
+  const { width } = useWindowSize();
+  const responsiveHeight = use100vh();
+  const { pathname } = useLocation();
+  const categoryName = pathname.split("/")[2];
+  return (
+    <div
+      style={{ height: width < 768 ? responsiveHeight - 300 : "calc(100vh - 200px)" }}
+      className="w-full flex flex-col items-center justify-center"
+    >
+      <span className="uppercase text-2xl">{`${categoryName.toUpperCase()} `}</span>
+      <div className="w-48 h-1 bg-transparent">
+        <div className={` animate-barLoadIn h-full bg-white transform scale-x-0 origin-left`}></div>
+      </div>
+    </div>
+  );
+};
+
 const CategoryPage = () => {
   const location = useLocation();
-  const { pathname } = useLocation();
   const item = location?.state?.item || undefined;
   const variants = location?.state?.variants || undefined;
   const categoryName = location.pathname.split("/")[2];
@@ -21,10 +37,38 @@ const CategoryPage = () => {
   const [subCategories, setSubCategories] = useState([]);
   const [categoryItems, setCategoryItems] = useState([]);
   const [itemVariants, setItemVariants] = useState([]);
-  const { width } = useWindowSize();
-  const responsiveHeight = use100vh();
   let subCategoriesArray = [];
 
+  const pageConditionalStyle = {
+    colors: {
+      backgroundColor:
+        categoryName === "gaming"
+          ? "#333"
+          : categoryName === "sound"
+          ? "lightgray"
+          : categoryName === "limited"
+          ? "#171717"
+          : "#ebebeb",
+      color:
+        categoryName === "gaming"
+          ? "#ebebeb"
+          : categoryName === "sound"
+          ? "black"
+          : categoryName === "limited"
+          ? "#ebebeb"
+          : "black",
+    },
+    titleAfterElement: {
+      backgroundColor:
+        categoryName === "gaming"
+          ? "#ebebeb"
+          : categoryName === "sound"
+          ? "black"
+          : categoryName === "limited"
+          ? "#ebebeb"
+          : "black",
+    },
+  };
   const findProductVariants = () => {
     if (variants === undefined) return;
     let variantsArray = item?.variant_groups[0]?.options;
@@ -64,8 +108,11 @@ const CategoryPage = () => {
   };
 
   useEffect(() => {
+    setIsLoading(true);
+  }, [location]);
+
+  useEffect(() => {
     window.scrollTo(0, 0);
-    if (items.length !== 0) setIsLoading(false);
     if (variants) {
       const products = findProductVariants();
       setItemVariants(products);
@@ -73,43 +120,16 @@ const CategoryPage = () => {
     filterItemsOfCategory();
     createSubCategoriesArray();
     getSubCategories();
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 900);
+  }, [items, item, variants, isLoading]);
+
+  useEffect(() => {
     return () => {
       setIsLoading(true);
     };
-  }, [items, item, variants, isLoading]);
-
-  const pageConditionalStyle = {
-    colors: {
-      backgroundColor:
-        categoryName === "gaming"
-          ? "#333"
-          : categoryName === "sound"
-          ? "lightgray"
-          : categoryName === "limited"
-          ? "#171717"
-          : "#ebebeb",
-      color:
-        categoryName === "gaming"
-          ? "#ebebeb"
-          : categoryName === "sound"
-          ? "black"
-          : categoryName === "limited"
-          ? "#ebebeb"
-          : "black",
-    },
-    titleAfterElement: {
-      backgroundColor:
-        categoryName === "gaming"
-          ? "#ebebeb"
-          : categoryName === "sound"
-          ? "black"
-          : categoryName === "limited"
-          ? "#ebebeb"
-          : "black",
-    },
-  };
-
-  // useEffect(() => {}, []);
+  }, [location]);
 
   return (
     <div className="relative">
@@ -118,7 +138,11 @@ const CategoryPage = () => {
         style={pageConditionalStyle.colors}
       >
         <Navbar />
-        <div className="w-full relative flex items-center justify-center md:justify-start relative pt-4 md:pt-10 mb-4">
+        <div
+          className={`${
+            isLoading ? "opacity-0" : "opacity-100"
+          } w-full relative flex items-center justify-center md:justify-start relative pt-4 md:pt-10 mb-4`}
+        >
           <Link
             to={{ pathname: location.state?.from?.includes("shop") ? "/shop" : "/" }}
             className="absolute left-5 md:left-10 top-50"
@@ -135,24 +159,21 @@ const CategoryPage = () => {
         </div>
 
         <div className="w-full h-full">
-          {!variants && location.pathname.includes("limited") ? (
-            <div className="h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 px-2 md:px-6 py-12">
+          {location.pathname === "/categories/limited" ? (
+            <div>
               {isLoading ? (
-                <LoaderGaming />
+                <Loader />
               ) : (
-                limitedItems.map((item, i) => (
-                  <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(0,0,0,1)"} />
-                ))
+                <div className="h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 px-2 md:px-6 py-12">
+                  {limitedItems.map((item, i) => (
+                    <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(0,0,0,1)"} />
+                  ))}
+                </div>
               )}
             </div>
           ) : !variants ? (
             isLoading ? (
-              <div
-                style={{ height: width < 768 ? responsiveHeight - 300 : "calc(100vh - 200px)" }}
-                className="w-full flex flex-col items-center justify-center"
-              >
-                <span className="uppercase text-lg">{`loading ${categoryName.toUpperCase()} category`}</span>
-              </div>
+              <Loader />
             ) : (
               subCategories.map((cat, i) => (
                 <div id={cat} className="h-full flex flex-col items-center justify-center py-3 md:py-8" key={i + 1}>
@@ -181,14 +202,16 @@ const CategoryPage = () => {
               ))
             )
           ) : (
-            <div className="h-full w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 px-6">
+            <div>
               {isLoading ? (
-                <LoaderGaming />
+                <Loader />
               ) : (
-                itemVariants?.map((variant, i) => {
-                  let matchingItem = items.find((item) => item.name === variant);
-                  return <ProductCard item={matchingItem} key={i + 1} variants={undefined} parentProduct={item} />;
-                })
+                <div className="h-full w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 px-6">
+                  {itemVariants?.map((variant, i) => {
+                    let matchingItem = items.find((item) => item.name === variant);
+                    return <ProductCard item={matchingItem} key={i + 1} variants={undefined} parentProduct={item} />;
+                  })}
+                </div>
               )}
             </div>
           )}

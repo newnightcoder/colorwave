@@ -15,7 +15,7 @@ const ProductCard = ({ item, variants, bgColor, parentProduct }) => {
 
   const linkPage = () => {
     if (searchModalOpen) dispatch(toggleSearchModal());
-    if (variants !== undefined && variants?.length !== 0) {
+    if (variants !== undefined && variants?.length > 0) {
       return history.push({
         pathname: `/categories/${item.name}`,
         state: { item, variants: true, parentProduct },
