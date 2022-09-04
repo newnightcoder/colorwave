@@ -74,7 +74,7 @@ const CartRecap = ({ formValidated, formOpen, toggleForm, handleForm, totalPrice
                     className="h-20 w-full flex flex items-center justify-left border-b border-gray-300 only:border-b-0 last:border-b-0 bg-white"
                   >
                     <div
-                      className="h-full w-2/5"
+                      className="h-full w-2/5 border-r border-gray-100"
                       style={{
                         background: `url("${item.product.media.source}") ${
                           item.product.categories.find((x) => x.name === "limited") ? "black" : "white"

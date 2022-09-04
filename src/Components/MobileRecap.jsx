@@ -32,7 +32,7 @@ const MobileRecap = ({ openMobileRecap, toggleMobileRecap }) => {
             className="opacity-0 w-full flex flex items-center justify-left border border-gray-700 only:border-b-0 last:border-b-0 bg-white pr-2 md:pr-3"
           >
             <div
-              className="h-24 w-2/5"
+              className="h-24 w-2/5 border-r border-gray-100"
               style={{
                 background: `url("${item.product.media.source}") ${
                   item.product.categories.find((x) => x.name === "limited") ? "black" : "white"

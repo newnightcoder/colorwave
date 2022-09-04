@@ -63,7 +63,7 @@ const CartDrawer = () => {
                       item.product.categories.find((x) => x.name === "limited") ? "black" : "white"
                     } no-repeat center/contain`,
                   }}
-                  className="h-full w-2/5"
+                  className="h-full w-2/5 border-r border-gray-100"
                 ></div>
                 <div className="w-2/5 text-left text-sm pl-2 pr-2 md:pl-5 md:pr-0 whitespace-nowrap truncate">
                   {item.product.name}
