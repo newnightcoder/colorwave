@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { useHistory } from "react-router-dom";
 import { deleteItem, toggleCartDrawer } from "../../Redux/Actions/cart.action";
-import "../../Styles/_variables.css";
+import "../../Styles/_globals.css";
 
 const CartDrawer = () => {
   const history = useHistory();
@@ -33,7 +33,7 @@ const CartDrawer = () => {
         transform: cartDrawerOpen && !location.pathname.includes("cart") ? "translateY(0)" : "translateY(-101%)",
         zIndex: 4000,
       }}
-      className="w-full fixed md:w-2/3 lg:w-1/2 2xl:w-1/3 font-cabin flex flex-col items-center justify-center overflow-x-hidden overflow-y-auto transition-transform duration-300 text-gray-900 right-0 top-0 bg-sound pt-6 pb-12 px-5 md:px-10 "
+      className="w-full fixed md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 font-cabin flex flex-col items-center justify-center overflow-x-hidden overflow-y-auto transition-transform duration-300 text-gray-900 right-0 top-0 bg-sound pt-6 pb-12 px-5 md:px-10 "
     >
       <button onClick={() => dispatch(toggleCartDrawer())} className="h-max w-max">
         <XLg size={24} className="absolute top-8 right-10 z-50" />
@@ -47,7 +47,7 @@ const CartDrawer = () => {
           <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-black"></span>
         </div>
 
-        <div className="h-2/3 w-full overflow-y-auto scrollbar-cart overflow-x-hidden flex flex-col items-center justify-start space-y-2 pt-6 pb-12">
+        <div className="items-container h-2/3 w-full overflow-y-auto scrollbar-cart overflow-x-hidden flex flex-col items-center justify-start space-y-2 pt-6 pb-12">
           {items?.length !== 0 ? (
             items.map((item, i) => (
               <div
@@ -55,7 +55,7 @@ const CartDrawer = () => {
                 style={{
                   animation: cartDrawerOpen && items.length !== 0 && `750ms fadeIn ${200 + i * 100}ms forwards`,
                 }}
-                className="opacity-0 h-24 md:h-40 w-11/12 flex flex items-center justify-left border-b border-gray-300 only:border-b-0 last:border-b-0 bg-white md:pr-3"
+                className="opacity-0 h-28 md:h-40 w-11/12 flex items-center justify-left border border-gray-200 bg-white md:pr-3"
               >
                 <div
                   style={{
@@ -63,7 +63,7 @@ const CartDrawer = () => {
                       item.product.categories.find((x) => x.name === "limited") ? "black" : "white"
                     } no-repeat center/contain`,
                   }}
-                  className="h-full w-2/5 border-r border-gray-200"
+                  className="h-28 md:h-40 w-2/5 border-r border-t border-b border-gray-200"
                 ></div>
                 <div className="w-2/5 text-left text-sm pl-2 pr-2 md:pl-5 md:pr-0 whitespace-nowrap truncate">
                   {item.product.name}

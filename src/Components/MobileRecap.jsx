@@ -1,7 +1,7 @@
-import { XCircle } from "react-bootstrap-icons";
+import { X } from "react-bootstrap-icons";
 import Div100vh from "react-div-100vh";
 import { useSelector } from "react-redux";
-import "../Styles/_variables.css";
+import "../Styles/_globals.css";
 
 const MobileRecap = ({ openMobileRecap, toggleMobileRecap }) => {
   const items = useSelector((state) => state?.cart.items);
@@ -32,23 +32,22 @@ const MobileRecap = ({ openMobileRecap, toggleMobileRecap }) => {
             className="opacity-0 w-full flex flex items-center justify-left border border-gray-700 only:border-b-0 last:border-b-0 bg-white pr-2 md:pr-3"
           >
             <div
-              className="h-24 w-2/5 border-r border-gray-100"
+              className="h-28 w-2/5 border-r border-gray-100"
               style={{
                 background: `url("${item.product.media.source}") ${
                   item.product.categories.find((x) => x.name === "limited") ? "black" : "white"
                 } no-repeat center/contain`,
               }}
             ></div>
-            <div className="w-2/5 text-left text-sm pl-1 md:pl-5 whitespace-nowrap truncate">{item.product.name}</div>
+            <div className="w-2/5 text-left text-sm pl-2 md:pl-5 whitespace-nowrap truncate">{item.product.name}</div>
             <div className="w-1/5 text-right text-sm">{item.product.price.formatted}&nbsp;€</div>
           </div>
         ))}
       </div>
-      <button
-        onClick={toggleMobileRecap}
-        className="h-max w-max flex items-center justify-center space-x-1 absolute bottom-8"
-      >
-        <XCircle size={16} className="text-white" /> <span className="uppercase text-sm">close</span>
+      <button onClick={toggleMobileRecap} className="h-max w-max absolute bottom-8">
+        <div className="h-max w-max flex items-center justify-center space-x-1">
+          <X size={24} className="text-white" /> <span className="uppercase text-sm">close</span>
+        </div>
       </button>
     </Div100vh>
   );

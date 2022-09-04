@@ -1,8 +1,7 @@
-import React from "react";
 import { use100vh } from "react-div-100vh";
 import { useSelector } from "react-redux";
 import "../Styles/form.css";
-import "../Styles/_variables.css";
+import "../Styles/_globals.css";
 import useWindowSize from "../utils/useWindowSize";
 
 const Form = ({

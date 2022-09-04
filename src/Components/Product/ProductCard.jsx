@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addToCart, toggleCartDrawer } from "../../Redux/Actions/cart.action";
 import { toggleSearchModal } from "../../Redux/Actions/shop.action";
-import "../../Styles/_variables.css";
+import "../../Styles/_globals.css";
 import useWindowSize from "../../utils/useWindowSize";
 
 const ProductCard = ({ item, variants, bgColor, parentProduct }) => {

@@ -16,7 +16,7 @@ import imgMob4 from "../Assets/sliderImg/4mob.png";
 import imgPromote1 from "../Assets/sliderImg/5.png";
 import imgPromote2 from "../Assets/sliderImg/6.png";
 import { CartDrawer, CategoriesGrid, Footer, Navbar, SearchModal } from "../Components";
-import "../Styles/_variables.css";
+import "../Styles/_globals.css";
 import useWindowSize from "../utils/useWindowSize";
 
 const HomePage = () => {

@@ -67,14 +67,14 @@ const CartRecap = ({ formValidated, formOpen, toggleForm, handleForm, totalPrice
               </button>
             </div>
             <AnimateHeight duration={500} height={itemsDivHeight}>
-              <div className="hidden md:flex h-56 2xl:h-44 flex-col items-center justify-start overflow-y-auto overflow-x-hidden scrollbar-description pr-2">
+              <div className="hidden md:flex h-56 2xl:h-44 flex-col items-center justify-start space-y-1 overflow-y-auto overflow-x-hidden scrollbar-description pr-2">
                 {items.map((item, i) => (
                   <div
                     key={i + 1}
-                    className="h-20 w-full flex flex items-center justify-left border-b border-gray-300 only:border-b-0 last:border-b-0 bg-white"
+                    className="h-20 w-full flex flex items-center justify-left bg-white border border-gray-200"
                   >
                     <div
-                      className="h-full w-2/5 border-r border-gray-100"
+                      className="h-20 w-2/5 border-t border-r border-b border-gray-200"
                       style={{
                         background: `url("${item.product.media.source}") ${
                           item.product.categories.find((x) => x.name === "limited") ? "black" : "white"

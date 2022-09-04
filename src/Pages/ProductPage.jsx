@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory, useLocation } from "react-router-dom";
 import { CartDrawer, Footer, Navbar, RelatedProduct, SearchModal } from "../Components";
 import { addToCart, toggleCartDrawer } from "../Redux/Actions/cart.action";
-import "../Styles/_variables.css";
+import "../Styles/_globals.css";
 import useWindowSize from "../utils/useWindowSize";
 
 const ProductPage = () => {

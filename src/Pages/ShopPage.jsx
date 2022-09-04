@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { CartDrawer, Footer, Loader, Navbar, ProductCard, SearchModal } from "../Components";
-import "../Styles/_variables.css";
+import "../Styles/_globals.css";
 
 const ShopPage = () => {
   const shop = useSelector((state) => state?.shop?.shop);

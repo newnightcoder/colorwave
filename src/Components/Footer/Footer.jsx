@@ -1,6 +1,6 @@
 import { Github, Linkedin, Twitter } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
-import "../../Styles/_variables.css";
+import "../../Styles/_globals.css";
 
 const Footer = () => {
   return (

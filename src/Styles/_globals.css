@@ -56,8 +56,8 @@
 
 /* scrollbar product description  */
 .scrollbar-description {
-  scrollbar-color: #fcd34d;
-  scrollbar-width: auto;
+  scrollbar-color: #fcd34d dimgray;
+  scrollbar-width: thin;
 }
 
 .scrollbar-description::-webkit-scrollbar {
@@ -71,8 +71,8 @@
 
 /* scrollbar cart items */
 .scrollbar-cart {
-  scrollbar-color: black;
-  scrollbar-width: auto;
+  scrollbar-color: black #999;
+  scrollbar-width: thin;
 }
 
 .scrollbar-cart::-webkit-scrollbar {
@@ -85,8 +85,8 @@
 }
 /* scrollbar cart search */
 .scrollbar-search {
-  scrollbar-color: white;
-  scrollbar-width: auto;
+  scrollbar-color: white #777;
+  scrollbar-width: thin;
 }
 
 .scrollbar-search::-webkit-scrollbar {

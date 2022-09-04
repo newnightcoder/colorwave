@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { CartContainer, CartRecap, CheckoutForm, Form, Navbar, PaymentBanner, SearchModal, Steps } from "../Components";
 import { addToCart, confirmSuccess, deleteCart, deleteItem, removeOne, saveOrder } from "../Redux/Actions/cart.action";
-import "../Styles/_variables.css";
+import "../Styles/_globals.css";
 import useWindowSize from "../utils/useWindowSize";
 
 let stripePromise;

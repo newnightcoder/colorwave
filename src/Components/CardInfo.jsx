@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import AnimateHeight from "react-animate-height";
 import visa from "../Assets/cards/visa.png";
-import "../Styles/_variables.css";
+import "../Styles/_globals.css";
 import useWindowSize from "../utils/useWindowSize";
 
 const CardInfo = ({ formValidated }) => {

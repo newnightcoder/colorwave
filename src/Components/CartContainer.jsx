@@ -2,7 +2,7 @@ import { ChevronDoubleLeft, Trash } from "react-bootstrap-icons";
 import { use100vh } from "react-div-100vh";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import "../Styles/_variables.css";
+import "../Styles/_globals.css";
 import useWindowSize from "../utils/useWindowSize";
 
 const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, handleDeleteCart, formOpen }) => {
@@ -60,7 +60,7 @@ const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, han
                   className="item opacity-0 h-28 md:h-44 w-11/12 flex items-center justify-start space-x-1 md:space-x-6 pr-1 md:px-0 bg-white shadow"
                 >
                   <div
-                    className="h-full w-2/5 border-r border-gray-100"
+                    className="h-28 md:h-44 w-2/5 border-r border-gray-100"
                     style={{
                       background: `url("${item.product.media.source}") ${
                         item.product.categories.find((x) => x.name === "limited") ? "black" : "white"
