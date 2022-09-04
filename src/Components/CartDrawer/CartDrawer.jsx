@@ -60,11 +60,10 @@ const CartDrawer = () => {
                 <div
                   style={{
                     backgroundColor: item.product.categories.find((x) => x.name === "limited") ? "black" : "white",
+                    background: `url("${item.product.media.source}") no-repeat center/contain`,
                   }}
                   className="h-full w-2/5"
-                >
-                  <img src={item.product.media.source} alt="" className="object-cover h-full w-full" />
-                </div>
+                ></div>
                 <div className="w-2/5 text-left text-sm pl-2 pr-2 md:pl-5 md:pr-0 whitespace-nowrap truncate">
                   {item.product.name}
                 </div>

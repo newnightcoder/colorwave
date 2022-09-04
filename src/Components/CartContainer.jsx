@@ -1,4 +1,3 @@
-import React from "react";
 import { ChevronDoubleLeft, Trash } from "react-bootstrap-icons";
 import { use100vh } from "react-div-100vh";
 import { useSelector } from "react-redux";
@@ -7,19 +6,9 @@ import "../Styles/_variables.css";
 import useWindowSize from "../utils/useWindowSize";
 
 const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, handleDeleteCart, formOpen }) => {
-  const { height, width } = useWindowSize();
+  const { width } = useWindowSize();
   const responsiveHeight = use100vh();
   const items = useSelector((state) => state?.cart.items);
-  const itemsContainer = items.length !== 0 && document.querySelector(".items");
-
-  // useEffect(() => {
-  //   window.addEventListener("DOMContentloaded", () => {
-  //     itemsContainer.classList.add("scrollbar-cart");
-  //   });
-  //   return () => {
-  //     window.removeEventListener("DOMContentloaded");
-  //   };
-  // }, []);
 
   return (
     <div className="cart-container h-full w-full relative flex flex-col items-center justify-start md:items-end space-y-4 text-gray-900 bg-sound">
@@ -73,15 +62,11 @@ const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, han
                   <div
                     className="h-full w-2/5 border-r border-gray-100"
                     style={{
-                      backgroundColor: item.product.categories.find((x) => x.name === "limited") ? "black" : "white",
+                      background: `url("${item.product.media.source}") ${
+                        item.product.categories.find((x) => x.name === "limited") ? "black" : "white"
+                      } no-repeat center/contain`,
                     }}
-                  >
-                    <img
-                      src={item.product.media.source}
-                      alt={item.product.name}
-                      className="object-cover h-full w-full"
-                    />
-                  </div>
+                  ></div>
                   <div className="details h-full w-2/5 flex items-center justify-center space-x-2">
                     <div className="h-full w-full flex flex-col items-start justify-center space-y-1 md:space-y-2 pl-2 md:pl-1">
                       <div className="capitalize w-full whitespace-nowrap truncate">{item.product.name}</div>

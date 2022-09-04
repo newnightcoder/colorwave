@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import AnimateHeight from "react-animate-height";
 import { EyeFill, PlayFill, Trash } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
@@ -44,45 +44,50 @@ const CartRecap = ({ formValidated, formOpen, toggleForm, handleForm, totalPrice
       </div>
       <div className="h-max md:min-h-68 w-full flex flex-col items-center justify-start md:mt-6 2xl:mt-12">
         {formOpen && (
-          <>
-            <button
-              className="h-max md:h-12 inline-block text-sm flex items-center justify-center space-x-1 md:py-2"
-              onClick={width < 768 ? toggleMobileRecap : toggleCartInRecap}
-            >
-              <EyeFill size={16} className="md:hidden text-yellow-300" />
-              <span className="uppercase italic font-bold md:underline whitespace-nowrap text-yellow-300 md:text-black">
-                {btnContent} items in the cart
-              </span>
-              <PlayFill
-                size={16}
-                className="hidden md:block transition-transform duration-300"
-                style={{
-                  color: "rgb(17 24 39)",
-                  transform: itemsDivHeight !== 0 && "rotate(90deg)",
-                }}
-              />
-            </button>
+          <div className="h-full w-full">
+            <div className="h-max w-full flex justify-center">
+              <button
+                className="h-max md:h-12 text-sm md:py-2 relative"
+                onClick={width < 768 ? toggleMobileRecap : toggleCartInRecap}
+              >
+                <div className="h-full w-full flex items-center justify-center space-x-1 ">
+                  <EyeFill size={16} className="md:hidden text-yellow-300" />
+                  <span className="uppercase italic font-bold md:underline whitespace-nowrap text-yellow-300 md:text-black">
+                    {btnContent} items in the cart
+                  </span>
+                  <PlayFill
+                    size={16}
+                    className="hidden md:block transition-transform duration-300"
+                    style={{
+                      color: "rgb(17 24 39)",
+                      transform: itemsDivHeight !== 0 && "rotate(90deg)",
+                    }}
+                  />
+                </div>
+              </button>
+            </div>
             <AnimateHeight duration={500} height={itemsDivHeight}>
-              <div className="hidden md:flex h-56 2xl:h-44 flex-col items-center justify-start overflow-y-auto scrollbar-description pr-2">
+              <div className="hidden md:flex h-56 2xl:h-44 flex-col items-center justify-start overflow-y-auto overflow-x-hidden scrollbar-description pr-2">
                 {items.map((item, i) => (
                   <div
-                    key={i}
-                    className="w-full flex flex items-center justify-left border-b border-gray-300 only:border-b-0 last:border-b-0 bg-white"
+                    key={i + 1}
+                    className="h-20 w-full flex flex items-center justify-left border-b border-gray-300 only:border-b-0 last:border-b-0 bg-white"
                   >
                     <div
+                      className="h-full w-2/5"
                       style={{
-                        backgroundColor: item.product.categories.find((x) => x.name === "limited") ? "black" : "white",
+                        background: `url("${item.product.media.source}") ${
+                          item.product.categories.find((x) => x.name === "limited") ? "black" : "white"
+                        } no-repeat center/contain`,
                       }}
-                    >
-                      <img src={item.product.media.source} alt="" className="object-cover h-20 w-full" />
-                    </div>
-                    <div className="w-1/3 text-left text-sm pl-2 whitespace-nowrap truncate">{item.product.name}</div>
-                    <div className="w-1/3 text-right text-sm pr-2">{item.product.price.formatted}&nbsp;€</div>
+                    ></div>
+                    <div className="w-2/5 text-left text-sm pl-2 whitespace-nowrap truncate">{item.product.name}</div>
+                    <div className="w-1/5 text-right text-sm pr-2">{item.product.price.formatted}&nbsp;€</div>
                   </div>
                 ))}
               </div>
             </AnimateHeight>
-          </>
+          </div>
         )}
       </div>
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { XCircle } from "react-bootstrap-icons";
 import Div100vh from "react-div-100vh";
 import { useSelector } from "react-redux";
@@ -30,17 +29,18 @@ const MobileRecap = ({ openMobileRecap, toggleMobileRecap }) => {
             style={{
               animation: openMobileRecap && items.length !== 0 && `750ms fadeIn ${200 + i * 100}ms forwards`,
             }}
-            className="opacity-0 w-full flex flex items-center justify-left border border-gray-300 only:border-b-0 last:border-b-0 bg-white md:pr-3"
+            className="opacity-0 w-full flex flex items-center justify-left border border-gray-700 only:border-b-0 last:border-b-0 bg-white md:pr-3"
           >
             <div
+              className="h-24 w-2/5"
               style={{
-                backgroundColor: item.product.categories.find((x) => x.name === "limited") ? "black" : "white",
+                background: `url("${item.product.media.source}") ${
+                  item.product.categories.find((x) => x.name === "limited") ? "black" : "white"
+                } no-repeat center/contain`,
               }}
-            >
-              <img src={item.product.media.source} alt="" className="object-cover h-24 w-full" />
-            </div>
-            <div className="w-1/3 text-left text-sm pl-2 md:pl-5 whitespace-nowrap truncate">{item.product.name}</div>
-            <div className="w-1/3 text-right text-sm pr-2">{item.product.price.formatted}&nbsp;€</div>
+            ></div>
+            <div className="w-2/5 text-left text-sm pl-2 md:pl-5 whitespace-nowrap truncate">{item.product.name}</div>
+            <div className="w-1/5 text-right text-sm pr-2">{item.product.price.formatted}&nbsp;€</div>
           </div>
         ))}
       </div>
