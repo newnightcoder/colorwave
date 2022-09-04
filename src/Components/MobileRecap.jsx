@@ -29,7 +29,7 @@ const MobileRecap = ({ openMobileRecap, toggleMobileRecap }) => {
             style={{
               animation: openMobileRecap && items.length !== 0 && `750ms fadeIn ${200 + i * 100}ms forwards`,
             }}
-            className="opacity-0 w-full flex flex items-center justify-left border border-gray-700 only:border-b-0 last:border-b-0 bg-white md:pr-3"
+            className="opacity-0 w-full flex flex items-center justify-left border border-gray-700 only:border-b-0 last:border-b-0 bg-white pr-2 md:pr-3"
           >
             <div
               className="h-24 w-2/5"
@@ -39,8 +39,8 @@ const MobileRecap = ({ openMobileRecap, toggleMobileRecap }) => {
                 } no-repeat center/contain`,
               }}
             ></div>
-            <div className="w-2/5 text-left text-sm pl-2 md:pl-5 whitespace-nowrap truncate">{item.product.name}</div>
-            <div className="w-1/5 text-right text-sm pr-2">{item.product.price.formatted}&nbsp;€</div>
+            <div className="w-2/5 text-left text-sm pl-1 md:pl-5 whitespace-nowrap truncate">{item.product.name}</div>
+            <div className="w-1/5 text-right text-sm">{item.product.price.formatted}&nbsp;€</div>
           </div>
         ))}
       </div>

@@ -59,8 +59,9 @@ const CartDrawer = () => {
               >
                 <div
                   style={{
-                    backgroundColor: item.product.categories.find((x) => x.name === "limited") ? "black" : "white",
-                    background: `url("${item.product.media.source}") no-repeat center/contain`,
+                    background: `url("${item.product.media.source}") ${
+                      item.product.categories.find((x) => x.name === "limited") ? "black" : "white"
+                    } no-repeat center/contain`,
                   }}
                   className="h-full w-2/5"
                 ></div>
