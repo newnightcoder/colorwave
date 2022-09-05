@@ -69,6 +69,7 @@ const ShopPage = () => {
             <HashLink
               className="capitalize hover:underline hover:font-bold"
               to="/categories/sound#mics"
+              // to={{ pathname: "/categories/sound#mics", state: { from: pathname } }}
               scroll={scrollWidthOffset}
             >
               mics

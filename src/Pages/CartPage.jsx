@@ -273,7 +273,7 @@ const CartPage = () => {
     <Div100vh className="bg-black flex items-center justify-center ">
       <div className="w-max h-max flex flex-col items-center justify-center space-y-1">
         <span className="text-white text-base md:text-lg uppercase">Preparing your cart...</span>
-        <div className="h-2 w-full relative bg-transparent">
+        <div className="h-1 w-full relative bg-transparent">
           <div className="h-full w-full bg-white scale-x-0 origin-left animate-barLoadIn"></div>
         </div>
       </div>

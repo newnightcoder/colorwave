@@ -1,20 +1,30 @@
-import { useState } from "react";
-import { Search } from "react-bootstrap-icons";
+import { useEffect, useState } from "react";
+import { ChevronLeft, Search } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router";
 import { Link, NavLink } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import { toggleCartDrawer } from "../../Redux/Actions/cart.action";
 import { toggleSearchModal } from "../../Redux/Actions/shop.action";
 
 const Navbar = () => {
   const items = useSelector((state) => state?.cart.items);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [categoriesOpen, setCategoriesOpen] = useState(false);
   const dispatch = useDispatch();
   const { pathname } = useLocation();
 
   const toggleMenu = () => {
-    return setMenuOpen((menuOpen) => !menuOpen);
+    setMenuOpen((menuOpen) => !menuOpen);
   };
+
+  const toggleMenuCategories = () => {
+    setCategoriesOpen((categoriesOpen) => !categoriesOpen);
+  };
+
+  useEffect(() => {
+    if (categoriesOpen) toggleMenuCategories();
+  }, [pathname]);
 
   const totalItems =
     items.length !== 0 &&
@@ -91,14 +101,14 @@ const Navbar = () => {
               <nav className="hidden md:flex items-center justify-center lg:space-x-4">
                 <NavLink
                   to="/shop"
-                  className="relative text-gray-300 hover:text-white text-base font-medium whitespace-nowrap group px-3 py-2"
+                  className="relative text-gray-300 hover:text-white text-base whitespace-nowrap group px-3 py-2"
                 >
                   <span className="absolute inline-block inset-x-0 bottom-2 mx-auto h-0.5 w-full bg-yellow-300 transform scale-x-0 transition-scale origin-center duration-100 group-hover:scale-x-100"></span>
                   <span className="capitalize">Products</span>
                 </NavLink>
                 <NavLink
                   to="/categories/limited"
-                  className="relative text-gray-300 hover:text-white text-base font-medium whitespace-nowrap group px-3 py-2"
+                  className="relative text-gray-300 hover:text-white text-base whitespace-nowrap group px-3 py-2"
                 >
                   <span className="absolute inline-block inset-x-0 bottom-2 mx-auto h-0.5 w-full bg-yellow-300 transform scale-x-0 transition-scale origin-center duration-100 group-hover:scale-x-100"></span>
 
@@ -106,7 +116,7 @@ const Navbar = () => {
                 </NavLink>
                 <NavLink
                   to="/promotional"
-                  className="relative text-gray-300 hover:text-white text-base font-medium whitespace-nowrap group px-3 py-2"
+                  className="relative text-gray-300 hover:text-white text-base whitespace-nowrap group px-3 py-2"
                 >
                   <span className="absolute inline-block inset-x-0 bottom-2 mx-auto h-0.5 w-full bg-yellow-300 transform scale-x-0 transition-scale origin-center duration-100 group-hover:scale-x-100"></span>
                   <span>Promotional</span>
@@ -198,51 +208,157 @@ const Navbar = () => {
             ///   MOBILE MENU  - SHOW/HIDE BASED ON MENU STATE   ///
             /////////////////////////////////////////////////////// */}
         <div
-          style={{ transform: menuOpen ? "scale(1, 1)" : "scale(0, 1)" }}
-          className="w-max pl-2 pr-10 flex flex-col bg-black origin-left transition-scale duration-100"
+          style={{ transform: menuOpen ? "scale(1, 1)" : "scale(0, 1)", height: "calc(100vh - 3.5rem)" }}
+          className="w-full relative flex flex-col items-center justify-center bg-yellow-300 origin-left transition-scale duration-100"
           id="mobile-menu"
         >
-          <div className="px-2 pt-2 pb-3 space-y-1">
-            {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
+          {/* START menu for categories - within mobile menu */}
+          <div
+            className={`menu-categories transform transition duration-100 z-50 ${
+              categoriesOpen ? "translate-x-0" : "translate-x-full "
+            } absolute inset-0  w-full h-full bg-gray-500`}
+          >
+            <button
+              className="absolute top-1/2 left-6 transform -translate-y-1/2 bounce-right"
+              onClick={toggleMenuCategories}
+            >
+              <ChevronLeft size={38} className="fw-bold text-white hover:text-blue-500 transition duration-300" />
+            </button>
+            <div className="w-full h-full px-2 pt-2 pb-3 space-y-1 flex flex-col items-center justify-evenly">
+              <Link
+                style={{ animation: categoriesOpen && `750ms fadeIn 100ms forwards` }}
+                onClick={toggleMenu}
+                to="/categories/gaming"
+                className="text-white font-bold text-center block px-3 py-2 rounded-md text-base uppercase opacity-0 transform translate-y-100"
+                aria-current="page"
+              >
+                <div className="w-max group">
+                  <span>Gaming</span>
+                  <div className="h-1 bg-yellow-300 transform scale-x-0 origin-left transition duration-300 group-hover:scale-x-100"></div>
+                </div>
+              </Link>
+              <Link
+                style={{ animation: categoriesOpen && `750ms fadeIn 200ms forwards` }}
+                onClick={toggleMenu}
+                to="/categories/sound"
+                className="text-white font-bold text-center block px-3 py-2 rounded-md text-base uppercase opacity-0 transform translate-y-100"
+                aria-current="page"
+              >
+                <div className="w-max group">
+                  <span> Headphones </span>
+                  <div className="h-1 bg-yellow-300 transform scale-x-0 origin-left transition duration-300 group-hover:scale-x-100"></div>
+                </div>
+              </Link>
+              <HashLink
+                style={{ animation: categoriesOpen && `750ms fadeIn 300ms forwards` }}
+                onClick={toggleMenu}
+                to="/categories/sound#mics"
+                className="text-white font-bold text-center block px-3 py-2 rounded-md text-base uppercase opacity-0 transform translate-y-100"
+                aria-current="page"
+              >
+                <div className="w-max group">
+                  <span> Mics </span>
+                  <div className="h-1 bg-yellow-300 transform scale-x-0 origin-left transition duration-300 group-hover:scale-x-100"></div>
+                </div>
+              </HashLink>
+              <Link
+                style={{ animation: categoriesOpen && `750ms fadeIn 400ms forwards` }}
+                onClick={toggleMenu}
+                to="/categories/skins"
+                className="text-white font-bold text-center block px-3 py-2 rounded-md text-base uppercase opacity-0 transform translate-y-100"
+                aria-current="page"
+              >
+                <div className="w-max group">
+                  <span> Skins </span>
+                  <div className="h-1 bg-yellow-300 transform scale-x-0 origin-left transition duration-300 group-hover:scale-x-100"></div>
+                </div>
+              </Link>
+              <Link
+                style={{ animation: categoriesOpen && `750ms fadeIn 500ms forwards` }}
+                onClick={toggleMenu}
+                to="/categories/accessories"
+                className="text-white font-bold text-center block px-3 py-2 rounded-md text-base uppercase opacity-0 transform translate-y-100"
+                aria-current="page"
+              >
+                <div className="w-max group">
+                  <span> Accessories </span>
+                  <div className="h-1 bg-yellow-300 transform scale-x-0 origin-left transition duration-300 group-hover:scale-x-100"></div>
+                </div>
+              </Link>
+            </div>
+          </div>
+          {/* END menu for categories - within mobile menu */}
+          {/*  MENU */}
+          <div className="w-full h-full px-2 pt-2 pb-3 space-y-1 flex flex-col items-center justify-evenly z-10">
             <Link
+              style={{ animation: menuOpen && `750ms fadeIn 100ms forwards` }}
               onClick={toggleMenu}
               to="/"
-              className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
+              className="text-black font-bold text-center block px-3 py-2 rounded-md text-base uppercase opacity-0 transform translate-y-100"
               aria-current="page"
             >
-              Home
+              <div className="w-max group">
+                <span> Home </span>
+                <div className="h-1 bg-white transform scale-x-0 origin-left transition duration-300 group-hover:scale-x-100"></div>
+              </div>
             </Link>
             <Link
+              style={{ animation: menuOpen && `750ms fadeIn 200ms forwards` }}
               onClick={toggleMenu}
               to="/shop"
-              className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
+              className="text-black font-bold text-center block px-3 py-2 rounded-md text-base uppercase opacity-0 transform translate-y-100"
               aria-current="page"
             >
-              Products
+              <div className="w-max group">
+                <span> store </span>
+                <div className="h-1 bg-white transform scale-x-0 origin-left transition duration-300 group-hover:scale-x-100"></div>
+              </div>
             </Link>
 
             <Link
+              style={{ animation: menuOpen && `750ms fadeIn 300ms forwards` }}
               onClick={toggleMenu}
               to="/categories/limited"
-              className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
+              className="text-black font-bold text-center block px-3 py-2 rounded-md text-base uppercase opacity-0 transform translate-y-100"
             >
-              limited
+              <div className="w-max group">
+                <span> limited </span>
+                <div className="h-1 bg-white transform scale-x-0 origin-left transition duration-300 group-hover:scale-x-100"></div>
+              </div>
             </Link>
+            <button
+              style={{ animation: menuOpen && `750ms fadeIn 400ms forwards` }}
+              onClick={toggleMenuCategories}
+              className="text-center outline-none px-3 py-2 rounded-md text-base uppercase opacity-0 transform translate-y-100"
+            >
+              <div className="w-max group">
+                <span className="text-black font-bold"> categories </span>
+                <div className="h-1 bg-white transform scale-x-0 origin-left transition duration-300 group-hover:scale-x-100"></div>
+              </div>
+            </button>
 
             <Link
+              style={{ animation: menuOpen && `750ms fadeIn 500ms forwards` }}
               onClick={toggleMenu}
               to="/promotional"
-              className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
+              className="text-black font-bold text-center block px-3 py-2 rounded-md text-base uppercase opacity-0 transform translate-y-100"
             >
-              Promotional
+              <div className="w-max group">
+                <span> promotional </span>
+                <div className="h-1 bg-white transform scale-x-0 origin-left transition duration-300 group-hover:scale-x-100"></div>
+              </div>
             </Link>
             {pathname !== "/cart" && (
               <Link
+                style={{ animation: menuOpen && `750ms fadeIn 600ms forwards` }}
                 onClick={toggleMenu}
                 to="/cart"
-                className="text-gray-300 hover:text-blue-500 hover:font-bold block px-3 py-2 rounded-md text-base font-medium capitalize"
+                className="text-black font-bold text-center block px-3 py-2 rounded-md text-base uppercase opacity-0 transform translate-y-100"
               >
-                Cart
+                <div className="w-max group">
+                  <span> cart </span>
+                  <div className="h-1 bg-white transform scale-x-0 origin-left transition duration-300 group-hover:scale-x-100"></div>
+                </div>
               </Link>
             )}
           </div>

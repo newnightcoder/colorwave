@@ -14,10 +14,7 @@ const TextLoader = () => {
   const { pathname } = useLocation();
   const categoryName = pathname.split("/")[2];
   return (
-    <div
-      style={{ height: width < 768 ? responsiveHeight - 300 : "calc(100vh - 200px)" }}
-      className="w-full flex flex-col items-center justify-center"
-    >
+    <div style={{ height: "calc(100vh - 200px)" }} className="h-full w-full flex flex-col items-center justify-center">
       <span className="uppercase text-2xl">{`${categoryName.toUpperCase()} `}</span>
       <div className="w-48 h-1 bg-transparent">
         <div className={` animate-barLoadIn h-full bg-white transform scale-x-0 origin-left`}></div>
@@ -144,15 +141,21 @@ const CategoryPage = () => {
         <div
           className={`${
             isLoading ? "opacity-0" : "opacity-100"
-          } w-full relative flex items-center justify-center md:justify-start relative pt-4 md:pt-10 mb-4`}
+          } w-full relative flex items-center justify-center md:justify-start relative  pt-4 md:pt-10 mb-4`}
         >
           <Link
-            to={{ pathname: location.state?.from?.includes("shop") ? "/shop" : "/" }}
+            to={{
+              pathname: location?.state?.from === "/shop" || location.hash === "#mics" ? "/shop" : "/",
+            }}
             className="absolute left-5 md:left-10 top-50"
           >
-            <ChevronLeft size={38} className="fw-bold" />
+            <ChevronLeft size={38} className="fw-bold hover:text-white transition duration-300" />
           </Link>
-          <span className="w-min max-w-64 relative text-2xl font-bold px-4 md:px-6 md:ml-32 md:whitespace-nowrap">
+          <span
+            className={`${
+              isLoading ? "opacity-0" : "opacity-100"
+            } w-min max-w-64 relative text-2xl font-bold px-4 md:px-6 md:ml-32 md:whitespace-nowrap`}
+          >
             {categoryName.toUpperCase()}
             <span
               style={pageConditionalStyle.titleAfterElement}
@@ -199,7 +202,10 @@ const CategoryPage = () => {
             ) : (
               subCategories.map((cat, i) => (
                 <div id={cat} className="h-full flex flex-col items-center justify-center py-3 md:py-8" key={i + 1}>
-                  <div className="h-min w-max relative text-center text-2xl capitalize px-4 md:px-8 mb-6 md:mb-8">
+                  <div
+                    style={{ animation: `750ms fadeIn ${400 * i}ms forwards` }}
+                    className="h-min w-max relative text-center text-2xl capitalize px-4 md:px-8 mb-6 md:mb-8 opacity-0 transform translate-y-100"
+                  >
                     <h2 className="text-xl md:text-3xl relative z-10 whitespace-nowrap">{cat}</h2>
                     <span className="h-0.5 md:h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-1 md:bottom-0.5 bg-yellow-300"></span>
                   </div>
