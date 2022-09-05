@@ -5,7 +5,7 @@ import { addToCart, toggleCartDrawer } from "../../Redux/Actions/cart.action";
 import { toggleSearchModal } from "../../Redux/Actions/shop.action";
 import "../../Styles/_globals.css";
 
-const ProductCard = ({ item, variants, bgColor, parentProduct }) => {
+const ProductCard = ({ item, variants, bgColor, parentProduct, search }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const searchModalOpen = useSelector((state) => state?.shop.searchModalOpen);
@@ -32,7 +32,11 @@ const ProductCard = ({ item, variants, bgColor, parentProduct }) => {
   };
 
   return (
-    <div className="h-52 w-full md:h-64 2xl:h-68 font-cabin group">
+    <div
+      className={`product-card h-52 w-full md:h-64 2xl:h-68 font-cabin group transform  ${
+        search ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1/4"
+      }`}
+    >
       <div
         className="h-40 md:h-56 w-full cursor-pointer relative overflow-hidden"
         style={{ backgroundColor: `${bgColor}` }}

@@ -22,7 +22,7 @@ const SearchModal = () => {
   return (
     <div
       style={{ opacity: open ? 1 : 0, zIndex: open ? 4000 : -1, backgroundColor: "rgba(0,0,0,.95)" }}
-      className="h-screen w-screen fixed inset-0 flex flex-col items-center overflow-x-hidden text-white pt-2 pb-8 px-2 md:px-8 transition-opacity duration-700 font-cabin"
+      className="h-screen w-screen fixed inset-0 flex flex-col items-center space-y-1 md:space-y-3 overflow-x-hidden text-white pt-2 pb-8 px-2 md:px-8 transition-opacity duration-700 font-cabin"
     >
       <div className="h-max w-full flex flex-col items-center justify-start space-y-8 py-4">
         <div className="h-max w-full flex items-center justify-between px-4 md:px-16">
@@ -69,9 +69,10 @@ const SearchModal = () => {
 
       <div
         style={{ height: "calc(100vh - 200px)" }}
-        className="h-max w-10/12 grid place-items-center gap-4 md:gap-6 grid-cols-2 lg:grid-cols-3 px-6 pb-6 overflow-y-auto scrollbar-search"
+        className="w-10/12 grid place-items-center gap-4 md:gap-6 grid-cols-2 lg:grid-cols-3 px-6 overflow-y-auto scrollbar-search"
       >
-        {searchTerm.length > 1 && searchedItems?.map((item, i) => <ProductCard key={i + 1} item={item} />)}
+        {searchTerm.length > 1 &&
+          searchedItems?.map((item, i) => <ProductCard key={i + 1} item={item} search={true} />)}
       </div>
     </div>
   );

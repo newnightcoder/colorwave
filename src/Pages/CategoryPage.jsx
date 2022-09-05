@@ -3,11 +3,12 @@ import { ChevronLeft } from "react-bootstrap-icons";
 import { use100vh } from "react-div-100vh";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import { CartDrawer, Footer, Navbar, ProductCard, SearchModal } from "../Components";
+import { CartDrawer, Footer, Loader, Navbar, ProductCard, SearchModal } from "../Components";
 import "../Styles/_globals.css";
+import { animateProducts } from "../utils/animateProducts";
 import useWindowSize from "../utils/useWindowSize";
 
-const Loader = () => {
+const TextLoader = () => {
   const { width } = useWindowSize();
   const responsiveHeight = use100vh();
   const { pathname } = useLocation();
@@ -30,8 +31,7 @@ const CategoryPage = () => {
   const item = location?.state?.item || undefined;
   const variants = location?.state?.variants || undefined;
   const categoryName = location.pathname.split("/")[2];
-  const shop = useSelector((state) => state.shop.shop);
-  const items = useSelector((state) => state?.shop.shop);
+  const shop = useSelector((state) => state?.shop.shop);
   const limitedItems = shop.filter((item) => item?.categories?.find((cat) => cat.name === "limited"));
   const [isLoading, setIsLoading] = useState(true);
   const [subCategories, setSubCategories] = useState([]);
@@ -79,7 +79,7 @@ const CategoryPage = () => {
   };
 
   const filterItemsOfCategory = () => {
-    const filteredItems = items
+    const filteredItems = shop
       .map((item) => {
         const categories = item.categories;
         const matchingCategory = categories.find((category) => category.name === categoryName);
@@ -117,13 +117,16 @@ const CategoryPage = () => {
       const products = findProductVariants();
       setItemVariants(products);
     }
-    filterItemsOfCategory();
-    createSubCategoriesArray();
-    getSubCategories();
+    if (shop.length > 0) {
+      filterItemsOfCategory();
+      createSubCategoriesArray();
+      getSubCategories();
+    }
     setTimeout(() => {
       setIsLoading(false);
-    }, 900);
-  }, [items, item, variants, isLoading]);
+      animateProducts(".category");
+    }, 800);
+  }, [shop, item, variants, isLoading]);
 
   useEffect(() => {
     return () => {
@@ -132,9 +135,9 @@ const CategoryPage = () => {
   }, [location]);
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <div
-        className="pt-16 min-h-screen w-screen flex flex-col items-center justify-start font-cabin space-y-6 pb-12"
+        className="pt-16 min-h-screen w-full flex flex-col items-center justify-start font-cabin space-y-6 pb-12"
         style={pageConditionalStyle.colors}
       >
         <Navbar />
@@ -158,22 +161,41 @@ const CategoryPage = () => {
           </span>
         </div>
 
-        <div className="w-full h-full">
+        <div className="category w-full h-full">
           {location.pathname === "/categories/limited" ? (
             <div>
               {isLoading ? (
-                <Loader />
+                <TextLoader />
               ) : (
-                <div className="h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 px-2 md:px-6 py-12">
-                  {limitedItems.map((item, i) => (
-                    <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(0,0,0,1)"} />
-                  ))}
+                <div className="section-grid h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 px-2 md:px-6 py-12">
+                  {shop.length === 0 ? (
+                    <Loader color="yellow" />
+                  ) : (
+                    limitedItems.map((item, i) => (
+                      <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(0,0,0,1)"} />
+                    ))
+                  )}
                 </div>
               )}
             </div>
-          ) : !variants ? (
+          ) : variants === undefined ? (
             isLoading ? (
-              <Loader />
+              <TextLoader />
+            ) : shop.length === 0 ? (
+              <div className="section-grid grid h-max w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 px-3 md:px-6">
+                <Loader
+                  color={
+                    categoryName === "sound" || categoryName === "skins" || categoryName === "accessories"
+                      ? "blue"
+                      : "yellow"
+                  }
+                  bg={
+                    categoryName === "sound" || categoryName === "skins" || categoryName === "accessories"
+                      ? "white"
+                      : ""
+                  }
+                />
+              </div>
             ) : (
               subCategories.map((cat, i) => (
                 <div id={cat} className="h-full flex flex-col items-center justify-center py-3 md:py-8" key={i + 1}>
@@ -181,7 +203,7 @@ const CategoryPage = () => {
                     <h2 className="text-xl md:text-3xl relative z-10 whitespace-nowrap">{cat}</h2>
                     <span className="h-0.5 md:h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-1 md:bottom-0.5 bg-yellow-300"></span>
                   </div>
-                  <div className="h-max w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 px-3 md:px-6">
+                  <div className="section-grid h-max w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 2xl:grid-cols-5 px-3 md:px-6">
                     {categoryItems.map((item, i) => {
                       const { categories } = item;
                       if (categories.find((category) => category.name === cat)) {
@@ -204,11 +226,11 @@ const CategoryPage = () => {
           ) : (
             <div>
               {isLoading ? (
-                <Loader />
+                <TextLoader />
               ) : (
-                <div className="h-full w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 px-6">
+                <div className="section-grid h-full w-full grid place-items-center gap-4 md:gap-10 grid-cols-2 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 px-6">
                   {itemVariants?.map((variant, i) => {
-                    let matchingItem = items.find((item) => item.name === variant);
+                    let matchingItem = shop.find((item) => item.name === variant);
                     return <ProductCard item={matchingItem} key={i + 1} variants={undefined} parentProduct={item} />;
                   })}
                 </div>

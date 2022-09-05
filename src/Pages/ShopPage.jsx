@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { CartDrawer, Footer, Loader, Navbar, ProductCard, SearchModal } from "../Components";
 import "../Styles/_globals.css";
+import { animateProducts } from "../utils/animateProducts";
 
 const ShopPage = () => {
   const shop = useSelector((state) => state?.shop?.shop);
@@ -18,6 +19,7 @@ const ShopPage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    animateProducts(".main");
   }, []);
 
   const categories = {
@@ -92,7 +94,7 @@ const ShopPage = () => {
           </li>
         </ul>
       </header>
-      <main className="h-full w-full flex flex-col items-center justify-center">
+      <main className="main h-full w-full flex flex-col items-center justify-center">
         <section
           style={{ backgroundColor: "#171717" }}
           className="h-full w-full text-gray-300 flex flex-col items-center justify-center space-y-4 md:space-y-8 py-6 md:px-2"
@@ -103,7 +105,7 @@ const ShopPage = () => {
             </h2>
             <span className="h-0.5 md:h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 md:bottom-px bg-yellow-300"></span>
           </div>
-          <div className="h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
+          <div className="section-grid h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
             {limitedItems.length === 0 ? (
               <Loader color="yellow" />
             ) : (
@@ -120,7 +122,7 @@ const ShopPage = () => {
             </h2>
             <span className="h-0.5 md:h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-1 md:bottom-px bg-blue-400"></span>
           </div>
-          <div className="h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
+          <div className="section-grid h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
             {gamingItems.length === 0 ? (
               <Loader color="blue" bg="white" />
             ) : (
@@ -142,7 +144,7 @@ const ShopPage = () => {
             </h2>
             <span className="h-0.5 md:h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-1 md:bottom-px  bg-yellow-300"></span>
           </div>
-          <div className="h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
+          <div className="section-grid h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
             {headphonesItems.length === 0 ? (
               <Loader color="yellow" />
             ) : (
@@ -164,7 +166,7 @@ const ShopPage = () => {
             </h2>
             <span className="h-0.5 md:h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-1 md:bottom-px  bg-yellow-300"></span>
           </div>
-          <div className="h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
+          <div className="section-grid h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
             {micsItems.length === 0 ? (
               <Loader color="yellow" />
             ) : (
@@ -179,7 +181,7 @@ const ShopPage = () => {
             <h2 className="relative capitalize text-center text-2xl md:text-3xl px-5 md:px-8">{categories.skins}</h2>
             <span className="h-0.5 md:h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-1 md:bottom-px  bg-blue-400"></span>
           </div>
-          <div className="h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
+          <div className="section-grid h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
             {skinsItems.length === 0 ? (
               <Loader color="blue" bg="white" />
             ) : (
@@ -196,7 +198,7 @@ const ShopPage = () => {
             </h2>
             <span className="h-0.5 md:h-1 w-full absolute inset-x-0 mx-auto left-0 bottom-1 md:bottom-px bg-blue-400"></span>
           </div>
-          <div className="h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
+          <div className="section-grid h-full w-full grid place-items-center gap-3 md:gap-8 grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 p-4">
             {accessoriesItems.length === 0 ? (
               <Loader color="blue" bg="white" />
             ) : (

@@ -8,7 +8,6 @@ export { default as CheckoutForm } from "./CheckoutForm";
 export { default as Footer } from "./Footer/Footer";
 export { default as Form } from "./Form";
 export { default as Loader } from "./Loader/Loader";
-// export { default as LoaderSound } from "./Loader/LoaderSound";
 export { default as MobileRecap } from "./MobileRecap";
 export { default as Navbar } from "./Navbar/Navbar";
 export { default as PaymentBanner } from "./PaymentBanner";

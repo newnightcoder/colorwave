@@ -22,10 +22,15 @@ module.exports = {
           "0%": { transform: "scale(1,1)" },
           "100%": { transform: "scale(0,1)" },
         },
+        fadeIn: {
+          "0%": { opacity: 0, transform: "translateY(25%)" },
+          "100%": { opacity: 1, transform: "translateY(0)" },
+        },
       },
       animation: {
         barLoadIn: "load 850ms ease-in-out forwards",
         barLoadOut: "100ms deload 400ms ease-out forwards",
+        fadeIn: "600ms fadeIn ease-out forwards",
       },
     },
   },
