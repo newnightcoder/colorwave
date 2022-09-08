@@ -67,7 +67,7 @@ const Form = ({
                   <input
                     id="firstName"
                     type="text"
-                    className="form-input w-full border-3 border-transparent transition-colors duration-300 focus:border-yellow-300 border-3 border-transparent transition-colors duration-300 focus:border-yellow-300"
+                    className="form-input text-black w-full border-3 border-transparent transition-colors duration-300 focus:border-yellow-300 border-3 border-transparent transition-colors duration-300 focus:border-yellow-300"
                     placeholder="Your first name"
                     value={inputFirstName}
                     onChange={handleInput}
@@ -83,7 +83,7 @@ const Form = ({
                   <input
                     id="lastName"
                     type="text"
-                    className="form-input w-full border-3 border-transparent transition-colors duration-300 focus:border-yellow-300"
+                    className="form-input text-black w-full border-3 border-transparent transition-colors duration-300 focus:border-yellow-300"
                     placeholder="Your last name"
                     value={inputLastName}
                     onChange={handleInput}
@@ -100,7 +100,7 @@ const Form = ({
                 <input
                   id="email"
                   type="email"
-                  className="form-input w-full border-3 border-transparent transition-colors duration-300 focus:border-yellow-300"
+                  className="form-input text-black w-full border-3 border-transparent transition-colors duration-300 focus:border-yellow-300"
                   placeholder="abc@gmail.com"
                   value={inputEmail}
                   onChange={handleInput}
@@ -116,7 +116,7 @@ const Form = ({
                 <input
                   id="address"
                   type="text"
-                  className="form-input w-full border-3 border-transparent transition-colors duration-300 focus:border-yellow-300"
+                  className="form-input text-black w-full border-3 border-transparent transition-colors duration-300 focus:border-yellow-300"
                   placeholder="Your address"
                   value={inputAddress}
                   onChange={handleInput}
@@ -133,7 +133,7 @@ const Form = ({
                   <input
                     id="city"
                     type="text"
-                    className="form-input w-full border-3 border-transparent transition-colors duration-300 focus:border-yellow-300"
+                    className="form-input text-black w-full border-3 border-transparent transition-colors duration-300 focus:border-yellow-300"
                     placeholder="Your city"
                     value={inputCity}
                     onChange={handleInput}
@@ -150,7 +150,7 @@ const Form = ({
                   <input
                     id="zip"
                     type="text"
-                    className="form-input w-full border-3 border-transparent transition-colors duration-300 focus:border-yellow-300"
+                    className="form-input text-black w-full border-3 border-transparent transition-colors duration-300 focus:border-yellow-300"
                     placeholder="Your Zip Code"
                     value={inputZip}
                     onChange={handleInput}
@@ -168,7 +168,7 @@ const Form = ({
                 <input
                   id="phone"
                   type="tel"
-                  className="form-input w-full border-3 border-transparent transition-colors duration-300 focus:border-yellow-300"
+                  className="form-input text-black w-full border-3 border-transparent transition-colors duration-300 focus:border-yellow-300"
                   placeholder={width < 768 ? "Phone number (10 digits)" : "1234567890"}
                   value={inputPhone}
                   onChange={handleInput}
