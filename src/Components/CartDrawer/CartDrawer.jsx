@@ -21,11 +21,11 @@ const CartDrawer = () => {
     });
   };
 
-  const totalPrice =
-    items?.length !== 0 &&
-    items?.reduce((acc, curr) => {
-      return acc + curr.product.price.raw * curr.quantity;
-    }, 0);
+  // const totalPrice =
+  //   items?.length !== 0 &&
+  //   items?.reduce((acc, curr) => {
+  //     return acc + curr.product.price.raw * curr.quantity;
+  //   }, 0);
 
   return (
     <Div100vh
@@ -33,7 +33,7 @@ const CartDrawer = () => {
         transform: cartDrawerOpen && !location.pathname.includes("cart") ? "translateY(0)" : "translateY(-101%)",
         zIndex: 5000,
       }}
-      className={`w-full fixed md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 font-cabin flex flex-col items-center justify-center overflow-hidden  transition-transform duration-300 text-gray-900 right-0 top-0 bg-sound  pt-4 pb-8 md:px-10`}
+      className={`w-full fixed md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 font-cabin flex flex-col items-center justify-center overflow-hidden  transition-transform duration-300 text-gray-900 right-0 top-0 bg-sound  pt-6 pb-8 md:px-10`}
     >
       <button onClick={() => dispatch(toggleCartDrawer())} className="h-max w-max">
         <XLg size={24} className="absolute top-8 right-10 z-50" />
@@ -86,7 +86,9 @@ const CartDrawer = () => {
                   </div>
                 ))
               ) : (
-                <div className="h-full w-full text-lg text-center my-auto">YOUR CART IS EMPTY</div>
+                <div className="h-full w-full text-lg text-center my-auto ">
+                  <span className="h-full w-max border-b-2 border-white pb-px px-4">YOUR CART IS EMPTY</span>
+                </div>
               )}
             </div>
           </div>

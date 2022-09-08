@@ -13,8 +13,10 @@ const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, han
   return (
     <div className="cart-container h-full w-full relative flex flex-col items-center justify-center text-gray-900 bg-sound md:bg-gaming">
       {items.length === 0 ? (
-        <div className="fixed z-50 inset-0 m-auto w-max flex flex-col items-center justify-center space-y-1">
-          <h1 className="text-lg md:text-xl uppercase">YOUR CART IS EMPTY...</h1>
+        <div className="fixed z-50 inset-0 m-auto w-max flex flex-col items-center justify-center space-y-4">
+          <h1 className="text-lg md:text-xl md:text-gray-100 uppercase border-b-2 border-yellow-400 px-4 font-bold">
+            YOUR CART IS EMPTY...
+          </h1>
           <Link
             to="/shop"
             className="flex items-center justify-center space-x-1 text-blue-500 hover:underline hover:font-bold"
