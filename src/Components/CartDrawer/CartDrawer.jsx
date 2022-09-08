@@ -33,9 +33,9 @@ const CartDrawer = () => {
         transform: cartDrawerOpen && !location.pathname.includes("cart") ? "translateY(0)" : "translateY(-101%)",
         zIndex: 5000,
       }}
-      className={`w-full fixed md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 font-cabin flex flex-col items-center justify-center overflow-x-hidden overflow-y-auto transition-transform duration-300 text-gray-900 right-0 top-0 bg-sound ${
-        items.length > 0 ? "pt-6 pb-12" : ""
-      } px-5 md:px-10`}
+      className={`w-full fixed md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 font-cabin flex flex-col items-center justify-center overflow-x-hidden  transition-transform duration-300 text-gray-900 right-0 top-0 bg-sound ${
+        items.length > 0 ? "overflow-y-auto" : "overflow-y-hidden"
+      } pt-6 pb-12 px-5 md:px-10`}
     >
       <button onClick={() => dispatch(toggleCartDrawer())} className="h-max w-max">
         <XLg size={24} className="absolute top-8 right-10 z-50" />
