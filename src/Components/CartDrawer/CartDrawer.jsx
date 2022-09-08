@@ -33,9 +33,7 @@ const CartDrawer = () => {
         transform: cartDrawerOpen && !location.pathname.includes("cart") ? "translateY(0)" : "translateY(-101%)",
         zIndex: 5000,
       }}
-      className={`w-full fixed md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 font-cabin flex flex-col items-center justify-center overflow-x-hidden  transition-transform duration-300 text-gray-900 right-0 top-0 bg-sound ${
-        items.length > 0 ? "overflow-y-auto" : "overflow-y-hidden"
-      } pt-6 pb-12 px-5 md:px-10`}
+      className={`w-full fixed md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-2/5 font-cabin flex flex-col items-center justify-center overflow-hidden  transition-transform duration-300 text-gray-900 right-0 top-0 bg-sound  pt-4 pb-8 md:px-10`}
     >
       <button onClick={() => dispatch(toggleCartDrawer())} className="h-max w-max">
         <XLg size={24} className="absolute top-8 right-10 z-50" />
@@ -49,8 +47,12 @@ const CartDrawer = () => {
           <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-black"></span>
         </div>
 
-        <div className="h-4/5 w-full overflow-hidden py-6">
-          <div className="h-full w-full overflow-x-hidden overflow-y-auto scrollbar-description">
+        <div className="h-4/5 w-full overflow-hidden pt-3 pb-0 ">
+          <div
+            className={`h-full w-full overflow-x-hidden ${
+              items.length > 0 ? "overflow-y-auto" : "overflow-y-hidden flex items-center justify-center"
+            } scrollbar-description`}
+          >
             <div className="items-container h-auto w-full flex flex-col items-center justify-start space-y-2 pb-2">
               {items?.length !== 0 ? (
                 items.map((item, i) => (
@@ -84,9 +86,7 @@ const CartDrawer = () => {
                   </div>
                 ))
               ) : (
-                <div className="h-screen w-screen text-lg flex flex-col items-center justify-center">
-                  YOUR CART IS EMPTY
-                </div>
+                <div className="h-full w-full text-lg text-center my-auto">YOUR CART IS EMPTY</div>
               )}
             </div>
           </div>
