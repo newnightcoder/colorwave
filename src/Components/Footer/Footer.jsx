@@ -78,17 +78,17 @@ const Footer = () => {
           </p>
           <ul className="w-max flex items-center justify-center space-x-8 px-4 pt-1 md:pt-0">
             <li>
-              <a href="https://www.twitter.com/nightcoder2" target="_blank" rel="noreferrer">
+              <a href="http://www.twitter.com/nightcoder2" target="_blank" rel="noreferrer">
                 <Twitter className="text-2xl" />
               </a>
             </li>
             <li>
-              <a href="https://www.github.com/newnightcoder" target="_blank" rel="noreferrer">
+              <a href="http://www.github.com/newnightcoder" target="_blank" rel="noreferrer">
                 <Github className="text-2xl" />
               </a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/in/nightcoder-dan" target="_blank" rel="noreferrer">
+              <a href="http://www.linkedin.com/in/nightcoder-dan" target="_blank" rel="noreferrer">
                 <Linkedin className="text-2xl" />
               </a>
             </li>
