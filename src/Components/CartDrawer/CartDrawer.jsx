@@ -87,7 +87,7 @@ const CartDrawer = () => {
                 ))
               ) : (
                 <div className="h-full w-full text-lg text-center my-auto ">
-                  <span className="h-full w-max border-b-2 border-white pb-px px-4">YOUR CART IS EMPTY</span>
+                  <span className="h-full w-max border-b-2 border-yellow-400 pb-px px-4">YOUR CART IS EMPTY</span>
                 </div>
               )}
             </div>
