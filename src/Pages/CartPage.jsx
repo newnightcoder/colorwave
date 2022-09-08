@@ -20,7 +20,7 @@ let stripePromise;
 
 const CartPage = () => {
   const dispatch = useDispatch();
-  const { height, width } = useWindowSize();
+  const { width } = useWindowSize();
   const items = useSelector((state) => state?.cart.items);
   const form = document.querySelector("#userInfo-form");
   const [formOpen, setFormOpen] = useState(false);
@@ -46,6 +46,8 @@ const CartPage = () => {
   const [errorCheckbox, setErrorCheckbox] = useState("");
   const [formChecked, setFormChecked] = useState(false);
   const [formValidated, setFormValidated] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const emailRegex =
     /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
   const zipRegex = /^[0-9]{5}$/;
@@ -100,7 +102,10 @@ const CartPage = () => {
   }, [formValidated]);
 
   const appearance = {
-    theme: "stripe",
+    theme: "stripe", //stripe, night, flat, none
+    variables: {
+      spacingUnit: width > 768 ? "5px" : "7px",
+    },
   };
 
   const options = {
@@ -139,14 +144,38 @@ const CartPage = () => {
   };
 
   const handleInput = (e) => {
-    if (e.target === form.querySelector("#firstName")) return setInputFirstName(e.currentTarget.value);
-    if (e.target === form.querySelector("#lastName")) return setInputLastName(e.currentTarget.value);
-    if (e.target === form.querySelector("#email")) return setInputEmail(e.currentTarget.value);
-    if (e.target === form.querySelector("#address")) return setInputAddress(e.currentTarget.value);
-    if (e.target === form.querySelector("#city")) return setInputCity(e.currentTarget.value);
-    if (e.target === form.querySelector("#zip")) return setInputZip(e.currentTarget.value);
-    if (e.target === form.querySelector("#phone")) return setInputPhone(e.currentTarget.value);
-    if (e.target === form.querySelector("#checkbox")) return setInputCheckbox(e.currentTarget.checked);
+    if (e.target === form.querySelector("#firstName")) {
+      if (errorFirstName.length > 0) setErrorFirstName("");
+      return setInputFirstName(e.currentTarget.value);
+    }
+    if (e.target === form.querySelector("#lastName")) {
+      if (errorLastName.length > 0) setErrorLastName("");
+      return setInputLastName(e.currentTarget.value);
+    }
+    if (e.target === form.querySelector("#email")) {
+      if (errorEmail.length > 0) setErrorEmail("");
+      return setInputEmail(e.currentTarget.value);
+    }
+    if (e.target === form.querySelector("#address")) {
+      if (errorAddress.length > 0) setErrorAddress("");
+      return setInputAddress(e.currentTarget.value);
+    }
+    if (e.target === form.querySelector("#city")) {
+      if (errorCity.length > 0) setErrorCity("");
+      return setInputCity(e.currentTarget.value);
+    }
+    if (e.target === form.querySelector("#zip")) {
+      if (errorZip.length > 0) setErrorZip("");
+      return setInputZip(e.currentTarget.value);
+    }
+    if (e.target === form.querySelector("#phone")) {
+      if (errorPhone.length > 0) setErrorPhone("");
+      return setInputPhone(e.currentTarget.value);
+    }
+    if (e.target === form.querySelector("#checkbox")) {
+      if (errorCheckbox.length > 0) setErrorCheckbox("");
+      return setInputCheckbox(e.currentTarget.checked);
+    }
   };
 
   const checkFormErrors = () => {
@@ -159,7 +188,7 @@ const CartPage = () => {
       city: "Please enter your city",
       zip: "Please enter your zip code",
       phoneNumber: "Please enter your phone number",
-      phoneNumberRegex: "Please enter a valid phone number",
+      phoneNumberRegex: "Please enter a 10-digit phone number",
       checkbox: "You need to accept our Terms and Services to confirm your order.",
     };
 
@@ -244,6 +273,7 @@ const CartPage = () => {
       errorCityRef.length === 0 &&
       errorZipRef.length === 0 &&
       errorEmailRef.length === 0 &&
+      errorEmailRegexRef.length === 0 &&
       errorPhoneRef.length === 0 &&
       errorPhoneRegexRef.length === 0 &&
       errorCheckboxRef.length === 0
@@ -253,6 +283,8 @@ const CartPage = () => {
 
   const handleForm = (e) => {
     e.preventDefault();
+    if (!formOpen) return;
+    console.log("handling form");
     checkFormErrors();
     validateForm();
   };
@@ -269,6 +301,10 @@ const CartPage = () => {
     }
   };
 
+  useEffect(() => {
+    console.log("form checked!");
+  }, [formOpen]);
+
   return !clientSecret ? (
     <Div100vh className="bg-black flex items-center justify-center ">
       <div className="w-max h-max flex flex-col items-center justify-center space-y-1">
@@ -280,12 +316,13 @@ const CartPage = () => {
     </Div100vh>
   ) : (
     <Elements stripe={stripePromise} options={options}>
-      {width < 768 ? <Navbar /> : <Steps formOpen={formOpen} formValidated={formValidated} />}
-      {width < 768 && <SearchModal />}
-      <Div100vh className="overflow-y-hidden bg-sound">
-        <Div100vh
+      <Div100vh className="overflow-hidden bg-sound">
+        {width < 768 ? <Navbar /> : <Steps formOpen={formOpen} formValidated={formValidated} />}
+        {width < 768 && <SearchModal />}
+        {/* STEP 1 - CART container */}
+        <div
           style={transition()}
-          className="page transition-transform duration-700 pt-16 md:pt-24 relative w-screen font-cabin flex flex-col items-center justify-center bg-sound overflow-y-hidden"
+          className="page transition-transform duration-700 pt-16 md:pt-24 relative h-full w-full font-cabin flex flex-col items-center justify-center bg-sound overflow-y-hidden"
         >
           <div
             style={{ contain: "content" }}
@@ -304,10 +341,10 @@ const CartPage = () => {
               <div className="h-max w-full md:h-full md:w-2/5 fixed bottom-0 md:relative flex items-center justify-center"></div>
             </div>
           </div>
-        </Div100vh>
-
-        <Div100vh
-          className="w-full overflow-y-auto md:flex md:items-center md:justify-center transition-transform duration-700 bg-sound pt-16 md:pt-24"
+        </div>
+        {/*STEP 2 - FORM container */}
+        <div
+          className="h-full w-full w-full overflow-hidden md:flex md:items-center md:justify-center transition-transform duration-700"
           style={transition()}
         >
           <Form
@@ -330,37 +367,44 @@ const CartPage = () => {
             errorLastName={errorLastName}
             errorPhone={errorPhone}
             handleInput={handleInput}
+            handleForm={handleForm}
           />
           <div className="hidden md:flex h-full w-2/5"></div>
-        </Div100vh>
-
-        <Div100vh
+        </div>
+        {/* STEP 3 : PAYMENT form */}
+        <div
           style={transition()}
-          className="relative transition-transform duration-700 bg-sound flex items-start justify-center pt-16 md:pt-24"
+          className="h-full w-full relative transition-transform duration-700 bg-sound flex items-start justify-center pt-16 md:pt-24"
         >
-          <CheckoutForm formValidated={formValidated} clientSecret={clientSecret} />
+          <CheckoutForm formValidated={formValidated} isLoading={isLoading} setIsLoading={setIsLoading} />
+          <div className="hidden md:flex h-full w-2/5"></div>
           {formValidated && width > 768 && <PaymentBanner />}
-        </Div100vh>
+        </div>
       </Div100vh>
       <div
         style={{
+          zIndex: 2999,
           height:
-            width > 768 && !formValidated
+            width < 768
+              ? "8rem"
+              : width > 768 && !formValidated
               ? "calc(100vh - 96px)"
-              : width > 768 && formValidated && "calc(100vh - 192px)",
-          top: formValidated && width > 768 && 0,
+              : width > 768 && formValidated
+              ? "calc(100vh - 192px)"
+              : "",
+          top: formValidated && width > 768 ? 0 : "",
         }}
-        className="h-max w-full md:w-2/5 fixed bottom-0 md:my-auto md:right-0 flex items-center justify-center"
+        className="w-full min-h-32 md:min-h-0 md:w-2/5 fixed bottom-0 md:my-auto md:right-0 flex items-center justify-center"
       >
         {items.length !== 0 && (
           <CartRecap
             totalPrice={totalPrice}
             handleDeleteItem={handleDeleteItem}
             handleDeleteCart={handleDeleteCart}
-            handleForm={handleForm}
             toggleForm={toggleForm}
             formOpen={formOpen}
             formValidated={formValidated}
+            isLoading={isLoading}
           />
         )}
       </div>

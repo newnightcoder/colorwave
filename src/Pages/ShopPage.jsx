@@ -69,7 +69,6 @@ const ShopPage = () => {
             <HashLink
               className="capitalize hover:underline hover:font-bold"
               to="/categories/sound#mics"
-              // to={{ pathname: "/categories/sound#mics", state: { from: pathname } }}
               scroll={scrollWidthOffset}
             >
               mics
@@ -111,7 +110,7 @@ const ShopPage = () => {
               <Loader color="yellow" />
             ) : (
               limitedItems.map((item, i) => (
-                <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(0,0,0,1)"} />
+                <ProductCard key={item.id} item={item} variants={item.variant_groups} bgColor={"rgba(0,0,0,1)"} />
               ))
             )}
           </div>
@@ -129,7 +128,12 @@ const ShopPage = () => {
             ) : (
               gamingItems.map((item, i) =>
                 limitedItems.find((x) => x.id === item.id) ? null : (
-                  <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
+                  <ProductCard
+                    key={item.id}
+                    item={item}
+                    variants={item.variant_groups}
+                    bgColor={"rgba(250,250,250,1)"}
+                  />
                 )
               )
             )}
@@ -151,7 +155,12 @@ const ShopPage = () => {
             ) : (
               headphonesItems.map((item, i) =>
                 limitedItems.find((x) => x.id === item.id) ? null : (
-                  <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
+                  <ProductCard
+                    key={item.id}
+                    item={item}
+                    variants={item.variant_groups}
+                    bgColor={"rgba(250,250,250,1)"}
+                  />
                 )
               )
             )}
@@ -172,7 +181,7 @@ const ShopPage = () => {
               <Loader color="yellow" />
             ) : (
               micsItems.map((item, i) => (
-                <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
+                <ProductCard key={item.id} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
               ))
             )}
           </div>
@@ -187,7 +196,7 @@ const ShopPage = () => {
               <Loader color="blue" bg="white" />
             ) : (
               skinsItems.map((item, i) => (
-                <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
+                <ProductCard key={item.id} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
               ))
             )}
           </div>
@@ -204,7 +213,7 @@ const ShopPage = () => {
               <Loader color="blue" bg="white" />
             ) : (
               accessoriesItems.map((item, i) => (
-                <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
+                <ProductCard key={item.id} item={item} variants={item.variant_groups} bgColor={"rgba(250,250,250,1)"} />
               ))
             )}
           </div>

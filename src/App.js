@@ -15,12 +15,8 @@ import {
   ShopPage,
 } from "./Pages";
 import { getShopData } from "./Redux/Actions/shop.action";
-import useWindowSize from "./utils/useWindowSize";
-
-// persistor.purge();
 
 const RefreshRoute = ({ component: Component, redirectionPath, ...rest }) => {
-  const dispatch = useDispatch();
   redirectionPath = redirectionPath ?? "/";
   const perf = performance.getEntriesByType("navigation")[0].toJSON();
   const reloadType = perf.type !== "reload";
@@ -42,7 +38,6 @@ const RefreshRoute = ({ component: Component, redirectionPath, ...rest }) => {
 
 const App = () => {
   const dispatch = useDispatch();
-  const { height, width } = useWindowSize();
 
   useEffect(() => {
     WebFont.load({
@@ -68,8 +63,5 @@ const App = () => {
     </Router>
   );
 };
-{
-  /* <Route path="*" component={NotFound} /> */
-}
 
 export default App;

@@ -215,7 +215,7 @@ const ProductPage = () => {
         <Carousel responsive={responsive} infinite={true} className={`${ready ? "visible" : "hidden"} pb-8`}>
           {item?.related_products.map((related, i) => (
             <RelatedProduct
-              key={i + 1}
+              key={related.id}
               linkToRelatedProduct={linkToRelatedProduct}
               related={related}
               parentProduct={parentProduct}

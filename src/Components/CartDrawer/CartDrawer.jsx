@@ -47,41 +47,47 @@ const CartDrawer = () => {
           <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-black"></span>
         </div>
 
-        <div className="items-container h-2/3 w-full overflow-y-auto scrollbar-cart overflow-x-hidden flex flex-col items-center justify-start space-y-2 pt-6 pb-12">
-          {items?.length !== 0 ? (
-            items.map((item, i) => (
-              <div
-                key={i}
-                style={{
-                  animation: cartDrawerOpen && items.length !== 0 && `750ms fadeIn ${200 + i * 100}ms forwards`,
-                }}
-                className="opacity-0 h-28 md:h-40 w-11/12 flex items-center justify-left border border-gray-200 bg-white md:pr-3"
-              >
-                <div
-                  style={{
-                    background: `url("${item.product.media.source}") ${
-                      item.product.categories.find((x) => x.name === "limited") ? "black" : "white"
-                    } no-repeat center/contain`,
-                  }}
-                  className="h-28 md:h-40 w-2/5 border-r border-t border-b border-gray-200"
-                ></div>
-                <div className="w-2/5 text-left text-sm pl-2 pr-2 md:pl-5 md:pr-0 whitespace-nowrap truncate">
-                  {item.product.name}
+        <div className="h-4/5 w-full overflow-hidden py-6">
+          <div className="h-full w-full overflow-x-hidden overflow-y-auto scrollbar-description">
+            <div className="items-container h-auto w-full flex flex-col items-center justify-start space-y-2 pb-2">
+              {items?.length !== 0 ? (
+                items.map((item, i) => (
+                  <div
+                    key={item.product.id}
+                    className="opacity-0 h-28 md:h-36 w-11/12 flex items-center justify-center bg-white pr-3"
+                    style={{
+                      animation: cartDrawerOpen && items.length !== 0 && `750ms fadeIn ${200 + i * 100}ms forwards`,
+                    }}
+                  >
+                    <div
+                      style={{
+                        background: `${
+                          item.product.categories.find((x) => x.name === "limited") ? "black" : "white"
+                        } url("${item.product.media.source}") no-repeat center/contain`,
+                      }}
+                      className="h-28 md:h-36 w-4/12 border-r border-t border-b border-gray-200"
+                    ></div>
+                    <div className="w-4/12 text-left my-auto text-sm pl-2 pr-2 md:pl-5 md:pr-0 whitespace-nowrap truncate">
+                      {item.product.name}
+                    </div>
+                    <div className="w-3/12 text-right text-sm flex items-center justify-center md:pr-2">
+                      {item.product.price.formatted}&nbsp;€
+                    </div>
+                    <button
+                      onClick={() => handleDeleteItem(item.product.id)}
+                      className="h-10 w-1/12 rounded-full flex items-center justify-center bg-transparent transition-color duration-300 hover:bg-gray-300"
+                    >
+                      <XCircle className="pointer-events-none" size={18} />
+                    </button>
+                  </div>
+                ))
+              ) : (
+                <div className="h-screen w-screen text-lg flex flex-col items-center justify-center">
+                  YOUR CART IS EMPTY
                 </div>
-                <div className="w-1/5 text-right text-sm md:pr-2">{item.product.price.formatted}&nbsp;€</div>
-                <button
-                  onClick={() => handleDeleteItem(item.product.id)}
-                  className="h-10 w-10 rounded-full flex items-center justify-center bg-transparent transition-color duration-300 hover:bg-gray-300"
-                >
-                  <XCircle className="pointer-events-none" size={18} />
-                </button>
-              </div>
-            ))
-          ) : (
-            <div className="h-screen w-screen text-lg flex flex-col items-center justify-center">
-              YOUR CART IS EMPTY
+              )}
             </div>
-          )}
+          </div>
         </div>
         <div
           style={{ animation: cartDrawerOpen && items.length !== 0 && "750ms fadeIn 400ms forwards" }}
@@ -89,13 +95,13 @@ const CartDrawer = () => {
         >
           <button
             onClick={() => dispatch(toggleCartDrawer())}
-            className="w-48 md:w-56 flex items-center justify-center space-x-2 text-sm md:text-base text-gray-900 py-2 md:py-3 shadow-md transition-shadow duration-100 hover:shadow-none bg-yellow-300 mt-4 uppercase outline-none"
+            className="w-48 md:w-56 flex items-center justify-center space-x-2 text-sm md:text-base text-gray-900 py-3 shadow-md transition-shadow duration-100 hover:shadow-none bg-yellow-300 mt-4 uppercase outline-none"
           >
             <ChevronDoubleLeft size={16} /> <span>Continue shopping</span>
           </button>
           <button
             style={{ display: items.length === 0 ? "none" : "flex" }}
-            className="w-48 md:w-56 items-center justify-center space-x-2 text-sm md:text-base text-gray-900 py-2 md:py-3 shadow-md transition-shadow duration-100 hover:shadow-none bg-yellow-300 mt-4 uppercase outline-none"
+            className="w-48 md:w-56 items-center justify-center space-x-2 text-sm md:text-base text-gray-900 py-3 shadow-md transition-shadow duration-100 hover:shadow-none bg-yellow-300 mt-4 uppercase outline-none"
             onClick={() => {
               history.push("/cart");
               dispatch(toggleCartDrawer());

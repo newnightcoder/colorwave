@@ -35,7 +35,7 @@ const Navbar = () => {
   return (
     <>
       <div
-        style={{ zIndex: 3000 }}
+        style={{ zIndex: 4000 }}
         className="h-16 md:h-20 w-full bg-black shadow-lg fixed top-0 font-cabin border-b-8 border-yellow-300 shadow-lg shadow-yellow-300"
       >
         <div className="nav-container h-full w-full mx-auto px-4 2xl:px-8">
@@ -208,7 +208,10 @@ const Navbar = () => {
             ///   MOBILE MENU  - SHOW/HIDE BASED ON MENU STATE   ///
             /////////////////////////////////////////////////////// */}
         <div
-          style={{ transform: menuOpen ? "scale(1, 1)" : "scale(0, 1)", height: "calc(100vh - 3.5rem)" }}
+          style={{
+            transform: menuOpen ? "scale(1, 1)" : "scale(0, 1)",
+            height: "calc(100vh - 3.5rem)",
+          }}
           className="w-full relative flex flex-col items-center justify-center bg-yellow-300 origin-left transition-scale duration-100"
           id="mobile-menu"
         >

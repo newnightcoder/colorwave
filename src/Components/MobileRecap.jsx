@@ -10,9 +10,9 @@ const MobileRecap = ({ openMobileRecap, toggleMobileRecap }) => {
     <Div100vh
       style={{
         transform: openMobileRecap ? "translateY(0)" : "translateY(100%)",
-        zIndex: 4000,
+        zIndex: 2500,
       }}
-      className="md:hidden fixed inset-0 font-cabin flex flex-col items-center justify-center space-y-6 rounded-sm overflow-x-hidden overflow-y-auto transition-transform duration-300 text-white bg-black pt-6 pb-12 px-2"
+      className="mobile-recap pt-20 md:hidden fixed inset-0 font-cabin flex flex-col items-center justify-center space-y-6 rounded-sm overflow-x-hidden overflow-y-auto transition-transform duration-300 text-white bg-black pt-12 pb-3 px-2"
     >
       <div
         style={{ animation: openMobileRecap && items.length !== 0 && "750ms fadeIn 100ms forwards" }}
@@ -22,33 +22,41 @@ const MobileRecap = ({ openMobileRecap, toggleMobileRecap }) => {
         <span className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-0.5 bg-white"></span>
       </div>
 
-      <div className="h-2/3 w-11/12 overflow-y-auto scrollbar-description text-gray-900 overflow-x-hidden flex flex-col items-center justify-start space-y-3 pt-6 pb-12 pr-2">
-        {items.map((item, i) => (
-          <div
-            key={i}
-            style={{
-              animation: openMobileRecap && items.length !== 0 && `750ms fadeIn ${200 + i * 100}ms forwards`,
-            }}
-            className="opacity-0 w-full flex flex items-center justify-left border border-gray-700 only:border-b-0 last:border-b-0 bg-white pr-2 md:pr-3"
-          >
-            <div
-              className="h-28 w-2/5 border-r border-gray-100"
-              style={{
-                background: `url("${item.product.media.source}") ${
-                  item.product.categories.find((x) => x.name === "limited") ? "black" : "white"
-                } no-repeat center/contain`,
-              }}
-            ></div>
-            <div className="w-2/5 text-left text-sm pl-2 md:pl-5 whitespace-nowrap truncate">{item.product.name}</div>
-            <div className="w-1/5 text-right text-sm">{item.product.price.formatted}&nbsp;€</div>
+      <div className="h-4/5 overflow-hidden w-11/12">
+        <div className="h-full w-full overflow-x-hidden overflow-y-auto scrollbar-description text-gray-900 ">
+          <div className="h-auto w-full flex flex-col items-center justify-start space-y-3 py-6 px-4 text-gray-900 text-gray-900">
+            {items.map((item, i) => (
+              <div
+                key={item.product.id}
+                style={{
+                  animation: openMobileRecap && items.length !== 0 && `750ms fadeIn ${200 + i * 100}ms forwards`,
+                }}
+                className="opacity-0 h-28 w-full flex flex items-center justify-left border border-gray-700 only:border-b-0 last:border-b-0 bg-white pr-3"
+              >
+                <div
+                  className="h-full w-2/5 border-r border-gray-100"
+                  style={{
+                    background: `${
+                      item.product.categories.find((x) => x.name === "limited") ? "black" : "white"
+                    } url("${item.product.media.source}") no-repeat center/contain`,
+                  }}
+                ></div>
+                <div className="w-2/5 text-left text-sm pl-2 md:pl-5 whitespace-nowrap truncate">
+                  {item.product.name}
+                </div>
+                <div className="w-1/5 text-right text-sm">{item.product.price.formatted}&nbsp;€</div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <button onClick={toggleMobileRecap} className="h-max w-max absolute bottom-8">
-        <div className="h-max w-max flex items-center justify-center space-x-1">
-          <X size={24} className="text-white" /> <span className="uppercase text-sm">close</span>
         </div>
-      </button>
+      </div>
+      <div className="h-max w-full flex items-center justify-center">
+        <button onClick={toggleMobileRecap} className="h-max w-max">
+          <div className="h-max w-max flex items-center justify-center space-x-1">
+            <X size={24} className="text-white" /> <span className="uppercase text-sm">close</span>
+          </div>
+        </button>
+      </div>
     </Div100vh>
   );
 };

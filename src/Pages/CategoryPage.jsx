@@ -175,7 +175,7 @@ const CategoryPage = () => {
                     <Loader color="yellow" />
                   ) : (
                     limitedItems.map((item, i) => (
-                      <ProductCard key={i + 1} item={item} variants={item.variant_groups} bgColor={"rgba(0,0,0,1)"} />
+                      <ProductCard key={item.id} item={item} variants={item.variant_groups} bgColor={"rgba(0,0,0,1)"} />
                     ))
                   )}
                 </div>
@@ -217,7 +217,7 @@ const CategoryPage = () => {
                           <ProductCard
                             item={item}
                             variants={item.variant_groups}
-                            key={i + 1}
+                            key={item.id}
                             bgColor={
                               categoryName === "sound" ? "white" : categoryName === "gaming" ? "rgba(0,0,0,1)" : "white"
                             }
