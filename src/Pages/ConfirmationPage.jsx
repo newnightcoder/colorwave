@@ -12,7 +12,8 @@ const ConfirmationPage = () => {
   const userOrder = useSelector((state) => state?.cart.userOrder);
   const orderId = useSelector((state) => state?.cart.userOrder.orderId);
   const dispatch = useDispatch();
-  const { height, width } = useWindowSize();
+  const { width } = useWindowSize();
+  const cloudinaryCdnPrefix_static = "https://my-cloud-cdn.mo.cloudinary.net/colorwave-static";
 
   useEffect(() => {
     dispatch(validatePayment(userOrder));
@@ -27,7 +28,7 @@ const ConfirmationPage = () => {
     <div>
       {width < 768 ? <Navbar /> : <Steps />}
       <Div100vh
-        style={{ background: `url("${sunsetImg}") no-repeat center/cover` }}
+        style={{ background: `url("${cloudinaryCdnPrefix_static}${sunsetImg}") no-repeat center/cover` }}
         className="pt-16 w-screen relative bg-gray-300 flex items-center justify-center"
       >
         <div

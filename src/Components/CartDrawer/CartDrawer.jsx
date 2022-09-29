@@ -12,6 +12,8 @@ const CartDrawer = () => {
   const dispatch = useDispatch();
   const items = useSelector((state) => state.cart.items);
   const cartDrawerOpen = useSelector((state) => state?.cart.cartDrawerOpen);
+  const cloudinaryCdnPrefix = "https://my-cloud-cdn.mo.cloudinary.net/colorwave";
+  const commercejsCdn = "https://cdn.chec.io";
 
   const handleDeleteItem = (id) => {
     items.forEach((item) => {
@@ -20,12 +22,6 @@ const CartDrawer = () => {
       }
     });
   };
-
-  // const totalPrice =
-  //   items?.length !== 0 &&
-  //   items?.reduce((acc, curr) => {
-  //     return acc + curr.product.price.raw * curr.quantity;
-  //   }, 0);
 
   return (
     <Div100vh
@@ -67,7 +63,10 @@ const CartDrawer = () => {
                       style={{
                         background: `${
                           item.product.categories.find((x) => x.name === "limited") ? "black" : "white"
-                        } url("${item.product.media.source}") no-repeat center/contain`,
+                        } url("${item.product.media.source.replace(
+                          commercejsCdn,
+                          cloudinaryCdnPrefix
+                        )}") no-repeat center/contain`,
                       }}
                       className="h-28 md:h-36 w-4/12 border-r border-t border-b border-gray-200"
                     ></div>

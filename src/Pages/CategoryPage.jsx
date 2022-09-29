@@ -1,16 +1,12 @@
 import { useEffect, useState } from "react";
 import { ChevronLeft } from "react-bootstrap-icons";
-import { use100vh } from "react-div-100vh";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { CartDrawer, Footer, Loader, Navbar, ProductCard, SearchModal } from "../Components";
 import "../Styles/_globals.css";
 import { animateProducts } from "../utils/animateProducts";
-import useWindowSize from "../utils/useWindowSize";
 
 const TextLoader = () => {
-  const { width } = useWindowSize();
-  const responsiveHeight = use100vh();
   const { pathname } = useLocation();
   const categoryName = pathname.split("/")[2];
   return (

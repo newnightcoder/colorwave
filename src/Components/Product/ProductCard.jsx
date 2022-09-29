@@ -10,6 +10,9 @@ const ProductCard = ({ item, variants, bgColor, parentProduct, search }) => {
   const dispatch = useDispatch();
   const searchModalOpen = useSelector((state) => state?.shop.searchModalOpen);
   const limitedItem = item?.categories?.find((cat) => cat.name === "limited");
+  const cloudinaryCdnPrefix = "https://my-cloud-cdn.mo.cloudinary.net/colorwave";
+  const commercejsCdn = "https://cdn.chec.io";
+  const imgSource = item?.media.source.replace(commercejsCdn, cloudinaryCdnPrefix);
 
   const linkPage = () => {
     if (searchModalOpen) dispatch(toggleSearchModal());
@@ -43,7 +46,7 @@ const ProductCard = ({ item, variants, bgColor, parentProduct, search }) => {
       >
         <img
           className="image-product h-full w-full relative object-contain transition duration-300 transform group-hover:scale-125"
-          src={item && item.media.source}
+          src={item && imgSource}
           alt={item.name}
           onClick={linkPage}
         />

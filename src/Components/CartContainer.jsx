@@ -9,6 +9,8 @@ const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, han
   const { width } = useWindowSize();
   const responsiveHeight = use100vh();
   const items = useSelector((state) => state?.cart.items);
+  const cloudinaryCdnPrefix = "https://my-cloud-cdn.mo.cloudinary.net/colorwave";
+  const commercejsCdn = "https://cdn.chec.io";
 
   return (
     <div className="cart-container h-full w-full relative flex flex-col items-center justify-center text-gray-900 bg-sound md:bg-gaming">
@@ -65,7 +67,10 @@ const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, han
                         style={{
                           background: `${
                             item.product.categories.find((x) => x.name === "limited") ? "black" : "white"
-                          } url("${item.product.media.source}") no-repeat center/contain`,
+                          } url("${item.product.media.source.replace(
+                            commercejsCdn,
+                            cloudinaryCdnPrefix
+                          )}") no-repeat center/contain`,
                         }}
                       ></div>
                       <div className="details h-full w-2/5 flex items-center justify-center space-x-2">

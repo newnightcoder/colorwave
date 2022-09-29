@@ -5,6 +5,8 @@ import "../Styles/_globals.css";
 
 const MobileRecap = ({ openMobileRecap, toggleMobileRecap }) => {
   const items = useSelector((state) => state?.cart.items);
+  const cloudinaryCdnPrefix = "https://my-cloud-cdn.mo.cloudinary.net/colorwave";
+  const commercejsCdn = "https://cdn.chec.io";
 
   return (
     <Div100vh
@@ -38,7 +40,10 @@ const MobileRecap = ({ openMobileRecap, toggleMobileRecap }) => {
                   style={{
                     background: `${
                       item.product.categories.find((x) => x.name === "limited") ? "black" : "white"
-                    } url("${item.product.media.source}") no-repeat center/contain`,
+                    } url("${item.product.media.source.replace(
+                      commercejsCdn,
+                      cloudinaryCdnPrefix
+                    )}") no-repeat center/contain`,
                   }}
                 ></div>
                 <div className="w-2/5 text-left text-sm pl-2 md:pl-5 whitespace-nowrap truncate">

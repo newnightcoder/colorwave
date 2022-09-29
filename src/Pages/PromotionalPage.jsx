@@ -14,13 +14,13 @@ const PromotionalPage = () => {
   //   return () => window.removeEventListener("scroll", handleScroll);
   // }, []);
 
-  const cdnPrefix = "https://6fm7ey8k.cdn.imgeng.in";
+  const cloudinaryPrefix_static = "https://my-cloud-cdn.mo.cloudinary.net/colorwave-static";
 
   const promotionalImages = {
-    img1: `${cdnPrefix}${img1}`,
-    img2: `${cdnPrefix}${img2}`,
-    img3: `${cdnPrefix}${img3}`,
-    img4: `${cdnPrefix}${img4}`,
+    img1: `${cloudinaryPrefix_static}${img1}`,
+    img2: `${cloudinaryPrefix_static}${img2}`,
+    img3: `${cloudinaryPrefix_static}${img3}`,
+    img4: `${cloudinaryPrefix_static}${img4}`,
   };
 
   return (

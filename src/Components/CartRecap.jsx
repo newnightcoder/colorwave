@@ -8,10 +8,12 @@ import useWindowSize from "../utils/useWindowSize";
 
 const CartRecap = ({ formValidated, formOpen, toggleForm, totalPrice, handleDeleteCart, isLoading }) => {
   const items = useSelector((state) => state?.cart.items);
-  const { height, width } = useWindowSize();
+  const { width } = useWindowSize();
   const [itemsDivHeight, setItemsDivHeight] = useState(0);
   const [btnContent, setBtnContent] = useState("View");
   const [openMobileRecap, setOpenMobileRecap] = useState(false);
+  const cloudinaryCdnPrefix = "https://my-cloud-cdn.mo.cloudinary.net/colorwave";
+  const commercejsCdn = "https://cdn.chec.io";
 
   const toggleCartInRecap = useCallback(() => {
     setItemsDivHeight(itemsDivHeight === 0 ? "auto" : 0);
@@ -107,7 +109,10 @@ const CartRecap = ({ formValidated, formOpen, toggleForm, totalPrice, handleDele
                                 style={{
                                   background: `${
                                     item.product.categories.find((x) => x.name === "limited") ? "black" : "white"
-                                  } url("${item.product.media.source}") no-repeat center/contain`,
+                                  } url("${item.product.media.source.replace(
+                                    commercejsCdn,
+                                    cloudinaryCdnPrefix
+                                  )}") no-repeat center/contain`,
                                 }}
                               ></div>
                               <div className="w-4/12 text-left text-sm pl-2 whitespace-nowrap truncate">

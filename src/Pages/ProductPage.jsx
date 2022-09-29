@@ -22,24 +22,25 @@ const ProductPage = () => {
   const [oneOrMoreImages, setOneOrMoreImages] = useState(null);
   const [ready, setReady] = useState(false);
   const ref = useRef(null);
-
   const style = {
     bgColor: item?.categories[0]?.name === "gaming" ? "black" : "#fefefe",
     descriptionBgColor: item?.categories[0]?.name === "gaming" ? "rgb(40,40,40)" : "rgba(240,240,240,.99)",
     textColor: item?.categories[0]?.name === "gaming" ? "rgba(250,250,250,.99)" : "rgb(40,40,40)",
   };
+  const cloudinaryCdnPrefix = "https://my-cloud-cdn.mo.cloudinary.net/colorwave";
+  const commercejsCdn = "https://cdn.chec.io";
 
   const galleryItems = {
     itemImages: item?.assets
       .filter((asset) => !asset.filename.includes("product"))
       .map((asset) => ({
-        original: asset.url.replace("https://cdn.chec.io", "https://190c6rxe.cdn.imgeng.in"),
-        thumbnail: asset.url.replace("https://cdn.chec.io", "https://190c6rxe.cdn.imgeng.in"),
+        original: asset.url.replace(commercejsCdn, cloudinaryCdnPrefix),
+        thumbnail: asset.url.replace(commercejsCdn, cloudinaryCdnPrefix),
       })),
     onlyOneImg: [
       {
-        original: item?.assets[0].url.replace("https://cdn.chec.io", "https://190c6rxe.cdn.imgeng.in"),
-        thumbnail: item?.assets[0].url.replace("https://cdn.chec.io", "https://190c6rxe.cdn.imgeng.in"),
+        original: item?.assets[0].url.replace(commercejsCdn, cloudinaryCdnPrefix),
+        thumbnail: item?.assets[0].url.replace(commercejsCdn, cloudinaryCdnPrefix),
       },
     ],
   };
