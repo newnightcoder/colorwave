@@ -137,27 +137,27 @@ const CategoryPage = () => {
         <div
           className={`${
             isLoading ? "opacity-0" : "opacity-100"
-          } w-full relative flex items-center justify-center md:justify-start relative  pt-4 md:pt-10 mb-4`}
+          } w-full relative flex items-center justify-center md:justify-start relative pt-10 mb-4`}
         >
           <Link
             to={{
               pathname: location?.state?.from === "/shop" || location.hash === "#mics" ? "/shop" : "/",
             }}
-            className="absolute left-5 md:left-10 top-50"
+            className="absolute left-5 md:left-10 top-50 flex items-center"
           >
             <ChevronLeft size={38} className="fw-bold hover:text-white transition duration-300" />
-          </Link>
-          <span
-            className={`${
-              isLoading ? "opacity-0" : "opacity-100"
-            } w-min max-w-64 relative text-2xl font-bold px-4 md:px-6 md:ml-32 md:whitespace-nowrap`}
-          >
-            {categoryName.toUpperCase()}
             <span
-              style={pageConditionalStyle.titleAfterElement}
-              className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-1 md:bottom-0.5"
-            ></span>
-          </span>
+              className={`${
+                isLoading ? "opacity-0" : "opacity-100"
+              } max-w-64 relative text-2xl font-bold px-4 md:px-6 md:ml-32 md:whitespace-nowrap`}
+            >
+              {categoryName.toUpperCase()}
+              <span
+                style={pageConditionalStyle.titleAfterElement}
+                className="h-px w-full absolute inset-x-0 mx-auto left-0 bottom-1 md:bottom-0.5"
+              ></span>
+            </span>
+          </Link>
         </div>
 
         <div className="category w-full h-full">

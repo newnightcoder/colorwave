@@ -98,7 +98,7 @@ const CartDrawer = () => {
         >
           <button
             onClick={() => dispatch(toggleCartDrawer())}
-            className="w-48 md:w-56 flex items-center justify-center space-x-2 text-sm md:text-base text-gray-900 py-3 shadow-md transition-shadow duration-100 hover:shadow-none bg-yellow-300 mt-4 uppercase outline-none"
+            className="w-48 md:w-56 flex items-center justify-center space-x-2 text-sm md:text-base text-gray-900 py-3 shadow-md transition-shadow duration-100 hover:shadow-none bg-blue-400 mt-4 uppercase outline-none"
           >
             <ChevronDoubleLeft size={16} /> <span>Continue shopping</span>
           </button>
