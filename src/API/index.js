@@ -1,7 +1,7 @@
 import Commerce from "@chec/commerce.js";
 
-const HEROKU_ENDPOINT = "https://colorwave-shop.herokuapp.com/commerce";
-const CYCLIC_ENDPOINT = "https://ruby-comfortable-oyster.cyclic.app";
+// const HEROKU_ENDPOINT = "https://colorwave-shop.herokuapp.com/commerce";
+const CYCLIC_ENDPOINT = "https://ruby-comfortable-oyster.cyclic.app"; // 🚀 switched to cyclic.sh! so much faster than HEROKU because NO SLEEP!
 
 const BACKEND_ENDPOINT = process.env.NODE_ENV === "production" ? CYCLIC_ENDPOINT : "http://localhost:4242";
 

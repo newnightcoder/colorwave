@@ -36,7 +36,7 @@ const ProductCard = ({ item, variants, bgColor, parentProduct, search }) => {
 
   return (
     <div
-      className={`product-card h-52 w-full md:h-64 2xl:h-68 font-cabin group transform  ${
+      className={`product-card h-52 w-full md:h-64 2xl:h-68 font-cabin group transform ${
         search ? "opacity-100 translate-y-0" : "opacity-0 translate-y-1/4"
       }`}
     >

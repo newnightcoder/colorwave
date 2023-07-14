@@ -10,6 +10,8 @@ const CheckoutForm = ({ formValidated, isLoading, setIsLoading }) => {
   const { width } = useWindowSize();
   const responsiveHeight = use100vh();
   const [message, setMessage] = useState("");
+  // const HEROKU_SUCCESS_URL = "https://colorwave-shop.netlify.app/success";
+  const CYCLIC_SUCCESS_URL = "https://ruby-comfortable-oyster.cyclic.app/sucess";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,7 +20,7 @@ const CheckoutForm = ({ formValidated, isLoading, setIsLoading }) => {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: "https://colorwave-shop.netlify.app/success",
+        return_url: CYCLIC_SUCCESS_URL,
         // return_url: "http://localhost:4242/success",
       },
     });

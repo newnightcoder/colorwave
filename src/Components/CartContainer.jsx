@@ -36,7 +36,7 @@ const CartContainer = ({ handleRemoveOne, handleAddToCart, handleDeleteItem, han
             </div>
             <Link
               to="/shop"
-              className="flex items-center justify-center space-x-1 text-gray-900 hover:underline hover:font-bold group md:pl-6 md:pt-2"
+              className="flex items-center justify-center space-x-1 text-blue-500 hover:underline hover:font-bold group md:pl-6 md:pt-2"
             >
               <ChevronDoubleLeft size={12} />
               <span className="whitespace-nowrap">Continue shopping</span>

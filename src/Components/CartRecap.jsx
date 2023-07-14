@@ -84,6 +84,7 @@ const CartRecap = ({ formValidated, formOpen, toggleForm, totalPrice, handleDele
                         className="hidden md:block transition-transform duration-300"
                         style={{
                           color: "rgb(17 24 39)",
+                          // color: "rgb(59 130 246)
                           transform: itemsDivHeight !== 0 && "rotate(90deg)",
                         }}
                       />
