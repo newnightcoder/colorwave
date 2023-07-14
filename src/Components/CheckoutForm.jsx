@@ -11,7 +11,7 @@ const CheckoutForm = ({ formValidated, isLoading, setIsLoading }) => {
   const responsiveHeight = use100vh();
   const [message, setMessage] = useState("");
   // const HEROKU_SUCCESS_URL = "https://colorwave-shop.netlify.app/success";
-  const CYCLIC_SUCCESS_URL = "https://ruby-comfortable-oyster.cyclic.app/sucess";
+  const CYCLIC_SUCCESS_URL = "https://ruby-comfortable-oyster.cyclic.app/success";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
